@@ -1,0 +1,215 @@
+\documentclass{_mypackages/monograph}
+
+\title{General Relativity} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{generalrelativity.bib}
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\chapter{The tangent and cotangent spaces}
+\minitoc
+
+\section{The tangent space}
+
+The are many characterisations\footnote{Alternative definitions of the tangent space are relevant in the context of \emph{Non-commutative Geometries}.} of the so called \emph{tangent space} of a manifold point. 
+
+\begin{definition}[Tangent space of a point. First characterisation]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Let \(\mathscr{C}^d_p\) be the collection of curves of \(\mathscr{C}_p\) that are differentiable on some open neighbourhood of \(p\). The collection of every equivalence class of \(\mathscr{C}^d_p\) by the equivalence relation defined above will be denoted \(T^1_p V\) and be called the \emph{tangent space at \(p\)}.
+\end{definition}
+
+\begin{proposition}
+The space \(T_p^1 V\) is a real vector space.
+\end{proposition}
+
+\begin{proof}
+chap 35, 1658.
+\end{proof}
+
+Given the real vector space of \(T_p^1 V\), the morphism \(\psi_\lambda: T_p^1 V \to \R^n\), defined by
+\begin{equation}
+    T_p^1 V \ni [c]_p \mapsto \vb{e}_c^\lambda (p) = \begin{pmatrix}
+    \dot{x}^1(0) \\[0.4em]
+    \vdots \\[0.4em]
+    \dot{x}^n(0)
+    \end{pmatrix} \in \R^n
+\end{equation}
+is clearly bijective. Since \(\psi_\lambda\) is a bijective morphism, we can say that there is an isomorphism between \(T_p^1 V\) and \(\R^n\).
+
+\begin{definition}[Tangent space of a point. Second characterisation] 
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\) with the atlas \(\mathcal{A} = \set{(A_\lambda, h_\lambda), \lambda \in \Lambda}\). Lets denote by \(\mathcal{D}_p\) the collection of every function \(f:V\to \R\) differentiable at \(p\in V\). Let \(c \in \mathscr{C}^d_p, c:I\to V\) be a curve that goes through \(p\) at \(t=0, t\in I\). For each \(c\in \mathscr{C}^d_p\), lets define the linear operator \(D_p(c)\) by
+\begin{equation}
+    D_p(c) f := \eval{\dv{t} (f\circ c)}_{t=0}
+\end{equation}
+\end{definition}
+
+Given a local chart of coordinates \((A_\lambda, h_\lambda)\) with \(p\in A_\lambda\), we can write 
+\begin{equation}
+    f\circ c = (f\circ h_{\lambda}^{-1}) \circ (h_\lambda \circ c)
+\end{equation}    
+with
+\begin{equation}
+    f\circ h_{\lambda}^{-1}: h_\lambda (A_\lambda) \subset \R^n \to \R
+\end{equation}
+and 
+\begin{equation}
+    h_\lambda \circ c: I \to \R^n.
+\end{equation}
+Then, we find by applying the chain rule, that
+\begin{equation}
+    D_p(c) f = \eval{\dv{t} (f\circ c)}_{t=0} = \left[\eval{\dv{t} (f\circ h_{\lambda}^{-1})}_{p}\right] \eval{\dv{t} (h_\lambda \circ c)}_{t=0} = \bigg[ D(f\circ h_{\lambda}^{-1})(h_{\lambda}(p))\bigg] \vb{e}_c^{\lambda}(p)
+\end{equation}
+Since the above expression is valid for every \(f\), we can see that for any \(c_1,c_2 \in \mathscr{C}^d_p\) follows
+\begin{equation}\label{eq:tp1vtp2vequiv}
+    c_1 \sim_p c_2 \iff D_p(c_1) = D_p(c_2),
+\end{equation}
+allowing us to denote \(D_p(c)\) by \(D_p([c]_p)\). 
+
+\begin{notation}
+Lets fix \(p\in V\). Then, lets denote by \(T_p^2 V\) the collection of every operator \(D_p([c]_p)\), with \([c]_p \in T_p^1 V\).
+\end{notation}
+
+\begin{proposition}
+The space \(T_p^2 V\) is a real vector space.
+\end{proposition}
+
+Since\(T_p^2 V\) is a real vector space, it can be shown that it is isomorphous to \(\R^n\).
+
+\subsection{Equivalence between characterisations}
+
+Given \eqref{eq:tp1vtp2vequiv}, a morphism \(\phi\) that to each \([c]_p\) assigns \(D_p([c]_p)\), i.e.
+\begin{equation}
+    \phi: T_p^1 V \ni [c]_p \mapsto D_p([c]_p) \in T_p^2 V
+\end{equation}
+is clearly bijective, meaning that \(T_p^1V\) and \(T_p^2V\) are isomorphous to each other and to \(\R^n\). For this reason, we'll ignore the distinction between \(T_p^1 V\) and \(T_p^2 V\) and write simply \(T_p V\).
+
+
+
+
+\section{Base of tangent space}
+
+Recalling that
+\begin{equation}
+    D(f\circ h_{\lambda}^{-1})(h_{\lambda}(p)) = \bigg(\pdv{(f\circ h_{\lambda}^{-1})}{x^1} (h_\lambda(p)), \dots, \pdv{(f\circ h_{\lambda}^{-1})}{x^n} (h_\lambda(p)) \bigg),
+\end{equation}
+which is the Jacobian matrix of \(f\circ h_{\lambda}^{-1}\), and \eqref{eq:tanvec}, we can write \(D_p([c]_p) f\) as
+\begin{equation}\label{eq:stepbasistanspace}
+    D_p([c]_p) f = \bigg[ D(f\circ h_{\lambda}^{-1})(h_{\lambda}(p))\bigg] \vb{e}_c^{\lambda}(p) = \sum_{j=1}^n \pdv{(f\circ h_{\lambda}^{-1})}{x^j} (h_{\lambda}(p)) \dot{x}^j(0).
+\end{equation}
+
+Since \(h_{\lambda}(p):V\to \R^n\), we can write
+\begin{equation}
+    h_\lambda (p) = (x_p^1,\dots,x_p^n)
+\end{equation}
+Consider now, for some \(j\in \set{1,\dots,n}\), the curve \(c_j\) such that, when written on the coordinates of the local chart of coordinates \((A_\lambda, h_\lambda)\), reads
+\begin{equation}
+    h_\lambda \circ c_j = l_j(t) = (x_p^1,\dots,x_p^j + t,\dots,x_p^n)
+\end{equation}
+By use of \eqref{eq:tanvec}, the \(i\)-th component of the tangent vector to \(l_j\) is simply \(\delta_{ij}\), meaning that only its \(j\)-th component is not zero. Thus, if we act with \(D_p\) on \(c_j\) for any \(f\), \eqref{eq:stepbasistanspace} reduces to
+\begin{equation}\label{eq:stepbasistanspace2}
+    D_p([c_j]_p) f = \pdv{(f\circ h_{\lambda}^{-1})}{x^j} (h_{\lambda}(p)).
+\end{equation}
+Now, using \eqref{eq:stepbasistanspace2} we can write \eqref{eq:stepbasistanspace} as
+\begin{equation}
+    D_p([c]_p) f = \sum_{j=1}^n \bigg[\pdv{(f\circ h_{\lambda}^{-1})}{x^j} (h_{\lambda}(p))\bigg] \dot{x}^j(0) =  \sum_{j=1}^n \dot{x}^j(0) \bigg[D_p([c_j]_p) f\bigg] = \Bigg[\sum_{j=1}^n \dot{x}^j(0) D_p([c_j]_p)\Bigg] f,
+\end{equation}
+which implies that
+\begin{equation}
+    D_p([c]_p) = \sum_{j=1}^n \dot{x}^j(0) D_p([c_j]_p).
+\end{equation}
+Given that all \(c_j\) are nonequivalent, the collection of vectors \(\set{D_p([c_j]_p)}_{j=1}^n\) becomes a base of \(T^2_p V\), called the \emph{canonical base of coordinates associated with \((A_\lambda,h_\lambda)\)}. Since, by construction, \(l_j(t)\) is a curve varying only on the \(j\)-th coordinate of \(h_\lambda\), \(D_p([c_j]_p)\) resembles a partial derivative along the \(j\)-th coordinate of \(h_\lambda\), which is the reason its universally abbreviated as
+\begin{equation}
+    D_p([c_j]_p) \equiv \eval{\pdv{x^j}}_{p}
+\end{equation}
+thus allowing us to write
+\begin{equation} \label{eq:oponbase}
+    D_p([c]_p) = \sum_{j=1}^n \dot{x}^j(0) \eval{\pdv{x^j}}_{p}.
+\end{equation}
+
+\section{Changing the base of a tangent space}
+
+Since we are working with a differentiable manifold \((V,\tau,\mathcal{J})\), every local chart of coordinates is compatible, thus given two local charts of coordinates \((A_\lambda,h_\lambda)\) and \((A_{\lambda '}, h_{\lambda '})\), both containing \(p\), i.e. \(p\in A_\lambda, A_{\lambda '}\), we can use the Jacobian matrix of the transition function \(H_{A_\lambda,A_{\lambda '}}\) to change from one coordinate to another. 
+
+Let \(h_\lambda(A_\lambda) = (x^1,\cdots, x^n)\) and \(h_{\lambda '}(A_{\lambda '}) = (y^1,\cdots,y^n)\), then \(H_{A_\lambda,A_{\lambda '}}(x^1,\cdots, x^n) = (y^1,\cdots,y^n)\) and the Jacobian matrix reads
+\begin{equation}
+    DH_{A_\lambda,A_{\lambda '}} = \begin{pmatrix}
+    \dfrac{\partial y^1}{\partial x^1} & \cdots & \dfrac{\partial y^1}{\partial x^n} \\[0.4em]
+    \vdots & \ddots & \vdots \\[0.4em]
+    \dfrac{\partial y^n}{\partial x^1} & \dots & \dfrac{\partial y^n}{\partial x^n}
+    \end{pmatrix}.
+\end{equation}
+Since the canonical base of coordinates associated with \((A_\lambda, h_\lambda)\) is \(\set{\eval{\pdv{x^1}}_{p},\cdots , \eval{\pdv{x^n}}_{p}}\), while the canonical base of coordinates associated with \((A_{\lambda '}, h_{\lambda '})\) is \(\set{\eval{\pdv{y^1}}_{p},\cdots , \eval{\pdv{y^n}}_{p}}\), we find that
+\begin{equation}
+    \eval{\pdv{y^k}}_{p} = \sum_{j=1}^n \eval{\pdv{x^j}{y^k}}_{h_{\lambda'} (p)} \eval{\pdv{x^j}}_{p} , \qq{for all} k \in \set{1,\dots, n}
+\end{equation}
+and
+\begin{equation}\label{eq:opinvstep1}
+    \eval{\pdv{x^j}}_{p} = \sum_{k=1}^n \eval{\pdv{y^k}{x^j}}_{h_{\lambda} (p)} \eval{\pdv{y^k}}_{p} , \qq{for all} l \in \set{1,\dots, n}.
+\end{equation}
+Plugging \eqref{eq:opinvstep1} onto \eqref{eq:oponbase}, we find
+\begin{equation}
+\begin{split}
+    D_p([c]_p) &= \sum_{j=1}^n \dot{x}^j(0) \eval{\pdv{x^j}}_{p} \\
+    &= \sum_{j=1}^n \dot{x}^j(0) \Bigg(\sum_{k=1}^n \eval{\pdv{y^k}{x^j}}_{h_{\lambda} (p)} \eval{\pdv{y^k}}_{p}\Bigg) \\
+    &=\sum_{k=1}^n \Bigg( \sum_{j=1}^n \dot{x}^j(0) \eval{\pdv{y^k}{x^j}}_{h_{\lambda} (p)} \Bigg) \eval{\pdv{y^k}}_{p} \\
+    &= \sum_{k=1}^n \Bigg( \dot{y}^k(0) \Bigg) \eval{\pdv{y^k}}_{p} \\
+    &= \sum_{j=1}^n \dot{y}^j(0)\eval{\pdv{y^j}}_{p},
+\end{split}
+\end{equation}
+thus
+\begin{equation}
+    D_p([c]_p) = \sum_{j=1}^n \dot{x}^j(0) \eval{\pdv{x^j}}_{p} = \sum_{j=1}^n \dot{y}^j(0)\eval{\pdv{y^j}}_{p}.
+\end{equation}
+
+\section{The tangent bundle}
+
+\begin{definition}[Tangent bundle]
+Let \((V,\tau,\mathcal{J})\) be a differentiable manifold and \(T_p V\) the tangent space at \(p\in V\). The disjoint union of every tangent space, denoted \(TV\):
+\begin{equation}
+    TV := \bigsqcup_{p\in V} T_p V = \bigcup_{p\in V}(p, T_p V) = \bigcup_{p\in V}\bigcup_{D_p([c]_p\in T_p V}(p, D_p([c]_p),
+\end{equation}
+is called \emph{tangent bundle of \((V,\tau,\mathcal{J})\)}. Since \(\dim V = \dim T_p V = n\), it follows that \(\dim TV = 2n\).
+\end{definition}
+
+Let \(\mathcal{A}=\set{(A_\lambda,h_\lambda), \lambda \in \Lambda}\) be an infinitely differentiable atlas of \(V\). Let the local coordinates of \(A_\lambda\) defined by \(h_\lambda\) be \(\set{x^1,\cdots, x^n}\), and the corresponding base be \(\set{\eval{\pdv{x^1}}_{p},\cdots, \eval{\pdv{x^n}}_{p}}\). Lets denoted \(\dot{x}(0)\) by \(v\), such that \(D_p([c]_p)\in T_p V\) can be written as
+\begin{equation}
+    D_p([c]_p) = \sum_{j=1}^n v^j \eval{\pdv{x^j}}_{p}.
+\end{equation}
+If we define:
+\begin{equation}
+    TA_\lambda := \bigsqcup_{p\in A_\lambda} T_p V = \bigcup_{p\in A_\lambda}(p, T_p V) = \bigcup_{p\in A_\lambda}\bigcup_{D_p([c]_p\in T_p V}(p, D_p([c]_p)
+\end{equation}
+and \(H_\lambda: TA_\lambda \to \R^{2n}\) by
+\begin{equation}
+    H_\lambda \Bigg(p, D_p([c]_p) \Bigg) = (h_\lambda (p),v^1,\cdots, v^n) \in \R^{2n}
+\end{equation}
+we find that \(T\mathcal{A} := \set{(TA_\lambda,H_\lambda),\lambda\in\Lambda}\) is also an infinitely differentiable atlas of \(TV\). Thus, the tangent bundle is a \emph{differentiable manifold of dimension \(2n\)}.
+
+\section{The cotangent space}
+
+\begin{definition}[Cotangent space]
+Let \((V,\tau,\mathcal{J})\) be a differentiable manifold of dimension \(n\). Let \(T_p V\) be the tangent space of \(V\) at \(p\in V\). Lets denote the algebraic dual space of \(T_p V\) by \(T_p^* V\). In differential geometry \(T_p^* V\) is called the \emph{cotangent space} and its elements are called \emph{cotangent vectors}.
+\end{definition}
+
+\begin{notation}
+We denote the canonical dual basis of \(\set{\eval{\pdv{x^1}}_{p},\cdots,\eval{\pdv{x^n}}_{p}}\) by \(\set{\dd{x}_p^1,\cdots,\dd{x}_p^n}\). Then, by the definition of the canonical dual basis, we have
+\begin{equation}
+    \Bigg\langle \dd{x}_p^i, \eval{\pdv{x^j}}_{p} \Bigg\rangle = \tensor{\delta}{^i_j}
+\end{equation}
+\end{notation}
+
+\section{The cotangent bundle}
+
+\begin{definition}[Cotangent bundle]
+Let \((V,\tau,\mathcal{J})\) be a differentiable manifold and \(T_p^* V\) the cotangent space at \(p\in V\). The disjoint union of every cotangent space, denoted \(T*V\):
+\begin{equation}
+    T^*V := \bigsqcup_{p\in V} T_p^* V = \bigcup_{p\in V}(p, T_p^* V) = \bigcup_{p\in V}\bigcup_{l\in T_p^* V}(p,l),
+\end{equation}
+is called \emph{cotangent bundle of \((V,\tau,\mathcal{J})\)}. Since \(\dim V = \dim T_p^* V = n\), it follows that \(\dim T^*V = 2n\).
+\end{definition}
+
+
+\end{document}

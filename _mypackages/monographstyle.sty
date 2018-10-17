@@ -1,0 +1,140 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{monographstyle}[2016/08/06 Bruno Murino's monographstyle]
+
+%------------------------------------------
+
+\RequirePackage{geometry}
+% \geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
+\geometry{papersize={180mm,260mm}, top=25mm, bottom=15mm, left=15mm, right=15mm}
+
+\RequirePackage{minitoc}
+\renewcommand{\mtctitle}{\textnormal{\emph{Contents}}}
+
+%-------------------------------------------------------------------------------
+
+% This commands for \footnote{}\footnote{} to work with Hyperref
+\let\oldFootnote\footnote
+\newcommand\nextToken\relax
+
+\renewcommand\footnote[1]{%
+    \oldFootnote{#1}\futurelet\nextToken\isFootnote}
+
+\newcommand\isFootnote{%
+    \ifx\footnote\nextToken\textsuperscript{,}\fi}
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage[pagestyles]{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries}
+\titleformat*{\paragraph}{\normalsize\bfseries}
+\titleformat*{\subparagraph}{\normalsize\bfseries}
+
+\newpagestyle{onlypagenum}
+{\sethead{}{}{\textbf{\thepage}}%
+\setfoot{}{}{}}
+
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{onlypagenum}}{}{}
+\patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
+
+\pagestyle{onlypagenum}
+
+
+%------------------------------------------
+\newcommand{\monographtp}{
+	\begin{titlepage}
+	    \begin{center}
+	        \vspace*{2.5cm}
+
+	        \Large
+	        {Monograph on}
+
+	        \vspace{1cm}
+	        \Huge
+	        {\textbf{\MyTitle}}
+
+ 		    \vspace{2cm}
+ 		    \large
+ 		    {By}
+
+ 		    \vspace{0.5cm}
+ 		    \Large
+ 		    {\MyAuthor}
+
+ 		    \vfill
+
+ 		    {Last edited}\\
+ 		    {\MyDate}
+
+	    \end{center}
+	\end{titlepage}
+}
+
+%------------------------------------------
+
+
+%------------------------------------------
+
+\makeatletter
+\def\@makechapterhead#1{%
+    \vspace*{2em}% Space above number
+    {\parindent \z@  \normalfont
+    \interlinepenalty\@M
+    \Large{\hspace*{\fill} \textbf{\thechapter} \hspace*{\fill}}%
+    \par\vspace{0.5em}% Space between number and title
+    \Large{\hspace*{\fill} \textbf{#1} \hspace*{\fill}}%
+    \par\vspace{3em}}% Space between title and text
+}
+\makeatother
+
+
+\RequirePackage{remreset} % Don't reset footnote numbering on new chapters
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother
+%------------------------------------------
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{axiom}{Axiom}[chapter]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{case}{Case}
+\newtheorem*{notation}{Notation}
+
+%
+% % \surroundwithmdframed[outerlinewidth=0.4pt,
+% %   innerlinewidth=0pt,
+% %   middlelinewidth=1pt,
+% %   middlelinecolor=black,
+% %   bottomline=false,topline=false,rightline=false]{example}
+%
+
+%
+% \theoremstyle{mathstyle}
+% \newtheorem{definition}{Definition}
+%
+% \theoremstyle{mathstyle}
+% \newtheorem{example}{Example}[chapter]
+
+% \renewcommand\qedsymbol{QED}
+
+%-------------------Hyperref setup-----------------------
+
+\hypersetup{
+	colorlinks = true,
+	% citecolor = DeepPink4,
+	% linkcolor = DarkRed,
+	urlcolor = blue,
+}
+

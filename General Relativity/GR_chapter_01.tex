@@ -1,0 +1,262 @@
+\documentclass{_mypackages/monograph}
+
+\title{General Relativity} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{generalrelativity.bib}
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\chapter{Introduction}
+\minitoc
+
+\section{Sets}
+
+\begin{axiom}[Power set\footnote{As stated in \fullcite{Ciesielski1997}.}] For every set \(X\) there exists a set \(P\) containing the set \(\mathbb{P}(X)\), called the \emph{power set}\footnote{The name "power set" comes from the fact that if a set has \(n\) elements, its power set has \(2^n\) elements.\cite{Badiou2014}}, of all subsets of \(X\):
+\begin{equation}
+    \forall X \exists P \forall z [z\subset X \implies z\in P].
+\end{equation}
+\end{axiom}
+
+\begin{definition}[Cardinality of a set] Let \(A\) and \(B\) be to sets. If there's a bijective function \(f\) between then, i.e. \(f:A\to B\), then they're said to have the same \emph{cardinality}.
+\end{definition}
+
+\begin{definition}[Finite set] Let \(A\) be a set. If \(A\) and \(\set{1,\dots,n}\) have the same cardinality for some \(n\in\N\), then \(A\) is said to be a \emph{finite set}.
+\end{definition}
+
+\begin{definition}[Infinite set] Let \(A\) be a set. If \(A\) is not a finite set, then it is an \emph{infinite set}.
+\end{definition}
+
+\begin{definition}[Union]
+    
+\end{definition}
+
+\begin{definition}[Disjoint union]
+    
+\end{definition}
+
+\begin{definition}[Covering space] Let \(X\) be a non-empty set and let \(A\subset X\). A collection \(\mathscr{R}\subset \mathbb{P}(X)\) is said to be a covering space of \(A\) if the union of all its elements contain \(A\), i.e. if \(A \subset \bigcup_{R\in \mathscr{R}}R\).
+\end{definition}
+
+\begin{definition}[Denumerable set] Let \(A\) be a set. If \(A\) has the same cardinality as the natural numbers set, i.e. \(\N\), then \(A\) is said to be a \emph{denumerable set}.
+\end{definition}
+
+\begin{definition}[Countable set] Let \(A\) be a set. If \(A\) is either finite or denumerable, then \(A\) is said to be a \emph{countable set}.
+\end{definition}
+
+\begin{definition}[Homeomorphism]
+
+\end{definition}
+
+\begin{definition}[Diffeomorphism] Let \(f:A\to B\) be an homeomorphism. If \(f\) and \(f^{-1}\) are differentiable.
+\end{definition}
+
+\begin{definition}[Class of a diffeomorphism] Let \(f:A \to B\) be a diffeomorphism. If \(f\) and \(f^{-1}\) are \(r\)-times differentiable, \(r\in\N\), then \(f\) is said to be a diffeomorphism \emph{of class \(C^r\)}.
+\end{definition}
+
+\begin{definition}[Equivalence relation] Let \(E \subset A\cross A\) be a relation. If
+\begin{enumerate}
+    \item \emph{Reflexivity}: \((a,a)\in E\) for all \(a\in A\).
+    \item \emph{Symmetry}: \((a,b)\in E \implies (b,a)\in E\).
+    \item \emph{Transitivity}: if \((a,b)\in E\) and \((b,c)\in E\), then \((a,c)\in E\).
+\end{enumerate}
+then \(E\) is said to be an \emph{equivalence relation}.
+\end{definition}
+
+\begin{definition}[Equivalence class] Let \(A\) be a set and \(E\subset A\cross A\) be an equivalence relation in \(A\). The set \(E(a) := \set{a'\in A: (a,a')\in E}\), defined for all \(a\in A\), is called an \emph{equivalence class of \(a\) by the equivalence relation \(E\)}.
+\end{definition}
+
+\section{Vector spaces}
+
+\begin{definition}[Linear functional]
+Let \(V\) be a vector space over a field \(\mathbb{K}\). If a morphism \(l:V\to \mathbb{K}\) over all \(V\) satisfies
+\begin{equation}
+    l(\alpha x + \beta y) = \alpha l(x) + \beta l(y)\qcomma \forall x,y\in V\qcomma \alpha,\beta \in \mathbb{K}
+\end{equation}
+then \(l\) is said to be a \emph{linear functional}.
+\end{definition}
+
+\begin{definition}[Algebraic dual space]
+Let \(V\) be a vector space over a field \(\mathbb{K}\). The set of all linear functionals is called the \emph{algebraic dual space of \(V\)} and is denoted by \(V'\).
+\end{definition}
+
+\begin{definition}[Canonical dual basis] 
+Let \(U\) be a vector space over a field \(\mathbb{K}\) and let \(U\) have finite dimension, i.e. finite basis \(\set{\vb{e}_1,\cdots,\vb{e}_n}\qcomma n\in \N\). Then, every element \(u\in U\) can be written as \(\sum_{i=1}^n u^i \vb{e}_i\), with \(u^i \in\mathbb{K}\). For every \(j\) lets define the linear functional \(\vb{e}^j:U\to \mathbb{K}\) by
+\begin{equation}
+    \vb{e}^j(u) := u^j.
+\end{equation}
+Since \(\vb{e}^j\) is a linear functional from \(U\) to \(\mathbb{K}\), then \(\vb{e}^j \in U'\). Lets take an arbitrary \(l\in U'\) and apply it to \(u\in U\):
+\begin{equation}
+    l(u) = l \Bigg(\sum_{i=1}^n u^i \vb{e}_i \Bigg) = \sum_{i=1}^n u^i l(\vb{e}_i) = \sum_{i=1}^n l(\vb{e}_i)\vb{e}^i(u).
+\end{equation}
+Since the above expression is valid for every \(u\in U\), we can write
+\begin{equation}
+    l = \sum_{i=1}^n l(\vb{e}_i)\vb{e}^i.
+\end{equation}
+Recalling that \(l(\vb{e}_i)\in \mathbb{K}\) and \(\vb{e}^i \in U'\), we can conclude that the set \(\set{\vb{e}^1,\cdots, \vb{e}^n}\) is a basis of \(U'\), the so called \emph{canonical dual basis} of the basis \(\set{\vb{e}_1,\cdots,\vb{e}_n}\) of \(U\). 
+\end{definition}
+
+
+\section{Topology}
+
+\begin{definition}[Topology] Let \(X\) be a set and let \(\tau\in \mathbb{P}(X)\). Then \(\tau\) is said to be a \emph{topology on \(X\)} if
+\begin{enumerate}
+    \item \(\emptyset \in \tau\) and \(X \in \tau\).
+    \item If \(A \in \tau\) and \(B \in \tau\), then \(A\cap B \in \tau\).
+    \item If \(I\) is an arbitrary set of indexes and \(A_{\tau}\in \tau\) for every \(\lambda\in I\), then \(\bigcup_{\lambda \in I} A_{\lambda}\) is also an element of \(\tau\).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Neighbourhood] Let \((X,\tau)\) be a topological space and \(x\in X\). Let \(V\subset X\). If \(x\in V\) and exists \(A\in \tau\) such that \(x\in A\subset V\), then \(V\) is said to be a \emph{neighbourhood of \(x\) with respect to \(\tau\)}.
+
+\end{definition}
+
+\begin{definition}[Topological space] The pair \((X,\tau)\), where \(X\) is a non-empty set and \(\tau \in \mathbb{P}(X)\) is a topology on \(X\), is said to be a \emph{topological space}.
+\end{definition}
+
+\begin{proposition} Let \(X\) be a set. Let \(\set{\tau_{\lambda}, \lambda\in I}\) be a collection of topologies defined on \(X\). Then \(\tau_I = \bigcap_{\lambda \in I} \tau_{\lambda}\) is also a topology on \(X\).
+\end{proposition}
+
+\begin{proof}
+29.2.1.
+\end{proof}
+
+\begin{definition}[Generated topology] Let \(X\) be a set and let \(\mathcal{A}\subset \mathbb{P}(X)\). The intersection of every topology defined in \(X\) that contains \(\mathcal{A}\) is also a topology, denoted by \(\tau[\mathcal{A}]\) and called by \emph{topology generated by \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Base of a topology] Let \((X,\tau)\) be a topological space. Let \(\mathcal{B} = \set{B_{\lambda} \in \tau,\lambda \in I}\), where \(I\) is some arbitrary set that indexes the elements of \(\mathcal{B}\). Let \(A\in \tau\). If \(A = \bigcup_{\lambda\in I_A} B_{\lambda}\) for every \(A\in \tau\), where \(I_A \subset I\), then \(\mathcal{B}\) is said to be a \emph{base of the topology \(\tau\)}.
+\end{definition}
+
+\begin{definition}[Second countable topological space] Let \((X,\tau)\) be a topological space. If \((X,\tau)\) has a countable base, then \((X,\tau)\) is said to be a \emph{second-countable topological space}.
+\end{definition}
+
+\begin{definition}[Open set with respect to a topology] Let \((X,\tau)\) be a topological space and let \(A\subset X\). If \(A \in \tau\), then \(A\) is said to be an \emph{open set with respect to \(\tau\)}.
+\end{definition}
+
+\begin{definition}[Hausdorff property \emph{or} Hausdorff space] Let \((X,\tau)\) be a topological space. If for all \(x,y\in X\) there exists two open sets with respect to \(\tau\), \(A_x\) and \(A_y\), such that \(x \in A_x\) and \(y\in A_y\) but \(A_x \cap A_y = \emptyset\), then the topological space \((X,\tau)\) is said to have the \emph{Hausdorff property} or to be a \emph{Hausdorff space}.
+\end{definition}
+
+\begin{definition}[Euclidean open set of dimension \(n\) with respect to a topology] Let \((X,\tau)\) be a topological space. If an open set with respect to \(\tau\) is homeomorphic to an open ball \(D_n(r,0) \subset \R^n\), then its an \emph{euclidean open set of dimension \(n\) with respect to \(\tau\)}.
+\end{definition}
+
+\begin{definition}[Collection of all euclidean open sets] Let \((X,\tau)\) be a topological space. Then we denote the collection of all euclidean open sets of dimension \(n\) with respect to \(\tau\) by \(\mathcal{E}(X,\tau,n)\subset \tau\).
+\end{definition}
+
+\section{Charts and atlases}
+
+\begin{definition}[Local chart of coordinates] Let \((X,\tau)\) be a topological space and \(\mathcal{E}(X,\tau,n) \subset \tau\) be the collection of all euclidean open sets of dimension \(n\) with respect to \(\tau\). A pair \((V,h)\) with \(V\in \mathcal{E}(X,\tau,n)\) and \(h: V \to D_n(r_{V},0)\), \(r_V>0\) an homeomorphism is called a \emph{local chart of coordinates of the open set \(V\)}.
+\end{definition}
+
+\begin{definition}[Local chart] If \((V,h)\) is a local chart of coordinates, then \(V\) is said to be a \emph{local chart}.
+\end{definition}
+
+\begin{definition}[Chart of coordinates] If \((V,h)\) is a local chart of coordinates, then \(h\) is said to be a \emph{chart of coordinates of \(V\)}.
+\end{definition}
+
+\begin{definition}[Locally Euclidean space] The topological space \((X,\tau)\) is said to be a locally Euclidean space of dimension \(n\) if it has at least one covering space \(\mathcal{V} = \set{V_{\lambda}, \lambda \in \Lambda}\) such that \(V_{\lambda} \in \mathcal{E}(X,\tau,n)\) for all \(\lambda\in \Lambda\), where \(\Lambda\) is an arbitrary set used to label the elements of \(\mathcal{V}\). 
+\end{definition}
+
+\begin{definition}[Atlas] Let \((X,\tau)\) be a locally Euclidean space of dimension \(n\). Having at least one covering space \(\mathcal{V} = \set{V_{\lambda}, \lambda\in \Lambda}\), we can take the element \(V_{\lambda}\in\mathcal{E}(X,\tau,n)\) and turn it into a local chart of coordinates by imbuing it with a homeomorphism \(h_{\lambda}:V_{\lambda}\to D_n(r_{V_{\lambda}},0)\). The collection \(\mathcal{A} = \set{(V_{\lambda},h_{\lambda}), \lambda\in\Lambda}\) is called an \emph{atlas}.
+\end{definition}
+
+\begin{definition}[Local chart of coordinates of an atlas] Let \(\mathcal{A} = \set{(V_{\lambda},h_{\lambda}), \lambda\in\Lambda}\) be an atlas. Then the pair \((V_{\lambda},h_{\lambda})\) is called a \emph{local chart of coordinates of the atlas \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Local chart of an atlas] Let \(\mathcal{A} = \set{(V_{\lambda},h_{\lambda}), \lambda\in\Lambda}\) be an atlas. Then \(V_{\lambda}\) is called a \emph{local chart of the atlas \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Chart of coordinates of an atlas] Let \(\mathcal{A} = \set{(V_{\lambda},h_{\lambda}), \lambda\in\Lambda}\) be an atlas. Then \(h_{\lambda}\) is called a \emph{chart of coordinates of the atlas \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Transition function between local chart of coordinates of an atlas] Let \(\mathcal{A}\) be an atlas of the locally Euclidean space \((X,\tau)\). Let \((U,h_U),(V,h_V)\in \mathcal{A}\). If \(U \cap V \neq \emptyset\), we call
+\begin{equation}
+    H_{U,V} := h_V\circ (h_U)^{-1}: h_U(U\cap V)\to h_V(U\cap V)
+\end{equation}
+the transition function between \((U,h_U)\) and \((V,h_V)\).
+\end{definition}
+
+\section{Manifold}
+
+\begin{definition}[Pre-topological manifold of dimension \(n\)] Let \((X,\tau)\) be a Hausdorff space. If \((X,\tau)\) is also a locally Euclidean space of dimension \(n\), then \((X,\tau)\) is said to be a \emph{pre-topological manifold of dimension \(n\)}.
+\end{definition}
+
+\begin{definition}[Second-countable topological manifold of dimension \(n\)] Let \((X,\tau)\) be a pre-topological manifold. If \((X,\tau)\) is also a second countable topological space, then \((X,\tau)\) is said to be a \emph{second-countable topological manifold of dimension \(n\)}.
+\end{definition}
+
+\begin{definition}[Compatible local chart of coordinates] Let \((X,\tau)\) be a second-countable topological manifold\footnote{Why not just a locally Euclidean space?}. Let \((V_1,h_1)\) and \((V_2,h_2)\) be local charts of coordinates. If \(V_1\cap V_2 = \emptyset\) or, if \(V_1\cap V_2 \neq \emptyset\), the transition function \(H_{V_1,V_2}:= h_2\circ(h_1)^{-1}\) is an infinitely differentiable diffeomorphism of \(h_1(V_1\cap V_2)\subset \R^n\) in \(h_2(V_1\cap V_2)\subset \R^n\), then \((V_1,h_1)\) and \((V_2,h_2)\) are said to be \emph{compatible local chart of coordinates}.
+\end{definition}
+
+\begin{definition}[Infinitely differentiable atlas] Let \((X,\tau)\) be a second-countable topological manifold of dimension \(n\). Let \(\mathcal{A}\set{(V_{\lambda},h_{\lambda}),\lambda \in \Lambda}\) be an atlas of \((X,\tau)\). If all local chart of coordinates are compatible, then \(\mathcal{A}\) is said to be an \emph{infinitely differentiable atlas}.
+\end{definition}
+
+\begin{definition}[Equivalence relation between infinitely differentiable atlas] Let \((X,\tau)\) be a second-countable topological manifold of dimension \(n\). Let \(\mathcal{A}_1\) and \(\mathcal{A}_2\) be two atlases of \((X,\tau)\). If \(\mathcal{A}_1\cup \mathcal{A}_2\) is also an infinitely differentiable atlas, then they are said to be \emph{equivalent atlases}.
+\end{definition}
+
+\begin{definition}[Infinitely differentiable structure on a second-countable topological manifold of dimension \(n\)] Let \((X,\tau)\) be
+a second-countable topological manifold of dimension \(n\). An equivalence class of atlases of \((X,\tau)\) is said to be an \emph{infinitely differentiable structure on a second-countable topological manifold of dimension \(n\)}, and is denoted by \(\mathcal{J}\equiv\mathcal{J}(X,\tau)\).
+\end{definition}
+
+\begin{definition}[Maximal atlas of an infinitely differentiable structure] Let \(\mathcal{J}\) be an infinitely differentiable structure. The union of every atlas of \(\mathcal{J}\) is said to be the \emph{maximal atlas of \(\mathcal{J}\)}.
+\end{definition}
+
+\begin{definition}[Infinitely differentiable structure generated by an atlas] Let \((X,\tau)\) be a second-countable topological manifold of dimension \(n\) and let \(\mathcal{A}\) be an atlas of \((X,\tau)\). An equivalence class of \(\mathcal{A}\) is said to be an \emph{infinitely differentiable structure generated by \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Maximal atlas generated by an atlas] Let \(\mathcal{J}\) be an infinitely differentiable structure generated by the atlas \(\mathcal{A}\). The union of every atlas of \(\mathcal{J}\) is said to be the \emph{maximal atlas generated by \(\mathcal{A}\)}.
+\end{definition}
+
+\begin{definition}[Infinitely differentiable manifold of dimension \(n\)] Let \((X,\tau)\) be a second-countable topological manifold of dimension \(n\). If \((X,\tau)\) has at least one infinitely differentiable structure \(\mathcal{J}\), i.e. an infinitely differentiable atlas, then \((X,\tau,\mathcal{J})\) is said to be an \emph{infinitely differentiable manifold of dimension \(n\)}, or simply a \emph{differentiable manifold of dimension \(n\)}.
+\end{definition}
+
+\section{Curves on manifolds}
+
+\begin{definition}[Continuous curve on a differentiable manifold]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). A continuous curve on \((V,\tau,\mathcal{J})\) is a continuous function \(\mathit{c}: I \to V\), where \(I \subset \R\).
+\end{definition}
+
+\begin{definition}[Continuous injective curve on manifold]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Given a continuous curve on \(V\), if we choose its domain \(I\) small enough, we can always assume that \(\mathit{c}\) is injective. In this case, we say that \(\mathit{c}\) is a continuous injective curve on \(V\).
+\end{definition}
+
+\begin{definition}[Collection of all continuous injective curve that pass through a point]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Let \(p\in V\) and let \(\mathscr{C}_p\) be the collection of all continuous injective curve \(\mathit{c}:I \to V\) that pass through \(p\), with \(I\) being an open interval of \(\R\). Without loss of generality, we can assume that \(0\in I\) and \(\mathit{c}(0) = p\) for every curve of \(\mathscr{C}_p\).
+\end{definition}
+
+\begin{definition}[Differentiable curve on a differentiable manifold]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Let \(\mathit{c} \in \mathscr{C}_p\) and \((A_{\lambda},h_{\lambda})\) be a local chart of coordinates such that \(p\in A_{\lambda}\). If the curve
+\begin{equation}
+    h_{\lambda} \circ \mathit{c}:I \to h_{\lambda}(A_{\lambda}) \subset \R^n
+\end{equation}
+is differentiable at \(t=0\), then \(c\) is said to be a \emph{differentiable curve on the differentiable manifold \((V,\tau,\mathcal{J})\)}.
+\end{definition}
+
+\begin{definition}[Points of a differentiable curve]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Let \(c\in \mathscr{C}_p\), with \(p\in A_{\lambda}\). Lets denote the points of the curve \((h_{\lambda}\circ c)(t) \in \R^n\),\( t\in I\), by \((h_{\lambda}\circ c)(t) = (x^1(t),\dots,x^n(t))\).
+\end{definition}
+
+\begin{definition}[Tangent vector of a differentiable curve]
+Let \((V,\tau,\mathcal{J})\) be a differential manifold of dimension \(n\). Let \(c\in \mathscr{C}_p\), with \(p\in A_{\lambda}\). Since we denote the points of the curve \((h_{\lambda}\circ c)(t) \in \R^n\),\( t\in I\), by \((h_{\lambda}\circ c)(t) = (x^1(t),\dots,x^n(t))\), the tangent vector to \(h_{\lambda}\circ c\) at \(h_{\lambda}(p)\) is
+\begin{equation}\label{eq:tanvec}
+    \vb{e}^{\lambda}_c (p) \equiv \eval{\dv{t} (h_{\lambda}\circ c)(t)}_{t=0} = \begin{pmatrix}
+    \dot{x}^1(0) \\
+    \vdots\\
+    \dot{x}^n(0)
+    \end{pmatrix}
+\end{equation}
+\end{definition}
+
+\begin{notation}
+Lets denote by \(\mathscr{C}^d_p\) the collection of curves of \(\mathscr{C}_p\) that are differentiable on some open neighbourhood of \(p\).
+\end{notation}
+
+\begin{definition}[Equivalence of curves in \(\mathscr{C}^d_p\)]
+Let \(c_1, c_2 \in \mathscr{C}^d_p\). If \(\vb{e}^{\lambda}_{c_1} (p)=\vb{e}^{\lambda}_{c_2} (p)\) for some \(\lambda\) with \(p\in A_{\lambda}\), then \(c_1\) and \(c_2\) are said to be \emph{equivalent curves}.
+\end{definition}
+
+
+
+
+\end{document}

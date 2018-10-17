@@ -1,0 +1,111 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mycommands}[2016/08/06 Bruno Murino's custom commands]
+
+%------------------------------------------------------------
+
+\newcommand{\beq}[1][\empty]{\ifx#1\empty \begin{equation}\else \begin{equation}\label{#1}\fi}
+
+\newcommand{\eeq}{\end{equation}}
+
+\newcommand{\eq}[2][\empty]
+{\ifx#1\empty \begin{equation*} \begin{split} #2 \end{split} \end{equation*} \else \begin{equation}\label{#1} \begin{split} #2 \end{split} \end{equation}\fi}
+% \eq{
+% \left.\begin{aligned}
+% 	\div{\vb{E}} &= \frac{\rho}{\epsilon_0}\\
+% 	\div{\vb{B}} &= 0\\
+% 	\curl{\vb{E}} +\pdv{\vb{B}}{t} &= 0\\
+% 	\curl{\vb{B}} - \mu_0 \epsilon_0\pdv{\vb{E}}{t} &= \mu_0\vb{J}
+% \end{aligned}
+% \right\}\qquad \text{Maxwell's equations}
+% }
+
+\newcommand{\subeq}[2][\empty]
+{\ifx#1\empty \begin{subequations}\begin{align} #2 \end{align} \end{subequations} \else \begin{subequations}\label{#1}
+\begin{align} #2 \end{align}
+\end{subequations}\fi}
+% \subeq{
+%     B'=-\nabla \times E\\
+%     E'=\nabla \times B - 4\pi j
+% }
+
+\newcommand{\sgn}{\text{sgn}}
+\renewcommand{\pb}[2]{\left\{#1,\ #2 \right\}_{\text{PB}}}
+\newcommand{\db}[2]{\left\{#1,\ #2 \right\}_{\text{D}}}
+
+\renewcommand{\exp}[1]{e^{#1}}  % \exp{-iwt}
+\newcommand{\lexp}[1]{\text{exp}\lr{#1}}
+
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\ssb}[1]{\left[#1\right]} % Scaling square braces
+\newcommand{\scb}[1]{\left\{#1\right\}} % Scaling curly braces
+% \lr{ some equation } puts left right parentesis
+
+\newcommand{\bxi}{\bm{\xi}}
+\newcommand{\bXi}{\bm{\Xi}}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bMu}{\bm{\Mu}}
+\newcommand{\bomega}{\bm{\omega}}
+\newcommand{\bOmega}{\bm{\Omega}}
+\newcommand{\bepsilon}{\bm{\epsilon}}
+\newcommand{\bEpsilon}{\bm{\Epsilon}}
+
+
+\newcommand{\Ai}[1]{{Ai}\lr{#1}} % Airy function Ai
+\newcommand{\Bi}[1]{{Bi}\lr{#1}} % Airy function Bi
+
+\newcommand{\TS}{\mb{TS}}
+\newcommand{\bH}{\mc{H}}
+\newcommand{\bset}{\left\{\pm1\right\}}
+\newcommand{\set}[1]{\left\{ #1\right\}}
+
+
+
+\newcommand{\mean}[1]{\left< #1 \right>}  % \mean{f(t)}
+
+\newcommand{\then}{\Rightarrow}  % \then
+
+\newcommand{\angstrom}{\textup{\AA}}  % \angstrom
+
+\newcommand{\R}{\mathbb{R}}  % \R
+
+\newcommand{\mb}[1]{\mathbb{#1}}  % \mb{C}
+
+\newcommand{\mc}[1]{\mathcal{#1}}  % \mc{L}
+
+\newcommand{\und}[2]{\underset{#1}{#2}}
+
+\newcommand{\del}{\partial}  % \del
+
+\renewcommand{\div}[2][]{\grad{#1}\cdot#2}  % \div[x']{f(x - x')}
+
+\renewcommand{\laplacian}[2][]{\grad^2{#1}#2}  % \div[x']{f(x - x')}
+
+\newcommand{\gradi}[2][]{\grad{#1}#2}  % \gradi[x']{f(x - x')}
+
+\renewcommand{\curl}[2][]{\grad{#1}\cross#2}  % \curl[x']{f(x - x')}
+
+\newcommand{\hlf}{\frac{1}{2}}  % \hlf
+
+\newcommand{\epot}{\varphi}  % \epot
+
+\newcommand{\at}[2][]{\eval{}_{#2}^{#1}}  % x^2 \at[x_f]{x_i}
+
+\newcommand{\uint}[1][]{\underset{#1}\int}  % \uint{}
+
+\newcommand{\uoint}[1][]{\underset{#1}\oint}  % \uoint{}
+
+\newcommand{\tvb}[1]{\tilde{\vb{#1}}}  % \tvb{E} tilde bold vector
+
+\newcommand{\tub}[2][]{\underbrace{#2}_{\text{\shortstack{#1}}}} % Text UnderBrace \tub[some text]{object}
+
+\newcommand{\gvn}[1]{|#1}  % P(a\gvn{b})
+
+\newcommand{\upup}{\ket{\uparrow\uparrow}}  % \upup
+
+\newcommand{\updown}{\ket{\uparrow\downarrow}}  % \upup
+
+\newcommand{\downup}{\ket{\downarrow\uparrow}}  % \upup
+
+\newcommand{\downdown}{\ket{\downarrow\downarrow}}  % \upup
+
+%------------------------------------------------------------

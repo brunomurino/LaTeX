@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{newarticlestheme}[2016/08/06 Bruno Murino's new theme for articles]
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage{import}
+\RequirePackage[subpreambles=false]{standalone}
+% each file is compilable on its own, and the preambles of subfiles are ignores (subpreambles=false)
+% \import{Path/}{Filename}
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage{times}
+\RequirePackage[utf8]{inputenc}
+\linespread{1.1}
+
+%-------------------------------------------------------------------------------
+
+% \RequirePackage{geometry}
+% \geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage[backend=biber, style=nature]{biblatex}
+% \addbibresource{RelativePath/file.bib}
+\newcommand{\printbib}[1]{
+\nocite{*} \printbibliography[title={\hspace*{\fill} #1 \hspace*{\fill}}]
+\addcontentsline{toc}{section}{#1}%
+}
+
+%-------------------------------------------------------------------------------
+
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}

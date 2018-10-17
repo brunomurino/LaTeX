@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{monographpreamble}[2017/05/01 Bruno Murino's monograph preamble]
+
+%------------------------------------------
+
+\RequirePackage{lipsum}
+\RequirePackage{etoolbox}
+\RequirePackage{authoraftertitle}
+\RequirePackage{times}
+% \RequirePackage{mathptmx}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{fontenc}
+\linespread{1.1}
+\RequirePackage{import}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage[subpreambles=false]{standalone}
+% each file is compilable on its own, and the preambles of subfiles are ignores (subpreambles=false)
+% \import{Path/}{Filename}
+\RequirePackage[dvipsnames]{xcolor}
+
+\RequirePackage{hyperref} % Has setup
+% hyperlink table of contents
+
+\RequirePackage[overload]{empheq}
+
+\RequirePackage{tikz-cd} % For easy drawing
+%------------------------------------------
+\RequirePackage{mathrsfs}
+% \mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+\RequirePackage{amsmath, amssymb, amsthm, mathtools}
+\RequirePackage{nicefrac}
+
+\RequirePackage[italicdiff]{physics}
+\RequirePackage{tensor}
+%  \tensor[^{2s+1}]{T}{^j_ ^ _}
+\RequirePackage{bm}
+
+
+\RequirePackage{siunitx}
+% \si{\watt\per\hertz}
+%------------------------------------------
+\mathcode`l="8000
+\begingroup
+	\makeatletter
+	\lccode`\~=`\l
+	\DeclareMathSymbol{\lsb@l}{\mathalpha}{letters}{`l}
+	\lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \ell \else \lsb@l \fi}}%
+\endgroup
+%------------------------------------------
+
+\makeatletter
+\renewcommand*{\@textcolor}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+%------------------------------------------
+\RequirePackage[backend=biber, style=nature]{biblatex}
+% \addbibresource{RelativePath/file.bib}
+\newcommand{\printbib}[1][References]{
+	\defbibheading{bibliography}[\refname]{
+	  \chapter*{\hspace*{\fill} #1 \hspace*{\fill}}
+	  \markboth{}{}
+	}
+	\nocite{*}
+	\printbibliography[title={\hspace*{\fill} #1 \hspace*{\fill}}]
+	\addcontentsline{toc}{chapter}{#1}%
+}
+\newcommand{\printbibfields}[1][References]{
+	\chapter*{\hspace*{\fill} #1 \hspace*{\fill}}
+	\addcontentsline{toc}{chapter}{#1}
+	\nocite{*}
+	\printbibliography[heading=subbibintoc, keyword={physics},title={Physics-related}]
+	\printbibliography[heading=subbibintoc, keyword={math},title={Math-related}]
+	\printbibliography[heading=subbibintoc, type=book, title={Books only}]
+}
+% \cite{refname}
+% \fullcite{refname}
+% \footfullcite{refname}

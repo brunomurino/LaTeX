@@ -1,0 +1,117 @@
+\documentclass{_mypackages/monograph}
+
+\title{Formation and Evolution of Galaxies \\ Problem Set 03 \\ Dark Matter} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\subsubsection{1.}
+
+We have that
+\begin{equation}
+    \eta_{DM}= \frac{\rho_{DM}}{m} = \Omega_{DM} \,\, \rho_{crit,0} \,\, \frac{1}{m}.
+\end{equation}
+
+Assuming
+\begin{equation}
+    \Omega_{DM} \sim 0.258,
+\end{equation}
+\begin{equation}
+    \rho_{crit,0} \approx 10^{-29} \si{\gram\per\cubic\centi\metre},
+\end{equation}
+and that the mass \(m\) of a WIMP is
+\begin{equation}
+    m = 100 \si{\giga\electronvolt} = 179\cross 10^{-24} \si{\gram},
+\end{equation}
+we find that the number density of WIMP's in the universe should be
+\begin{equation}
+    \eta_{DM} \approx 1.44134 \cross 10^{-8} \si{\per\cubic\centi\metre},
+\end{equation}
+which is really sm
+
+
+
+
+
+
+
+
+
+\subsubsection{2.}
+
+
+
+If \(\Omega_m = 1\), then \(\rho_m = \rho_{crit}\) and \(M/L_B\) becomes the critical mass-to-light ratio
+\begin{equation}
+    \left(\frac{M}{L}\right)_{B,m} = \frac{\rho_m}{\mathcal{L}_B} = \frac{\rho_{crit}}{\mathcal{L}_B} \approx 1500 h \left( \si{\solarmass\per\solarluminosity}\right)_{B},
+\end{equation}
+where the formula used was equation 2.70 of "Galaxy Formation and Evolution", by Mo, Houjun; Van den Bosch, Frank; and White, Simon
+
+
+
+
+
+\subsubsection{3.}
+
+We know that for the Coma cluster
+\begin{equation}
+\begin{split}
+    M_* &= 1.0 \cross 10^{13} h^{-1} \si{\solarmass}, \\ 
+    M_{gas} &= 5.5 \cross 10^{13} h^{-3/2} \si{\solarmass}, \\ 
+    M_T &= 68 \cross 10^{13} h^{-1} \si{\solarmass}.
+\end{split}
+\end{equation}
+
+Assuming that all baryonic mass is either in the form of stars or gas, then we can find the fraction of baryons in the Coma cluster considering:
+\begin{equation}
+    \frac{M_b}{M_T} = \frac{M_* + M_{gas}}{M_T} = 0.111379,
+\end{equation}
+where we used \(h=0.7\). This number means that \(\sim 90\%\) of the Coma cluster mass is in the form of dark matter.
+
+
+
+\subsubsection{4.}
+
+In MOND we have that
+\begin{equation}
+    F = m \mu\left( \frac{a}{a_0}\right) a,
+\end{equation}
+with \(\mu(x) \to 1\) for \(x\gg 1\) and \(\mu(x) \to x\) for \(x\ll 1\), where \(a_0\) is some undetermined constant, which later was measured to be \(a_0 \approx 1.2 \cross 10^{-8}\si{\centi\metre\per\second}\). If we impose \(a/a_0 \ll 1\), when \(a = v^2/r\) is the centripetal acceleration of the components of a galaxy, we obtain
+\begin{equation}
+    F = \frac{G Mm}{r^2} = m \frac{\nicefrac{v^2}{r}}{a_0} \frac{v^2}{r} = m \frac{1}{a_0} \frac{v^4}{r^2},
+\end{equation}
+and then
+\begin{equation}
+    v = \sqrt[4]{a_0GM},
+\end{equation}
+implying that the rotation curves are flat, i.e. do not depend on the distance \(r\) from the centre of a galaxy.
+
+
+\subsubsection{5.}
+
+A density profile described by a Singular Isothermal Sphere is a density such that
+\begin{equation}
+    \rho(r) = \frac{\sigma^2}{2\pi G r^2}
+\end{equation}
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

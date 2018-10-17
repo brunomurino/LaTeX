@@ -1,0 +1,31 @@
+\documentclass{_mypackages/monograph}
+
+\title{General Relativity} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{generalrelativity.bib}
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\chapter{Tensors on manifolds}
+\minitoc
+
+\begin{definition}[Tensor on manifolds] Let \(m\in\N\) and let \(W_1,\cdots,W_m\) be either \(T_pV\) or \(T_p^* V\). The tensor product
+\begin{equation}
+    W_1\tens_{\R} \cdots \tens_{\R} W_m 
+\end{equation}
+is said to be of order \(m\) and \((a,b)\) type if \(T_p V\) appears \(a\) times and \(T_p^* V\) appears \(b\) times, with \(a+b=m\). Notice that the this tensor product is defined over the field of real numbers \(\R\).
+\end{definition}
+
+It's important to notice that \emph{order} in which the spaces appear on \(W_1\tens_{\R} \cdots \tens_{\R} W_m \) doesn't matter much, since any permutation of them is isomorphous to one another. In formal terms, every tensor of type \((a,b)\) is isomorphous to each other, and in particular isomorphous to
+\begin{equation}
+    \tub[\(a\) times]{T_pV\tens_{\R}\cdots T_pV}\tens_{\R} \tub[\(b\) times]{T_p^*V\tens_{\R}\tens T_p^*V\tens_{\R}} \equiv \bigg( \tens_{\R}^a T_p V\bigg) \tens_{\R} \bigg( \tens_{\R}^b T_p^* V\bigg)
+\end{equation}
+
+
+
+
+\end{document}

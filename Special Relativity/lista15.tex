@@ -1,0 +1,184 @@
+\documentclass[oneside, 10pt, notitlepage]{book}
+	
+	
+\usepackage{../_mypackages/monographpreamble}
+\usepackage{../_mypackages/commands}
+
+\title{Special Relativity} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\usepackage{../_mypackages/monographstyle}
+
+\graphicspath{ {figures/} }
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+\chapter{Lista XV}
+
+
+\section*{Ex. 2)}
+% Lets define 
+% \begin{equation}
+%     \eta^{\mu} = \lr{\omega/c, k_1, k_2,k_3}
+% \end{equation}
+% Since
+% \begin{equation}
+% F_{\mu\nu} = \begin{pmatrix}
+%     0 & -E_x & -E_y & -E_z \\
+%     E_x & 0 & -cB_z & cB_y \\
+%     E_y & cB_z & 0 & -cB_x \\
+%     E_z & -cB_y & cB_x & 0
+% \end{pmatrix}
+% \end{equation}
+% the product \(\eta^{\mu}F_{\mu\nu}=0\) is just 
+% \begin{equation}
+%     \begin{pmatrix}
+%         \omega/c & k_1 & k_2 & k_3
+%     \end{pmatrix} \begin{pmatrix}
+%         0 & -E_x & -E_y & -E_z \\
+%         E_x & 0 & -cB_z & cB_y \\
+%         E_y & cB_z & 0 & -cB_x \\
+%         E_z & -cB_y & cB_x & 0
+%     \end{pmatrix} = 0
+% \end{equation}
+
+\section*{Ex. 3)}
+\subsection*{(a)}
+
+
+\subsection*{(b)}
+
+
+
+
+
+
+
+
+
+
+\subsection*{(c)}
+
+
+
+
+
+
+
+
+
+
+\subsection*{(d)}
+
+
+
+
+
+
+
+
+
+\section*{Ex. 6)}
+\subsection*{(a)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Ex. 7)}
+\subsection*{(a)}
+
+Let \(S\) be the electron's frame and \(S_{cm}\) be the centre of mass frame (frame for which the total momentum is zero). The invariance of \(p^{\mu}p_{\mu}\) yields 
+\begin{equation}\label{eq:elepos}
+    E^2 - \lr{cp}^2 = E_{cm}^2
+\end{equation}
+where \(E\) is the total energy on the electron's frame and \(p\) is the total momentum on the electron's frame. On the electron's frame, the total energy is just the rest energy of the electron plus the energy of the incident photon \(E_{in}\). Also, the total momentum \(p\) is just the momentum of the incident photon \(p_{in}\). Recall that for the photon the following relation follows \(E_{in} = cp_{in}\).
+
+Plugging the values on \eqref{eq:elepos}, we find that 
+\begin{equation}
+    \lr{mc^2}^2 + E_{in}^2 + 2 E_{in}mc^2 - E_{in}^2 = E_{cm}^2
+\end{equation}
+thus 
+\begin{equation}
+    E_{in} = \frac{E_{cm}^2 - \lr{mc^2}^2}{2mc^2}
+\end{equation}
+
+Since we want to find the minimum energy of the incident photon in order to produce an extra electron-positron pair, every particle must be at rest after the collision, making, then, \(E_{cm_{min}} = 3 mc^2\), which leads us to 
+\begin{equation}
+    E_{in_{min}} = 4 mc^2
+\end{equation}
+
+
+\section*{Ex. 8)}
+\subsection*{(a)}
+
+Since both particles have the mass and speed, they have the same energy and oposing momenta. Since \(v = \frac*{\sqrt{3}}{2}c\), \(\gamma=2\) thus the energy and momentum of both particles is 
+\begin{equation}
+    E = \gamma m c^2 = 2 m c^2
+    \abs{p} = \gamma m v = 2 m \frac{\sqrt{3}}{2}c = \sqrt{3} m c
+\end{equation}
+thus 
+\begin{equation}
+\begin{split}
+    p_1^{\mu} = \lr{2 m c , \sqrt{3} m c , 0 , 0} \\
+    p_2^{\mu} = \lr{2 m c , -\sqrt{3} m c, 0 ,0 }
+\end{split}
+\end{equation}
+
+\subsection*{(a)}
+After the collision, the particles merge producing a new particle. Since momentum must be conservated, the momentum of the new particle is \(0\), thus its energy is just its rest energy \(Mc^2\):
+\begin{equation}
+    P^{\mu} = \lr{Mc^2,0,0,0}
+\end{equation}
+
+\subsection*{(c)}
+Conservation of energy, then, yields
+\begin{equation}
+    M c^2 = 2 m c^2 + 2 m c^2 = 4 m c^2
+\end{equation}
+Thus the mass of the new particle is just \(4 m\).
+
+\section*{Ex. 10)}
+
+Let \(S\) be the frame of the center of mass, and let \(S_A\) be the frame centred at neutron A. Then the invariance of \(p^{\mu}p_{\mu}\) with respect to frames leads to 
+\begin{equation}\label{eq:inv}
+    E_{cm}^2 - \lr{cp_{cm}}^2 = E_{tot}^2 - \lr{c p_{tot}}^2
+\end{equation}
+where \(E_{tot}\) is the total energy of the neutron A frame and the same for \(p_{tot}\).
+
+On the centre of mass frame \(p_{cm}=0\) and the total energy \(E_{cm}\) is just the sum of the energies of both neutrons, but since they are the same, follows that \(E_{cm}= 2 \gamma m c^2\).
+
+On neutron A frame, the total energy is just the rest energy of the neutron A plus the energy of neutron B, thus
+\begin{equation}
+    E_{tot} = mc^2 + E_B
+\end{equation}
+and the total momentum is just the momentum of neutron B, thus \(p_{tot} = p_B\). Recall that energy and momentum satisfy
+\begin{equation}
+    E_B^2 = \lr{mc^2}^2 + \lr{cp_B}^2
+\end{equation}
+Plugging this values on \eqref{eq:inv} we find that
+\begin{equation}
+    4 \gamma^2 \lr{mc^2}^2 = \lr{mc^2}^2 + E_B^2 + 2 E_B mc^2 - E_B^2 + \lr{mc^2}^2
+\end{equation}
+which leads to 
+\begin{equation}
+    E_B = \lr{2\gamma^2-1} mc^2 = \frac{1+\beta^2}{1-\beta^2}mc^2
+\end{equation}
+
+
+% \backmatter
+% \printbib
+\end{document}
+	

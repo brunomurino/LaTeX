@@ -1,0 +1,112 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mypreamble}[2016/08/06 Bruno Murino's preamble]
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage[subpreambles=false]{standalone}
+% each file is compilable on its own, and the preambles of subfiles are ignores (subpreambles=false)
+
+\RequirePackage{import}
+%use to import subfiles
+
+\RequirePackage{float}
+% Float
+
+\RequirePackage{lipsum}
+% \lipsum[1]
+
+\RequirePackage{mathtools}
+% text under arrow
+
+\RequirePackage{amsmath, amssymb, amsthm}
+% for good math
+
+\RequirePackage{dsfont}
+% \mathds{1} = blackboard 1
+
+\RequirePackage{caption}
+% Set up caption: \captionsetup{ options }
+
+\RequirePackage{graphicx}
+% Put graphics, still has to specify
+% \graphicspath{ {Path/} }
+
+\RequirePackage[italicdiff]{physics}
+% [,arrowdel]
+% Macros for easy typing physics
+
+\RequirePackage{tensor}
+%  \tensor[^{2s+1}]{l}{j}
+
+\RequirePackage[pagestyles]{titlesec}
+% Setup pagestyles
+
+\RequirePackage{listings}
+% To write code
+
+\RequirePackage{color}
+% Use colors
+
+\RequirePackage[mathscr]{euscript}
+% caligraphycal euler script $\mathscr{}$
+
+\RequirePackage[utf8]{inputenc}
+% writing with grafical signs
+
+\RequirePackage[T1]{fontenc}
+% needed with inputenc
+
+\RequirePackage{empheq}
+% Boxed equations
+
+\RequirePackage[most]{tcolorbox}
+% Setup nice box for math
+
+\RequirePackage[makeroom]{cancel}
+% For math manipulation
+
+\RequirePackage{microtype}
+% Slightly tweak font spacing for aesthetics
+
+\RequirePackage{lettrine}
+% The lettrine is the first enlarged letter at the beginning of the text
+
+\RequirePackage{hyperref}
+%hyperlink table of contents
+
+\RequirePackage{etoolbox}
+% Patch cmd
+
+\RequirePackage{booktabs}
+% Horizontal rules in tables
+
+\RequirePackage{lettrine}
+% The lettrine is the first enlarged letter at the beginning of the text
+
+\RequirePackage{enumitem}
+% Customized lists
+
+% \RequirePackage[toc,page]{appendix}
+% % \begin{appendices} \chapter{} ....
+
+\RequirePackage{tocbibind}
+
+\RequirePackage{dcolumn}
+% Align table columns on decimal point
+
+\RequirePackage{bm}
+% bold math
+
+\RequirePackage{authblk}
+% \title{\textbf{Title}} % Article title
+%
+% \author[1]{Author A\thanks{\href{mailto:mail1}{mail1}}}
+% \author[2]{Author B\thanks{\href{mailto:mail2}{mail2}}}
+% \affil[1]{\textit{Institute of 1} \authorcr \textit{University of 10}}
+% \affil[2]{\textit{Institute of 2} \authorcr \textit{University of 10}}
+% then
+% \maketitle
+
+\RequirePackage{tikz}
+
+\RequirePackage[framemethod=tikz]{mdframed}

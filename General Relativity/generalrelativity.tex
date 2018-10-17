@@ -1,0 +1,30 @@
+\documentclass{_mypackages/monograph}
+
+\title{General Relativity} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{generalrelativity.bib}
+
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+\frontmatter
+
+\monographtp
+\dominitoc
+\doparttoc
+\pagestyle{onlypagenum}
+\tableofcontents
+\mainmatter
+
+\import{/}{GR_chapter_01} % Introduction
+
+\import{/}{GR_chapter_02} % The tangent and cotangent spaces
+
+% \import{/}{GR_chapter_03} % Tensors on manifolds
+
+\backmatter
+\printbib
+\end{document}

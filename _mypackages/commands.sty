@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{commands}[2017/08/10 Bruno Murino's commands]
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\eq}[2][\empty]
+{\ifx#1\empty \begin{equation*} #2 \end{equation*} \else \begin{equation}\label{#1} #2 \end{equation}\fi}
+
+\renewcommand{\exp}[1]{\text{e}^{#1}}  % \exp{-iwt}
+\newcommand{\lexp}[1]{\text{exp}\lr{#1}}
+
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\ssb}[1]{\left[#1\right]} % Scaling square braces
+\newcommand{\scb}[1]{\left\{#1\right\}} % Scaling curly braces
+% \lr{ some equation } puts left right parentesis
+
+\newcommand{\bxi}{\bm{\xi}}
+\newcommand{\bXi}{\bm{\Xi}}
+\newcommand{\bmu}{\bm{\mu}}
+\newcommand{\bMu}{\bm{\Mu}}
+\newcommand{\bomega}{\bm{\omega}}
+\newcommand{\bOmega}{\bm{\Omega}}
+\newcommand{\bepsilon}{\bm{\epsilon}}
+\newcommand{\bEpsilon}{\bm{\Epsilon}}
+\newcommand{\bPhi}{\bm{\Phi}}
+\newcommand{\bphi}{\bm{\phi}}
+
+\newcommand{\mean}[1]{\left< #1 \right>}  % \mean{f(t)}
+
+\renewcommand{\sp}[2]{\lr{#1,#2}}
+
+% \newcommand{\tLambda}[2][\empty]{\tensor[#1]{\Lambda}{#2}}
+
+\newcommand{\supp}{\text{supp}}
+% \renewcommand{\sup}{\text{sup}}
+\newcommand{\dom}[1]{\operatorname{dom}(#1)}
+\newcommand{\cod}[1]{\operatorname{cod}(#1)}
+
+\newcommand{\ob}[1]{\operatorname{ob}(#1)}
+\newcommand{\ar}[1]{\operatorname{ar}(#1)}
+
+\RequirePackage{bbold}
+\DeclareSymbolFont{bbold}{U}{bbold}{m}{n}
+\DeclareSymbolFontAlphabet{\mathbbold}{bbold}
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\inner}[2]{\left\langle #1,#2 \right\rangle}
+% \newcommand{\id}{\operatorname{id}} % Identity operator
+\DeclareMathOperator{\id}{id}
+\newcommand{\tin}{\ \text{in}\ } % Category notation for arrow in category
+% \newcommand{\hom}[2]{\operatorname{hom}(#1,#2)}
+
+
+
+% \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+% \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+%
+% % Swap the definition of \abs* and \norm*, so that \abs
+% % and \norm resizes the size of the brackets, and the
+% % starred version does not.
+% \makeatletter
+% \let\oldabs\abs
+% \def\abs{\@ifstar{\oldabs}{\oldabs*}}
+% %
+% \let\oldnorm\norm
+% \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+% \makeatother
+
+
+
+
+% \newcommand{\then}{\Rightarrow}  % \then
+
+\newcommand{\angstrom}{\textup{\AA}}  % \angstrom
+
+\newcommand{\R}{\mathbb{R}}  % \R set of real numbers
+\newcommand{\C}{\mathbb{C}}  % \R set of complex numbers
+\newcommand{\N}{\mathbb{N}}  % \N set of natural numbers
+
+\newcommand{\mb}[1]{\mathbb{#1}}  % \mb{C} mathbold
+
+\newcommand{\mc}[1]{\mathcal{#1}}  % \mc{L} math caligraphic
+
+\newcommand{\ms}[1]{\mathscr{#1}}  % \ms{L} math script font
+
+\newcommand{\und}[2]{\underset{#1}{#2}}
+
+\newcommand{\del}{\partial}  % \del
+
+\newcommand{\conj}[1]{\overline{#1}} % \conj{a+b}
+
+% \renewcommand{\div}[2][]{\grad_{#1}\cdot#2}  % \div[x']{f(x - x')}
+%
+% \renewcommand{\laplacian}[2][]{\grad^2_{#1}#2}  % \laplacian[x']{f(x - x')}
+%
+% \newcommand{\gradi}[2][]{\grad_{#1}#2}  % \gradi[x']{f(x - x')}
+%
+% \renewcommand{\curl}[2][]{\grad_{#1}\cross#2}  % \curl[x']{f(x - x')}
+
+\newcommand{\hlf}{\frac{1}{2}}  % \hlf
+
+\newcommand{\epot}{\varphi}  % \epot
+
+\newcommand{\at}[2][]{\eval{}_{#2}^{#1}}  % x^2 \at[x_f]{x_i}
+
+\newcommand{\uint}[1][]{\underset{#1}\int}  % \uint{}
+
+\newcommand{\uoint}[1][]{\underset{#1}\oint}  % \uoint{}
+
+\newcommand{\tvb}[1]{\tilde{\vb{#1}}}  % \tvb{E} tilde bold vector
+
+\newcommand{\tub}[2][]{\underbrace{#2}_{\text{\shortstack{#1}}}} % Text UnderBrace \tub[some text]{object}
+
+
+
+

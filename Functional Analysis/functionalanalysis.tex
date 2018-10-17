@@ -1,0 +1,365 @@
+\documentclass[oneside, 10pt, notitlepage]{book}
+
+
+\usepackage{../_mypackages/monographpreamble}
+\usepackage{../_mypackages/commands}
+
+\title{Functional Analysis} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\usepackage{../_mypackages/monographstyle}
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+\dominitoc
+% \doparttoc
+\faketableofcontents
+
+% \mainmatter
+\part{Functional Analysis}
+% \parttoc
+\chapter{Metric Spaces}
+\minitoc
+
+\section{Metrics}
+\begin{definition}[Metric space]
+	A \emph{metric space} is a set \(M\) endowed with (at least one) notion of \emph{distance} through a function called \emph{metric on \(M\)} denoted \(d:M\cross M \to \R\) satisfying
+	\begin{enumerate}
+		\item \emph{Null self-distance}: \(d(a,b)= 0 \) if and only if \(a = b\);
+		\item \emph{Triangle inequality}: \(d(a,b) \leq d(a,c) + d(b,c)\) for every \(a,b,c\in X\).
+	\end{enumerate}
+	We say \(d(a,b)\) is the \emph{distance between \(a\) and \(b\)}. A set can have different metrics.
+\end{definition}
+
+\begin{theorem}[Symmetry of metric]
+	A metric on \(M\) is always \emph{symmetric}, namely \(d(a,b)=d(b,a)\) for all \(a,b\in M\).
+\end{theorem}
+\begin{proof}
+	Take \(d(a,b)\) and \(d(b,a)\). From the triangle inequality we know that
+	\eq{d(a,b) \leq d(a,c_1) + d(b,c_1)}
+	\eq{d(b,a) \leq d(b,c_2) + d(a,c_2)}
+	for any \(c_1,c_2\) in \(X\). Taking \(c_1 = a\) and \(c_2=b\) we find
+	\eq{d(a,b) \leq d(a,a) + d(b,a) = d(b,a)}
+	\eq{d(b,a) \leq d(b,b) + d(a,b) = d(a,b)}
+	The only way both statements are true is if \(d(a,b)=d(b,a)\).
+\end{proof}
+
+\begin{theorem}[Positivity]
+	A metric on \(M\) is always positive, namely \(d(a,b)\geq 0\) for all \(a,b\in M\).
+\end{theorem}
+\begin{proof}
+	Take \(d(a,c)\). From the triangle inequality and symmetry properties of \(d\) we know that
+	\eq{d(a,c) \leq d(a,b) + d(b,c) \qq{then} d(a,b) \geq d(a,c) - d(b,c) \equiv A}
+	Take \(d(b,c)\). Analogously we know that
+	\eq{d(b,c) \leq d(a,b) + d(a,c) \qq{then} d(a,b) \geq - d(a,c) + d(b,c) = -A }
+	Assuming \(A\geq0\) then \(A \geq -A\) and the most restrictive condition is \(d(a,c) \geq A = \abs{A}\). Alternatively if \(A\leq0\) then \(-A \geq A\) and the most restrictive condition is \(d(a,c) \geq -A = \abs{A}\). Thus \(d(a,c)\) is always greater than \(\abs{A}\), implying that
+	\eq{d(a,b) \geq \abs{d(a,c) - d(b,c)} \geq 0 }
+\end{proof}
+
+\section{Norms and inner products}
+
+\begin{definition}[Norm]
+	Let \(V\) be a vector space. Then a \emph{norm on \(V\)} is a function \(\norm{\cdot}:V\to \R\) satisfying
+	\begin{enumerate}
+		\item \emph{Null norm-vector}: \(\norm{v} = 0\) if and only if \(v=0\);
+		\item \emph{Absolutely homogeneous}: \(\norm{\alpha v} = \abs{\alpha}\norm{v}\) for every \(\alpha \in \C\) and every \(v\in V\);
+		\item \emph{Triangle inequality}: \(\norm{u+v} \leq \norm{u}+\norm{v}\) for any two \(u,v\in V\)
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Inner product]
+	Le \(V\) be a vector space over the complex \(\C\). Then a \emph{inner product} is the map \(\inner{\cdot}{\cdot}: V\cross V \to \C\) satisfying the following
+	\begin{enumerate}
+		\item \(\inner{u}{v}\geq 0\)
+		\item \(\inner{u}{u}=0 \qq{if and only if} u = 0 \in V\)
+		\item \(\inner{u}{v} = \conj{\inner{v}{u}}\)
+		\item \(\inner{u}{\alpha_1 v_1 + \alpha_2 v_2} = \alpha_1 \inner{u}{v_1} + \alpha_2 \inner{u}{v_2}\)
+	\end{enumerate}
+\end{definition}
+
+\begin{corollary}[Norm induced by inner product]
+	If a vector space \(V\) is endowed with an inner product \(\inner{\cdot}{\cdot}_{\mc{E}}\), then
+	\eq{\norm{u}_{\mc{E}} \doteq \sqrt{\inner{u}{u}_{\mc{E}}}}
+	defines a norm in \(V\), namely the \emph{norm induced by the norm \(\mc{E}\)}.
+\end{corollary}
+
+\begin{corollary}[Metric induced by norm]
+	If a vector space \(V\) is endowed with a norm \(\norm{\cdot}_{\mc{E}}\), then
+	\eq{d(u,v)_{\mc{E}} \doteq \norm{u-v}_{\mc{E}}}
+	defines a metric in \(V\), namely the \emph{metric induced by the norm \(\mc{E}\)}.
+\end{corollary}
+
+\begin{theorem}[Fréchet, Jordan and Von Neumann theorem]
+	If \(V\) is a complex vector space endowed with a norm \(\norm{\cdot}_{\mc{E}}\) satisifying the Apollonius identity \footnote{Apollonius of Perga  (ci. 261 A.C. – ci. 190 A.C.).}\footnote{Commonly called the Paralelogram identity or law.}
+	\eq{\norm{a+b}^2 + \norm{a-b}^2 = 2\norm{a}^2 + 2\norm{b}^2}
+	then
+	\eq{\inner{u}{v}_{\mc{E}} \doteq \frac{1}{4} \sum_{k=0}^3 i^{-k} \norm{u+i^k v}_{\mc{E}}^2 }
+	defines an inner product, namely the \emph{inner product induced by the norm \(\mc{E}\)}.
+\end{theorem}
+
+\begin{corollary}[Norm induced by metric]
+	Let \(M\) be a metric space whose metric \(\mc{E}\) satisfy
+	\begin{enumerate}
+		\item \(d(u+t,v+t)_{\mc{E}}=d(u,v)_{\mc{E}}\)
+		\item \(d(\alpha u, \alpha v)_{\mc{E}} = \abs{\alpha}d(u,v)_{\mc{E}}\)
+	\end{enumerate}
+	then
+	\eq{\norm{u-v}_{\mc{E}} \doteq d(u,v)_{\mc{E}}}
+	defines a norm in \(M\), namely the \emph{norm induced by the metric \(\mc{E}\) }.
+\end{corollary}
+
+\section{Sequences}
+
+\begin{definition}[Sequences]
+	Let \(X\) be a nonempty set, then a function \(S:\N \to X\) is called a \emph{sequence in \(X\)}. \(S(n)\) is usually abbreviated as \(s_n\). \(\Im(S) = \set{s_n \in M,\ n\in \N}\).
+\end{definition}
+
+\begin{definition}[Limit point of a sequence]
+	Let \((M,d)\) be a metric space. Let \(S\) be a sequence in \(M\). If for every \(\epsilon>0\) there is a \(N(\epsilon)\in \N\) such that \(d(s,s_n)<\epsilon\) whenever \(n>N(\epsilon)\) for some \(s\), then \(s\) is called a \emph{limit point of \(S\) with respect to \(d\)}. In this case we say that \(s_n\) converges to \(s\) with respect to \(d\).
+\end{definition}
+
+\begin{proposition}[Unique limit point of sequence]
+	If a sequence \(s_n\) has two limit points \(s_1\) and \(s_2\), then \(s_1 = s_2\).
+\end{proposition}
+
+\begin{definition}[Cauchy sequence]
+	Let \((M,d)\) be a metric space. A sequence \(s_n\) is a \emph{Cauchy sequence with respect to \(d\)} if for any \(\epsilon>0\) there exists \(N(\epsilon)\in \N\) such that \(d(s_n,s_m)< \epsilon\) whenever \(n,m>N(\epsilon)\).
+\end{definition}
+
+\section{Completeness of metric spaces}
+
+\begin{definition}[Complete metric space]
+	Let \((M,d)\) be a metric space. If every Cauchy sequence in \((M,d)\) also converges in \((M,d)\), then \((M,d)\) is a \emph{complete metric space}.
+\end{definition}
+
+\begin{definition}[Completion of metric space]
+	Let \((M,d)\) be a metric space. Then \((M',d')\) is a \emph{completion} of \((M,d)\) if
+	\begin{enumerate}
+		\item There exists \(E:M\to M'\) injective;
+		\item \(d'(E(x),E(y)) = d(x,y)\) for every \(x,y\in M\);
+		\item \(E(M)\) is dense in \((M',d')\);
+		\item \((M',d')\) is complete.
+	\end{enumerate}
+\end{definition}
+
+
+\section{Sets}
+
+\begin{definition}[Closed set]
+	A set \(C\) is a closed set if and only if it contains all of its limit points.
+\end{definition}
+
+
+
+
+
+
+
+\chapter{Hilbert Spaces}
+\minitoc
+
+\begin{definition}[Banach space]
+	Let \((V,\norm{\cdot})\) be a complex vector space endowed with a norm. Let \(d(u,v)=\norm{u-v}\) be the metric induced by the norm. If \((V,\norm{\cdot})\) is complete, then it is a \emph{Banach space}.
+\end{definition}
+
+\begin{definition}[Hilbert space]
+	Let \((V,\inner{\cdot}{\cdot})\) be a complex vector space endowed with an inner product. Let \(d(u,v)=\norm{u-v}=\sqrt{\inner{u-v}{u-v}}\) be the metric induced by the inner product. If \((V,\inner{\cdot}{\cdot})\) is complete, then it is a \emph{Hilbert space}.
+\end{definition}
+
+
+
+
+\section{Complete Orthonormal Sets in Hilbert spaces}
+
+\begin{definition}[Orthonormal set of a Hilbert space]
+	A set \(E\) of vectors in a Hilbert space is said to be an \emph{orthonormal set} if
+	\begin{enumerate}
+		\item \(\norm{u}=1 \qcomma \forall\ u\in E\);
+		\item \(\inner{u}{v}=0 \qcomma \forall\ u,v \in E \qq{with} u\neq v\).
+	\end{enumerate}
+\end{definition}
+
+
+\monopar[thepythagoreantheorem]{The Pythagorean Theorem}
+
+\begin{proposition}
+	Let \(E = \set{e_1,...,e_n}\) be a finite orthonormal set of a Hilbert space \(\mc{H}\) and let \(\lambda_1,...,\lambda_n\) be complex numbers. Then
+	\eq{\norm{\sum_{a=1}^n \lambda_a e_a}^2 = \sum_{a=1}^n \abs{\lambda_a}^2}
+\end{proposition}
+\begin{proof}
+	\eq{\norm{\sum_{a=1}^n \lambda_a e_a}^2 = \inner{\sum_{a=1}^n \lambda_ae_a}{\sum_{b=1}^n \lambda_b e_b} = \sum_{a=1}^n \sum_{b=1}^n \conj{\lambda_a}\lambda_b\inner{e_a}{e_b} = \sum_{a=1}^n \abs{\lambda_a}^2}
+	since \(\inner{e_a}{e_b} = \delta_{a,b}\).
+\end{proof}
+
+\monopar{Orthonormal sets and convergent series}
+
+\begin{proposition}
+	Let \(\mc{H}\) be a Hilbert space and \(\set{e_n,\ n\in \N}\) a countable orthonormal set in \(\mc{H}\). Then, a sequence of vectors \(s_n = \sum_{a=1}^n \lambda_a e_a,\ n \in \N\), converges if and only if \(\sum_{a=1}^{\infty} \abs{\lambda_a}^2 < \infty\).
+\end{proposition}
+\begin{proof}
+	If \(s_n\) converges, then it's a Cauchy sequence. This means that for any \(\epsilon>0\) there's \(N(\epsilon)\in \N\) such that \(\norm{s_m - s_n}\leq \epsilon\) whenever \(m,n > N(\epsilon)\). Without loss of generality, let \(m<n\). By the Pythagorean Theorem, it follows
+	\eq{\norm{s_m - s_n}^2 = \norm{\sum_{a=m+1}^n \lambda_a e_a }^2 = \sum_{a=m+1}^n \abs{\lambda_a}^2 = \abs{l_m - l_n}}
+	where \(l_n \equiv \sum_{a=1}^n \abs{\lambda_a}^2\). We can, then, conclude that \(\abs{l_m - l_n}< \epsilon^2\) whenever \(m,n > N(\epsilon)\), implying that \(l_n\) is itself a Cauchy sequence. Since the elements of this Cauchy sequence are real numbers, and the real numbers are complete, we know the sequence converges, meaning \(\sum_{a=1}^{\infty} \abs{\lambda_a}^2\) belongs to \(\R\), which further implies that \(\sum_{a=1}^{\infty} \abs{\lambda_a}^2<\infty\).\par
+	Now the converse. If \(\sum_{a=1}^{\infty} \abs{\lambda_a}^2<\infty\), then \(l_n\) is bounded above. Since \(l_{n+1}-l_n = \abs{\lambda_{n+1}}^2 > 0\) for any \(n\), we know \(l_n\) is monotonically crescent. Any bounded above monotonically sequence converges. If the sequence converges, then it's a Cauchy sequence. Again by the Pythagorean Theorem, it follows
+	\eq{\abs{l_m - l_n} = \sum_{a=m+1}^n \abs{\lambda_a}^2 = \norm{\sum_{a=m+1}^n \lambda_a e_a}^2 = \norm{s_m - s_n}^2}
+	implying that \(s_n\) is also a Cauchy sequence, and since \(\mc{H}\) is complete, it converges.
+\end{proof}
+
+\monopar{Subspaces generated by finite orthonormal sets}
+
+\begin{corollary}
+	Let \(E=\set{e_1,...,e_n}\) be a finite orthonormal set of a Hilbert space \(\mc{H}\). Then the set \(\mc{E}\) of vector of the form \(\sum_{a=1}^n \lambda_a e_a\), \(\lambda_a \in \C\) is a subspace of \(\mc{H}\) and is called the \emph{subspace generated by \(E\)}.
+\end{corollary}
+
+\begin{proposition}
+	Let \(\mc{H}\) be a Hilbert space. If \(\mc{E}\subset \mc{H}\) is a subspace generated by a finite orthonormal set (this is, if \(\mc{E}\) is a finite dimension subspace), then \(\mc{E}\) is a closed set.
+\end{proposition}
+
+
+\begin{proposition}
+	Let \(E=\set{e_1,...,e_n}\) be a finite orthornomal set of a Hilbert space \(\mc{H}\) and let \(\lambda_1,...,\lambda_n\) be complex numbers. Then, for every \(x\in\mc{H}\) follows
+	\eq{\norm{x-\sum_{a=1}^n \lambda_a e_a}^2 = \norm{x}^2 + \sum_{a=1}^n \abs{\lambda_a - \inner{e_a}{x}}^2 - \sum_{a=1}^n \abs{\inner{e_a}{x}}^2 }
+\end{proposition}
+
+
+\monopar{Best approximations in finite-dimensional subspaces}
+
+\begin{proposition}
+	Let \(E=\set{e_1,...,e_n}\) be a finite orthornomal set of a Hilbert space \(\mc{H}\) and let \(x\in \mc{H}\). Then the best approximation of \(x\) in the finite-dimensional subspace \(\mc{E}\) generated by vectors \(\set{e_1,...,e_n}\) is the vector
+	\eq{y = \sum_{k=1}^n \inner{e_k}{x} e_k}
+	And
+	\eq{\norm{x-y}^2 = \norm{x}^2 - \sum_{a=1}^n \abs{\inner{e_a}{x}}^2}
+\end{proposition}
+
+\monopar{Bessel inequalities}
+
+\begin{proposition}[Bessel inequalities]
+	For every \(x\in\mc{H}\) e for every finite orthonormal set \(\set{e_1,...,e_n}\) follows
+	\eq{\sum_{a=1}^n \abs{\inner{e_a}{x}}^2 \leq \norm{x}^2}
+	If \(E=\set{e_n,\ n\in\N}\) is a countable orthonormal set, then also for every \(x\in\mc{H}\) follows
+	\eq{\sum_{a=1}^{\infty} \abs{\inner{e_a}{x}}^2 \leq \norm{x}^2}
+\end{proposition}
+
+\monopar{A consequence of the Bessel inequalities}
+
+
+\begin{theorem}
+	Let \(B\) be an orthonormal set of a Hilbert space \(\mc{H}\). Then, for each \(y\in \mc{H}\), the set of all \(e_a \in B\) such that \(\inner{e_a}{y}\) is \emph{countable}.
+\end{theorem}
+
+
+
+\monopar{Complete orthonormal sets}
+
+\begin{definition}[Complete orthonormal set]
+	An orthonormal set \(B\) of vector in a Hilbert space \(\mc{H}\) is considered a \emph{complete orthonormal set in \(\mc{H}\)}, of a \emph{complete orthonormal basis in \(\mc{H}\)}, if the only vector that is orthogonal to every other vectors of \(B\) is the null vector.
+\end{definition}
+
+\begin{theorem}
+	Every Hilbert space has at least one complete orthonormal set.
+\end{theorem}
+
+\monopar{Decomposition of vectors in terms of complete orthonormal sets}
+
+
+\chapter{Operator theory}
+
+\section{In Banach space}
+
+Let \((V,\norm{\cdot}_V)\) be a normed space and let \((W,\norm{\cdot}_{W})\) be a Banach space.
+Also \(V\subset \tilde{V}\), with \((\tilde{V},\norm{\cdot}_{\tilde{V}})\),
+and \(v\in V \implies \norm{v}_V = \norm{v}_{\tilde{V}}\),
+and \(\overline{V}=\tilde{V}\).\par
+If \(\tilde{v}\in \tilde{V}\), there exists \(\set{v_n\in V, n\in\N}\) such that \(\norm{\tilde{v}-v_n}_{\tilde{V}}\longrightarrow 0 \) as \(n\to \infty\).\par
+
+\begin{theorem}[BLT theorem]
+	Let \(A\in \mc{B}(V,W)\), \(A:V\to W\), limited and continuous. Then \(A\) has an extension \(\tilde{A}\) with \(\tilde{A}\in \mc{B}(\tilde{V},W)\) such that \(\norm*{\tilde{A}}_{\tilde{V}} = \norm{A}_V\).
+\end{theorem}
+
+
+\section{Bicontinuous Sesquilinear Forms}
+
+\begin{definition}[Sesquilinear form]
+	Let \(\mc{H}_1\) and \(\mc{H}_2\) be two Hilbert spaces. An application \(\mc{S}:\mc{H}_2\times \mc{H}_1\to \C\) is a \emph{sesquilinear form} if
+	\eq{\mc{S}(u,\alpha_1 v_1 + \alpha_2 v_2) = \alpha_1 \mc{S}(u,v_1) + \alpha_2 \mc{S}(u,v_2)}
+	\eq{\mc{S}(\alpha_1 u_1 + \alpha_2 u_2,v) = \overline{\alpha_1} \mc{S}(u_1,v) + \overline{\alpha_2} \mc{S}(u_2,v)}
+	for every \(u,u_1,u_2\in \mc{H}_2\), every \(v,v_1,v_2\in \mc{H}_1\) and every \(\alpha_1,\alpha_2\in\C\).
+\end{definition}
+
+\begin{definition}[Bicontinuous sesquilinear form]
+	A sesquilinear form \(\mc{S}:\mc{H}_2\times \mc{H}_1\to\C\) is \emph{bicontinuous} or \emph{bilimited} if exists \(M>0\) such that
+	\eq{\abs{\mc{S}(u,v)} \leq M \norm{u}_{\mc{H}_2} \norm{v}_{\mc{H}_1}}
+	for every \(u\in {\mc{H}_2}\) and every \(v\in{\mc{H}_1}\)
+\end{definition}
+
+\begin{proposition}
+	Let \(\mc{S}:\mc{H}_2\times \mc{H}_1\to \C\) be a bicontinuous sesquilinear form. Then exists a limited linear operator \(S:\mc{H}_2 \to \mc{H}_1\), unique, such that
+	\eq{\mc{S}(u,v) = \inner{Su}{v}_{\mc{H}_1}}
+	for every \(u\in\mc{H}_2\) and \(v\in\mc{H}_1\).
+\end{proposition}
+
+\subsection{The Adjoint of an operator acting on Hilbert spaces}
+
+\begin{definition}
+	Let \(A\in \mc{B}(\mc{H}_1,\mc{H}_2)\) and let \(\mc{A}:\mc{H}_2\times \mc{H}_1 \to \C\) be defined as
+	\eq{\mc{A}(y,x)\doteq \inner{y}{Ax}_{\mc{H}_2}}
+	for every \(y\in\mc{H}_2\) and \(x\in\mc{H}_1\).
+\end{definition}
+
+\begin{definition}[Involution operator]
+	An applitcaion \(\mc{B}(\mc{H}_1,\mc{H}_2)\ni A \to A^* \in \mc{B}(\mc{H}_2,\mc{H}_1)\) is said to be an \emph{involution} and its properties are
+	\begin{enumerate}
+		\item \((A^*)^* = A\);
+		\item \(\norm{A^*} = \norm{A}\);
+		\item \(\norm{A^* A} = \norm{A}^2\), called the \emph{\(C^*\) property} (pronounced \(C\)-star);
+		\item It is an anti-linear operation, i.e. if \(A,B\in \mc{B}(\mc{H}_1,\mc{H}_2)\) and \(\alpha,\beta\in\C\), then
+		\eq{(\alpha A+\beta B)^* = \conj{\alpha}A^* + \conj{\beta} B^*}
+		\item If \(A\in \mc{B}(\mc{H}_1,\mc{H}_2)\) and \(B\in\mc{B}(\mc{H}_2,\mc{H}_3)\), then \((AB)^* = B^* A^*\);
+		\item The indentity operator \(\mb{1}\in\mc{B}(\mc{H}_1,\mc{H}_1)\) satisfies \(\mb{1}^* = \mb{1}\);
+		\item If \(A\in\mc{B}(\mc{H}_1,\mc{H}_2)\) has a continuous inverse \(A^{-1}\in\mc{B}(\mc{H}_2,\mc{H}_1)\), then \(A^*\) also has a continuous inverse and \((A^{-1})^* = (A^*)^{-1}\).
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+	There exists an operator \(A^*:\mc{H}_2\to\mc{H}_1\) such that
+	\eq{\mc{A}(y,x) = \inner{y}{Ax}_{\mc{H}_2} = \inner{A^*y}{x}_{\mc{H}_1}}
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

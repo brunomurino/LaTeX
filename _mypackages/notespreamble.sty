@@ -1,0 +1,223 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{notespreamble}[2016/08/06 Bruno Murino's notes preamble]
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage{import}
+\RequirePackage[subpreambles=false]{standalone}
+% each file is compilable on its own, and the preambles of subfiles are ignores (subpreambles=false)
+% \import{Path/}{Filename}
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage{times}
+\RequirePackage[utf8]{inputenc}
+\linespread{1.1}
+
+\RequirePackage{mathrsfs}
+% \mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+\mathcode`l="8000
+\begingroup
+	\makeatletter
+	\lccode`\~=`\l
+	\DeclareMathSymbol{\lsb@l}{\mathalpha}{letters}{`l}
+	\lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \ell \else \lsb@l \fi}}%
+\endgroup
+
+
+
+\RequirePackage{xcolor}
+
+\makeatletter
+\renewcommand*{\@textcolor}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage{geometry}
+\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm}
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage[pagestyles]{titlesec}
+
+\newpagestyle{mynotespage}
+{\sethead{}{}{{\textbf{\thepage}}}
+\setfoot{}{}{}}
+%to use the page style, put \pagestyle{mypage}
+
+\newpagestyle{mychappage}
+{\sethead{}{}{{\textbf{\thepage}}}%
+\setfoot{}{}{}}
+
+\newpagestyle{mypartpage}
+{\sethead{}{}{{\textbf{\thepage}}}%
+\setfoot{}{}{}}
+
+\RequirePackage{etoolbox}
+
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{mychappage}}{}{}
+\patchcmd{\part}{\thispagestyle{plain}}{\thispagestyle{empty}}{}{}
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\notestp}[1]{
+	\begin{titlepage}
+	    \begin{center}
+	        \vspace*{2cm}
+
+	        \Large
+	        {Personal notes on}
+
+	        \vspace{1.5cm}
+	        \Huge
+	        {\textbf{#1}}
+
+	        \vspace{1.5cm}
+	        \Large
+	        {Bruno Murino}
+
+	        \vfill
+
+	        {Last edited}\\
+	        {\today}
+
+	    \end{center}
+	\end{titlepage}
+}
+
+%-------------------------------------------------------------------------------
+
+\newenvironment{notesabstract}[1][Abstract]
+{\ifx#1\empty \else \chapter*{\hspace*{\fill} #1 \hspace*{\fill}}
+\addcontentsline{toc}{chapter}{#1} \fi
+\normalfont\small\itshape
+}{\normalfont}
+% \begin{notesabstract}[Abstract]
+% Abstract text
+% \end{notesabstract}
+
+%-------------------------------------------------------------------------------
+
+\newcommand{\contents}[1][Contents]{
+\renewcommand{\contentsname}{\hspace*{\fill} #1 \hspace*{\fill}}
+\tableofcontents
+}
+
+\RequirePackage[colorlinks]{hyperref}
+% hyperlink table of contents
+\hypersetup{
+    colorlinks = true,
+	linkcolor = {blue},
+    % linkbordercolor = [rgb]{250,0,0},
+}
+
+%-------------------------------------------------------------------------------
+
+\makeatletter
+\def\@makechapterhead#1{%
+    \vspace*{0em}% Space above number
+    {\parindent \z@  \normalfont
+    \interlinepenalty\@M
+    \Huge{\hspace*{\fill} \textbf{\thechapter} \hspace*{\fill}}%
+    \par\vspace{0.5em}% Space between number and title
+    \Huge{\hspace*{\fill} \textbf{#1} \hspace*{\fill}}%
+    \par\vspace{5em}}% Space between title and text
+}
+\makeatother
+
+%-------------------------------------------------------------------------------
+
+% \RequirePackage{titlesec}
+% \titleformat{\section}
+%   {\normalfont\Large\bfseries\centering}{\thesection}{1em}{}[{\titlerule[0.4pt]]
+
+%-------------------------------------------------------------------------------
+
+\RequirePackage[backend=biber, style=nature]{biblatex}
+% \addbibresource{RelativePath/file.bib}
+
+\newcommand{\printbib}[1][References]{
+	\defbibheading{bibliography}[\refname]{
+	  \chapter*{\hspace*{\fill} #1 \hspace*{\fill}}
+	  \markboth{}{}
+	}
+	\nocite{*}
+	\printbibliography[title={\hspace*{\fill} #1 \hspace*{\fill}}]
+	\addcontentsline{toc}{chapter}{#1}%
+}
+
+\newcommand{\printbibfields}[1][References]{
+	\chapter*{\hspace*{\fill} #1 \hspace*{\fill}}
+	\addcontentsline{toc}{chapter}{#1}
+	\nocite{*}
+	\printbibliography[heading=subbibintoc, keyword={physics},title={Physics-related}]
+	\printbibliography[heading=subbibintoc, keyword={math},title={Math-related}]
+	\printbibliography[heading=subbibintoc, type=book, title={Books only}]
+}
+
+% \cite{refname}
+% \fullcite{refname}
+% \footfullcite{refname}
+
+%-------------------------------------Math--------------------------------------
+
+\RequirePackage{amsmath, amssymb, amsthm, mathtools}
+\RequirePackage[italicdiff]{physics}
+\RequirePackage{tensor}
+%  \tensor[^{2s+1}]{T}{^j_ ^ _}
+\RequirePackage{bm}
+
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+%----------------------------------Miscellanous---------------------------------
+
+\RequirePackage{lipsum}
+
+%------------------------------------Active-------------------------------------
+
+\pagestyle{mynotespage}
+
+
+% Boxed equations
+
+%-------------------------------Math environments-------------------------------
+
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+% \newtheoremstyle{examplestyle}% name of the style to be used
+% {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+% {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+% {}% name of font to use in the body of the theorem
+% {0pt}% measure of space to indent
+% {}% name of head font
+% {   }% punctuation between head and body
+% { }% space after theorem head; " " = normal interword space
+% {\textbf{\thmname{#1}\thmnumber{ #2}~\thmnote{ (#3)}}}
+%
+% \surroundwithmdframed[outerlinewidth=0.4pt,
+%   innerlinewidth=0pt,
+%   middlelinewidth=1pt,
+%   middlelinecolor=black,
+%   bottomline=false,topline=false,rightline=false]{example}
+%
+% \theoremstyle{examplestyle}
+% \newtheorem{example}{Example}[chapter]
+
+
+% \renewcommand\qedsymbol{QED}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% Appendix

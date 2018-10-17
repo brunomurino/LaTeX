@@ -1,0 +1,78 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_EM.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+\pagestyle{mypage2}
+\chapter{Electromagnetic waves}
+
+The actual waves are the real part of
+\begin{tcolorbox}
+\beq[] 
+    \left.\begin{aligned}
+        \tilde{\vb{E}} &= \tilde{E_0}\exp{i(\vb{k}\cdot\vb{r}-wt)}\vu{n}\\
+        \tilde{\vb{B}} &= \frac{1}{c}\tilde{E_0}\exp{i(\vb{k}\cdot\vb{r} - wt)}(\vu{k}\cross\vu{n}) = \frac{1}{c}\vu{k}\cross\tilde{\vb{E}}
+       \end{aligned}
+    \right\}
+    \qquad \text{Plane waves}
+\eeq
+\end{tcolorbox}
+where \(\vu{n}\) is called the \textit{\textbf{polarization vector}} and \(\vu{n}\cdot\vu{k} = 0\).\par 
+
+In linear media:
+\begin{tcolorbox}
+\beq[] 
+    \left.\begin{aligned}
+        \epsilon_1 E_1^{\perp} &= \epsilon_2 E_2^{\perp} \qq{or} D_1^{\perp} = D_2^{\perp} \\
+        \vb{E}_1^{\parallel} &= \vb{E}_2^{\parallel} \\
+        B_1^{\perp} &= B_2^{\perp} \\
+        \frac{1}{\mu_1}\vb{B}_1^{\parallel} &= \frac{1}{\mu_2}\vb{B}_2^{\parallel} \qq{or} \vb{H}_1^{\parallel} = \vb{H}_2^{\parallel} 
+       \end{aligned}
+    \right\}
+    \qquad \text{Matter boundary conditions}
+\eeq
+\end{tcolorbox}
+
+\beq[] u = \frac{\epsilon E^2}{2} + \frac{B^2}{2\mu} \eeq
+\beq[] \vb{S} = \frac{1}{\mu}\vb{E}\cross\vb{B} \eeq
+
+\beq[] a = \frac{\mu_1v_1}{\mu_2v_2} = \frac{\epsilon_2 v_2}{\epsilon_1 v_1} \qq{and} b = \frac{\cos\theta_T}{\cos\theta_I} \eeq
+
+Reflectance at parallel incidence
+\beq[] R^{\parallel} = \frac{I_R^{\parallel}}{I_I^{\parallel}} = \left(\frac{E_R^{\parallel}}{E_I^{\parallel}}\right)^2 = \left(\frac{a-b}{a+b}\right)^2 \eeq
+
+Transmittance at parallel incidence
+\beq[] T^{\parallel} = \frac{I_T^{\parallel}}{I_I^{\parallel}} = ab\left(\frac{E_T^{\parallel}}{E_I^{\parallel}}\right)^2 = ab\left(\frac{2}{a+b}\right)^2 \eeq
+
+Reflectance at normal incidence
+\beq[] R^{\perp}= \frac{I_R^{\perp}}{I_I^{\perp}} = \left(\frac{E_R^{\perp}}{E_I^{\perp}}\right)^2= \left(\frac{1-ab}{1+ab}\right)^2 \eeq
+
+Transmittance at normal incidente
+\beq[] T^{\perp} = \frac{I_T^{\perp}}{I_I^{\perp}} = ab\left(\frac{E_T^{\perp}}{E_I^{\perp}}\right)^2= ab\left(\frac{2}{1+ab}\right)^2 \eeq
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

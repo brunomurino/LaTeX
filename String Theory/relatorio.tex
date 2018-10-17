@@ -1,0 +1,98 @@
+\documentclass[oneside, 12pt]{article}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+\linespread{1} % Line spacing 
+\geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm,}
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\import{String Theory/}{ST_capa.tex}
+ 
+\pagestyle{mypage2} \normalfont
+
+\section{Resumo}
+
+O objetivo desta iniciação científica é expor uma introdução básica à Teoria das Cordas. Maestria completa de um assunto tão vasto requereria, naturalmente, um curso de pós-graduação em Física (e Matemática, em certos aspectos) e muitos anos de estudo, mas algumas de suas noções básicas podem ser entendidas com o que se é feito nos primeiros dois ou três anos de graduação. Além disso, a tarefa de introduzir a Teoria das Cordas se torna muito mais viável graças ao excelente e bem-testado livro de graduação “A first course in String Theory” por Barton Zwiebach do Massachussets Institute of Technology, livro este que segui à risca. Nota que este relatório é parcial referente ao período de 1 de Maio de 2016 à 30 de Março de 2017. \par 
+
+\section{Primeira fase}
+
+A primeira fase do projeto consistiu no estudo dos capítulos 12 de \cite{griffithseletro}, capítulo 2 de \cite{griffithsqm} e capítulos 2 a 4 de \cite{barton} e tinha duração prevista de 2 meses. Tais capítulos se referem à relatividade restrita, ao oscilador harmônico quântico simples, e a alguns conceitos básicos necessários para o desenvolvimento da teoria das cordas. Felizmente, a primeira fase do projeto se deu concomitantemente a algumas disciplinas da graduação em Física que envolviam o mesmo conteúdo, como Física IV e Física V, de modo que o conteúdo foi muito bem entendido. Embora a duração prevista fosse de 2 meses, tal fase durou apenas 1 mês. \par 
+
+Do capítulo 2 de \cite{barton} todas as seções foram estudadas, e entre os principais conceitos se destacaram as coordenadas do cone de luz, a interpretação da energia em tais coordenadas, que foi a chave para encontrarmos o Hamiltoniano quântico da teoria das cordas (fase 3 do projeto), bem como os conceitos de intervalo invariante e transformações de Lorentz, que foram a base para construirmos a ação de Nambu-Goto (fase 2 do projeto). O estudo de dimensões compactas se mostrou essencial para o entendimento da dualidade-T e "winding number", assuntos tratados na fase 4 do projeto. Para se obter melhor entendimento dos conceitos do capítulo, foram feitos os exercícios 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9 e 2.10 de \cite{barton}.\par 
+
+Do capítulo 3 também foram estudadas todas as seções e se destacou o estudo da formulação covariante do eletromagnetismo, que facilita a generalização da teoria eletromagnética para dimensões maiores, bem como o estudo da gravitação em dimensões maiores e como a constante gravitacional G se comporta em tal situação. Além disso, foi estudado o comportamento do comprimento de Planck em dimensões maiores. Foram feitos os exercícios 3.1, 3.2, 3.3, 3.4, 3.7, 3.8, 3.9, 3.10 e 3.11 de \cite{barton}.\par 
+
+No capítulo 4 foi estudada a corda não-relativística, mas mais relevante, foi revisada a formulação Lagrangiana da mecânica, formulação que, atrelada ao conceito de simetrias, é o ponto de partida para a construção de teorias físicas modernas. Foram feitos os exercícios 4.1, 4.2, 4.3, 4.6, 4.7, 4.8 de \cite{barton}.\par 
+
+\section{Segunda fase}
+
+A segunda fase do projeto consistiu no estudo dos capítulos 5 a 8 de \cite{barton} e tinha duração prevista de 3 meses, mas durou efetivamente 2 meses.\par 
+
+No capítulo 5 foi estudada a partícula pontual massiva relativística pelo formalismo Lagrangiano. Uma das qualidades de se usar tal formalismo é a fácil visualização de que a teoria admite invariância por reparametrização e invariância de Lorentz. Em especial, na última seção foi estudada a interação da partícula com um quadri-potencial eletromagnético utilizando novamente o formalismo Lagrangiano, de modo que este se mostrou poderosíssimo, já que a verificação das invariâncias se manteve de fácil visualização. Foi no momento de incrementar o Lagrangiano da partícula livre que a formulação covariante do eletromagnetismo se mostrou simples e útil. Foram feitos todos os exercícios. O exercício 5.6 foi muito interessante pois foi a primeira vez que a dinâmica dos campos eletromagnéticos foi colocada no formalismo Lagrangiano, de modo que a Lagrangiana descrevia não só o movimento da partícula, como também a dinâmica dos campos. O estudo de campos no formalismo Lagrangiano foi intenso na fase 3 do projeto (capítulo 10 de \cite{barton}).\par 
+
+Foi no capítulo 6 que a teoria das cordas nasceu. Baseado no Lagrangiano da partícula relativística foi construído o Lagrangiano da corda relativística. A ação correspondente à este Lagrangiano é conhecida como Ação de Nambu-Goto e é um excelente ponto de partida para o desenvolvimento da teoria. Tendo a ação, foram obtidas as equações do movimento. Um aspecto importante da teoria é o fato de que são necessários dois parâmetros para descrever a corda. E foi nesse momento que a invariância por reparametrização se mostrou útil, pois existe uma certa classe de calibres nos quais as equações do movimento são incrivelmente simples. Neste capítulo uma única escolha foi estudada, o calibre estático, no qual um dos parâmetros da corda é identificado com o tempo. Usando o calibre estático foi feito o meu primeiro cálculo em teoria das cordas! Uma corda esticada em uma dimensão, fixa. Após tal cálculo foi entendido como a energia e o comprimento da corda se relacionam de maneira geral. Por fim, foram estudadas as pontas da corda e foi descoberto que as pontas se movem com a velocidade da luz e traversamente à corda! Foram feitos os exercícios 6.1, 6.2, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 6.11. Em particular, o exercício 6.11 é interessante pois já introduz alguns conceitos que foram vistos só na fase 4 do projeto (capítulo 15 de \cite{barton}).\par 
+
+Do capítulo 7 foram estudadas as seções 7.1 até 7.4, nas quais foram estudadas as consequências do calibre estático utilizado no capítulo anterior, bem como uma parametrização do outro parâmetro da corda. Por fim, foi feito o estudo de uma corda rotacionando em um plano e suas propriedades, como energia e densidade de energia e como essas propriedades se relacionam com os calibres escolhidos. A corda rotacionando em um plano será a origem de um dos parâmetros da corda mais utilizados: o parâmetro de inclinação \(\alpha'\), que se relaciona diretamente com a tensão da corda, e é a constante de proporcionalidade entre o momento angular e o quadrado da energia da corda nessa situação. Foram feitos os exercícios 7.1, 7.2, 7.3 e 7.5.\par 
+
+O capítulo 8 foi estudado mais intensamente que os demais. Nele é estudada a relação entre as simetrias da Lagrangiana e cargas e correntes conservadas associadas a tais simetrias. Neste capítulo é definido o momento da corda, que se mostrou de vital importância quando foi crucial para descrever a classe de parametrizações que utilizaremos a partir do capítulo 9. O ponto mais importante se refere às cargas e correntes associadas à simetria de Lorentz, bem como a independência do caminho escolhido para se computá-las. Foram feitos os exercícios 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.9 e 8.10.\par 
+
+\section{Terceira fase}
+
+A terceira fase tinha duração prevista de 4 meses.\par 
+
+O capítulo 9 é um dos mais importantes do livro. O capítulo começa impondo um certo tipo de parametrização e então explora suas consequências, como os vínculos que surgem e a equação do movimento que é simplificada. De certo modo é o capítulo que reúne as equações complicadas e, ao aplicar a parametrização, as transformam em equações simples, com soluções muito bem conhecidas, e um par de vínculos não tão simples. A equação do movimento se torna a conhecida equação de onda, de modo que sua solução já é também conhecida. Mas é na última seção do capítulo, seção 9.5, que o capítulo atinge sua glória, quando mostra que a parametrização no cone de luz faz parte da classe de parametrizações apresentada no começo! O fato de a métrica de Minkowski se tornar não-diagonal nos permite, utilizando o par de vínculos associados, relacionar diretamente a solução de certas dimensões para outras, ou seja, vinculamos partes da solução, diminuímos o número de parâmetros livres da solução. Além disso, surge um parâmetro que será crucial no desenvolvimento da teoria quântica da corda, os modos transversais de Virasoro, \(L_n^{\perp}\). Por fim, vemos como a massa se relaciona com nossas soluções. É nesse momento que o desenvolvimento da teoria não-quântica se encerra. Temos as soluções das equações do movimento e já sabemos bem quais são os parâmetros dinâmicos da teoria. Foram feitos os exercícios 9.1, 9.2 e 9.3.\par 
+
+O capítulo 10 é quando as coisas se tornam mais interessantes. É feito um estudo de campos clássicos e das equações que os regem. Mas mais importante, é feito um estudo superficial de campos quânticos. No entanto, tal estudo é suficiente para demonstrar como campos quânticos correspondem à estados de partículas, como fótons e grávitons. Ao final do capítulo 12 é mostrado como isso emerge em teoria das cordas! Foram feitos os exercícios 10.1 e 10.2. \par 
+
+No capítulo 11 é introduzido o procedimento de quantização, aplicado à partícula pontual massiva. São utilizadas coordenadas do cone de luz. É na seção 11.4 que a correspondência entre uma partícula quântica e um campo quântico é estabelecida, uma vez que o conjunto de autovalores associados é o mesmo para as duas coisas. Por fim, são estudados os geradores de Lorentz e é assim que surge um dos vínculos teóricos mais importantes, um vínculo que se satisfeito garante que a teoria é invariante por transformações de Lorentz. Tal vínculo será responsável, ao meio do capítulo 12, por fixar o número de dimensões da teoria das cordas. Foram feitos os exercícios 11.1, 11.2, 11.3, 11.4 e 11.6. \par 
+
+No capítulo 12 é feita a quantização das cordas abertas. É utilizado um procedimento análogo ao da quantização da partícula, e, mais importante, surge um Hamiltoniano para a corda. No entanto, no reino quântico as entidades mais importantes são os comutadores. E é por conta deles que surge uma constante de ordenação nos modos transversais de Virasoro, que agora são chamados de operadores transversais de Virasoro. Essa constante é negativa e seu impacto no cálculo da massa da corda é importante. É por conta dessa constante que os estados de mínima energia da corda aberta possuem massa negativa, são os tachyons. É também por conta dessa constante que os estados de massa nula correspondem aos fótons. Além disso, é introduzido o operador número, um operador cujo espectro se relaciona diretamente com a massa da corda. Por fim, os tachyons da corda aberta são estudados utilizando os conceitos de campo vistos no capítulo 10. Foram feitos os exercícios 12.1, 12.2, 12.3, 12.5, 12.6, 12.7, 12.8, 12.9, 12.10 e 12.11. Em particular, o exercício 12.11 introduz um resultado que será útil quando for feita uma análise de mecânica estatística da corda.\par 
+
+No capítulo 13 é feita a quantização das cordas fechadas. Foram estudadas as seções 13.1, 13.2 e 13.3. É muito similar à quantização das cordas abertas, mas tudo é feito em dobro por conta da natureza da solução. É mostrado que também existem tachyons da corda fechada, embora sejam mais complicados que os da corda aberta. Mas é na corda fechada que surgem os grávitons, e é nesse momento que o poder da teoria das cordas se manifesta. Durante o desenvolvimento da teoria não foram utilizados os conceitos de dinâmica de métricas e espaços curvos, mas mesmo assim a gravidade emergiu. É deveras um grande mérito da teoria. Foram feitos os exercícios 13.1 e 13.2.\par 
+
+O capítulo 14 é mais complicado. É introduzido o conceito de variáveis comutantes e anti-comutantes, e como isso se relaciona com bósons e férmions. Surgem então duas classes de soluções correspondentes, a classe de Neveu-Schwarz (comutante) e a classe de Ramond (anti-comutante). São apresentadas as motivações para se ter uma teoria com supersimetria e como transformamos nossa teoria em uma teoria supersimétrica, de modo a obtermos um número igual de estados bosônicos e de estados fermiônicos. Nenhum exercício deste capítulo foi feito.\par 
+
+\section{Quarta fase}
+
+A quarta fase do projeto tinha duração prevista de 3 meses. Desde então até o fim do período previsto do projeto foi escrita uma monografia contendo, em detalhes, grande parte do conteúdo estudado, bem como também foram feitos mais exercícios a fim de se consolidar o conhecimento obtido.\par 
+
+Do capítulo 15 foram estudadas todas as seções. Neste capítulo é melhor desenvolvido o conceito de D-brana, objeto físico que se relaciona diretamente com as condições de contorno impostas em nossa solução da equação de movimento da corda. A seção mais importante em termos técnicos é a última, a 15.4, pois ela compreende grande parte das anteriores. Utilizando o conceito de D-brana impomos condições de contorno mais gerais para obter mais estados quânticos. Um aspecto importante é que a distância entre duas D-branas influencia diretamente a massa da corda, podendo inclusive criar estados de massa nula que não são fótons por não terem o número correto de graus de liberdade. O conceito de D-brana também ajuda a introduzir o conceito de interação entre duas cordas. A existência de duas D-branas introduz uma categorização de estados da corda, se baseando em em qual D-brana cada ponta da corda está. Foram feitos os exercícios 15.6 e 15.7.\par 
+
+No capítulo 16 é criado um paralelo entre a teoria de Maxwell com partículas pontuais e um novo campo de calibre no qual os objetos fundamentais são uni-dimensionais. Novamente, é aqui que a formulação covariante do eletromagnetismo ajuda na criação desse novo campo, chamado de Kalb–Ramond. É, então, criada tal teoria e todos os paralelos com o eletromagnetismo são apresentados. Além disso, já é mostrado que estados quânticos relativos à este novo campo já foram obtidos durante a quantização da corda fechada. Foram feitos os exercícios 16.3, 16.4, 16.5 e 16.6.\par
+
+No capítulo 17 é estudada a dualidade-T da corda fechada. Tal dualidade se refere a uma simetria na Hamiltoniana do sistema. Um ponto chave desse estudo é o de dimensões compactas e como elas são responsáveis por se criar um novo parâmetro e um momento associado a ele. É também feita toda quantização dessa nova situação. Surgem novos vínculos importantes, principalmente no que diz respeito à massa da corda. Mas é na seção 17.6 que o capítulo atinge seu clímax, pois até então a dualidade do nosso sistema não tinha aparecido. Utilizando essa dualidade surgem novos campos que surgem \textit{apenas} em teoria das cordas e não existe correspondência com nenhuma partícula, e em especial é mostrado como o raio de compactificação da dimensão se relaciona com a massa da corda. Ao fim da última seção, seção 17.8, é resumido de forma simples e concisa o conceito de dualidade-T, e então a equivalência entre duas situações bem diferentes é rigorosamente estabelecida. Foram feitos os exercícios 17.1, 17.3, 17.4 e 17.5.\par 
+
+No capítulo 18 é estudada a dualidade-T da corda aberta. Foi estudada apenas a primeira seção. A natureza da corda aberta a princípio acabaria com a ideia de dualidade-T da corda fechada, no entanto uma solução é apresentada utilizando novamente o conceito de D-branas! Foram feitos os exercícios 18.1, 18.2 e 18.3.\par
+
+% No capítulo 22 é estudada a mecânica estatística da corda. É feito um breve resumo geral da mecânica estatística e então é encontrada a temperatura de Hagedorn. É derivada também a função de partição da corda. Mais um trunfo da teoria das cordas se manifesta quando ela possibilita o estudo da entropia de buracos negros. Foi feito apenas o primeiro exercício deste capítulo.\par 
+
+% No capítulo 23 é descrito brevemente a correspondência AdS/CFT, onde a teoria das cordas supersimétrica é dita equivalente à teoria supersimétrica de Yang-Mills em 4 dimensões. Nenhum exercício deste capítulo foi feito.\par 
+
+\section{Outras atividades}
+
+Durante o período do projeto, participei do XXXIX Congresso Paulo Leal Ferreira de Física, sediado no Instituto de Física Teórica da Unesp, em São Paulo, SP, Brasil, no período de 25 a 27 de outubro de 2016.\par 
+
+\section{Próximas atividades}
+No período de 31 de Março de 2016 à 30 de Abril de 2017 está previsto o estudo dos capítulos 22 e 23 do livro-texto. O relatório final contemplará tal período de atividades.\par 
+
+
+
+%\backmatter
+
+\nocite{*}
+\printbibliography[title={\texorpdfstring{\textsc{\textbf{Referências}}}{Referências}}] 
+\addcontentsline{toc}{chapter}{\textsc{References}} 
+
+\end{document}

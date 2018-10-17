@@ -1,0 +1,16 @@
+\documentclass{myclass}
+
+\begin{document}
+%\import{String Theory/}{ST_titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\part{The basics}
+\foreach \c in {1,...,9}{\import{String Theory/ST_barton/ST_barton_chapters/}{ST_barton_chap0\c.tex}}
+\foreach \c in {10,...,14}{\import{String Theory/ST_barton/ST_barton_chapters/}{ST_barton_chap\c.tex}}
+\part{Developments}
+\foreach \c in {15,...,26}{\import{String Theory/ST_barton/ST_barton_chapters/}{ST_barton_chap\c.tex}}
+
+\end{document}

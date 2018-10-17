@@ -1,0 +1,43 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_ST.bib}
+
+\begin{document}
+
+
+
+\chapter{Fields}
+
+\section{Scalar fields}
+Let \(\phi : \mb{R}^D \mapsto \mb{R}\) be a scalar field where \(D\) is the spacetime dimension. Its Lagrangian \(\mc{L}\) is declared to be
+\beq \mc{L} =  -\hlf (\del \phi)^2 - \hlf m^2 \phi^2 = -\hlf(\del_0\phi)^2 - \hlf(\gradi{\phi})^2 - \hlf m^2\phi^2\eeq
+noting that it is Lorentz invariant. We associate the kinetic energy with the \( (\del_0\phi)^2\) term, this means
+\beq T = \hlf(\del_0 \phi)^2\eeq
+therefore the conjugate momentum \(\Pi\) is
+\beq \Pi = \pdv{\mc{L}}{(\del_0\phi)} = \del_0\phi \eeq
+hence the Hamiltonian \( \mc{H}\) is
+\beq \mc{H} = \hlf \Pi^2 + \hlf (\gradi{\phi})^2 + \hlf m^2\phi^2 \eeq
+The Lagrangian gives rise to the Klein-Gordon equation
+\beq (\del^2 - m^2)\phi =0\eeq
+or more explicitly
+\beq -\pdv[2]{\phi}{t} + \laplacian \phi -m^2 \phi = 0\eeq
+
+\section{Quantum fields}
+
+One-particle states of a scalar field are
+\beq[eq:opsofascalarfield] a^{\dag}_{p^{+},p_T}\ket{\Omega} \eeq
+
+\section{Maxwell's fields}
+
+\section{Gravitational fields}
+
+
+
+\end{document}

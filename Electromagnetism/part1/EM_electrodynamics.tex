@@ -1,0 +1,32 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../../_mypackages/mypreamble}
+\usepackage{../../_mypackages/mycommands}
+\usepackage{../../_mythemes/notestheme}
+
+\addbibresource{EM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+% \pagestyle{empty}
+% \notestp{Electrodynamics}
+% \begin{notesabstract}[Abstract]
+% Abstract text
+% \end{notesabstract}
+% \centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Electrodynamics}
+
+We have Faraday's Law in differential form
+\beq[] \curl{\vb{E}} = - \pdv{\vb{B}}{t} \eeq
+which is always valid, and we have it in integral form
+\beq[eq:intfaraday] \varepsilon \at{C} = \uoint[\del{S}] \dd{\vb{l}} \cdot \vb{E} = - \dv{\Phi_B}{t} \at{S} \eeq
+which is valid in low speeds and \(c = \del{S}\). The minus sign in \eqref{eq:intfaraday} is called Lenz Law and \( \Phi_B \at{S}\) is the magnetic flux trough the surface \(S\) enclosed by the circuit \(C\) and is given by
+\beq[]  \Phi_B \at{S} = \uint[S]\vb{B}\cdot \dd{\vb{S}}\eeq
+
+\end{document}

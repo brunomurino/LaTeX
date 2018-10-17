@@ -1,0 +1,73 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{../mypreamble}
+% \usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{../mycommands}
+\usepackage{../mytheme1}
+
+% \addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\pagestyle{mypage2} \normalfont
+
+
+\chapter{Further developments}
+
+\section{T-duality}
+
+\section{String charges}
+
+\section{Thermodynamics}
+
+\section{Superstrings}
+
+\section{AdS/CFT correspondence}
+
+\section{Parallel D\textit{p}- and D\textit{q}-branes }
+
+If \(p \neq q\), then there will be \(p-q\) dimensions in which an endpoint is free and the other one is not. In this case we call the corresponding coordinates \textit{mixed coordinates}, otherwise the coordinates are either \textit{common tangential coordinates} or \textit{common normal coordinates}. We usually do the following:
+\beq[] X^0, X^1,...,X^q \qq{collectively denoted as} X^i\eeq
+are common tangential coordinates,
+\beq[] X^{q+1},X^{q+2},...,X^{p} \qq{collectively denoted as} X^r\eeq
+are mixed coordinates and
+\beq[] X^{p+1},X^{p+2},...,X^d \qq{collectively denoted as} X^a\eeq
+are common normal coordinates, and of course we must solve them separately.\par
+
+\subsection{Mixed coordinates}
+
+Imposing the mixed boundary conditions
+\beq[] \eval{\pdv{X^r}{\sigma}(\tau,\sigma)}_{\sigma=0} = 0 \qq{and} \eval{X^r(\tau,\sigma)}_{\sigma=\pi} = \bar{x}^r_2 \eeq
+on the starting point \eqref{eq:waveeqgensol} we find that
+\beq[] f^r(u+2\pi) = -f^r(u) \eeq
+which implies that the expansion of \(f^r\) is
+\beq[] f^r(u) = \sum_{n\in\mb{Z}^{+}_{odd}} \left(F^r_n\cos{\frac{nu}{2}} + H^r_n \sin{\frac{nu}{2}}\right) \eeq
+The solution to mixed coordinates then, already using the conventional notation, is
+\beq[] X^r(\tau,\sigma) = \bar{x}^r_2 + i\sqrt{2\alpha'} \sum_{n\in\mb{Z}_{odd}}\frac{2}{n}\alpha^r_{\frac{n}{2}} \exp{-i\frac{n}{2}\tau}\cos{\frac{n\sigma}{2}} \eeq
+with
+\beq[] \alpha^r_{-\frac{n}{2}} = \left(\alpha^r_{\frac{n}{2}}\right)^{*} \eeq\par
+
+Plugging our solution into \eqref{eq:pgauge} we find that the mixed coordinates do not carry any average momentum \(p^r\).\par
+
+Lets also record
+\beq[] \dot{X}^r \pm X'^r = \sqrt{2\alpha'} \sum_{n\in \mb{Z}_{odd}} \alpha^r_{\frac{n}{2}}\exp{-i\frac{n}{2}(\tau\pm\sigma)} \eeq
+
+
+
+
+
+
+
+
+
+
+\nocite{*}
+\end{document}

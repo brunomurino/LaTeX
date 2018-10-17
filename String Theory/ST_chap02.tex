@@ -1,0 +1,206 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_ST.bib}
+
+\begin{document}
+
+\chapter{Relativistic String}
+
+A string has one spatial dimension, therefore it needs two parameters to describe its world-manifold, and, that being the case, this manifold is a surface called the \textit{world-sheet}. Henceforth, the invariant interval is the area element of this world-sheet.\par
+The parameters \(\{ \sigma\}\) we use are \(\sigma^0 = \tau\) and \(\sigma^1 = \sigma\), \(\tau\) being a timelike parameter, and \(\sigma\) a spacelike parameter.\par 
+To denote points of the world-sheet, we'll use the capitalized \(X^{\mu}(\tau,\sigma)\), which are called the \textit{string coordinates}.\par
+
+\section{Equations of motion}
+
+We know that the area element of a surface is just the square-root of the determinant of the induced metric on that surface, that is
+\beq[] \dd{A} = \sqrt{-det(h)}\eeq
+where
+\beq[] h_{\alpha \beta} \equiv \eta_{\mu \nu}\pdv{X^{\mu}}{\sigma^{\alpha}}\pdv{X^{\nu}}{\sigma^{\beta}}\eeq
+Computing we find that
+\beq[] \sqrt{-det(h)} = \sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}\eeq
+with
+\beq[] \dot{X} = \pdv{X}{\tau}\qq{and} X' = \pdv{X}{\sigma}\eeq
+Then, the so called Nambu-Goto string action is
+\beq[] S[X] = -\frac{T_0}{c}\int \sqrt{-det(h)} = -\frac{T_0}{c}\int \dd{\tau} \dd{\sigma}\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}\eeq
+therefore the Lagrangian is
+\beq[] \mc{L} = -\frac{T_0}{c}\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}\eeq\par
+The constants introduce are only to match units. We can see that this action is invariant under the Poincaré group, since there are no free indices on its expression, and this action also shows diffeomorphism invariance (\textit{diff}-invariance), this last symmetry is
+\beq[] S[X'(\tau ',\sigma ')] = S[X(\tau, \sigma)]\eeq
+where
+\beq[] \tau '= \tau '(\tau, \sigma)\qq{and} \sigma ' = \sigma ' (\tau, \sigma)\eeq\par 
+Varying the Nambu-Goto action, we obtain the following equation of motion for the relativistic string
+\beq[] \pdv{\mc{P}^{\tau}_{\mu}}{\tau} + \pdv{\mc{P}^{\sigma}_{\mu}}{\sigma} = 0\eeq
+with
+\beq[] \mc{P}^{\tau}_{\mu} \equiv \pdv{\mc{L}}{\dot{X}^{\mu}} = -\frac{T_0}{c} \frac{(\dot{X}\cdot X')X'_{\mu} - (X')^2\dot{X}_{\mu}}{\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}}\eeq
+and
+\beq[] \mc{P}^{\sigma}_{\mu} \equiv \pdv{\mc{L}}{X'^{\mu}} = -\frac{T_0}{c} \frac{(\dot{X}\cdot X')\dot{X}_{\mu} - (\dot{X})^2 X'_{\mu}}{\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}}\eeq
+This expressions can be summarized as
+\beq[]
+\begin{bmatrix}
+\mc{P}^{\tau}_{\mu} \\ \mc{P}^{\sigma}_{\mu}
+\end{bmatrix} = \frac{T_0}{c}\frac{1}{\sqrt{-det(h)}}[cof(h)]^{T}
+\begin{bmatrix} \dot{X}_{\mu} \\ X'_{\mu}
+\end{bmatrix}\eeq
+with
+\beq[] h = \begin{bmatrix}
+(\dot{X})^2 & \dot{X}\cdot X' \\
+\dot{X}\cdot X' & (X')^2 \end{bmatrix}\qq{and} [cof(h)]^T = det(h)h^{-1} = \begin{bmatrix}
+(\dot{X})^2 & -\dot{X}\cdot X' \\
+-\dot{X}\cdot X' & (X')^2 \end{bmatrix}\eeq\par 
+
+When varying the action, we happen to have boundary terms, which we imposed to be zero. Thus we cannot impose any boundary condition. There are two of them that are natural
+\begin{itemize}
+    \item The Dirichlet boundary condition, or fixed endpoints boundary condition
+    \beq[] \pdv{X^{\mu}}{\tau}=0\qq{at endpoints,} \mu\neq 0\eeq
+    \item The free endpoint condition
+    \beq[] \mc{P}^{\sigma}_{\mu} = 0 \qq{at endpoints}\eeq
+\end{itemize}
+
+\section{World-sheet currents}
+
+For the variation given by
+\beq[] \var{X^{\mu}} = \epsilon^{\mu}\eeq
+we get that the currents are
+\beq[] j^{\alpha} = \left(\mc{P}^{\tau}_{\mu},\mc{P}^{\sigma}_{\mu} \right) \eeq 
+and the conservation of currents is just
+\beq[] \pdv{\mc{P}^{\tau}_{\mu}}{\tau} + \pdv{\mc{P}^{\sigma}_{\mu}}{\sigma} = 0\eeq
+which is just the equation of motion for the string.\par 
+We can integrate this currents and get the conserved charge
+\beq[]  p_{\mu}(\tau) = \int _{0}^{\sigma_1}\mc{P}^{\tau}_{\mu}\dd{\sigma}\eeq
+which is the spacetime momentum carried by the string, since the symmetry observed corresponds to a spacetime translational invariance. We can conclude then that \(\mc{P}^{\tau}_{\mu} \) is the \(\sigma\) density of spacetime momentum carried by the string. And using the equations of motion we have that
+\beq[] \dv{p_{\mu}}{\tau} = -\eval{\mc{P}^{\sigma}_{\mu}}^{\sigma_1}_{0} \eeq
+where \(\sigma_1\) is one endpoint of the string. Noting that for closed strings \(\sigma_1\) corresponds to the same point \(0\), and that for open strings, if we impose free boundary conditions, we have that \( \mc{P}^{\sigma}_{\mu}=0\), we get that the momentum is conserved with respect to \(\tau\)
+\beq[] \dv{p_{\mu}}{\tau}=0\eeq
+It's important to note that if we impose Dirichlet boundary conditions, fixed endpoints, spacetime momentum is no conserved. This result will give rise to the \(D\)-branes, which will be studied later.\par 
+
+\section{Lorentz symmetry}
+
+\section{The slope parameter}
+
+\section{Choosing a parametrization}
+
+The equations of motion we obtained before were nasty, but we can make them simpler by choosing an appropriate gauge. We will try to impose the following gauge on \(\tau\)
+\beq[] n\cdot X = \frac{2\pi\hbar c^2}{\sigma_1}\alpha' (n\cdot p) \tau \eeq
+and the following gauge on \( \sigma\)
+\beq[] n\cdot p = \sigma_1 \left(n \cdot \mc{P}^{\tau}\right)\eeq
+where \( n_{\mu}\) is an arbitrary vector and \( \sigma \in [0,\sigma_1]\), for both open string and closed string. It's common to set \( \sigma \in [0,2\pi]\) for closed strings and \(\sigma \in [0,\pi]\) for open strings.\par
+
+In the \(\tau\) gauge we want 
+\beq[] \dv{\tau} n\cdot p = 0\eeq
+and for that to happen we must impose
+\beq[] n\cdot \mc{P}^{\sigma} = 0\qq{at both endpoints}\eeq
+or for the closed string
+\beq[] n\cdot \mc{P}^{\sigma} = 0\qq{at some point} \eeq
+Now for the \(\sigma\) gauge we want to impose
+\beq[] \dv{\sigma}n\cdot \mc{P}^{\tau}=0 \eeq
+this condition implies the \(\sigma\) gauge stated above, since \( \mc{P}^{\tau}\) is the spacetime momentum density along the string.\par 
+
+We can dot the equations of motion with \(n\), leading us to
+\beq[] \pdv{\tau}\left(n\cdot \mc{P}^{\tau}\right) + \pdv{\sigma}\left(n\cdot\mc{P}^{\sigma}\right)  = 0\eeq
+\beq[] \pdv{\tau}\left(\frac{n\cdot p }{\sigma_1}\right) + \pdv{\sigma}\left(n\cdot\mc{P}^{\sigma}\right)  = 0 \eeq
+\beq[] \pdv{\sigma} \left(n\cdot \mc{P}^{\sigma} \right) = 0\eeq
+but already we imposed \( n\cdot \mc{P}^{\sigma} = 0\) at endpoints, and now with this last equation we know that this holds at every point of the string, this means
+\beq[] n\cdot \mc{P}^{\sigma} = 0 \qq{for all} \sigma \in [0,\sigma_1]\eeq
+Now, the consequences of the parametrization are
+\beq[] \dot{X}\cdot X' = 0 \qq{and} \dot{X}^2 + X'^2 = 0\eeq
+Which can be summarized as the pair of equations
+\beq[] \left(\dot{X}\pm X' \right)^2 =0 \eeq
+And leads to
+\beq[] \mc{P}^{\tau} = \frac{T_0}{c}\dot{X} \qq{and} \mc{P}^{\sigma} = -\frac{T_0}{c}X'\eeq
+Therefore the equations of motion become
+\beq[] \ddot{X} - X'' = 0\eeq
+Which is just the wave equation.\par 
+
+\section{Wave equation}
+
+Solving the wave equation for an open string with free boundary conditions, and with \( \sigma \in [0,\pi]\), we obtain
+\beq[] X^{\mu}(\tau,\sigma) = x^{\mu}_0 + 2\alpha'p^{\mu}\tau - i\sqrt{2\alpha'}\sum_{n=1}^{\infty}\left( a^{\mu*}_n e^{in\tau} - a^{\mu}_ne^{-in\tau}\right)\frac{\cos(n\sigma)}{\sqrt{n}}\eeq
+And if we perform the following substitutions
+\beq[eq:alpha0pmu] \alpha^{\mu}_0 = \sqrt{2\alpha'}p^{\mu}\eeq
+\beq[] \alpha^{\mu}_n = a^{\mu}_n\sqrt{n}\qc \alpha^{\mu}_{-n} = a^{\mu *}_{n}\sqrt{n}\qc n\geq 1\eeq
+Noting that
+\beq[] \alpha^{\mu}_{-n} = \left(a^{\mu}_n\right)^*\eeq
+We get
+\beq[] X^{\mu}\left( \tau,\sigma \right) = x^{\mu}_0 + \sqrt{2\alpha'}\alpha^{\mu}_0 \tau + i\sqrt{2\alpha'}\sum_{n\neq0}\frac{1}{n}\alpha^{\mu}_n e^{-in\tau}\cos(n\sigma)\eeq\par 
+It is convenient to record the derivatives of \(X^{\mu}\)
+\beq[] \dot{X}^{\mu} = \sqrt{2\alpha'}\sum_{n\in\mb{Z}}\alpha^{\mu}_n\cos{n\sigma} e^{-in\tau}\eeq
+\beq[] {X^{\mu}}' = -i\sqrt{2\alpha'}\sum_{n\in\mb{Z}}\alpha^{\mu}_n\sin{n\sigma} e^{-in\tau}\eeq
+And also
+\beq[] \dot{X}^{\mu} \pm {X^{\mu}}' =\sqrt{2\alpha'}\sum_{n\in\mb{Z}}\alpha^{\mu}_ne^{-in\left( \tau\pm\sigma\right)}\eeq
+
+\section{Solutions in light-cone coordinates}
+
+If we set \(n_{\mu} = \left( \frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}},0,...,0\right)\), then we have the following parametrization
+\beq[] X^+(\tau, \sigma) = \beta \alpha'p^+ \tau \qq{and} p^+ = \frac{2\pi}{\beta}\mc{P}^{\tau +} \eeq
+With \(\beta = 2\) for open strings and \(\beta =1 \) for closed strings, noting that the second equation means that the density of \(p^+\) is constant along the string.\par 
+
+In light-cone coordinates it's useful to separate \(X^{\mu}\) in three parts: \(X^+\), \(X^-\), and \(X^I = \left( X^2, X^3,...,X^d\right)\), where \(X^I\) are called the \textit{traverse coordinates}.\par 
+
+Recalling the general consequence of our parametrization
+\beq[] \left(\dot{X} \pm X' \right)^2=0\eeq
+In light-cone coordinates, after the substitution
+\beq[] \dot{X}^+ = \beta \alpha' p^+  \qq{and} {X^+ }' = 0\eeq
+We have
+\beq[eq:lcconstrainxdotxprime] \dot{X}^- \pm {X^-} ' = \frac{1}{\beta \alpha '}\frac{1}{2p^+}\left(\dot{X}^I\pm {X^I} ' \right)^2\eeq
+which, given \(X^I\), gives us
+\beq[] \dot{X}^- \qq{and} {X^-}'\eeq
+therefore, upon integration, we find \( X^-\). Recalling that the integration produces a constant \(x_0^-\).\par 
+Regarding closed strings, as \(\dd{X^-}\) is an exact differential, we can choose to integrate over a contour of constant \(\tau\), and since the extremes of integration represent the same point on space, such integral must equal zero, thus requiring that
+\beq[] \int_{0}^{2\pi} \dd{\sigma}{X^-}' =0\eeq
+which is another consistency condition for closed strings.\par
+Since the light-cone coordinates are just a particular choice of parametrization corresponding to \(n = \left(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}},0,...,0 \right)\), we know that each component of the string coordinates must satisfy
+\beq[] X^{\mu}\left( \tau,\sigma \right) = x^{\mu}_0 + \sqrt{2\alpha'}\alpha^{\mu}_0 \tau + i\sqrt{2\alpha'}\sum_{n\neq0}\frac{1}{n}\alpha^{\mu}_n e^{-in\tau}\cos(n\sigma)\eeq
+therefore we have \(X^I\) once we fix \(x^I_0\) and \( \alpha^I_n\) for all \(n\).\par 
+Knowing that \(X^-\) also satisfies the solution above, we can find the relation
+\beq[] \sqrt{2\alpha'}\alpha^-_n = \frac{1}{p^+}L^{\perp}_{n}\eeq
+where \(L^{\perp}_n\) is called the \textit{traverse Virasoro} mode
+\beq[eq:traversevirasoromode_n] L^{\perp}_n = \hlf \sum_{p\in\mb{Z}}\alpha^I_{n-p}\alpha^I_{p}\eeq
+Note that, using \eqref{eq:alpha0pmu}, we have
+\beq[eq:L0p+p-] L_0^{\perp} = p^{+}\sqrt{2\alpha'}\alpha_0^{-} = 2\alpha'p^{+}p^{-} \eeq
+
+\section{To summarize}
+The particular choice of gauge
+\beq[] n\cdot X = \beta\alpha' (n\cdot p) \tau \eeq
+\beq[] n\cdot p = \frac{2\pi}{\beta} \left(n \cdot \mc{P}^{\tau}\right)\eeq
+results in the constrains
+\beq[] \left(\dot{X} \pm X' \right)^2=0\eeq
+and in the equation of motion
+\beq[eq:stringwaveeom] \ddot{X} - X'' = 0\eeq
+of which the solutions are, for free endpoints boundary conditions in the case of open strings, and for every case of closed strings,
+\beq[eq:stringsol] X^{\mu}\left( \tau,\sigma \right) = x^{\mu}_0 + \sqrt{2\alpha'}\alpha^{\mu}_0 \tau + i\sqrt{2\alpha'}\sum_{n\neq0}\frac{1}{n}\alpha^{\mu}_n e^{-in\tau}\cos(n\sigma)\eeq
+with \(\beta =2\) for open strings and \(\beta =1\) for closed ones, recalling that
+\beq[eq:alphamomentum] \alpha^{\mu}_0 = \sqrt{2\alpha'}p^{\mu}\eeq
+and that \( \sigma = [0,2 \pi/\beta ]\). Therefore, the full solution is specified by the values \( x^{\mu}_0\), \( \alpha^{\mu}_0\), \( \alpha^{\mu}_n\) and \( \alpha^{\mu}_{-n}\) for \( n=1,2,...,\infty\).\par
+Light-cone coordinates
+\beq[] X^+(\tau, \sigma) = \beta \alpha'p^+ \tau \qq{and} p^+ = \frac{2\pi}{\beta}\mc{P}^{\tau +} \eeq
+satisfy such gauge and give
+\beq[] x^{+}_0 =0 \qc \alpha^{+}_{n} = \alpha^{+}_{-n} =0 \qq{with} p^{+} \sim \alpha^{+}_0\qq{free}\eeq
+and this fully determines \(X^{+}\).\par 
+The solution of \( X^I\) is unconstrained, therefore we need all the parameters
+\beq[] x^{I}_0\qc p^I\qc \alpha^I_n \qq{and} \alpha^I_{-n}\qc n=1,2,...,\infty\eeq\par 
+The solution of \( X^{-}\) is constrained by the choice of gauge, resulting in the following relation between the parameters
+\beq[eq:stringLmode] \alpha^{-}_n = \frac{1}{\sqrt{2\alpha'}p^+}L^{\perp}_{n}\qq{for all} n \in \mb{Z}\qq{where} L^{\perp}_{n} = \hlf \sum_{p\in\mb{Z}}\alpha^I_{n-p}\alpha^I_p\eeq
+and free \(x^{-}_0\).\par 
+Therefore, to fully find a solution \( X^{\mu}\), we must fix the following parameters
+\begin{tcolorbox}
+    \beq[eq:stringdynvar] p^{+}\qc x_0^{-}\qc  x_0^I\qc \alpha^I_n\eeq
+\end{tcolorbox}
+or
+\begin{tcolorbox}
+    \beq[eq:stringdynvar2] p^{+}\qc x_0^{-}\qc  x_0^I\qc \alpha^I_n\eeq
+\end{tcolorbox}
+
+Also, we calculate the mass of the string using the relation 
+\beq[] p^2 + M^2 =0\eeq
+and find
+\beq[eq:stringclassicalmass] M^2 = \frac{1}{\alpha'}\sum_{n=1}^{\infty}a^{I*}_n a^I_n\eeq
+where \(M\), by convention, is taken to be always positive.\par
+
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{QM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+\notestp{Quantum Mechanics}
+\begin{notesabstract}[Abstract]
+Abstract text
+\end{notesabstract}
+\centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage}
+
+\import{Quantum Mechanics/}{QM_intro.tex}
+
+\import{Quantum Mechanics/}{QM_hatom.tex}
+
+\import{Quantum Mechanics/}{QM_spin.tex}
+
+\import{Quantum Mechanics/}{QM_identpartic.tex}
+
+\import{Quantum Mechanics/}{QM_tipt.tex}
+
+
+
+\backmatter
+
+% \printbib{References}
+
+\end{document}

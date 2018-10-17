@@ -1,0 +1,210 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{../mypreamble}
+% \usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{../mycommands}
+\usepackage{../mytheme1}
+
+% \addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\pagestyle{mypage2} \normalfont
+
+
+\chapter{Classical strings}
+
+There are three boundary conditions that are readily seen as acceptable. They are also the only ones we'll be considering.\par
+
+It's crucial to note that each \(\mu\) can have a different boundary condition. In a \(D\) dimensional spacetime there are \(2D-1\) boundary conditions that must be set: two for each dimension, except for \(X^0\) which only has one.\par
+
+\section{Open strings}
+
+An open string endpoint can be either free or fixed. A free endpoint satisfies the Neumann boundary condition
+\beq[eq:neumannbc] \pdv{X^{\mu}}{\sigma} = 0 \qq{at some endpoint} \eeq
+while a fixed endpoint satisfies the Dirichlet boundary condition
+\beq[] X^{\mu}(\sigma=0,\tau) = X^{\mu}_0 \qq{and} X^{\mu}(\sigma=\sigma_1,\tau) = X^{\mu}_{\sigma_1} \eeq
+It's readily seen that any combination of these satisfy \eqref{eq:bcgauge}.\par
+
+If every \(\mu\) has Neumann boundary conditions then, by \eqref{eq:pconsrvgauge}, momentum is conserved. On the other hand, if at least one endpoint has Dirichlet boundary conditions then momentum is not conserved. At first, Dirichlet boundary conditions were not deemed acceptable but the modern interpretation actually implies the existence of another fundamental objects besides the strings: the \textit{branes}. A \textit{p}-brane is an extended object with \textit{p} spatial dimensions. But we're gonna be looking at a special kind of brane, the D\textit{p}-branes: branes in which a string endpoint lie. To simplify our work, we'll only be considering a simple kind of D-brane, the ones that are \textit{hyperplanes}. Since a string has two endpoints, we're gonna be considering two branes (which can happen to coincide in space). We'll also take the branes to be parallel to each other.\par
+
+The most general situation possible is this one: in a \(d\) spatial dimensions spacetime there are two D-branes, a D\textit{p}-brane and a D\textit{q}-brane. The string endpoint with \(\sigma=0\) lies on the D\textit{p}-brane and the string endpoint with \(\sigma=\sigma_1\) lies on the D\textit{q}-brane. However, this situation doesn't add much to our theory compared to the situation in which \(p=q\), so we'll gonna proceed considering \(p=q\) and later we'll get back to the case \(p\geq q\) (no loss of generality here).\par
+
+Given a \textit{p}-brane, there are \textit{tangential dimensions} to the brane and \textit{normal dimensions} to the brane. \textit{Tangential coordinates} are the string coordinates that lie in the tangential dimensions, and analog to \textit{normal coordinates}. If the brane is a D-brane, then the tangential coordinates satisfy Neumann boundary conditions while the normal coordinates satisfy Dirichlet boundary conditions, otherwise the string would not be constrained to the brane. The coordinates are either \textit{common tangential coordinates} or \textit{common normal coordinates}. We usually do the following:
+\beq[] X^0, X^1,...,X^p \qq{collectively denoted as} X^i\eeq
+are common tangential coordinates and
+\beq[] X^{p+1},X^{p+2},...,X^d \qq{collectively denoted as} X^a\eeq
+are common normal coordinates, and of course we must solve them separately.\par
+
+\subsection{Slope parameter}
+
+Now, before solving the general open string, we must first introduce an important quantity called the \textit{slope parameter} \(\alpha'\). To do so, we'll start off by considering a rigidly rotating open string. In order to ease the following calculations we will set
+\beq[] \tau = t \eeq
+known as the \textit{static gauge}. Note that in this gauge the \(X^0\) component is already solved, and since the motion of such string is comprised in two dimensions, we can save up time writing only its \(X^1\) and \(X^2\) components. Solving the wave equation \eqref{eq:waveequation} our solution is
+\beq[eq:rotatingstring] \left(X^1,X^2 \right) = \frac{\sigma_1}{\pi}\cos{\frac{\pi \sigma}{\sigma_1}}\left(\cos{\frac{\pi t}{\sigma_1}} , \sin{\frac{\pi t}{\sigma_1}}\right) \eeq\par
+
+Plugging \eqref{eq:rotatingstring} into \eqref{eq:lorentzchargematrix} we find that the only non-vanishing component of \(M_{\mu\nu}\) is \(M_{12}\), which when computed gives
+\beq[eq:rotatingangularmomentum] M_{12} = \frac{\sigma_1^2T}{2\pi} \eeq\par
+
+The difference between a rigidly rotating string and a stretched string is only that the former moves and the latter doesn't, so we can expect its potential energy to be the same! To simplify our calculations, lets consider now just a stretched string. In this case, using the static gauge, the only non-trivial component to be found is \(X^1\), but we do know something about it. Since the string doesn't move, \(X^1\) can only be a function of \(\sigma\), lets call it \(f(\sigma)\). We also know the boundaries of \(X^1\), which in terms of \(f\) read
+\beq[] f(0) = 0 \qq{and} f(\sigma_1) = a \eeq
+where \(a\) is where one string endpoint lies. Since the stretched string is comprised in a single dimension, it's best to just say that the string lies in one of the \(d\) spatial spacetime axes (we already did that when we said that only \(X^1\) mattered). With this interpretation \(a\) is just the length of the string while \(f\) tells the \textit{speed} of the \(\sigma\) parameterization.\par
+
+Lets also see what happens to our Nambu-Goto action \eqref{eq:nambugotoaction} when we plug in \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain}. We get:
+\beq[eq:nambugotoactiongauge] S[X] = -T \int_{\tau_i}^{\tau_f}\dd{\tau}\int_0^{\sigma_1}\dd{\sigma} \left(\pdv{X}{\sigma}\right)^2 \eeq
+and computing \(\dot{X}\) and \(X'\) and plugging them in \eqref{eq:nambugotoactiongauge} we find that the action actually is
+\beq[] S[X] = -T \int_{t_i}^{t_f}\dd{t}\int_0^{\sigma_1}\dd{\sigma}\dv{f}{\sigma} \eeq
+\beq[eq:stretchedaction] S[X] = \int_{t_i}^{t_f} \dd{t} \left(-Ta \right) \eeq
+Setting \(a=\sigma_1\) for simplicity, we can now identify the integrand of \eqref{eq:stretchedaction} with the string Lagrangian, recalling that since the string is not moving there's no kinetic energy (\(K=0\))
+\beq[] \left(-T\sigma_1 \right) = L = K - V = - V\eeq
+so now we know what's the string rest energy, the energy due only to its \textit{own existence, regardless of its motion}
+\beq[eq:stringrestenergy] E = K + V = V = T\sigma_1 \eeq\par
+
+To end this section: lets plug \eqref{eq:stringrestenergy} into \eqref{eq:rotatingangularmomentum} to get
+\beq[] J = M_{12} = \frac{1}{2\pi T}E^2 = \alpha' E^2 \eeq
+where \(\alpha'\) is called the \textit{slope parameter}. The slope parameter \(\alpha'\) is preferred over the string tension \(T\), and we'll be using it a lot.\par
+
+\subsection{Common tangential coordinates}
+
+We know that the most general solution to the wave equation is just
+\beq[eq:waveeqgensol] X^{i}(\tau,\sigma) = \hlf\left(f^{i}(\tau + \sigma) + g^{i}(\tau-\sigma) \right) \eeq
+Imposing the Neumann boundary condition \eqref{eq:neumannbc} at \(\sigma = 0\) we find that
+\beq[eq:xistep2] X^{i}(\tau,\sigma) = \hlf \left(f^i(\tau+\sigma) + f^i(\tau-\sigma) \right) \eeq
+and imposing again Neumann boundary conditions but at \(\sigma=\sigma_1\) we learn that \(f'^i\) is periodic with period \(2\sigma_1\). Letting \(\sigma_1=\pi\), \(f'^i\) becomes \(2\pi\) periodic, making really easy to write its Fourier series, which upon integration leads to the Fourier series of \(f^i\)
+\beq[eq:ffourierseries] f^i(u) = f^i_0 + f^i_1 u + \sum_{n=1}^{\infty} \left(A^i_n \cos{nu} + B^i_n \sin{nu} \right) \eeq
+which when put back into \eqref{eq:xistep2} and simplifying we get
+\beq[] X^i(\tau,\sigma) = f^i_0 + f^i_1 \tau + \sum_{n=1}^{\infty} \left(A^i_n \cos{nu\tau} + B^i_n \sin{n\tau} \right)\cos{n\sigma} \eeq
+conventionally written by string theorists as
+\beq[eq:xifinal] X^i(\tau,\sigma) = f^i_0 + f^i_1 \tau  -i \frac{\sqrt{2\alpha '}}{\sqrt{n}}  \sum_{n=1}^{\infty} \left( a^{i*}_n \exp{in\tau} - a^{i}_n \exp{-in\tau} \right)\cos{n\sigma} \eeq
+where \(\sqrt{2\alpha '}\) was introduced only to make the constants \(a^{\mu}_n\) dimensionless. Do not confuse the \(i\) that's \(\sqrt{-1}\) and the \(i\) used to denote our common tangential coordinates.\par
+
+Plugging the result \eqref{eq:xifinal} on \eqref{eq:pgauge} we find that
+\beq[] f^{i}_1 = 2\alpha ' p^{i} \eeq
+Also, setting \(\tau = \tau_i = 0\), is readily seen that \(f^i_0\) must be interpreted as the "initial" position of the string \(x^{\mu}_0\). Lets also introduce some notation that will allow us to further simplify our solution:
+\beq[eq:alphaip] \alpha_0^{i} \doteq \sqrt{2\alpha '}p^{i} \eeq
+\beq[eq:alphaan] \alpha_n^{i} \doteq a^{i}_n\sqrt{n} \qq{with} \alpha^{i}_{-n} \doteq (\alpha_n^{i})^* \eeq
+Now our solution for the common tangential coordinates reads
+\beq[] X^i(\tau,\sigma) = x_0^i + \sqrt{2\alpha'} \alpha_0^{i}\tau + i\sqrt{2\alpha'}\sum_{n\neq 0} \frac{\alpha^i_n}{n}\exp{-in\tau}\cos{n\sigma}  \eeq
+and for the record lets state the following
+\beq[] \dot{X}^i = \sqrt{2\alpha'} \sum_{n\in\mb{Z}} \alpha^i_n\exp{-in\tau}\cos{n\sigma} \eeq
+\beq[] X'^i = -i\sqrt{2\alpha'} \sum_{n\in\mb{Z}}\alpha^i_n\exp{-in\tau}\sin{n\sigma}  \eeq
+and finally
+\beq[eq:xiconst] \dot{X}^i \pm X'^i = \sqrt{2\alpha'} \sum_{n\in\mb{Z}} \alpha^i_n \exp{-in(\tau\pm\sigma)} \eeq\par
+
+\subsection{Common normal coordinates}
+
+Our start point is again \eqref{eq:waveeqgensol}. Imposing the Dirichlet boundary conditions at the string endpoints
+\beq[] \eval{X^a(\tau,\sigma)}_{\sigma=0} = \bar{x}_1^a \qq{and} \eval{X^a(\tau, \sigma)}_{\sigma=\pi} = \bar{x}_2^a \eeq
+in which \(\bar{x}_1^a\) is the position of the D\textit{p}-brane and \(\bar{x}_2^a\) is the position of the D\textit{q}-brane, we find that
+\beq[] f^a(u+2\pi) -f^a(u) = 2(\bar{x}_2^a - \bar{x}_1^a)\eeq
+which implies that \(f^a(u)\) has an expansion of the form
+\beq[] f^a(u) = (\bar{x}_2^a - \bar{x}_1^a)\frac{u}{\pi} + \sum_{n=1}^{\infty}\left( H^a_n\cos{nu} + G^a_n\sin{nu} \right) \eeq
+Defining
+\beq[] \sqrt{2\alpha'} \alpha^a_0 \doteq \frac{1}{\pi}(\bar{x}_2^a - \bar{x}_1^a) \eeq
+and using the conventional notations similar to the previous one, we find that the solution to the common normal coordinates is
+\beq[eq:commonnormalsol] X^a(\tau,\sigma) = \bar{x}_1^a + (\bar{x}_2^a - \bar{x}_1^a)\frac{\sigma}{\pi} + \sqrt{2\alpha'} \sum_{n\neq 0} \frac{\alpha^a_n}{n} \exp{-in\tau}\sin{n\sigma} \eeq
+and lets again state the following
+\beq[eq:normaldotX] \dot{X}^a = -i\sqrt{2\alpha'} \sum_{n\in \mb{Z}} \alpha_n^a \exp{-in\tau}\sin{n\sigma}\eeq
+\beq[] X'^{a} = \sqrt{2\alpha'}\sum_{n\in \mb{Z}} \alpha_n^a \exp{-in\tau}\cos{n\sigma} \eeq
+and finally
+\beq[eq:xaconst] X'^a \pm \dot{X}^a = \sqrt{2\alpha'} \sum_{n\in \mb{Z}} \alpha_n^a \exp{-in(\tau\pm\sigma)} \eeq\par
+
+Plugging \eqref{eq:normaldotX} into \eqref{eq:pgauge} we find that the common normal coordinates do not carry average momentum with respect to \(\tau\).\par
+
+Its important to note that the string represented by \eqref{eq:commonnormalsol} begins on brane 1 and ends on brane 2. A string that begins on brane 2 and ends on brane 1 would simply exchange the \(\bar{x}^a_2\) with \(\bar{x}^a_1\). This will be important later on.\par
+
+\section{Closed strings}
+
+Even if a string is closed it must still have a \(\sigma\) parameterization, this means that one arbitrary point has \(\sigma = 0\) and if we walk on the string until we reach \(\sigma=\sigma_1\) we actually will have walked through the full extend of the string and have reached \(\sigma=0\) again. This means
+\beq[] X(\sigma,\tau) = X(\sigma+\sigma_1,\tau) \eeq
+and of course
+\beq[] \var{X}(\sigma,\tau) = \var{X}(\sigma+\sigma_1,\tau) \eeq
+which makes
+\beq[] \eval{\left[X'_{\mu}\var{X}^{\mu}\right]}^{\sigma=\sigma_1}_{\sigma = 0} \equiv 0 \eeq\par
+
+The general solution to the wave equation for closed strings is
+\beq[eq:wesolclosed] X^{\mu}(\tau,\sigma) = X^{\mu}_L(\tau+\sigma) + X^{\mu}_R(\tau-\sigma) \eeq
+where the \(L\) stands for \textit{left-moving} and \(R\) for \textit{right-moving}. Instead of boundary conditions we must work with the periodicity condition of the \(\sigma\) parameter. At this point it becomes useful to declare \(\sigma_1=2\pi\) since the parameter space \((\tau,\sigma)\) is a cylinder for closed strings and \(2\pi\) is a very natural period for a cylinder. When such periodicity is imposed upon \eqref{eq:wesolclosed} we find that
+\beq[] X^{\mu '}_L (u) = \sqrt{\frac{\alpha'}{2}} \sum_{n\in\mb{Z}} \bar{\alpha}^{\mu}_n \exp{-inu} \eeq
+\beq[] X^{\mu '}_R (v) = \sqrt{\frac{\alpha'}{2}} \sum_{n\in\mb{Z}} \alpha^{\mu}_n \exp{-inv}  \eeq
+with
+\beq[eq:alphabaralpha0] \bar{\alpha}^{\mu}_0 = \alpha^{\mu}_0 \eeq
+After integration we find that
+\beq[] X^{\mu}(\tau,\sigma) = x_0^{\mu} + \sqrt{2\alpha'} \alpha_0^{\mu}\tau + i\sqrt{\frac{\alpha'}{2}}\sum_{n\neq 0} \frac{\exp{-in\tau}}{n} \left( \alpha^{\mu}_n\exp{in\sigma} + \bar{\alpha}^{\mu}_n \exp{-in\sigma} \right) \eeq
+Also, plugging this solution into \eqref{eq:pgauge} we find that
+\beq[] \alpha_0^{\mu} = \sqrt{\frac{\alpha'}{2}}p^{\mu} \eeq
+meaning that this string has only one momentum operator.\par
+
+Finally, for the record, lets state the following
+\beq[] \dot{X}^{\mu} + X^{\mu '} = \sqrt{2\alpha'} \sum_{n\in \mb{Z}} \bar{\alpha}^{\mu}_n \exp{-in(\tau+\sigma)} \eeq
+\beq[] \dot{X}^{\mu} - X^{\mu '} = \sqrt{2\alpha'} \sum_{n\in \mb{Z}} \alpha^{\mu}_n \exp{-in(\tau-\sigma)} \eeq\par
+
+\section{Light-cone solution}
+
+Since the next chapter we'll be quantising the string, lets already write our solutions using light-cone coordinates \eqref{eq:lccoor} which can be set using \(n=(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}},0,...,0) \) on \eqref{eq:sigmagauge} and \eqref{eq:taugauge}. We find that
+\beq[] X^{+} = \frac{2\pi \alpha'}{\sigma_1 } p^{+}\tau  \qq{and} p^{+} = \sigma_1 \Pi^{\tau +} \eeq
+Since this will be needed for both open and closed strings, we can generalise some of our notation
+\beq[] X^{+}(\tau,\sigma) = \beta \alpha' p^{+}\tau \qq{and} p^{+} = \frac{2\pi}{\beta} \Pi^{\tau +}  \eeq
+where \(\beta= 2\) for open strings and \(\beta=1\) for closed ones.\par
+
+Using the relativistic scalar product in light-cone coordinates \eqref{eq:lcscalarproduct} and our light-cone gauge, the constrain \eqref{eq:gaugeconstrain} can be written as
+\beq[eq:lcgaugeconstrain] \dot{X}^{-} \pm X^{- '} = \frac{1}{\beta\alpha'}\frac{1}{2p^{+}} \left( \dot{X}^I \pm X^{I '} \right)^2 \eeq
+where the index \(I\) runs over every coordinate except \(+\) and\(-\). The \(X^I\) are called traverse coordinates. It's important to notice that the presence of \(p^{+}\) on the denominator means that if \(p^{+}\) happens to be \(0\) for some string, then such string cannot be described in light-cone coordinates.\par
+
+The triumph of the light-cone coordinates has just been shown! Because the flat metric in light-coordinates \eqref{eq:lcflatmetric} has an off-diagonal sector we can now solve for the derivatives of \(X^{-}\) without taking a square-root!\par
+
+Since \(X^{-}\) is a linear combination of the coordinates \(X^{0}\) and \(X^1\), we have that
+\beq[] X^{-}(\tau,\sigma) = x_0^{-} + \sqrt{2\alpha'} \alpha_0^{-} \tau + i\sqrt{2\alpha'} \sum_{n\neq 0} \frac{\alpha_n^{-}}{n}\exp{-in\tau}\cos{n\sigma} \eeq
+with
+\beq[eq:x-const] \dot{X}^{-} \pm X^{- '} = \sqrt{2\alpha'} \sum_{n\in\mb{Z}} \alpha_n^{-} \exp{-in(\tau\pm\sigma)} \eeq \par
+
+Last but not least, recall \eqref{eq:p2m20constrain} and lets write it in the light-cone gauge
+\beq[eq:m2lc] M^2 = 2p^{+}p^{-} - p^Ip^I \eeq\par
+
+\subsection{Light-cone open strings}
+
+Lets continue our development for the open string. Separating the tangential coordinates from the normal ones, the constrain \eqref{eq:lcgaugeconstrain} becomes
+\beq[eq:lcconsttangnorm] \dot{X}^{-} \pm X^{- '} = \frac{1}{2\alpha'}\frac{1}{2p^{+}} \left[ \left( \dot{X}^i \pm X^{i '} \right)^2 + \left( \dot{X}^a \pm X^{a '} \right)^2 \right] \eeq \par
+
+Plugging \eqref{eq:x-const}, \eqref{eq:xiconst} and \eqref{eq:xaconst} into \eqref{eq:lcconsttangnorm}, we find that
+\beq[] \sqrt{2\alpha'} \sum_{n\in\mb{Z}} \alpha_n^{-} \exp{-in(\tau\pm\sigma)} = \frac{1}{2p^{+}} \left[  \sum_{n\in\mb{Z}} \left( \sum_{p\in\mb{Z}} \alpha_p^i \alpha_{n-p}^i + \alpha_p^a \alpha_{n-p}^a \right) \exp{-in(\tau\pm\sigma)}  \right] \eeq
+and we can now identify
+\beq[eq:lcconst2] \sqrt{2\alpha'}\alpha_n^{-} = \frac{1}{2p^{+}}\sum_{p\in\mb{Z}}\left(\alpha_p^i \alpha_{n-p}^i + \alpha_p^a \alpha_{n-p}^a \right) \eeq\par
+
+The sum in \eqref{eq:lcconst2} is very important in string theory, therefore we give it a special name: \textit{traverse Virasoro modes} \(L_n^{\perp}\)
+\beq[eq:lnperp] L_n^{\perp} \equiv \hlf \sum_{p\in\mb{Z}}\left(\alpha_p^i \alpha_{n-p}^i + \alpha_p^a \alpha_{n-p}^a \right) \eeq
+Recalling \eqref{eq:alphaip} we also have that
+\beq[] \sqrt{2\alpha '}\alpha_0^{-} = 2\alpha ' p^{-} \eeq
+finally, we see that
+\beq[eq:p+p-L0] 2\alpha' p^{+}p^{-} = L_0^{\perp} \eeq
+and the full expression for \(L_0^{\perp}\) is
+\beq[eq:L0] L_0^{\perp} = \frac{1}{2} \alpha_0^i \alpha_0^i + \frac{1}{2}\alpha_0^a \alpha_0^a + \sum_{n=1}^{\infty} \left(\alpha_p^i \alpha_{-p}^i + \alpha_p^a \alpha_{-p}^a \right) \eeq\par
+
+Bearing in mind \eqref{eq:p+p-L0}, recall again \eqref{eq:alphaip}, recall also that only the common tangential coordinates carry momentum, and note that
+\beq[] p^Ip^I = p^ip^i = \frac{1}{2\alpha '}\alpha_0^i\alpha_0^i \eeq
+So our mass-shell constrain \eqref{eq:m2lc} becomes
+\beq[eq:m2operatorL0] M^2 = \frac{1}{\alpha'} \left(L_0^{\perp} - \hlf \alpha_0^i \alpha_0^i \right) \eeq
+
+\subsection{Light-cone closed strings}
+
+For closed strings, \eqref{eq:lcgaugeconstrain} imposes another non-trivial constrain:
+\beq[] \int_0^{2\pi} \dd{\sigma} \pdv{X^{-}}{\sigma} = 0 \eeq\par
+
+In analogy with the way we obtained the traverse Virasoro modes \eqref{eq:lnperp} for the open string, we can also find the \textit{two} sets of Virasoro modes for the closed string
+\beq[] \bar{L}^{\perp}_n = \hlf \sum_{p\in\mb{Z}} \bar{\alpha}^I_{p}\bar{\alpha}^I_{n-p} \eeq
+and
+\beq[] L^{\perp}_n = \hlf \sum_{p\in\mb{Z}} \alpha^I_{p}\alpha^I_{n-p} \eeq
+and due to \eqref{eq:alphabaralpha0}, we can readily see that
+\beq[eq:LbarL] \bar{L}^{\perp}_0 = L^{\perp}_0 \eeq
+
+
+\nocite{*}
+\end{document}

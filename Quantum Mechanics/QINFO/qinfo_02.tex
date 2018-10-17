@@ -1,0 +1,262 @@
+\documentclass{../_mypackages/monograph}
+
+\title{Quantum Information} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter{Qubits}
+\minitoc
+
+The simplest physical system we can have is the one for which the associated Hilbert space, denoted \(\mathscr{H}\), has \(\dim( \mathscr{H}) = 2\). Such systems are called \emph{two-level systems}, or simply \emph{qubits}.
+\begin{mybox}
+Since \(\dim(\mathscr{H}) = 2\), our basis must have two vectors. Such basis vectors are commonly denoted \(\ket{0}\) and \(\ket{1}\) and are chosen to be orthonormal, i.e. \(\braket{i}{j} = \delta_{ij}\) for \(i,j \in \set{0,1}\), such that any arbitrary state \(\ket{\psi}\) of the qubit can be written as
+\begin{equation}\label{eq:arbitraryqubitstate}
+    \ket{\psi} = a\ket{0} + b \ket{1} = \begin{pmatrix} a \\ b \end{pmatrix} \qq{with} \abs{a}^2 + \abs{b}^2 = 1.
+\end{equation}
+Such states are called \emph{pure states} and this basis is called the \emph{computational basis}.
+\end{mybox}
+
+\section{Pauli matrices on qubits}
+
+Since we can write an arbitrary pure state \(\ket{\psi}\) as \eqref{eq:arbitraryqubitstate}, we have that
+\begin{equation}
+    \ket{0} = \mqty(1 \\ 0) \qc \ket{1} = \mqty(0 \\ 1),
+\end{equation}
+then
+\begin{equation}
+\begin{split}
+    \ketbra{0}{0} &= \mqty(1 & 0 \\ 0 & 0) \\
+    \ketbra{0}{1} &= \mqty(0 & 1 \\ 0 & 0) \\
+    \ketbra{1}{0} &= \mqty(0 & 0 \\ 1 & 0) \\
+    \ketbra{1}{1} &= \mqty(0 & 0 \\ 0 & 1) 
+\end{split}.
+\end{equation}
+\begin{mybox}
+Recalling the definition, the Pauli matrices are given by
+\begin{equation}
+    \sigma_0 = \mqty(\pmat{0}) \qc \sigma_x = \mqty(\pmat{1}) \qc \sigma_y = \mqty(\pmat{2}) \qc \sigma_z = \mqty(\pmat{3}) 
+\end{equation}
+It is also common to write \(\sigma_0 = \idm\), \(\sigma_x = X\), \(\sigma_y = Y\) and \(\sigma_z = Z\). It's also important to state their algebra
+\begin{equation}
+    \comm{\sigma_i}{\sigma_j} = i 2 \epsilon_{ijk}\sigma_k.
+\end{equation}
+\end{mybox}
+
+\begin{mybox}
+Some related operators are the \emph{lowering operator \(\sigma_{+}\)}, defined as
+\begin{equation}
+    \sigma_{+} = \frac{\sigma_x + i \sigma_y}{2} = \ketbra{0}{1} = \mqty(0 & 1 \\ 0 & 0),
+\end{equation}
+and the \emph{raising operator \(\sigma_{-}\)}, defined as
+\begin{equation}
+    \sigma_{-} = \frac{\sigma_x - i \sigma_y}{2} = \ketbra{1}{0} = \mqty(0 & 0 \\ 1 & 0),
+\end{equation}
+which satisfy the following algebra:
+\begin{equation}
+    \comm{\sigma_{+}}{\sigma_{-}} = \sigma_z \qc \comm{\sigma_{z}}{\sigma_{+}} = 2\sigma_{+} \qc \comm{\sigma_{z}}{\sigma_{-}} = -2\sigma_{-}.
+\end{equation}
+\end{mybox}
+
+
+
+\section{First parameterisation of qubit states}
+
+Given that \(\rho\) is Hermitian and positive semi-definite with trace \(1\), we can write an arbitrary \(\rho\) as
+\begin{equation}\label{eq:genrho}
+    \rho = \begin{pmatrix}
+    p & \alpha \\ \alpha^* & 1-p 
+    \end{pmatrix} \qc p\in \R \qq{and} \alpha \in \C
+\end{equation}
+Since the diagonal elements of \(\rho\) are always greater than \(0\), we find that \(p\geq0\) and \(1-p\geq 0\), implying that \(0 \leq p \leq 1\). In this parameterization we find that
+\begin{equation}
+    \mathcal{P} = 2p^2 - 2p + 1 + 2\abs{\alpha}^2,
+\end{equation}
+but since \(\mathcal{P} \leq 1\), we find that
+\begin{equation}
+    \abs{\alpha}^2 \leq p - p^2,
+\end{equation}
+with equality holding for pure states only. Also, taking the gradient of \(\mathcal{P}\) we find that, for qubits, it is bounded from below by \(\nicefrac{1}{2}\).
+
+\section{Parameterisation of qubits on the Bloch's sphere}
+\begin{mybox}
+Another interesting parameterisation is
+\begin{equation}\label{eq:densinnbloch}
+    \rho = \frac{1}{2}\left(1 + \vb{s}\cdot\bm{\sigma} \right) = \frac{1}{2}\begin{pmatrix}
+    1 + s_z & s_x - i s_y \\ s_x + i s_y & 1 - s_z
+    \end{pmatrix},
+\end{equation}
+where \(\bm{\sigma} = (\sigma_x, \sigma_y, \sigma_z)\) and \(\bm{s}\) is the parameterising vector. 
+\end{mybox}
+Computing the purity, we find that
+\begin{equation}
+    \mathcal{P} = \frac{1}{2}( 1 + \bm{s}^2),
+\end{equation}
+which imposes the constraint \(\bm{s}^2 \leq 1\), which is the same as saying that, in spherical coordinates, the radius of the vector \(\bm{s}\) is always less than \(1\). We usually write \(\bm{s}\) as
+\begin{equation}\label{eq:blochvecspherical}
+    \bm{s} = (s_x, s_y, s_z) = r*(\sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta).
+\end{equation}
+This parameterisation is interesting if we compute the expected values for the Pauli operators:
+\begin{equation}
+    s_i = \ev{\sigma_i}.
+\end{equation}
+Since the only constraint we have on the \(\bm{s}\) vector is its radius, if we plot all admissible \(\bm{s}\) we fill up a sphere. This sphere is the so called \emph{Bloch's sphere} and \(\bm{s}\) is the so called \emph{Bloch's vector}. We usually call this parameterisation the \emph{Bloch's vector parameterisation}. 
+
+For completeness, we can also state \(s_i\) in terms of the parameters from \eqref{eq:genrho}:
+\begin{equation}
+\begin{split}
+    s_x &= \alpha + \alpha^* ,\\
+    s_y &= i(\alpha-\alpha^*) ,\\
+    s_z &= 2p-1.
+\end{split}
+\end{equation}
+
+\section{Pure states on the Bloch's sphere}
+
+For the general pure state \eqref{eq:arbitraryqubitstate} we find that \(\rho = \ketbra{\psi}\) and
+\begin{equation}\label{eq:densgenpurestate}
+    \rho = \mqty(\abs{a}^2 & ab^* \\ a^* b & \abs{b}^2).
+\end{equation}
+
+Since \(\mathcal{P}=1\) for pure states, it's easy to see that this corresponds to \(\bm{s}^2 = 1\) on Bloch's vector parameterisation, i.e. pure states lie on the surface of Bloch's sphere. 
+Comparing \eqref{eq:densinnbloch} with \eqref{eq:densgenpurestate}, we find that for pure states
+\begin{equation}
+    \abs{a}^2 = \frac{1+s_z}{2} \qq{and} \abs{b}^2 = \frac{1-s_z}{2}
+\end{equation}
+and thus
+\begin{equation}
+    a = \exp{i \phi_a}\sqrt{\frac{1+s_z}{2}} \qq{and} b = \exp{i \phi_b}\sqrt{\frac{1-s_z}{2}}.
+\end{equation}
+Since we are considering pure states, we must set \(r=1\) on \eqref{eq:blochvecspherical}, then follows
+\begin{equation}
+    a = \exp{i \phi_a}\sqrt{\frac{1+\cos\theta}{2}} = \exp{i \phi_a}\cos (\nicefrac{\theta}{2}) \qq{and} b = \exp{i \phi_a}\sqrt{\frac{1-\cos \theta}{2}} = \exp{i \phi_b} \sin(\nicefrac{\theta}{2}).
+\end{equation}
+The general pure state, is, then
+\begin{equation}
+    \ket{\psi} = \exp{i \phi_a}\cos (\nicefrac{\theta}{2}) \ket{0} + \exp{i \phi_b}\sin (\nicefrac{\theta}{2}) \ket{1}.
+\end{equation}
+Since an overall phase is irrelevant to identify a state, we just keep the relative phase on the term of \(\ket{1}\).
+\begin{mybox}
+We, then, write the general pure state \(\ket{\psi}\) as
+\begin{equation}
+    \ket{\psi} = \cos (\nicefrac{\theta}{2}) \ket{0} + \exp{i\phi} \sin (\nicefrac{\theta}{2}) \ket{1} \qq*{, with} \theta \in [0,\pi] \qand \phi\in[0,2\pi].
+\end{equation}
+\end{mybox}
+
+\section{Coherence}
+
+Hmmm?
+
+\section{Quantum logic gates}
+
+There are some interesting interpretations of the action of some operators on qubits. Operators acting on qubits are usually called \emph{gates}. We will state the action of some gates in what follows.
+
+\subsubsection{Bit-flip gate}
+
+The operator \(X=\sigma_x\) is called the \emph{bit-flip gate}. Considering an arbitrary state \(\ket{\psi}\), we find that
+\begin{equation}
+    X \ket{\psi} = \mqty(0 & 1 \\ 1 & 0)\mqty(a \\ b) = \mqty(b \\ a),
+\end{equation}
+which is the same as performing the transformation
+\begin{equation}
+    \ket{0} \to \ket{1} \qq{and} \ket{1} \to \ket{0}.
+\end{equation}
+If we consider the parameterisation
+\begin{equation}
+    a = \cos(\nicefrac{\theta}{2}) \qq{and} b = \exp{i\phi}\sin(\nicefrac{\theta}{2})
+\end{equation}
+
+
+
+
+
+
+\section{Time evolution of qubits}
+
+Since \(H\) must always be Hermitian, we can generally write it as
+\begin{equation}
+    H = \mqty( a & b^* \\ b & c), \qq{with} a,c\in R \qq{and} b\in\C.
+\end{equation}
+Using the parameterisation \eqref{eq:genrho}, we find that von Neumann equation generally reads
+\begin{equation}
+    \mqty(\pdv{p}{t} & \pdv{q}{t} \\ \left(\pdv{q}{t}\right)^* & - \pdv{p}{t}) = \mqty( ibq +(ibq)^* & i \big[ 2b^*p - q(a-c)-b^* \big] \\
+     -i \big[ 2b p - q^*(a-c)-b \big] & -ibq +(-ib q)^* ),
+\end{equation}
+which we can simplify to
+\begin{equation}
+\begin{split}
+    \dot{p} &= ibq +(ibq)^*\\ 
+    \dot{q} &= i \big[ 2b^*p - q(a-c)-b^* \big],
+\end{split}
+\end{equation}
+and taking \(H\) constant in time, we find that
+\begin{equation}
+    \ddot{q} + i(a-c)\dot{q} + 2\abs{b}^2(q-q^*) = 0
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

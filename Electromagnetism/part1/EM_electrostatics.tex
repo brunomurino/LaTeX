@@ -1,0 +1,67 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../../_mypackages/mypreamble}
+\usepackage{../../_mypackages/mycommands}
+\usepackage{../../_mythemes/notestheme}
+
+\addbibresource{EM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+% \pagestyle{empty}
+% \notestp{Electrodynamics}
+% \begin{notesabstract}[Abstract]
+% Abstract text
+% \end{notesabstract}
+% \centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Electrostatics}
+
+\section{Electrostatics Boundary Conditions}
+
+Let \(S\) be a surface charged with superficial charge density \(\sigma\). If we get really close to it, it will look like an infinite plane, even if the charge distribution is not uniform. So the perpendicular component of the field right above the surface will be
+\beq[eq:fieldabovesurface] E^{\perp}(\vb{x}_S^{+}) = \frac{\sigma(\vb{x}_S)}{2\epsilon_0} \eeq
+and right under the surface the field will be
+\beq[eq:fieldbelowsurface] E^{\perp}(\vb{x}_S^{-}) = -\frac{\sigma(\vb{x}_S)}{2\epsilon_0}\eeq
+where \(\vb{x}^{+}_S\) is a point very close to the surface, but just above it, whereas \( \vb{x}^{-}_S\) is a point very close to the surface, but just under it, and \(\vb{x}_S\) is the point of the surface which we are really close to. With these results, we can see that when crossing a surface charge \(\sigma\), the field undergoes a discontinuity
+\beq[eq:fielddisconti] E^{\perp}(\vb{x}_S^{+}) - E^{\perp}(\vb{x}_S^{-}) = \frac{\sigma(\vb{x}_S)}{\epsilon_0} \eeq
+On the other hand, the tangential component of \(\vb{E}\) is always continuous
+\beq[eq:parallelfieldsurface] E^{\parallel}(\vb{x}_S^{+}) = E^{\parallel}(\vb{x}_S^{-}) \eeq
+
+Since the electric potential satisfies
+\beq[] \vb{E} = -\grad{\epot} \eeq
+we can recast \eqref{eq:fielddisconti} as
+\beq[eq:gradepotsurfcharge] \gradi{\epot}(\vb{x}_S^{+})\cdot\vu{n} - \gradi{\epot}(\vb{x}_S^{-})\cdot\vu{n} = -\frac{\sigma(\vb{x}_S)}{\epsilon_0}\eeq
+
+\section{Notable results}
+
+\subsection{Charged spherical shell}
+The case when \( S_I = S_E = S^2(R)\) is just the case of a charged spherical shell of radius \(R\). As we must have azimuthal symmetry, in the most general case, we have a charge density of \(\sigma(\theta)\) at the surface, and a potential \(V(\theta)\) at \(r=R\).\par
+First of all, to ensure continuity of \(\epot\) at \(r=R\), we must always have
+\beq[eq:azimsymspherecont] \epot_I(R,\theta) = \epot_E(R,\theta) \eeq
+which gives us
+\beq[eq:azimsymspherecontparam] A_lR^l = B_lR^{-l-1} \eeq
+Therefore all we must do is find either \(A_l\) or \(B_l\).\par
+If we are given the Dirichlet boundary condition \(\epot_I(R,\theta) = \epot_E(R,\theta) = V(\theta)\) we get
+\beq[] V(\theta) = \sum_{l=0}^{\infty}  A_lR^l P_l(\cos\theta) \eeq
+and using the orthogonality of the Legendre polynomials
+\beq[eq:legendrepolcosortho] \int_{-1}^{1}P_n(x)P_m(x)\dd{x} = \int_0^{\pi}P_n(\cos\theta)P_m(\cos\theta)\sin\theta \dd{\theta} = \frac{2}{2l+1}\delta_{nm} \eeq
+we find that
+\beq[] A_lR^l = \frac{2l+1}{2}\int_0^{\pi} V(\theta)P_l(\cos\theta)\sin\theta \dd{\theta} \eeq\par
+Now, if we are given the Neumann boundary condition \(\sigma(\theta)\) at the surface we use the boundary condition \eqref{eq:gradepotsurfcharge} and, as \(\vu{n} = \vu{r}\), we use the gradient in spherical coordinates
+\beq[eq:gradspherical] \gradi = \vu{r}\pdv{r} + \vu{\theta}\frac{1}{r}\pdv{\theta} + \vu{\phi}\frac{1}{r\sin\theta}\pdv{\phi} \eeq
+and find that
+\beq[] \left(\pdv{\epot_I}{r} - \pdv{\epot_E}{r}\right) \at{r=R} = \frac{\sigma(\theta)}{\epsilon_0} \eeq
+which results in
+\beq[] \sum_{l=0}^{\infty}(2l+1)A_lR^{l-1}P_l(\cos\theta) = \frac{\sigma(\theta)}{\epsilon_0} \eeq
+and again we use \eqref{eq:legendrepolcosortho} to find that
+\beq[] (2l+1)A_lR^{l-1} = \frac{2l+1}{2\epsilon_0} \int_0^{\pi} \sigma(\theta)P_l(\cos\theta)\sin\theta \dd{\theta} \eeq\par
+To conclude, if we are given either the potential at the surface or the charge density at the surface we can find \(A_l\), or \(B_l\), and having these coeficients we can always find the interior and exterior potential and the charge density at the surface.\par
+
+
+\end{document}

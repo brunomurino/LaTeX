@@ -1,0 +1,95 @@
+\documentclass{_mypackages/monograph}
+
+\addbibresource{QM_ref.bib}
+
+
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+% \pagestyle{mynotespage}
+
+\chapter{Spin}
+
+Each and every elementary particle has a specific and permanent spin \(s\). The spin algebra is
+\begin{equation}\label{eq:spinalgebra}
+    \comm{S_i}{S_j} = i\hbar\epsilon_{ijk} S_k
+\end{equation} 
+with
+\begin{equation} 
+    S^2\ket{sm} = \hbar^2 s(s+1)\ket{sm} 
+\end{equation}
+\begin{equation} 
+    S_z\ket{sm} = \hbar m \ket{sm} 
+\end{equation}
+\begin{equation}
+    S_{\pm}\ket{sm} = \hbar\sqrt{s(s+1) - m(m\pm1)} \ket{s(m\pm1)}
+\end{equation}
+where \(m\) is called the magnetic number and
+\begin{equation}
+    m = -s,-s+1,...,s-1,s
+\end{equation}
+
+If a particle has \(s=1/2\), then \(m\) can be either \(-1/2\) or \(1/2\), so there are two eigenstates possible with spin \(1/2\):
+\begin{equation} \underbrace{\ket{\hlf ,-\hlf} = \ket{\downarrow}}_{\text{Spin down}} \qq{and} \underbrace{\ket{\hlf ,\hlf} = \ket{\uparrow}}_{\text{Spin up}} \end{equation}
+
+Using this eigenstates as the basis, then an arbitrary state-vector \(\ket{\Psi}\) is expressed as a two-element column vector called \textit{\textbf{spinor}}
+\begin{equation} 
+    \ket{\Psi} =
+    \begin{pmatrix} a \\ b \end{pmatrix} = a\updown + b\upup 
+\end{equation}
+which is, of course, normalized: \( \abs{a}^2 + \abs{b}^2 = 1 \)
+
+On the other hand, the spin operators become \(2\cross2\) matrices, proportional to the so called \textit{\textbf{Pauli spin matrices}}:
+\begin{redbox}
+\begin{equation}
+\sigma_x \equiv
+\begin{pmatrix}
+0 & 1 \\ 1 & 0
+\end{pmatrix}, \qq{}
+\sigma_y \equiv
+\begin{pmatrix}
+0 & -i \\ i & 0
+\end{pmatrix}, \qq{}
+\sigma_z \equiv
+\begin{pmatrix}
+1 & 0 \\ 0 & -1
+\end{pmatrix}
+\end{equation} \end{redbox}
+and the operators are
+\begin{bluebox}
+\begin{equation} S^2 = \frac{3}{4}\hbar^2 \mb{1}, \qq{} S_x = \frac{\hbar}{2}\sigma_x, \qq{} S_y = \frac{\hbar}{2}\sigma_y, \qq{} S_z = \frac{\hbar}{2}\sigma_z \end{equation}
+\end{bluebox}
+
+\section{Addition of angular momenta}
+
+Let \(T\) be an operator in \(V\) and \(S\) be an operator in \(W\). Then the operator \(T\otimes S\) acts on vectors of \(V\otimes W\) as
+\begin{equation} T \otimes S (v\otimes w) = (Tv)\otimes(Sw) \end{equation}
+
+Then spin operator that acts on the state space of two particles is:
+\begin{equation} \vb{S} \equiv \vb{S}\otimes \mathds{1} + \mathds{1}\otimes\vb{S} \end{equation}
+then
+\begin{equation} S_z \equiv S\otimes \mathds{1} + \mathds{1}\otimes S \end{equation}
+Note that the operator on the left side of \(\otimes\) only \textit{knows} how to act on vectors belonging to the first vector space, while the operator on the right of \(\otimes\) only \textit{knows} how to act on vectors belonging to the second vector space. Although they are represented by the same letter, they are \textbf{not} the same operator.\par
+For brevidity
+\begin{equation} \vb{S}\otimes \mathds{1} = \vb{S}^{(1)}\end{equation}
+\begin{equation} \mathds{1} \otimes \vb{S} = \vb{S}^{(2)} \end{equation}
+
+Lets denote
+\begin{equation} \ket{\uparrow}\otimes \ket{\uparrow} \equiv \upup \end{equation}
+\begin{equation} \ket{\uparrow}\otimes \ket{\downarrow} \equiv \updown\end{equation}
+\begin{equation} \ket{\downarrow}\otimes \ket{\uparrow} \equiv \downup \end{equation}
+\begin{equation} \ket{\downarrow}\otimes \ket{\downarrow} \equiv\downdown \end{equation}
+
+Lets calculate
+\[ S_z \ket{s_1m_1}\otimes \ket{s_2m_2} = S_z^{(1)}\ket{s_1m_1}\otimes \ket{s_2 m_2} + \ket{s_1m_1} \otimes  S_z^{(2)}\ket{s_2m_2}\]
+\[ = \hbar m_1 \ket{s_1m_1}\otimes \ket{s_2 m_2} + \hbar m_2 \ket{s_1m_1}\otimes \ket{s_2 m_2}\] \begin{equation} = \hbar (m_1 + m_2) \ket{s_1m_1}\otimes \ket{s_2 m_2} \end{equation}
+so we conclude that the magnetic numbers \(m\) simply add.\par
+
+Lets see how this result applies to our two spin-half particles space:
+\begin{equation} S_z \upup = 1 \upup \end{equation}
+\begin{equation} S_z \updown = 0 \updown \end{equation}
+\begin{equation} S_z \downup = 0 \downup \end{equation}
+\begin{equation} S_z \downdown = -1 \downdown \end{equation}
+
+\end{document}

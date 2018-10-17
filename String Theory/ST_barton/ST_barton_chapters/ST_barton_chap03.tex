@@ -1,0 +1,101 @@
+\documentclass[12pt]{report}
+\input{preamble}
+\begin{document}
+
+\chapter{Electromagnetism and gravitation in various dimensions}
+\newpage
+\section{Classical electrodynamics}
+\begin{itemize}
+    \item With $\rho$ being the charge density and $\vb{j}$ being the current density, using the Heaviside-Lorentz system of units, the Maxwell's equations are
+    \begin{center}
+    Source-free Maxwell's equations
+    \end{center}
+    $$\curl{\vb{E}} = -\frac{1}{c}\pdv{\vb{B}}{t}$$
+    $$\div{\vb{B}} = 0 $$
+    \begin{center}
+    Maxwell's equations with sources
+    \end{center}
+    $$\div{\vb{E}} = \rho$$
+    $$\curl{\vb{B}} = \frac{1}{c}\vb{j} + \frac{1}{c}\pdv{\vb{E}}{t}$$
+    \item The Lorentz force law is
+    $$\dv{\vb{P}}{t} = q(\vb{E} + \frac{\vb{v}}{c}\cross \vb{B})$$
+    where $\vb{P}$ is the relativistic momentum.
+    \item We can write the fields in terms of potentials
+    $$\vb{B} = \curl{\vb{A}}$$
+    $$\vb{E} = -\frac{1}{c}\pdv{\vb{A}}{t} - \grad{\Phi}$$
+    \item  The Gauge transformations are transformations of the potentials that leave the fields unchanged
+    $$\Phi \longrightarrow \Phi ' = \Phi - \frac{1}{c}\pdv{\epsilon}{t}$$
+    $$\vb{A} \longrightarrow \vb{A'} = \vb{A} + \grad{\epsilon}$$
+    where $\epsilon$, the gauge parameter, is \textbf{any} function of space and time. We say that $\vb{E}$ and $\vb{B}$ are gauge invariant.
+    \item If two sets of potentials $(\Phi, \vb{A})$ and $(\Phi ', \vb{A'})$ are related by gauge transformations, they are \textbf{physically} equivalent. It can happen that two sets of potentials give the same fields, but there's no function $\epsilon$ that serves as a gauge parameter. In such case, the potentials are physically different, not equivalent. This can occur in spacetimes with compact spatial dimensions, however, it does not happen in Minkowski space.
+    \item When there are compact spatial dimensions, a set of potentials defined on patches is used, but the regions overlapped must be related by gauge transformations.
+\end{itemize}
+\section{Electromagnetism in three dimensions}
+\begin{itemize}
+    \item The presence of a dimension is expressed if there's a function that depends on a coordinate of that dimension. So, in order to produce electromagnetism in only three spacetime coordinates, we must make that no component of any quantity depends on a coordinate of that dimension.
+    \item To drop a third dimension, say $z$, no quantity should have $z$-dependence. A brief analysis (of the Lorentz force law) gives us that $E_z = B_x = B_y = 0$ and $E_x$, $E_y$ and $B_z$ can only depend on $x$ and $y$. It's easy to find that these conditions are consistent with Maxwell's equations.
+\end{itemize}
+\section{Manifestly relativistic electrodynamics}
+\begin{itemize}
+    \item The potential four-vector is $$A^{\mu } = (\Phi, A^1, A^2, A^3)$$
+    \item Using the notation $\partial _{\mu} \equiv \pdv{x^{\mu }}$
+    \item We can create the field strength
+    $$F_{\mu \nu } \equiv \partial_ \mu A_{\nu } - \partial _ \nu A_ {\mu }$$
+    and, as it's easy to check, $F_{\mu \nu}$ is antisymmetric
+    $$F_{\mu \nu } = - F_{\nu \mu }$$
+    %\item Denoting $\vu{i}$ the direction of the $i$ axis, we can represent the electric field as $$\vb{E} = -F_{0i}\ \vu{i} = F^{0i}\ \vu{i}$$%
+    \item $F^{0i} = -F_{0i}$ and $F^{ij} = F_{ij}$
+    \item The gauge transformations can be represented as 
+    $$A_{\mu} \longrightarrow A_{\mu}' = A_{\mu}+ \partial_{\mu}\epsilon$$
+    where the gauge parameter $\epsilon$ is a function of spacetime.
+    \item The field strength $F_{\mu \nu}$ is  gauge invariant.
+    \item The source-free Maxwell's equations can be writen as $$T_{\lambda \mu \nu} = \partial_{\lambda}F_{\mu \nu} + \partial_{\mu}F_{\nu \lambda} + \partial_{\nu}F_{\lambda \mu} = 0$$
+    Note that $T_{\lambda \mu \nu}$ is totally antisymmetric
+    \item If an object, with however many indices, changes sign under the transposition of any two indices, it is said to be totally antisymmetric.
+    \item With
+    $$j^{\mu} = (c\rho, j^1, j^2, j^3)$$
+    we define the current four-vector.
+    \item The Maxwell's equations with source can be writen as 
+    $$\partial_ {\nu }{F^{\mu \nu }} = \frac{1}{c}j^{\mu}$$
+    \item The equations 
+    $$\partial_{\lambda}F_{\mu \nu} + \partial_{\mu}F_{\nu \lambda} + \partial_{\nu}F_{\lambda \mu} = 0$$
+    $$\partial_ {\nu }{F^{\mu \nu }} = \frac{1}{c}j^{\mu}$$
+    define the Maxwell theory in arbitrary dimensions. In $d$ spatial dimensions, the potential four-vector has components $(\Phi, \vb{A})$ where $\vb{A}$ is a $d$-dimensional spatial vector (each component is a spacetime function, always). \item In arbitrary $d$ dimensions, we have that $E_i \equiv F^{0i}$ and $\vb{E}$ is a vector with $d$ components.
+    \item In arbitrary $d$ dimensions, the magnetic field has $\frac{d^2 - d}{2}$ components, which don't fit into a spatial vector, as the electric field does.
+\end{itemize}
+\section{An aside on spheres in higher dimensions}
+\begin{itemize}
+    \item A n-ball is filled, a n-sphere is not. Yet, we calculate their volume. The sphere covers the ball. In a world with $d$ spatial dimensions, the "greatest" sphere is a $(d-1)$-sphere, whereas the "greatest" ball is a $d$-ball. The $(d-1)$-sphere covers the $d$-ball.
+    \item The volume of a sphere of radius $R$ is 
+    $$vol(S^{d-1}(R)) = R^{d-1}vol(S^{d-1})$$
+    where $vol(S^{d-1})$ is the volume of a sphere of unit radius.
+    \item To find the formulas for the volumes, we can evaluate the integral
+    $$I_d = \int_ {\mathbb{R}^d} \dd{x_{1}} \dd{x_{2}} \cdots \dd{x_{d}} e^{-r^2}$$
+    in two different ways.
+    \item We get that 
+    $$vol(S^{d-1}) = \frac{2\pi^{\frac{d}{2}}}{\Gamma (\frac{d}{2})}$$
+    \item And we get, also
+    $$vol(B^d) = \frac{\pi^{d/2}}{\Gamma(1 + \frac{d}{2})}$$
+    \item Some properties of the gamma functions are
+    $$\Gamma (x+1)=x\Gamma(x) \qq{, } x>0 $$
+    $$\Gamma (n) = (n-1)!\qq{, } n \in \mathbb{Z}\qq{and}n\geq1$$
+    $$\Gamma(1/2) = \sqrt{\pi}$$
+\end{itemize}
+\section{Electric fields in higher dimensions}
+\begin{itemize}
+    \item 
+\end{itemize}
+\section{Gravitation and Planck's length}
+\section{Gravitational potentials}
+\section{The Planck length in various dimensions}
+\section{Gravitational constants and compactification}
+\section{Large extra dimensions}
+\section{Problems}
+\subsection*{P 3.1}
+
+\subsection*{P 3.2}
+
+\subsection{}
+
+
+\end{document}

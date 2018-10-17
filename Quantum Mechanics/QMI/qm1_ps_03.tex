@@ -1,0 +1,177 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics I \\ Problem Set 03} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter*{1.}
+
+Consider a spin \(1/2\) particle. The magnetic moment operator \(\bm{\mu}\) has, then, the form
+\begin{equation}
+    \bm{\mu} = \hlf \gamma \bm{\sigma},
+\end{equation}
+where \(\gamma\) is called the \emph{gyromagnetic factor} and \(\bm{\mu}\) are the "vector" of Pauli matrices. Consider the following Hamiltonian \(H\) for the system
+\begin{equation}
+    H = -\bm{\mu}\cdot \vb{B}.
+\end{equation}
+Consider now the \emph{polarisation vector} \(\vb{P}\), defined as
+\begin{equation}\label{eq:evsigma}
+    P_i = \ev{\sigma_i}.
+\end{equation}
+
+Using the density matrix formalism, \eqref{eq:evsigma} can be written as
+\begin{equation}
+    P_i = \ev{\sigma_i} = \Tr(\rho \sigma_i).
+\end{equation}
+Using the following parameterisation of \(\rho\),
+\begin{equation}
+    \rho = \hlf\mqty(1 + n_z & n_x - i n_y \\ n_x + in_y & 1-n_z) = \hlf (\idm + \vb{n}\cdot \bm{\sigma}),
+\end{equation}
+we can easily see that \(\Tr(\rho \sigma_i)\) is simply
+\begin{equation}
+\begin{split}
+    \Tr(\rho \sigma_i) &= \Tr\bigg(\hlf (\idm + \vb{n}\cdot \bm{\sigma})\sigma_i \bigg) \\
+    &= \Tr\bigg(\hlf\sigma_i + \hlf \vb{n}\cdot \bm{\sigma} \sigma_i\bigg) \\
+    &= \hlf \Tr\bigg( n_j \sigma^j \sigma_i \bigg) \\
+    &= \hlf n_j \Tr(\sigma^j \sigma_i) \\
+    &= \hlf n_j 2\delta_{ij} \\
+    &= n_i,
+\end{split}
+\end{equation}
+thus implying that \(\vb{n} = \vb{P}\).
+
+In order to find
+\begin{equation}
+    \dv{\vb{P}}{t},
+\end{equation}
+we need to find
+\begin{equation}
+    \dv{P_i}{t} = \dv{t}\ev{\sigma_i} = \dv{t}\Tr(\rho \sigma_i) = \Tr(\pdv{\rho}{t}\sigma_i),
+\end{equation}
+but from Von Neumann equation,
+\begin{equation}
+    \pdv{\rho}{t} = -i \comm{H}{\rho},
+\end{equation}
+we find that
+\begin{equation}
+    i \dv{P_i}{t} = \Tr(\comm{H}{\rho}\sigma_i),
+\end{equation}
+which we can write as
+\begin{equation}
+    i \dv{P_i}{t} = \Tr(H\rho \sigma_i - \rho H \sigma_i) = \Tr( \sigma_i H\rho - H \sigma_i \rho ) = \Tr(\comm{\sigma_i}{H}\rho).
+\end{equation}
+Since
+\begin{equation}
+    H = -\bm{\mu}\cdot \vb{B} = -\frac{\gamma}{2}\sigma_j B^j,
+\end{equation}
+we can write
+\begin{equation}
+    \comm{\sigma_i}{H} = -\frac{\gamma}{2}B^j \comm{\sigma_i}{\sigma_j},
+\end{equation}
+and then
+\begin{equation}
+\begin{split}
+    \Tr(\comm{\sigma_i}{H}\rho) &= -\frac{\gamma}{4}B^j \Tr(\comm{\sigma_i}{\sigma_j} \bigg[ \idm + \vb{P}\cdot \bm{\sigma} \bigg] )\\
+    &= -\frac{\gamma}{4}B^j (2i \epsilon_{ijk}) P_l \Tr(\sigma_k\sigma_l  ) \\
+    &= -\frac{\gamma}{4}B^j 2i \epsilon_{ijk} P_l 2 \delta_{kl} \\
+    &= -i \gamma \epsilon_{ijk} B^j P_k \\
+    &= -i \gamma (\vb{B} \cross \vb{P})_i \\
+    &= i \gamma (\vb{P}\cross\vb{B})_i,
+\end{split}
+\end{equation}
+which finally leads to
+\begin{equation}
+    \dv{\vb{P}}{t} = \gamma \vb{P}\cross \vb{B}.
+\end{equation}
+
+\chapter*{2}
+
+Consider Heisenberg's picture. Consider the overlap \(\braket{q';t}{\psi}\).
+
+We know that
+\begin{equation}
+    \ket{p';t} = U^\dagger \ket{p';0},
+\end{equation}
+then \(\braket{p';t}{\psi}\) can be written as
+\begin{equation}
+    \mel{p';0}{U}{\psi},
+\end{equation}
+which we can differentiate with respect to \(t\) and find that
+\begin{equation}\label{eq:ddtover}
+    \pdv{t}\mel{p';0}{U}{\psi} = \mel{p';0}{\pdv{U}{t}}{\psi},
+\end{equation}
+but since
+\begin{equation}
+    i\hbar \pdv{U}{t} =UH,
+\end{equation}
+we find that \eqref{eq:ddtover} is the same as
+\begin{equation}
+    \pdv{t}\mel{p';0}{U}{\psi} = \mel{p';0}{\frac{1}{i\hbar } UH}{\psi} = \frac{1}{i\hbar} \mel{p';0}{UH}{\psi},
+\end{equation}
+implying that
+\begin{equation}
+    i\hbar \pdv{t} \braket{p';t}{\psi} = \mel{p';t}{H}{\psi}.
+\end{equation}
+
+Given the Heisenberg Hamiltonian
+\begin{equation}
+    H = \frac{1}{2m}p^2 + \frac{\mu \omega^2}{2}x^2,
+\end{equation}
+since
+\begin{equation}
+    \bra{p';t}H = \bra{p';0}UH = \Big(\bra{p';0}H\Big)U = \Big(\frac{1}{2m}p'^2 - \frac{\mu\omega^2}{2}\pdv[2]{p}\Big)\bra{p';0}U
+\end{equation}
+we find that
+\begin{equation}
+    \bra{p';t}H = \frac{1}{2m}p'^2\bra{p';t} - \frac{\mu\omega^2}{2}\pdv[2]{p}  \bra{p';t},
+\end{equation}
+which implies
+\begin{equation}
+    \mel{p';t}{H}{\psi} = \frac{1}{2m}p'^2\braket{p';t}{\psi} - \frac{\mu\omega^2}{2}\pdv[2]{p}  \braket{p';t}{\psi},
+\end{equation}
+and then finally
+\begin{equation}
+    i\hbar \pdv{t} \braket{p';t}{\psi} = \Bigg[ \frac{1}{2m}p'^2 - \frac{\mu\omega^2}{2}\pdv[2]{p} \Bigg] \braket{p';t}{\psi},
+\end{equation}
+meaning that \(\braket{p';t}{\psi}\) obeys the same equation as \(\psi(p)\).
+
+Since \(\braket{p';t}{\psi}\) obeys the same equation as \(\psi(p)\), we also have
+\begin{equation}
+    \pdv{t} \abs{\braket{p';t}{\psi}}^2 = \pdv{p}\Bigg\{\frac{i}{\hbar}\frac{\mu\omega^2}{2} \Bigg[ \braket{p';t}{\psi}^* \pdv{p}\braket{p';t}{\psi} - \braket{p';t}{\psi} \pdv{p}\braket{p';t}{\psi}^*\Bigg] \Bigg\},
+\end{equation}
+where can define
+\begin{equation}
+    J = \frac{i}{\hbar}\frac{\mu\omega^2}{2} \Bigg[ \braket{p';t}{\psi}^* \pdv{p}\braket{p';t}{\psi} - \braket{p';t}{\psi} \pdv{p}\braket{p';t}{\psi}^*\Bigg] 
+\end{equation}
+as the probability current and recognise
+\begin{equation}
+    \pdv{t}\abs{\braket{p';t}{\psi}}^2 = \pdv{p}J
+\end{equation}
+as a continuity equation.
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

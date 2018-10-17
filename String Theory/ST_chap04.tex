@@ -1,0 +1,127 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_ST.bib}
+
+\begin{document}
+
+\chapter{Quantization}
+
+\section{Point particle}
+
+The Lagrangian for a massive point particle is
+\beq[eq:mfplagrangian] \mc{L} = -\sqrt{-\dot{x}^2} \eeq
+which yields the equation of motion
+\beq[eq:mfpeom] \dv{p^{\mu}}{\tau} = 0 \eeq
+where \(p^{\mu}\) is given by
+\beq[eq:mfpmomentum] p^{\mu} = \pdv{\mc{L}}{\tau} = \frac{m\dot{x}^{\mu}}{\sqrt{-\dot{x}^2}} \eeq
+
+But if we impose the light-cone gauge condition
+\beq[eq:mfplcgauge] x^{+} = \frac{1}{m^2}p^{+}\tau \eeq
+then equation \eqref{eq:mfpmomentum} yields
+\beq[eq:mfpmomentum2] p^{\mu} = m^2\dot{x}^{\mu} \eeq
+which results in the simplified equation of motion
+\beq[eq:mfpeom2] \ddot{x}^{\mu}=0 \eeq
+
+Now, expanding the constrain \eqref{eq:p2m20constrain} in light-cone coordinates we have
+\beq[eq:p2m20lcconstrain] p^{-} = \frac{1}{2p^{+}}\left( p^Ip^I + m^2 \right) \eeq
+therefore if we know \(p^{+}\) and \(p^{I}\) then we know \(p^{-}\). If we set \(\mu = -,I \) in \eqref{eq:mfpmomentum2}, then we get
+\beq[eq:mfpx-] x^{-}(\tau) = x^{-}_0 + \frac{p^{-}}{m^2}\tau \eeq
+and
+\beq[eq:mfpxI] x^I(\tau) = x^{I}_0 + \frac{p^I}{m^2}\tau  \eeq
+
+Now that we've solved the equations, we know that our dynamical variables are 
+\begin{tcolorbox}
+    \beq[eq:mfpdynvar] x^I \qc x^{-}_0 \qc p^I \qq{and} p^{+} \eeq
+\end{tcolorbox}
+
+\section{Quantum point particle}
+
+In Schrödinger picture, to quantize the point particle we promote the dynamical variables \eqref{eq:mfpdynvar} to time-independent Schrödinger operators and impose the following commutation relations
+\beq[eq:mfpcomm] \comm{x^I}{x^J} = i\eta^{IJ} \qc \comm{x^{-}_0}{p^{+}} = i\eta^{-+} = -1 \eeq
+The additional Schrödinger operators, which are constructed from the set of time-independent Schrödinger operators and time (\(\tau\)), are \(x^{+}(\tau)\), \(x^{-}(\tau)\) and \(p^{-}\) and are defined using the quantum analogs of equations \eqref{eq:mfplcgauge}, \eqref{eq:mfpx-} and \eqref{eq:p2m20lcconstrain}.
+
+Energy generates time translation. In our case we have
+\beq[eq:deltaudelx+] \pdv{\tau} = \frac{p^{+}}{m^2}\pdv{x^{+}} \longleftrightarrow \frac{p^{+}}{m^2}p^{-} \eeq
+therefore we postulate the Heisenberg Hamiltonian
+\beq[] H(\tau) = \frac{p^{+}(\tau)}{m^2} \eeq
+
+Recall that given a Schrödinger operator \(O_S(\tau)\), to find the time-dependence of the corresponding Heisenberg operator \(O_H(\tau)\) we use
+\beq[eq:heisenschrotimerelation] i\dv{O_H}{\tau} = i\pdv{O_S}{\tau} + \comm{O_S}{H_H} \eeq
+where \(H_H(\tau)\) is the Heisenberg Hamiltonian associated with the Schrödinger Hamiltonian \(H_S(\tau)\).\par 
+Noting that \(H(\tau)\) has no explicit time-dependence, from \eqref{eq:heisenschrotimerelation} we can conclude that it is time independent, and as a consequence we see that \(p^I\) is also time independent. Also, we can check that this Hamiltonian generates the expected equations of motion.\par 
+From the list of Schrödinger operators and their commutation relations \eqref{eq:mfpcomm}, we see that we can label the state of a particle using the eigenvalues of \(p^{+}\) and \(p^I\)
+\beq[] \ket{p^{+},p^I} \eeq
+
+There is a natural identification of the quantum states of a relativistic point particle of mass \(m\) with the one-particle states of the quantum theory of a scalar field of mass \(m\)
+\beq[] \ket{p^{+},\vb{p}_T} \longleftrightarrow a^{\dag}_{p^{+},p_T}\ket{\Omega} \eeq
+
+\section{Quantum open string}
+
+Similarly to what we did to quantize the point particle, we now promote the string dynamical variables \eqref{eq:stringdynvar2} to time-independent Schrödinger operators
+\beq[eq:stringschrodop] X^I(\sigma) \qc x^{-}_0 \qc \mc{P}^{\tau I}(\sigma) \qq{and} p^{+} \eeq
+with their corresponding Heisenberg operators. Now we must set the commutation relations.\par 
+First, we expect measurements to interfere with each other only if they are taken at the same point on the string, so we set
+\beq[] \comm{X^I(\sigma)}{\mc{P}^{\tau J}(\sigma')} = i\eta^{IJ}\delta(\sigma - \sigma') \eeq
+also, we set
+\beq[] \comm{X^I(\sigma)}{X^J(\sigma')} = \comm{\mc{P}^{\tau I}(\sigma)}{\mc{P}^{\tau J}(\sigma')} = 0 \eeq
+and
+\beq[] \comm{x^{-}_0}{p^{+}} = -i \eeq
+the operators \( x^{-}_0\) and \(p^+\) commute with all othe Schrödinger operators \( X^I\) and \( \mc{P}^{\tau I}\).\par 
+The associated Heisenberg operators all commute except
+\beq[] \comm{X^I(\tau,\sigma)}{\mc{P}^{\tau J}(\tau,\sigma')} = i\eta^{IJ}\delta(\sigma -\sigma') \eeq
+and
+\beq[] \comm{x^{-}_0(\tau)}{p^{+}(\tau)}=-i \eeq\par
+In analogy with \eqref{eq:deltaudelx+}, we have
+\beq[eq:deltaudelX+] \pdv{\tau}=2\alpha 'p^{+}\pdv{X^{+}} \longleftrightarrow 2\alpha ' p^{+}\mc{P}^{\tau -} \eeq
+and since we have a momentum density on the right side of \eqref{eq:deltaudelX+}, we postulate the following Hamiltonian
+\beq[eq:stringhamiltonianp] H = 2\alpha 'p^{+}\int_0^{\pi} \dd{\sigma} \mc{P}^{\tau - } = 2\alpha ' p^{+}p^{-} \eeq
+but using \eqref{eq:alphamomentum} and \eqref{eq:stringLmode}, we have
+\beq[eq:stringhamiltonian] H = L_0^{\perp} \eeq
+We can also expand\par 
+Now we can use \eqref{eq:heisenschrotimerelation} and find that \(x^{-}_0\) and \( p^{+}\) are time-independent since they commute with the Hamiltonian, which is also time-independent. Also, using \eqref{eq:heisenschrotimerelation}, this Hamiltonian yields the expected equations of motion \eqref{eq:stringwaveeom}.\par 
+
+From manipulating the commutation relations and using \eqref{eq:stringsol} we can find that
+\beq[eq:annicreatcomm] \comm{\alpha_m^I}{\alpha^J_n} = m\eta^{IJ}\delta_{m+n,0} \eeq
+and also
+\beq[] \comm{x^I_0}{p^J} = i\eta^{IJ} \eeq
+Defining
+\beq[eq:alpha_a_def] \alpha_n^I = a^I_n \sqrt{n} \qq{and} \alpha^I_{-n}=a_n^{I\dag}\sqrt{n} \qc n\geq 1\eeq
+we can find that
+\beq[] \comm{a^I_m}{a_n^{J\dag}} = \delta_{m,n}\eta^{IJ} \eeq
+which are the commutation relations of the canonical annihilation and creation operators of a quantum simple harmonic oscillator! So we say that \(\alpha^I_n\) are annihilation operators and that \( \alpha^I_{-n}\) are creation operators.\par
+
+The reason we didn't start promoting \eqref{eq:stringdynvar} to operators is that we wouldn't be able to, intuitively, set the commutation relations we just set. But to conclude this, it's important to see that all we need to find \(X^{\mu}\) is \( p^{+}\), to find \(X^{+}\), we need \(x_0^I\), \( p^I\) and every \(a^I_n\) for \(n\geq 1\) to find \(X^I\), and with \(X^I\) we also have \(X^{-}\) up to a constant \(x_0^{-}\).\par 
+
+But lets look at \eqref{eq:stringhamiltonian} again. Recall that, using \eqref{eq:traversevirasoromode_n}, the string Hamiltonian is
+\beq[] L_0^{\perp} = \hlf\sum_{p\in \mb{Z}}\alpha^I_{-p}\alpha^I_{p} \eeq
+Note that \(p\) can take on negative values, what would make the right-most operator a creation operator, whereas to keep normal-ordering we should have the right-most operator be an annihilation operator instead. So to fix that we split our sum into \(3\) parts, one for \(p=0\), one for the positive \(p\) and other for the negative \(p\)
+\beq[eq:L0original] L_0^{\perp} = \hlf \alpha_0^I\alpha_0^I + \hlf \sum_{p=1}^{\infty} \alpha^I_{-p}\alpha^I_{p} + \hlf\sum_{p=1}^{\infty}\alpha^I_{p}\alpha^I_{-p} \eeq
+The first term is normal-ordered, and so is the first sum, but the second sum is not. So we do
+\beq[] \hlf \sum_{p=1}^{\infty} \alpha_p^I\alpha^I_{-p} = \hlf\sum_{p=1}^{\infty}\left(\alpha^I_{-p}\alpha^I_{p} + \comm{\alpha^I_p}{\alpha^I_{-p}} \right) \eeq
+and using \eqref{eq:annicreatcomm} we have
+\beq[] \hlf \sum_{p=1}^{\infty} \alpha^I_p \alpha^I_{-p} = \hlf \sum_{p=1}^{I} \alpha^I_{-p}\alpha^I_{p} + \hlf(D-2)\sum_{p=1}^{\infty} p \eeq
+Lets define \(a\) as
+\beq[] a = \hlf(D-2)\sum_{p=1}^{\infty}p \eeq
+And now lets define \(L_0^{\perp}\) to be the normal-ordered operator \eqref{eq:L0original} with out the ordering constant \(a\). Using \eqref{eq:alphamomentum} and \eqref{eq:alpha_a_def} we can write
+\beq[] L_0^{\perp} \equiv \hlf\alpha_0^I\alpha_0^I + \sum_{p=1}^{\infty} \alpha^I_{-p}\alpha^I_{p} = \alpha'p^Ip^I + \sum_{p=1}^{\infty}p a_p^{I\dag}a_p^I \eeq
+With this new definition of \(L_0^{\perp}\), \eqref{eq:L0p+p-} becomes
+\beq[] 2\alpha'p^{-} \equiv \frac{1}{p^{+}}\left(L_0^{\perp} + a \right) \eeq
+and if we use plug this into \eqref{eq:p2m20constrain} we have
+\beq[] M^2 = -p^2 = 2p^{+}p^{-} - p^Ip^I = \frac{1}{\alpha'}\left( L_0^{\perp} + a - \alpha' p^Ip^I\right) = \frac{1}{\alpha'}\left(a + \sum_{n=1}^{\infty}na_n^{I\dag}a^I_n \right)  \eeq
+which is slightly different from \eqref{eq:stringclassicalmass}. Of course, the conjugated sign (\(^*\)) now became the hermitian conjugated sign (\(^{\dag}\)) since we are dealing with operators instead of numbers. But the real difference is the presence of the ordering constant \(a\), which is a consequence of the non-zero commutator between annihilation and creation operators, which in the classical case is always zero.\par 
+
+\section{Quantum closed string}
+
+\section{Supersymmetry}
+
+
+
+
+\end{document}

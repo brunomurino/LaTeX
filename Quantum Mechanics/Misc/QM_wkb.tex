@@ -1,0 +1,153 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{QM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+\pagestyle{mynotespage}
+
+\chapter{The WKB approximation}
+
+\section{The classical region}
+
+Let \(p(x)\in \R\)
+\eq[eq:tise]{p(x) \equiv \sqrt{2m\left[E-V(x)\right]}}
+be the value of the \emph{classical} momentum of a particle with total energy \(E\) and potential energy \(V(x)\). Then we can write Schrödinger equation as
+\eq{\dv[2]{\psi}{x} = -\frac{p^2}{\hbar^2}\psi}
+\par
+
+The wave-function is a complex function, so we can write it as
+\eq[eq:complexpsi]{\psi(x) = A(x) \exp{i\phi(x)}}
+where \(A(x)\) and \(\phi(x)\) are real-valued functions.\par
+
+Plugging \eqref{eq:complexpsi} into \eqref{eq:tise} we find two equations
+\eq{A'' = A\left[(\phi')^2-\frac{p^2}{\hbar^2} \right]}
+and
+\eq{\lr{A^2\phi'}'=0}
+While we can easily solve the second equation, namely
+\eq{A =\frac{C}{\sqrt{\phi'}} \qq{with} C\in \R}
+the other equation is not trivial. In fact, it cannot be solved without approximations.\par
+
+Now, the so called WKB approximation consists in assuming that \(V(x)\) varies slowly, implying that the amplitude \(A\) varies slowly, such that
+\eq{\lr{\phi'}^2 - \frac{p^2}{\hbar^2} - \frac{A''}{A} = 0 \approx \lr{\phi'}^2 - \frac{p^2}{\hbar^2} = 0 \longrightarrow \phi' =\pm \frac{p(x)}{\hbar}}
+which leads to the solution
+\eq{\phi(x) = \pm \frac{1}{\hbar}\int^x p(x)\dd{x}}\par
+
+Of course, if \(V(x)\) doesn't vary slowly, the WKB approximation breaks down, and this surely happens at the \emph{turning points}! This situation will be addressed later.\par
+
+It follows that the full wave-function in the WKB approximation is
+\eq{\psi(x) \cong \frac{1}{\sqrt{p(x)}}\left[C_{+}\exp{+ i\phi(x) } + C_{-}\exp{- i\phi(x) } \right]  }
+or, more conveniently,
+\eq{\psi(x) \cong \frac{1}{\sqrt{p(x)}}\left[C_{1}\sin{\phi(x)} + C_{2}\cos{\phi(x)} \right]  }
+with
+\eq{\phi(x) = \frac{1}{\hbar} \int^x p(x)\dd{x}}\par
+
+\begin{example}[Potential well with two vertical walls]
+
+\end{example}
+
+
+\section{Tunneling}
+
+Let the potential be
+\eq{V(x) = \left\{ \begin{aligned}
+V_0(x) > 0 &\qq{for} 0 \leq x \leq a \\
+0 &\qq{otherwise}
+\end{aligned} \right.}
+Then for \(x\in[0,a]\) let \(0 < E < V_0(x)\), then \(p(x)\) is imaginary and the wave-function becomes
+\eq{\psi(x) \cong \frac{C}{\sqrt{\abs{p(x)}}} \lexp{\pm \frac{1}{\hbar}\int^x \abs{p(x')}\dd{x'}}}
+For \(x<0\) we find
+\eq{\psi(x) = A\exp{ikx} + B\exp{-ikx}}
+and for \(x>a\) we find
+\eq{\psi(x) = F \exp{ikx}}
+For the non-classical region \(x\in [0,a]\), we use the WKB approximation to find
+\eq{\psi(x) \cong \frac{C}{\sqrt{\abs{p(x)}}} \exp{\int^x \abs{p(x')}\dd{x'}/\hbar} + \frac{D}{\sqrt{\abs{p(x)}}} \exp{-\int^x \abs{p(x')}\dd{x'}/\hbar}   }\par
+
+The transmission coefficient \(T\)
+\eq{T = \frac{\abs{F}^2}{\abs{A}^2}}
+is then given by
+\eq{T \cong \exp{-2\gamma} \qq{with} \gamma \equiv \frac{1}{\hbar} \int_0^a \abs{p(x')}\dd{x'}}
+
+\begin{example}[Gamow's theory of alpha decay]
+
+
+\end{example}
+
+\section{The connection formulas}
+
+Now comes the time to study what happens at the turning points, where the classical region joins the non-classical region.\par
+
+
+Let the energt of the particle be constant \(E\). Let \(V(x)\) be linearly increasing around \(x=0\), and specifically let \(E > V(x)\) for \(x<0\), \(E < V(x)\) for \(x>0\), and \(E = V(0)\). Note that \(p(0)\) would be \(0\) and \(\psi(x)\) would diverge.\par
+
+What we'll do to fix this problem is to create a \emph{patching function} \(\psi_p\) such that \(\psi(x) = \psi_p(x)\) near \(x=0\). Near \(x=0\) we can write \(V(x) = E + V'(0)x\), such that
+\eq{\left[ -\frac{\hbar^2}{2m}\dv[2]{x} + \lr{E+V'(0)x}\right]\psi_p(x) = E \psi_p(x)}
+we can then write
+\eq{\dv[2]{\psi_p}{x} = \alpha^3 x\ \psi_p \qq{where} \alpha^3 = \left[\frac{2m}{\hbar^2}V'(0)\right]}
+and by defining \(z\equiv \alpha x\) we can write
+\eq{\dv[2]{\psi_p}{z} = z \psi_p}
+which is the so called \emph{Airy's equation}, from which the solution are the \emph{Airy functions}, meaning
+\eq{\psi_p = a \Ai{\alpha x} + b\Bi{\alpha x}}\par
+Lets state the asymptotic forms of the Airy functions, since we'll be using them later:
+\eq{\left.
+\begin{aligned}
+	\Ai{z}&\sim \frac{1}{2z^{1/4}\sqrt{\pi}}\lexp{-\frac{2}{3}z^{3/2}}\\
+	\Bi{z}&\sim \frac{1}{z^{1/4}\sqrt{\pi}}\lexp{\frac{2}{3}z^{1/2}}
+\end{aligned}
+\right\} z \gg 0}
+\eq{\left.
+\begin{aligned}
+	\Ai{z}&\sim \frac{1}{\lr{-z}^{1/4}\sqrt{\pi}}\sin{\left[\frac{2}{3}\lr{-z}^{3/2} + \frac{\pi}{4}\right]}\\
+	\Bi{z}&\sim \frac{1}{\lr{-z}^{1/4}\sqrt{\pi}}\cos{\left[\frac{2}{3}\lr{-z}^{3/2} + \frac{\pi}{4}\right]}
+\end{aligned}
+\right\} z \ll 0}\par
+
+Now, we must assume that to the left of \(x=0\) it can happen that \(\alpha x \ll 0\) and \(V(x) \cong E + V'(0)x\) remains a good approximation to the potential. Analogously to the right of \(x=0\). This means that on such regions both the patching function \(\psi_p\) and \(\psi_{WKB}\) must match. Then \(p(x)\) can be written as
+\eq{p(x) \cong \sqrt{2m\lr{E - \lr{E + V'(0)x}}} = \hbar \alpha^{3/2}\sqrt{-x}}
+recalling that when \(x<0\) it follows that \(p(x)\) is real, whereas when \(x>0\) then \(p(x)\) is imaginary.\par
+
+Since the region for which \(x>0\) is non-classical, the following is the solution via the WKB approximation:
+\eq{\psi(x) \cong \frac{C}{\sqrt{\abs{p(x)}}} \exp{\int^x \abs{p(x')}\dd{x'}/\hbar} + \frac{D}{\sqrt{\abs{p(x)}}} \exp{-\int^x \abs{p(x')}\dd{x'}/\hbar}   }
+and if we assume that \(E < V(x)\) for every \(x>0\), then we can drop the first term and get, using \(p(x) = \hbar \alpha^{3/2}\sqrt{-x}\)
+\eq{\psi(x) \cong \frac{D}{\alpha^{3/4}x^{1/4}\sqrt{\hbar}}\lexp{-\frac{2}{3}\lr{\alpha x}^{3/2}}}
+while the patching function becomes, recalling the \(z\gg0\) form
+\eq{\psi_p \cong \frac{a}{2\lr{\alpha x}^{1/4}\sqrt{\pi}}\lexp{-\frac{2}{3}\lr{\alpha x}^{3/2}} + \frac{b}{\lr{\alpha x}^{1/4}\sqrt{\pi}}\lexp{\frac{2}{3}\lr{\alpha x}^{3/2}}}
+and then, by comparison, it must follow that
+\eq{a = D \sqrt{\frac{4\pi}{\alpha \hbar}} \qq{and} b = 0}\par
+
+
+Now for the classical region \(x<0\) we recall that the solution via the WKB approximation is
+\eq{\psi(x) \cong \frac{1}{\sqrt{p(x)}}\left[B\exp{+ i\frac{1}{\hbar} \int^x p(x)\dd{x} } + C\exp{- i\frac{1}{\hbar} \int^x p(x)\dd{x} } \right]  }
+and plugging in \(p(x) = \hbar \alpha^{3/2}\sqrt{-x}\)
+\eq{\psi(x) = \frac{1}{\lr{-x}^{1/4}\alpha^{3/4}\sqrt{\hbar}}\left[ B\ \lexp{i\frac{2}{3}\lr{-\alpha x}^{3/2}} + C\ \lexp{-i\frac{2}{3}\lr{-\alpha x}^{3/2}} \right] }
+while the patching function becomes, recalling the \(z\ll 0\) form
+\eq{\psi_p(x) \frac{a}{\lr{-\alpha x}^{1/4}\sqrt{\pi}}\frac{1}{2i} \left[ \exp{i\pi/4}\exp{i\frac{2}{3}\lr{-\alpha x}^{3/2}} - \exp{-i\pi/4}\exp{-i\frac{2}{3}\lr{-\alpha x}^{3/2}} \right]}
+which, by comparison and recalling that we already know \(a\), implies
+\eq{B = -iD\exp{i\pi/4} \qq{and} C = i D \exp{-i\pi/4}}
+which are the so called \emph{connection formulas}.\par
+
+The thing is that now we know that if \(B\) and \(C\) assume the values obtained above, in terms of \(D\), near the turning point \(x = x_2\), then the WKB solution will match the patching function, which we constructed to be a good approximation to the real wave-function and therefore works well! In terms of \(D\), the WKB solution becomes (on all space)
+\eq{\psi(x) \cong \left\{
+\begin{aligned}
+	\frac{2D}{\sqrt{p(x)}} \sin \left[\frac{\pi}{4} + \frac{1}{\hbar}\int_x^{x_2}p(x')\dd{x'} \right] \qq{for} x < x_2 \\
+	\frac{D}{\sqrt{\abs{p(x)}}} \lexp{ -\frac{1}{\hbar} \int_{x_2}^x \abs{p(x')}\dd{x'}} \qq{for} x > x_2
+\end{aligned} \right. }
+
+\chapter{Time-dependent perturbation theory}
+
+\section{Two-level systems}
+
+\section{Emission and absorption of radiation}
+
+\section{Spontaneous emission}
+
+
+
+
+
+\end{document}

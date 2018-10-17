@@ -1,0 +1,106 @@
+%   File Header
+%
+%   \def\titlekind{  } Type of file (personal, course, report)
+%   \def\titlename{  } Title of the file
+%   \def\profname{  } Name of teacher (if "course")
+%   \def\year{  } Year in which the course was given, or year that was relevant to file
+%   \def\semester{  } Semester in which the course was given, or
+%   \def\depart{  } Department from which the author belongs, or whatever
+%   \def\instit{  } Institution from which the author belongs, or whatever
+%   \def\bibfile{  } Name of file with bibliography
+%   \def\figpath{  } Path of folder with figures (Quantum Mechanics/)
+
+\def\titlekind{report}
+\def\titlename{Introduction to String Theory}
+\def\profname{}
+\def\relevantyear{2016}
+\def\relevantsemester{}
+\def\depart{Department of Mathematical Physics}
+\def\instit{University of São Paulo}
+\def\bibfile{references}
+\def\figpath{  } 
+
+\documentclass{myclass}
+
+
+
+\begin{document}
+
+The configuration \(x \) of a system is defined as \( x: \mathcal{M} \mapsto \mathcal{T}\), where \( \mathcal{M}\) is a manifold and \(\mathcal{T} \) can be a number, or a vector, etc. Let \(M \) be the dimension of \(\mathcal{M} \) and \(D\) be the dimension of \(\mathcal{T}\). The coordinates of \(x\) are defined as \(X: \mathcal{T}\mapsto \mathbb{R}^{D} \). Using parameters \(p: \mathcal{M}\mapsto \mathbb{R}^{M} \), we can define the coordinates \(X = X(p) \) as \(X:\mathbb{R}^{M} \mapsto \mathbb{R}^{D} \). The configuration space \( \mathcal{C} \subset \mathcal{T}\) is some subset of the set of all possible configurations of the physical system. The Lagrangian density is then a functional \(\mathcal{L}:\mathcal{C}\cross \pdv*{\mathcal{C}}{p} \mapsto \mathcal{C} \), where \( \pdv*{\mathcal{C}}{p} \) are the derivatives of the coordinates of an element of \(\mathcal{C} \) with respect to the parameters \(p \). Let \(X \in \mathbb{R}^{D} \) be the coordinates of a specific configuration \(x\), then the action \( S:\mathcal{C} \mapsto \mathbb{R}\) is defined as
+\[S[X] = \int_{\mathcal{M}} \dd[D]{p} \mathcal{L}[X, \pdv*{X}{p} ;p] \]
+where \(\dd[D]{p} \) is the volume element of the manifold.\par
+Let \(x^* \in \mathcal{C} \) be the actual configuration of the system with coordinates \(X^* \), then Hamilton's principle states that
+\[\eval{\fdv{S}{X}}_{X^*} =0 \]\par
+The above equation gives us the configuration, i.e. equations of motion \(X^*(p) \).\par
+The question of why only keep first order derivatives of the configuration of a physical system is treated on Appendix \ref{App:derivlagran}.
+
+\section{Hamilton's principle}
+Hamilton's principle states that the evolution of a physical system is determined by a variational problem based on a function called \textit{Lagrangian density}, which contains every information about the system.\par
+The Lagrangian of a system is a function of the coordinates and of the first order derivatives of the coordinates with respect to its parameters. These parameters are used to map the physical system in the coordinate system adopted. Some examples, for a particle, the coordinates are the spacetime coordinates, and the parameter is a timelike one, for a string, the coordinates are the spacetime coordinates, but there are two parameters, one timelike and one spacelike, to, somehow, identify small segments on the string, whereas for a scalar field the coordinates are just a scalar, but its parameters are the spacetime coordinates.\par
+For the particle, the Lagrangian is of the form \[L: \mathbb{R}^4 \cross \mathbb{R}^{4*1} \mapsto \mathbb{R}\qc L=L(x^{\mu}, \partial_ {\tau}x^{\mu}; \tau) \]\par
+For the string, the Lagrangian is of the form \[ L: \mathbb{R}^4 \cross \mathbb{R}^{4*2} \mapsto \mathbb{R}^2\qc L = L(x^{\mu}, \partial_{\tau}x^{\mu}, \partial_{\sigma}x^{\mu};\tau, \sigma)\]\par
+Finally, for the field, the Lagrangian is of the form \[L: \mathbb{R} \cross \mathbb{R}^{1*4} \mapsto \mathbb{R}^4\qc L = L (\phi, \partial_{x^{\mu}}\phi; x^{\mu})\]\par
+
+For simplicity, we'll refer to the parameters as \( \alpha = \{ \alpha^0, \alpha^1,...,\alpha^n\}\) and to the derivatives with respect to it as \(\partial_{\alpha} = \{\pdv{\alpha^0}, \pdv{\alpha^1},...,\pdv{\alpha^n} \} \).\par
+
+We define the action \(S\) as being the integral over the parameters of the system
+\[S = \int \dd[n]{\alpha} L(x^{\mu}, \partial_{\alpha}x^{\mu};\alpha) \]\par
+Hamilton's principle states that the solutions of
+\[\fdv{S}{x^{\mu}}=0 \]
+are the equations of motion for the system.\par
+The above expression gives us the \textit{Euler-Lagrange equations of motion}:
+\[ \pdv{L}{x^{\mu}} = \sum_{\alpha=1}^n \partial_{\alpha}\left(\pdv{L}{\left(\partial_{\alpha}x^{\mu}\right)} \right) \]
+Note that for each \(x^{\mu} \) we have different equations of motion, and they can be coupled!
+
+\section{Special relativity}
+The postulates of special relativity are
+\begin{enumerate}
+    \item The laws of physics are the same to all inertial observers.
+    \item The speed of light is the same to all inertial observers.
+\end{enumerate}\par
+
+We can represent every motion in time and space in a \(D\)-dimensional manifold, with \(D-1\) dimensions of space, and \(1\) dimension of time. We call this manifold spacetime, and if it is flat, we call it Minkowski spacetime.\\
+
+We denote a vector in spacetime as \(x^{\mu} = (ct,x,y,z)\). We define the relativistic scalar product between two spacetime vectors to be
+\[a\cdot b = a^{\mu}b_ {\mu} = g_{\mu\nu}a^{\mu}b^{\nu}\]
+where \( g_{\mu\nu}\) is the metric tensor of the spacetime.\\
+
+From the postulates, we get that the inner product of a spacetime vector with itself is invariant under change of inertial frame. Such quantity is denoted as
+\[-\dd{s}^2 = \eta_{\mu \nu}x^{\mu}x^{\nu} \]
+and is called \textit{invariant interval}.\\
+
+If the spacetime is flat, the metric is constant and is called \textit{Minkowski metric} and we will use it with the signature \((-1,1,1,...)\), this gives
+\[ \eta_{\mu \nu} = 
+\begin{pmatrix}
+-1 &  0  & \ldots & 0\\
+0  &  1 & \ldots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0  &   0       &\ldots & 1
+\end{pmatrix}\]
+
+If we want to preserve the invariant interval under any coordinate transformation in flat spacetime (between two inertial frames) we must have that
+\[-\Delta S^2 = \eta_{\mu \nu}x^{\mu}x^{\nu} = \eta_{\rho \sigma}x'^{\rho}x'^{\sigma} \]
+Being the transformation written as \( x'^{\mu} = \Lambda^{\mu}_ {\ \nu}x^{\nu}\), we need that
+\[ \eta_{\mu \nu} = \eta_{\rho \sigma}\Lambda^{\sigma}_ {\ \mu}\Lambda^{\rho}_ {\ \nu}\]
+or in matrix notation
+\[ \Lambda^{T} \eta \Lambda = \eta\]
+
+The transformation of coordinates is called a \textit{Lorentz transformation} and is denoted as \( \Lambda^{\mu}_ {\ \nu}\) if satisfies the above condition.
+From the condition, it follows that \( (det\Lambda) = \pm 1\).
+
+\section{Symmetry of action}
+
+The laws of physics
+
+
+
+
+
+
+
+
+\begin{appendices}
+\chapter{First order derivatives on the Lagrangian}\label{App:derivlagran}
+\end{appendices}
+
+\end{document}

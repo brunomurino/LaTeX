@@ -1,0 +1,200 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{../mypreamble}
+% \usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{../mycommands}
+\usepackage{../mytheme1}
+
+% \addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\pagestyle{mypage2} \normalfont
+
+
+\chapter{Quantum strings}
+
+\section{What quantization means}
+
+When we say we'll quantise our system, we mean that we'll take our dynamical variables, promote them to operators, and then postulate some crucial commutation relations. Lets see how it goes for the massive point particle.\par
+
+\section{Quantizing point particles}
+
+The Lagrangian for a massive point particle is
+\beq[] \mc{L} = -m\sqrt{-\dot{x}^2} \eeq
+which yields the equations of motion
+\beq[] \dv{p^{\mu}}{\tau} = 0 \eeq
+where \(p^{\mu}\) is the momentum conjugated to \(\dot{x}\)
+\beq[eq:mppmomentum] p^{\mu} = \pdv{\mc{L}}{\dot{x}} = \frac{m\dot{x}^{\mu}}{\sqrt{-\dot{x}^2}} \eeq
+and we from \eqref{eq:mppmomentum} we can already check the mass-shell constrain
+\beq[eq:msconstrain] p^2 + m^2 =0 \eeq\par
+
+To ease our job later, lets already use light-cone coordinates. We impose the gauge
+\beq[eq:x+] x^{+} = \frac{1}{m^2}p^{+}\tau \eeq
+and in this gauge our equations of motion are
+\beq[eq:mpplceom] \ddot{x}^{\mu} = 0 \eeq
+It's important to notice that to know \(x^{+}\) all we need is \(p^{+}\) (\(m\) is not a dynamical variable, it is just a parameter).\par
+
+Now, expanding the mass-shell constrain \eqref{eq:msconstrain} in the light-cone gauge we have
+\beq[eq:mpplcmsconstrain] p^{-} = \frac{1}{2p^{+}}\left(p^Ip^I + m^2 \right) \eeq
+therefore if we know \(p^{+}\) and \(p^{I}\) then we know \(p^{-}\). Solving \eqref{eq:mpplceom} we find that
+\beq[eq:mppx-] x^{-}(\tau) = x_0^{-} + \frac{p^{-}}{m^2}\tau \eeq
+and
+\beq[eq:mppxI] x^I(\tau) = x_0^{I} + \frac{p^I}{m^2}\tau \eeq \par
+
+Now we can conclude that a possible complete set of dynamical variables is
+\beq[eq:mppdynvar] x^I\qc x_0^{-}\qc p^I \qq{and} p^{+} \eeq \par
+
+In order to perform the quantization in the Schrödinger picture, we promote our dynamical variables \eqref{eq:mppdynvar} to \textit{time-independent Schrödinger operators} and postulate the following commutation relations
+\beq[] \comm{x^I}{p^J} = i\eta^{IJ} = i \delta^{IJ}\qc \comm{x_0^{-}}{p^{+}} = i \eta^{-+} = -1 \eeq
+and the other commutation relations are set to \(0\). The additional Schrödinger operators, which are constructed from the set of time-independent Schrödinger operators and time (\(\tau\)) are \(x^{+}(\tau)\), \(x^{-}(\tau)\) and \(p^{-}\) and are defined using the quantum analogs of equations \eqref{eq:mpplcmsconstrain}, \eqref{eq:mppx-} and \eqref{eq:mppxI}.\par
+
+Since we want to parameterize our operators with \(\tau\) lets use the Heisenberg picture. To do so, we say that our previous Schrödinger operators now have a \(\tau\) dependence, and satisfy the same commutation relations that the Schrödinger operators do, but only if they are considered at the same time, we say that the Heisenberg operators satisfy \textit{same time commutation relations}.\par
+
+Now, lets try to find our Hamiltonian.\par
+
+Recalling that \(p^{-}\) is the light-cone energy, we expect it to generate \(x^{+}\) evolution, so
+\beq[] \pdv{x^{+}} 	\leftrightarrow p^{-}  \eeq
+but we want \(\tau\) to be the parameter, not \(x^{+}\), so using \eqref{eq:x+} we find that
+\beq[] \pdv{\tau} = \frac{p^{+}}{m^2}\pdv{x^{+}} \leftrightarrow \frac{p^{+}}{m^2}p^{-} \eeq
+Based on this, we postulate the following Heisenberg Hamiltonian
+\beq[eq:mppH] H(\tau) = \frac{p^{+}(\tau)}{m^2}p^{-}(\tau) = \frac{1}{2m^2}\left(p^Ip^I + m^2 \right) \eeq\par
+
+We know that if \(\mc{O}(\tau)\) is the Heisenberg operator which corresponds to an explicitly time-dependent Schrödinger operator, then the time evolution of \(\mc{O}(\tau)\) is given by
+\beq[eq:timeevol] i \dv{\mc{O}(\tau)}{\tau} = i \pdv{\mc{O}(\tau)}{\tau} + \comm{\mc{O}(\tau)}{H(\tau)} \eeq\par
+
+Now we must check that our Hamiltonian \eqref{eq:mppH} generates the expected equations of motion. Using \eqref{eq:timeevol}, we find that \(p^I\) and \(p^{+}\) are constants of the motion, then we find that
+\beq[] \dv{x^I(\tau)}{\tau} = \frac{p^I}{m^2} \eeq
+and
+\beq[] \dv{x^{-}(\tau)}{\tau} = \frac{p^{-}}{m^2} \eeq
+These results show that our Hamiltonian \eqref{eq:mppH} indeed generates the expected equations of motion.\par
+
+\section{Quantising open strings}
+
+Most of the string quantization is analog to the massive point particle quantization. Motivated by our list of dynamical variables of the massive point particle, we promote the following to \(\tau\)-independent Schrödinger operators
+\beq[] X^I(\sigma)\qc x_0^{-}\qc \Pi^{\tau I} (\sigma) \qq{and} p^{+} \eeq
+with the non-trivial commutation relations
+\beq[] \comm{X^I(\sigma)}{\Pi^{\tau J}(\sigma')} = i\eta^{IJ}\delta({\sigma-\sigma'}) \eeq
+and
+\beq[] \comm{x_0^{-}}{p^{+}} = -i \eeq
+all other commutation relations vanish. These operators and the corresponding commutation relations are supplemented by the corresponding Heisenberg operators and equal-time commutation relations.\par
+
+Continuing: since \(p^{-}\) still is the light-cone string's \textit{total} energy, we expect it to generate \(X^{+}\) translation, but again we want our parameter to be \(\tau\), so we find that
+\beq[] \pdv{\tau} = \pdv{X^{+}}{\tau}\pdv{X^{+}} = 2\alpha'p^{+} \leftrightarrow 2\alpha'p^{+}p^{-}  \eeq
+And our guess to the hamiltonian is
+\beq[] H = 2\alpha'p^{+}p^{-} = L_0^{\perp} \eeq
+which is remarkably simple! The only issue regards the ordering of the zero-th traverse Virasoro \textit{operator} (the modes were promoted to operators upon quantization).\par
+
+Since we cannot use operators that do not have a well defined action on the vacuum state, in the case of \(L_0^{\perp}\) we should always have the annihilation operators on the right of the creation operators. This is called a \textit{normal-ordered} operator. Any change on the order of operators will include a ordering constant. To end this matter, lets once and for all define \(L_0^{\perp}\) to be normal-ordered \textit{without} an ordering constant
+\beq[] L_0^{\perp} = \frac{1}{2} \alpha_0^i \alpha_0^i + \frac{1}{2}\alpha_0^a \alpha_0^a + \sum_{n=1}^{\infty} \left(\alpha_{-p}^i \alpha_{p}^i + \alpha_{-p}^a \alpha_{p}^a \right) \eeq
+and then we'll say that
+\beq[] H = 2\alpha'p^{+}p^{-} = L_0^{\perp} + a\eeq
+This clearly changes our Hamiltonian slightly, but the most important consequence is on the calculation of the mass, which now becomes
+\beq[] M^2 = 2p^{+}p^{-} - p^ip^i = \frac{1}{\alpha'}\left(L_0^{\perp} + a \right) - p^ip^i \eeq
+We now see that the mass-squared operator has a constant shift!\par
+
+To actually find the value of the ordering constant \(a\), we now turn to our Lorentz generators \eqref{eq:lorentzchargematrix}. The most important Lorentz generator is \(M^{-I}\), since \(X^{-}\) is a non-trivial function of the other coordinates, the other generators will produce rather trivial results. The thing is: for out quantum theory to be relativistic, we must have
+\beq[eq:commM--] \comm{M^{-I}}{M^{-J}} \eeq
+(the other commutation relations are trivial). From the tedious and complex computation of \eqref{eq:commM--}, two equations emerge
+\beq[] 1 - \frac{1}{24} (D-2) = 0 \qq{and} \frac{1}{24}(D-2) + a = 0 \eeq
+And they fix both the number of spacetime dimensions and the ordering constant \(a\) as
+\beq[] D=26 \eeq
+and
+\beq[] a = -1 \eeq\par
+
+Finally, our Hamiltonian is
+\beq[] H = L_0^{\perp} - 1 = \pi \alpha' \int_0^{\pi}\dd{\sigma} \left( \Pi^{\tau I}(\tau,\sigma)\Pi^{\tau I}(\tau,\sigma) + \frac{X^{I'}(\tau,\sigma)X^{I'}(\tau,\sigma)}{\left(2\pi\alpha'\right)^2} \right)\eeq
+and we can readily check with \eqref{eq:timeevol} that it produces the expected equations of motion. Also using \eqref{eq:timeevol} we find that the Heisenberg operators \(H\), \(x_0^{-}\) and \(p^{+}\) are actually completely \(\tau\)-independent.\par
+
+Since \(X^{\mu}\) are operators, so are \(\alpha_n^{I}\). After a lot of computations, we find that
+\beq[] \comm{\alpha_m^I}{\alpha_n^J} = m\eta^{IJ}\delta_{m+n,0} \eeq
+Recalling \eqref{eq:alphaan}, we can replace our \(\alpha\) modes by the oscillators \(a\), which, again, after some computation, yields the commutation relation
+\beq[] \comm{a_m^I}{a_n^{J\dagger}} = \delta_{m,n}\eta^{IJ} \eeq
+and these are the commutation relations satisfied by the canonical annihilation and creation operators of a quantum simple harmonic oscillator. The other commutation relations involving the light-cone oscillator \(a^{-}\) and \(a^{+}\) vanish.\par
+
+Using annihilation and creation operators, we can rewrite
+\beq[] \sum_{n=1}^{\infty} \left(\alpha_{-p}^i \alpha_{p}^i + \alpha_{-p}^a \alpha_{p}^a \right) \eeq
+as
+\beq[] \sum_{n=1}^{\infty} \sum_{i=2}^{p} na_n^{i\dagger}a_n^i + \sum_{m=1}^{\infty}\sum_{a=p+1}^D m a_m^{a\dagger}a_m^a \eeq
+recalling that \(p\) is the number of common tangential coordinates, \(d-p\) is the number of common normal coordinates and \(d=25\) is the number of spacelike dimensions. We can see that, in this form, the sum corresponds to the number operator \(N^{\perp}\), so
+\beq[eq:numberop] N^{\perp} = \sum_{n=1}^{\infty} \sum_{i=2}^{p} na_n^{i\dagger}a_n^i + \sum_{m=1}^{\infty}\sum_{a=p+1}^D m a_m^{a\dagger}a_m^a \eeq\par
+
+Using \eqref{eq:numberop}, \eqref{eq:m2operatorL0} and recalling that now we have an ordering constant \(a=-1\), we find that
+\beq[] M^2 = \left(\frac{\bar{x}^a_2 - \bar{x}^a_1}{2\pi \alpha'} \right)^2 + \frac{1}{\alpha'} \left(N^{\perp}-1 \right) \eeq\par
+
+\subsection{The states}
+
+As is known of quantum mechanics, we can use the bigger set of commuting variables to label a state. In our case the best choice is to label the states with \(p^{+}\) and \(p^I\). For every value of \(p^{+}\) and \(p^I\), the state
+\beq[] \ket{p^{+},p^I} \eeq
+is called a ground state and is a vacuum state for the oscillators \(a_n^I\) and \(a_n^{I\dagger}\). So every string state is created acting with creation operators on the vacuum state.\par
+
+The following commutation relations are crucial to perform calculations in string theory
+\beq[] \comm{N^{\perp}}{a_n^{I\dagger}} = n a_n^{I\dagger} \eeq
+\beq[] \comm{N^{\perp}}{a_n^{I}} = -n a_n^{I} \eeq\par
+
+Let the basis state of \(N^{\perp}\) be label by \(\lambda\). So
+\beq[eq:Nperpbasis] \ket{\lambda} = \Pi_{n=1}^{\infty}\Pi_{I=2}^{25} \left(a_n^{I\dagger} \right)^{\lambda_{n,I}} \ket{p^{+},p^I} \eeq
+We have that
+\beq[eq:Nperpeigen] N^{\perp}\ket{\lambda} = N^{\perp}_{\lambda} \ket{\lambda}\qq{with} N^{\perp}_{\lambda} = \sum_{n=1}^{\infty} \sum_{i=2}^{25} n \lambda_{n,I} \eeq
+This shows that the eigenvalues of \(N^{\perp}\) are non-negative integers, so for all string states
+\beq[] M^2 \geq -\frac{1}{\alpha'} \eeq\par
+
+From now on we'll consider only the situation in which the two D-branes coincide and are space-filling. We then have \(\bar{x}_2^a - \bar{x}_1^a = 0\) and the mass-squared operator becomes
+\beq[] M^2 = \frac{1}{\alpha'}(N^{\perp}-1) \eeq\par
+
+Since the eigenvalues of \(N^{\perp}\) are non-negative integers obeying \eqref{eq:Nperpeigen}, if we operate with the mass-square operator on our ground state
+\beq[] \ket{p^{+},p^I} \eeq
+which is \eqref{eq:Nperpbasis} with \(\lambda_{n,I} = 0\) for all \(n\), we find that
+\beq[] M^2\ket{p^{+},p^I} = -\frac{1}{\alpha'}\ket{p^{+},p^I} \eeq
+So the mass-squared of our ground state is negative! The reason for this is our ordering constant \(a=-1\)! This state is called a \textit{Tachyon}.\par
+
+If we act on our ground state with the construction operator \(a_1^{I\dagger}\) then \(N^{\perp}=1\) and operating with the mass-squared operator, we find that
+\beq[eq:Imlessstate] M^2a_1^{I\dagger}\ket{p^{+},p^I} = 0 \eeq
+so this is a massless state! One massless state for each value the index \(I\) can have, so in total we have \(24\) massless states! The general massless state is a linear combination of \eqref{eq:Imlessstate}
+\beq[] \sum_{I=2}^{25}\xi_I a_1^{I\dagger} \ket{p^{+},p^I}\eeq
+which remarkably resembles the photon states from the \textit{light-cone Maxwell free theory}
+\beq[] \sum_{I=2}^{25}\xi_I a_{p^{+},p^I}^{I\dagger} \ket{\Omega} \eeq
+So complete this resemblance, we check that both states have the same Lorentz labels, the same momentum and the same mass! So this is more than a simple resemblance, it is a natural correspondence! We've shown that our open string theory quantum states include photon states!
+
+\section{Quantizing closed strings}
+
+Again, the procedure is the same as before, and so are most of the results we obtained. However, there are differences. Most important are the commutation relations for the \textit{barred} oscillators \(\bar{a}_n^I\) and its hermitian conjugate
+\beq[] \comm{\bar{a}_m^I}{\bar{a}_n^{J\dagger}} = \delta_{m,n}\eta^{IJ} \eeq
+Again these oscillators behave as creation and annihilation operators. Also, accompanied by \(\bar{L}_0^{\perp}\) and \(L_0^{\perp}\) there are now two number operators
+\beq[] \bar{N}^{\perp} = \sum_{n=1}^{\infty}n\bar{a}_n^{I\dagger}\bar{a}_n^I \qq{and} N^{\perp} = \sum_{n=1}^{\infty}n{a}_n^{I\dagger}{a}_n^I \eeq
+So
+\beq[] \bar{L}_0^{\perp} = \frac{\alpha'}{4}p^Ip^I + \bar{N}^{\perp} \qq{and} L_0^{\perp} = \frac{\alpha'}{4}p^Ip^I + N^{\perp} \eeq
+and since \eqref{eq:LbarL} we have the constrain
+\beq[eq:NbarN] N^{\perp} = \bar{N} ^{\perp}\eeq
+
+\par
+
+We also find that
+\beq[] \alpha'p^{+}p^{-} = \bar{L}_0^{\perp} + L_0^{\perp} - 2 \eeq
+and with that we already have our Hamiltonian
+\beq[] H = \alpha'p^{+}p^{-} = \bar{L}_0^{\perp} + L_0^{\perp} - 2 \eeq
+and using our previous results we find that
+\beq[] M^2 = \frac{2}{\alpha'}\left(\bar{N}^{\perp} + N^{\perp}-2 \right) \eeq
+and noting again that the eigenvalues of the number operators are non-negative integers, we know that
+\beq[] M^2 \geq -\frac{4}{\alpha'} \eeq\par
+
+Again such case is the one of the ground state and it is called closed-string tachyon. Continuing, the next excited state is when \(N^{\perp}=1\), but we cannot forget our constrain \eqref{eq:NbarN}, so \(N^{\perp} = \bar{N}^{\perp} = 1\) and again
+\beq[] M^2 = 0 \eeq
+These states are
+\beq[] a_1^{I\dagger}a_1^{J\dagger}\ket{p^{+},p^I} \eeq
+and are identified with the states of the free gravitational field
+\beq[] a_1^{I\dagger}a_1^{J\dagger}\ket{p^{+},p^I} \leftrightarrow a_{p^{+},p^I}^{IJ\dagger}\ket{\Omega} \eeq
+which is truly remarkable! The closed string has \textit{graviton} states without ever mentioning the dynamics of the metric! This is one of the aspects of string theory that makes it worth studying.
+
+
+
+\nocite{*}
+\end{document}

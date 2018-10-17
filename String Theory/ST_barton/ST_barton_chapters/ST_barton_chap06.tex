@@ -1,0 +1,69 @@
+\documentclass[12pt]{report}
+\input{preamble}
+\begin{document}
+\chapter{Relativistic strings}
+\newpage
+\section{Area functional for spatial surfaces}
+\begin{itemize}
+    \item The action for a relativistic string must be a functional of the string trajectory. Just as a particle traces out a line in spacetime, a string traces out a surface, which is called the \textit{world-sheet}. A closed string will trace out a tube, while an open string will trace out a strip.
+    \item The string action will be proportional to the proper area of its world-sheet, and it's called Nambu-Goto action.
+    \item A two-dimensional surface is parameterized by two parameters.
+    \item The world where the two-dimensional surface lives is called \textit{target space}.
+    \item The full area functional $A$ is given by
+    $$A = \int \dd{\xi^1}\dd{\xi^2}\sqrt{\left(\pdv{\vb{x}}{\xi^1}\cdot\pdv{\vb{x}}{\xi^1} \right)\left(\pdv{\vb{x}}{\xi^2}\cdot\pdv{\vb{x}}{\xi^2} \right)-\left(\pdv{\vb{x}}{\xi^1}\cdot \pdv{\vb{x}}{\xi^2} \right)^2}$$
+\end{itemize}
+
+\section{Reparameterization invariance of the area}
+\begin{itemize}
+    \item Changing variables
+    $$\dd{\xi^1}\dd{\xi^2} = \left| det\left(\pdv{\xi^i}{\xi^j} \right) \right|\dd{\tilde{\xi}^1}\dd{\tilde{\xi}^2} = \left| det\left(M \right) \right|\dd{\tilde{\xi}^1}\dd{\tilde{\xi}^2}$$
+    where $M = [M_{ij}]$ is defined as 
+    $$M_{ij} = \pdv{\xi^i}{\tilde{\xi}^j}$$
+    and its inverse
+    $$\tilde{M}_{ij} = \pdv{\tilde{\xi}^i}{\xi^j}$$
+    with
+    $$detM\ det\tilde{M} = 1$$
+    \item $$\dd{s}^2 \equiv \left(\dd{s} \right)^2 = \dd{\vb{x}}\cdot\dd{\vb{x}}$$
+    \item Being \textit{S} the target space, the quantitity
+    $$g_{ij}\left(\xi \right) \equiv \pdv{\vb{x}}{\xi^i}\cdot\pdv{\vb{x}}{\xi^j}$$
+    is known as the \textit{induced metric on S} and
+    $$\dd{s}^2 = g_{ij}\left(\xi \right)\dd{\xi^i}\dd{\xi^j}$$
+    \item Let
+    $$g\equiv det\left(g_{ij} \right)$$
+    then we can write
+    $$A = \int \dd{\xi^1}\dd{\xi^2}\sqrt{g}$$
+    \item As $\dd{s}^2$ is invariant under parameterization, it follows that
+    $$g_{ij}\left(\xi \right) = \tilde{g}_{pq}\left(\tilde{\xi} \right)\pdv{\tilde{\xi}^p}{\xi^i}\pdv{\tilde{\xi}^q}{\xi^j}$$
+    and in matrix notation where $G = \left[g_{ij}\right]$
+    $$G = \tilde{M}^T\ \tilde{G}\ \tilde{M}$$
+    and
+    $$g = \tilde{g}\left(\det \tilde{M} \right)^2$$
+    \item From the properties above, we have that
+    $$A = \int \dd{\xi^1}\dd{\xi^2}\sqrt{g} = \int \dd{\tilde{\xi}^1}\dd{\tilde{\xi}^2}detM \sqrt{\tilde{g}}\ det\tilde{M} = \int \dd{\tilde{\xi}^1}\dd{\tilde{\xi}^2}\sqrt{\tilde{g}}$$
+    hence $A$ is \textit{manifestly} reparameterization invariant.
+\end{itemize}
+
+\section{Area functional for spacetime surfaces}
+\begin{itemize}
+    \item Instead of calling the parameters $\xi^1$ and $\xi^2$, we call then $\tau$ and $\sigma$.
+    \item Given our usual spacetime coordinates $x^{\mu} = \left(x^0, x^1,...,x^d \right)$, the surface is described by the mapping functions
+    $$x^{\mu}\left(\tau, \sigma \right)$$
+    but we will denote the above mapping functions with the capitalized symbols, as a standard convention,
+    $$X^{\mu}\left( \tau, \sigma \right)$$
+    $$X^{\mu}: \mathbb{R}^2 \to \mathbb{R}^{d+1}$$
+    where $d$ is the number of spatial dimensions.
+    \item The mapping function $X^{\mu}$ is called the \textit{string coordinates}.
+    \item The parameter $\tau$ is roughly related to time on the strings and the parameter $\sigma$ is roughly related to positions along the strings.
+    \item Assuming the string is fixed in space, it still travels through time, hence it still draws a world-sheet. A single point of the string (fixed $\sigma$) still draws a world-line, and, as it is fixed in space, this world-line represents only the motion through time, and can only by parameterized by $\tau$ (since $\sigma$ is fixed).
+    \item Hence the temporal component of the string coordinates has to depend on $\tau$
+    $$\pdv{X^0}{\tau} \neq 0$$
+\end{itemize}
+\section{The Nambu-Goto string action}
+\section{Equations of motion, boundary conditions, and D-branes}
+\section{The static gauge}
+\section{Tension and energy of a stretched string}
+\section{Action in terms of traverse velocity}
+\section{Motion of open string endpoints}
+\section{Problems}
+
+\end{document}

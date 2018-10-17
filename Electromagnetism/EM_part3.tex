@@ -1,0 +1,368 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{EM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+\pagestyle{empty}
+\notestp{Electrodynamics}
+\begin{notesabstract}[Abstract]
+Abstract text
+\end{notesabstract}
+\centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Introduction}
+
+\begin{tcolorbox}
+\beq[eq:maxwelleq]
+    \left.\begin{aligned}
+        \div{\vb{E}} &= \frac{\rho}{\epsilon_0}\\
+        \div{\vb{B}} &= 0\\
+        \curl{\vb{E}} +\pdv{\vb{B}}{t} &= 0\\
+        \curl{\vb{B}} - \mu_0 \epsilon_0\pdv{\vb{E}}{t} &= \mu_0\vb{J}
+       \end{aligned}
+    \right\}
+    \qquad \text{Maxwell's equations}
+\eeq
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\beq[eq:maxwelleqboundary]
+    \left.\begin{aligned}
+    \vb{E}^{\perp}_{above} - \vb{E}^{\perp}_{under} &= \frac{\sigma}{\epsilon_0}\\
+    \vb{E}^{\parallel}_{above} - \vb{E}^{\parallel}_{under} &= 0\\
+    \vb{B}^{\perp}_{above} - \vb{B}^{\perp}_{under} &= 0\\
+    \vb{B}^{\parallel}_{above} - \vb{B}^{\parallel}_{under} &= \mu_0\vb{K}\cross \vu{n}
+    \end{aligned}
+\right\}
+\qquad \text{Boundary conditions}
+\eeq
+\end{tcolorbox}
+
+\chapter{Wave guides}
+
+Lets study monochromatic plane waves inside wave guides.\par
+
+Assume a plane wave propagating along the \(z\) axis, then
+\beq[] \vb{E} = \tvb{E}(x,y) \exp{i\lr{k_zz - \omega t}} \eeq
+\beq[] \vb{B} = \tvb{B}(x,y) \exp{i\lr{k_zz - \omega t}} \eeq
+Plugging these into Maxwell's equations \eqref{eq:maxwelleq} we find
+\begin{tcolorbox}
+\beq[]
+    \begin{aligned}
+        \frac{i}{(\omega/c)^2-k_z^2} \lr{ k\pdv{E_z}{x} + \omega \pdv{B_z}{y} } &= E_x \\
+        \frac{i}{(\omega/c)^2-k_z^2} \lr{ k\pdv{E_z}{y} - \omega \pdv{B_z}{x} } &= E_y\\
+        \frac{i}{(\omega/c)^2-k_z^2} \lr{ k\pdv{B_z}{x} - \frac{\omega}{c^2} \pdv{E_z}{y} } &= B_x\\
+        \frac{i}{(\omega/c)^2-k_z^2} \lr{ k\pdv{B_z}{y} + \frac{\omega}{c^2} \pdv{E_z}{x} } &= B_y
+       \end{aligned}
+\eeq
+\end{tcolorbox}
+with
+\begin{tcolorbox}
+\beq[eq:ezbzeq]
+    \begin{aligned}
+        \left[ \pdv[2]{x} + \pdv[2]{y} -k_z^2+ \left(\frac{\omega}{c} \right)^2 \right]E_z &= 0\\
+        \left[ \pdv[2]{x} + \pdv[2]{y} -k_z^2+ \left(\frac{\omega}{c} \right)^2 \right]B_y &=0
+       \end{aligned}
+\eeq
+\end{tcolorbox}\par
+
+This means that in order to fully find \(\tvb{E}\) and \(\tvb{B}\) we need need just \(E_z\) and \(B_z\), and we find them solving \eqref{eq:ezbzeq}.\par
+
+\section{The Coaxial Transmission Line}
+
+The Laplacian in cylindrical coordinates is
+\beq[] \laplacian = \frac{1}{\rho} \pdv{\rho}\lr{\rho \pdv{\rho}} + \frac{1}{\rho^2}\pdv[2]{\phi} + \pdv[2]{z} \eeq\par
+
+Our ansatz for \(E_z\) is
+\beq[] E_z = E_0 R(\rho) \exp{im\phi}\exp{i\lr{k_z z - \omega t}}\qc m = 0,\pm 1, \pm 2,... \eeq\par
+
+Doing
+\beq[] s = \rho \sqrt{\lr{\frac{\omega}{c}}^2 - k_z^2} \eeq
+we find the equation for \(R(\rho)\), which is \textit{Bessel's differential equation}
+\beq[] s^2 R'' + sR' + (s^2 - m^2)R=0 \eeq
+
+\chapter{Resonant Cavities}
+
+\chapter{Scattering and Diffraction}
+
+\section{Scalar wave theory}
+
+We could do this the normal way, using the fields as vectors and etc. However, we get roughly the \textit{same} results if we use a scalar theory, which is much easier to work with.\par
+
+In electrodynamics we know that \(\vb{E}\) and \(\vb{B}\) satisfy:
+\beq[]
+    \left(\laplacian - \frac{1}{c^2}\pdv[2]{t} \right)
+    \left\{\begin{aligned}
+        \vb{E}\\
+        \vb{B}
+       \end{aligned}
+       \right\} = 0
+\qquad \text{Boundary conditions}
+\eeq
+So in this scalar theory we make the scalar field \(\psi\) satisfy
+\beq[eq:scalarwe] \left(\laplacian - \frac{1}{c^2}\pdv[2]{t} \right)\psi = 0 \eeq
+but what are the solution to this equation \eqref{eq:scalarwe}? Of course, the simplest solution is the plane wave
+\beq[] \psi = A\exp{\vb{k}\cdot\vb{r} -i\omega t} \eeq
+To simplify our notation, lets write \(\psi = \psi_w \exp{-i\omega t}\) and omit \(\exp{-i\omega t}\), but remember that it is always there!\par
+
+We can also solve \eqref{eq:scalarwe} in spherical coordinates, then our general solution is
+\beq[eq:psisphe] \psi_w = \sum_{l=0}^{\infty}\sum_{m = -l}^{l}\lr{A_{lm}j_l(kr) + B_{lm}n_l(kr)}Y_{lm}\lr{\theta,\phi} \eeq
+or alternatively
+\beq[] \psi_w = \sum_{l=0}^{\infty}\sum_{m = -l}^{l}c_l\lr{\cos(\delta_l) j_l(kr) - \sin(\delta_l)n_l(kr)}Y_{lm}\lr{\theta,\phi}\eeq
+where
+\beq[] j_l(x) = \sqrt{\frac{\pi}{2x}}J_{l+\hlf}(x) = (-x)^l\lr{\frac{1}{x}\pdv{x}}^l \lr{\frac{\sin(x)}{x}} \eeq
+\beq[] n_l(x) = \sqrt{\frac{\pi}{2x}} N_{l+\hlf}(x) = - (-x)^l\lr{\frac{1}{x}\pdv{x}}^l \lr{\frac{\cos(x)}{x}} \eeq
+with \(J\) being Bessel functions and \(N\) being Neumann functions, and \(Y\) being the spherical harmonics.\par
+
+\begin{tcolorbox}
+\beq[eq:krgtl]
+    x = kr >> l \Rightarrow
+    \left\{\begin{aligned}
+        j_l &\approx \frac{1}{x}\sin\lr{x - \frac{l\pi}{2}} \\
+        n_l &\approx -\frac{1}{x}\cos\lr{x - \frac{l\pi}{2}}
+       \end{aligned}
+       \right.
+\eeq
+\beq[eq:krstl]
+    x = kr << l \Rightarrow
+    \left\{\begin{aligned}
+        j_l &\approx \frac{x^l}{(2l+1)!!}\lr{1 - \frac{x^2}{2(2l+3)}+...} \\
+        n_l &\approx -\frac{(2l+1)!!}{x^{l+1}}\lr{1 - \frac{x^2}{2(1-2l)}+...}
+       \end{aligned}
+       \right.
+\eeq
+\end{tcolorbox}
+
+It's very important to notice that this is only a choice of basis, meaning that we \textbf{\textit{can}} write even a plane wave in the form \eqref{eq:psisphe}. This is actually called the \textit{Rayleigh expansion} and it reads
+\beq[] \exp{i\vb{k}\cdot\vb{r}} = 4\pi \sum_{lm} i^l j_l(kr)Y^{*}_{lm}(\vu{k})Y_{lm}(\vu{r}) \eeq
+and in particular, if \( \vu{k} = \vu{z}\) with \( \vu{k}\cdot\vu{r} = \cos \theta \), then
+\beq[] \exp{i\vb{k}\cdot\vb{r}} = \exp{ikr\cos \theta} = 4\pi \sum_l i^l j_l(kr)
+\underbrace{\sum_m Y^{*}_{lm}(\vu{z})Y_{lm}(\vu{r})}_{\frac{(2l+1)}{4\pi}P_l(\cos \theta)} \eeq
+so
+\beq[] \exp{ikr\cos \theta} =  \sum_l i^l (2l+1) j_l(kr) P_l(\cos \theta) \eeq
+which also actually proves Huygens theorem: we can interpret the statement that when a wave reaches an object, every point becomes a secondary source of a spherical wave as just a change of basis, a change of the \textit{way} we are describing the same wave.\par
+
+The scattering we'll be studying is the one from a plane wave with an axially symmetric object, so the scattered wave doesn't depend on \(\phi\). Then
+\beq[] \psi_{in} = A\exp{ikz} \eeq
+Then our total scalar wave is
+\beq[] \psi_T = \psi_{in} + \psi_{s} \eeq
+\begin{tcolorbox}[colback=blue!50!white]
+\beq[eq:totalpsi] \psi_T = A\sum_l c_l \lr{\cos\delta_l j_l(kr) - \sin\delta_l n_l(kr)}P_l(\cos \theta) \eeq
+\end{tcolorbox}
+Also, we'll demand that
+\beq[] \psi_{scattered} \rightarrow A \frac{\exp{i(kr - wt)}}{r}f(\theta,\phi) \eeq
+far away. Upon such demand, we find that
+\beq[] c_l = i^l (2l+1)\exp{i\delta_l} \eeq
+and as a consequence
+\beq[eq:angularf] f(\theta) = \frac{1}{k} \sum_{l=0}^{\infty} \exp{i\delta_l}(2l+1)\sin\delta_l P_l(\cos\theta) \eeq\par
+
+We can, then, impose either Dirichlet boundary conditions or Neumann boundary conditions on \eqref{eq:totalpsi} to find the \(\delta_l\), which we'll put back on \eqref{eq:angularf} and then be able to study the experimental data using the cross section, which we'll see on the next section.\par
+
+\section{Cross section}
+
+The emitted power per solid angle of a source is
+\beq[] \mean{\dv{P_e}{\Omega}} \eeq
+The incident flux is
+\beq[] \mean{\abs{\vb{S}}} \eeq
+where \(\vb{S}\) is the Poynting vector.\par
+The cross section is defined as
+\beq[] \dv{\sigma}{\Omega} = \frac{\mean{\dv{P_e}{\Omega}}}{\mean{\abs{\vb{S}}}} \eeq
+
+In this scalar theory
+\beq[] \psi_{in} = A\exp{ikz} \rightarrow \abs{\vb{S}}^2 = A^2 \eeq
+and
+\beq[] \underbrace{\psi_e \approx A \frac{\exp{ikr}}{r}f(\theta,\phi)}_{r\rightarrow \infty}  \rightarrow \mean{\dv{P_e}{\Omega}} = A^2 \abs{f(\theta,\phi)}^2 \eeq
+so our differential cross section is
+\beq[] \dv{\sigma}{\Omega} = \abs{f(\theta,\phi)}^2 \eeq
+and the full cross section is
+\beq[] \sigma = \int \dd{\Omega} \abs{f(\theta,\phi)}^2 \eeq\par
+
+To shed light into some computations, lets calculate \(\abs{f(\theta,\phi)}^2\) recalling \eqref{eq:angularf}:
+\beq[] \abs{f(\theta,\phi)}^2 =  \frac{1}{k^2}\sum_{l}\exp{i\delta_l}(2l+1)\sin\delta_l P_l(\cos\theta)\sum_{l'}\exp{-i\delta_{l'}}(2l'+1)\sin\delta_{l'} P_{l'}(\cos\theta) \eeq
+\beq[] \abs{f(\theta,\phi)}^2 =  \frac{1}{k^2}\sum_{l}\sum_{l'}\exp{i\left(\delta_l-\delta_{l'}\right)}(2l+1)(2l'+1)\sin\delta_l \sin \delta_{l'} P_l(\cos\theta)P_{l'}(\cos\theta) \eeq
+Now we must integrate it to find the cross section \(\sigma\)
+\beq[] \sigma = \int \dd{\Omega} \frac{1}{k^2}\sum_{l}\sum_{l'}\exp{i\left(\delta_l-\delta_{l'}\right)}(2l+1)(2l'+1)\sin\delta_l \sin \delta_{l'} P_l(\cos\theta)P_{l'}(\cos\theta) \eeq
+\beq[] \sigma = \frac{1}{k^2}\sum_{l}\sum_{l'}\exp{i\left(\delta_l-\delta_{l'}\right)}(2l+1)(2l'+1)\sin\delta_l \sin \delta_{l'}\underbrace{ \int \dd{\Omega} P_l(\cos\theta)P_{l'}(\cos\theta)}_{\frac{4\pi}{(2l + 1)}\delta_{ll'}} \eeq
+\beq[] \sigma = \frac{1}{k^2}\sum_{l}(2l+1)^2\sin^2 \delta_l \frac{4\pi}{(2l + 1)} \eeq
+\begin{tcolorbox}[colback=blue!50!white]
+\beq[eq:finalcrosssection] \sigma = \frac{4\pi}{k^2}\sum_{l}(2l+1)\sin^2 \delta_l \eeq
+\end{tcolorbox}
+And this is the final expression for our cross section.\par
+
+\section{Perfectly conducting sphere}
+
+If our object is a perfectly conducting sphere of radius \(a\), then we must impose Dirichlet conditions on \eqref{eq:totalpsi} at \(r=a\). If we do that we find that
+\beq[] \tan\delta_l = \frac{j_l(ka)}{n_l(ka)} \eeq\par
+
+Now is a good place to split our study in two cases:
+\begin{tcolorbox}
+\beq[] \qq{when} ka >> l \qq{} \rightarrow \qq{Mie scattering} \eeq
+\beq[] \qq{when} ka << l \qq{} \rightarrow \qq{Rayleigh scattering} \eeq
+\end{tcolorbox}
+
+\section{Rayleigh scattering}
+
+Using \eqref{eq:krstl} we find that
+\beq[] \tan\delta_l \approx - \frac{(ka)^{2l+1}}{\left[(2l+1)!!\right]^2} << 1 \eeq
+then
+\beq[] \tan\delta_l \approx \delta_l \approx - \frac{(ka)^{2l+1}}{\left[(2l+1)!!\right]^2} \eeq\par
+
+Lets compute the first two \(\delta\)
+\beq[] \delta_0 = -ka \qcomma \delta_1 = -\frac{(ka)^3}{9} \eeq
+Then, since \(\sin \delta_l \approx \delta_l\), the cross section is, up to the second order (\(l=1\)),
+\beq[] \sigma = \underbrace{4\pi a^2}_{l=0} + \underbrace{\frac{4\pi k^4 a}{27}}_{l=1} \eeq\par
+
+If we consider this Rayleigh scattering in the context of electrodynamics, then we must remember that there is no radiation from a monopole, this means that if we had studied this scattering using vector fields, every term relative to \(l=0\) would vanish! So to achieve a proper parallel between the scalar theory and the vector theory, we must, by hand, eliminate the \(l=0\) terms, so the cross section up to the second order (\(l=1\)) of a Rayleigh scattering by a perfectly conductor sphere of radius \(a\) is
+\beq[] \sigma = \frac{4\pi}{27}k^4 a \eeq
+
+\section{Mie scattering}
+
+Using \eqref{eq:krgtl} we find that
+\beq[] \tan \delta_l = \tan\left[-\lr{ka - \frac{l\pi}{2}}\right] \eeq
+so
+\beq[] \delta_l = -\lr{ka - \frac{l\pi}{2}} \eeq
+and since we want to plug this into \eqref{eq:finalcrosssection} we must compute \(\sin^2 \delta_l\)
+\beq[] \sin^2 \delta_l = \sin^2\lr{ka - \frac{l\pi}{2}} =  \eeq
+\beq[] \sin^2\lr{ka - \frac{l\pi}{2}} = \left[\sin (ka) \cos\lr{ \frac{l\pi}{2}} - \sin \lr{\frac{l\pi}{2}}\cos (ka)\right]^2 \eeq
+and recalling that \(l\) is an integer:
+\beq[] \left[\sin (ka) \cos\lr{ \frac{l\pi}{2}} - \sin \lr{\frac{l\pi}{2}}\cos (ka)\right]^2 = \eeq
+\beq[] = \sin^2 (ka) \cos^2 \lr{\frac{l\pi}{2}} + \sin^2 \lr{\frac{l\pi}{2}}\cos^2 (ka) \eeq
+then the cross section becomes
+\beq[eq:sigmastep1] \sigma = \frac{4\pi}{k^2} \{ \sin^2 ka \underbrace{\sum_l (2l+1)\cos^2 \frac{l\pi}{2}}_{\approx \frac{(ka)^2}{2}} + \cos^2 ka \underbrace{\sum_l (2l+1)\sin^2\frac{l\pi}{2}}_{\approx \frac{(ka)^2}{2}} \} \eeq
+the approximations comes from the fact that \(l << ka\), so the max acceptable value for \(l\) is \(ka\), so the sum in \eqref{eq:sigmastep1} is limited to \(l=ka\), thus giving the result
+\beq[] \sigma = 2\pi a^2 \eeq
+
+
+\chapter{Diffraction}
+
+Let the scalar field be \(\psi(\vb{x},t)\) satisfying the Helmholtz wave equation
+\eq{\lr{\laplacian + k^2}\psi(\vb{x})=0}
+and let it have harmonic time dependence \(\exp{-i\omega t}\). Let \(\phi(\vb{x},\vb{x}')\) be a Green function of the Helmholtz wave equation
+\eq{\lr{\laplacian + k^2}\phi(\vb{x},\vb{x}') = -\delta(\vb{x} - \vb{x}')}
+In Green's theorem
+\eq[eq:greenstheorem]{\uint[V] \dd[3]{x'} \left[ f \laplacian{g} - g \laplacian{f}\right] = -\uoint[\del V] \dd{\vb{S'}} \left[ f \grad{g} - g\grad{f}\right]}
+by letting \(f = \phi(\vb{x},\vb{x}')\) and \(g = \psi(\vb{x}')\) we find that
+\eq{\psi(\vb{x}) = \uoint[\del V] \dd{S'} \left[ \psi(\vb{x}')\vu{n}'\cdot \grad_{x'}\phi - \phi \vu{n}'\cdot \grad_{x'}{\psi} \right] }
+where \(\vu{n}'\) is an inwardly directed normal to the surface \(\del V \equiv S\).\par
+
+Let
+\eq{\phi(\vb{x},\vb{x}') = \frac{\exp{ikR}}{4\pi R} }
+where \(\vb{R} = \vb{x}-\vb{x}'\) and
+\eq{\psi \rightarrow f(\theta,\phi) \frac{\exp{ikr}}{r} \qcomma \frac{1}{\psi}\pdv{\psi}{r} \rightarrow \lr{ik - \frac{1}{r}}}\par
+
+In the context of diffraction, let \(S = S_1 + S_2\), where \(S_1\) is the surface containing the screen and its apertures and \(S_2\) is the surface that goes to infinity. Given the nature of \(\psi\) at \(S\) its easy to see that the integral over \(S_2\) won't contribute to \(\psi(\vb{x})\). Given this, the resulting integral is called \emph{Kirchhoff integral} and reads
+\eq{\psi(\vb{x}) = -\frac{1}{4\pi}\uint[S_1] \dd{S} \frac{\exp{ikR}}{R}\vu{n}'\cdot \left[  \grad'\psi + ik\lr{1 + \frac{i}{kR}}\frac{\vb{R}}{R}\psi   \right]}
+To compute such integral its necessary to know \(\psi\) and \(\pdv*{\psi}{n}\) on the surface \(S_1\). The \emph{Kirchhoff approximation} consists of the assumptions:
+\begin{enumerate}
+	\item \(\psi\) and \(\pdv*{\psi}{n}\) vanish everywhere on \(S_1\) except at the apertures.
+	\item The values of \(\psi\) and \(\pdv*{\psi}{n}\) at the apertures are equal to the values of the incident wave in the absence of any screen or obstacles.
+\end{enumerate}\par
+Now the field can be written, for a spherical incident wave, in the common form
+\eq{\psi(\vb{R}) = -\frac{ik}{4\pi}A\uint[S_0] \dd{S'} \frac{\exp{ik(R+R_s)}}{RR_s}\vu{n}'\lr{\vu{R}+\vu{R}_s}}
+where \(S_0\) are the apertures, and \(\vb{R}_s\) is the position of the source of the incident field.\par
+
+Lets assume that the apertures lie on the \(z=0\) plane, then \(\vu{n}'=\vu{z}\). Let the incident be a plane wave along \(\vu{z}\) such that
+\eq{\frac{\exp{ikR}}{R} \rightarrow \exp{ikz} \rightarrow 1 \qq{at the apertures}}
+and since the source of a plane wave along \(\vu{z}\) can be considered to be parallel to the \(z=0\) plane, we can write
+\eq{\theta_s = 0 \rightarrow \vu{R}_s = \vu{z}}
+Lets look for the field \(\psi(\vb{x})\) only at large \(z\), meaning
+\eq{\theta = 0 \rightarrow \vu{R} = \vu{z}}
+The consequence of such approximations is the so called \emph{Diffraction integral} or \emph{Kirchhoff integral}
+\begin{tcolorbox}
+\eq{\psi(\vb{x}) &= -\frac{ikA}{2\pi} \uint[S_0] \dd{S'} \frac{\exp{ikR}}{R} }
+\end{tcolorbox}
+Now let the apertures be small, meaning \(x',y' \ll z\), which implies
+\eq{R = \abs{\vb{x}-\vb{x}'} = \sqrt{(x-x')^2 + (y-y')^2 + z^2} \cong z\lr{1 + \hlf \frac{\lr{\vb{x}_{\perp} - \vb{x}_{\perp}'}^2}{z^2} + \cdots}}
+where \(\vb{x}_{\perp} = (x,y,0)\) and \(\vb{x}_{\perp}' = (x',y',0)\). Then we have
+\eq{\psi(\vb{x}) &= -\frac{ikA}{2\pi} \uint[S_0] \dd{S'} \frac{\exp{ikR}}{R} \\
+&= -\frac{ikA}{2\pi} \uint[S_0] \dd{\vb{x}_{\perp}'} \frac{\lexp{ik\lr{z + \hlf \frac{\lr{\vb{x}_{\perp} - \vb{x}_{\perp}'}^2}{z} + \cdots}}}{z + \cdots} \\
+&= -\frac{ikA}{2\pi}\frac{\exp{ikz}}{z} \uint[S_0]\dd{\vb{x}_{\perp}'} \lexp{ \frac{ik}{2z}\lr{\vb{x}_{\perp} + \vb{x_{\perp}'}  }^2}}
+and we'll usually look to the field on the \(z=z_0\) plane, so
+\eq[eq:almostfresnel]{\psi(x,y,z_0) = -\frac{ikA}{2\pi}\frac{\exp{ikz_0}}{z_0} \uint[S_0]\dd{\vb{x}_{\perp}'} \lexp{ \frac{ik}{2z_0}\lr{\vb{x}_{\perp} + \vb{x_{\perp}'}  }^2}}\par
+
+\section{Fresnel diffraction}
+
+In the case of the apertures having cartesian symmetry, its useful to write \(\lr{\vb{x}_{\perp} + \vb{x_{\perp}'}}^2 = (x-x')^2 + (y-y')^2\), with \(x'\) going from \(x^{-}\) to \(x^{+}\), and \(y'\) going from \(y^{-}\) to \(y^{+}\), meaning
+\eq{\psi(x,y,z_0) = -\frac{ikA}{2\pi}\frac{\exp{ikz_0}}{z_0} \int_{x^{-}}^{x^{+}} \dd{x'}\lexp{\frac{ik}{2z_0}\lr{x'-x}^2} \int_{y^{-}}^{y^{+}} \dd{y'}\lexp{\frac{ik}{2z_0}\lr{y'-y}^2}}
+Letting
+\eq{\frac{k}{2z_0}\lr{x'-x}^2 = \frac{\pi}{2}\tau_x'^2 \qq{with} \dd{x'}=\sqrt{\frac{z_0\pi}{k}}\dd{\tau_x'}}
+\eq{\sqrt{\frac{k}{z_0\pi}}\lr{x^{+}-x} \equiv u_x^{+} }
+\eq{\sqrt{\frac{k}{z_0\pi}}\lr{x^{-}-x} \equiv u_x^{-} }
+and the same for \(y'\), then we can write the field as
+\eq{\psi(x,y,z_0) = -\frac{ikA}{2\pi} \frac{\exp{ikz_0}}{z_0}\frac{z_0\pi}{k} \int_{u_x^{-}}^{u_x^{+}} \dd{\tau_x'}\lexp{i\frac{\pi}{2}\tau_x'^2} \int_{u_y^{-}}^{u_y^{+}} \dd{\tau_y'}\lexp{i\frac{\pi}{2}\tau_y'^2}     }
+
+\subsubsection{Cornu function}
+
+The Cornu function is
+\eq{F(u) = \int_0^u \dd{\tau} \lexp{i\frac{\pi}{2}\tau^2} = \mc{C}(u) + i \mc{S}(u)}
+where \(\mc{C}(u)\) is \emph{Fresnel's cossine}, and \(\mc{S}(u)\) is \emph{Fresnel's sine}, both are odd functions, meaning \(F(-u) = -F(u)\).\par
+
+The assymptotic limits are
+\eq{\mc{C}(u) \rightarrow u + \mc{O}(u^5) \qq{as} u\rightarrow 0}
+\eq{\mc{S}(u) \rightarrow \frac{\pi}{6}u^3 + \mc{O}(u^5) \qq{as} u\rightarrow 0}
+\eq{F(u) \rightarrow u + i\frac{\pi}{6}u^3 + \mc{O}(u^5) \qq{as} u\rightarrow 0}
+and
+\eq{F(u)\rightarrow \hlf (1+i) - \frac{i}{\pi u} \exp{i\frac{\pi}{2}u^2} \qq{as} u \rightarrow \infty}\par
+
+With the Cornu function we can easily write the field \(\psi(x,y,z_0)\) as
+\eq{\psi(x,y,z_0) = -\frac{ikA}{2\pi} \frac{\exp{ikz_0}}{z_0}\frac{z_0\pi}{k} \left[F(u_x^{+}) - F(u_x^{-})\right]\left[F(u_y^{+}) - F(u_y^{-})\right]  }
+To further simplify our expression for the field, we write
+\eq{ u_x^{\pm} = -u_x + \Delta u_x^{\pm} \qq{with} u_x \equiv \sqrt{\frac{k}{z_0 \pi}}x  \qq{and} \Delta u_x^{\pm} \equiv \sqrt{\frac{k}{z_0 \pi}}x^{\pm} }
+and the same for \(y\), meaning
+\eq{\psi(x,y,z_0) = -\frac{ikA}{2\pi} \frac{\exp{ikz_0}}{z_0}\frac{z_0\pi}{k}&\cross\\
+[F(u_x-\Delta u_x^{-}) &- F(u_x - \Delta u_x^{+})]\\
+&[F(u_y - \Delta u_y^{-}) - F(u_y - \Delta u_y^{+})]}
+
+\section{Fraunhofer diffraction}
+
+If we expand the expoent in \eqref{eq:almostfresnel} we find
+\eq{\psi(\vb{x})= -\frac{ikA}{2\pi}\frac{\lexp{ik\lr{z + \frac{x_{\perp}^2}{z}}}}{z} \uint[S_0]\dd{\vb{x}_{\perp}'} \lexp{ \frac{ik}{2z}\lr{x_{\perp}'^2 - 2\vb{x}_{\perp}\cdot \vb{x}_{\perp}'}}	}
+The Fraunhofer limit consists in assuming \(\abs{\vb{x}_{\perp}'}^2 \ll \abs{\vb{x}_{\perp}\cdot \vb{x}_{\perp}'}\), which leads to
+\eq{\psi(\vb{x}) = -\frac{ikA}{2\pi}\frac{\lexp{ik\lr{z + x_{\perp}^2/z}}}{z} \uint[S_0]\dd{\vb{x}_{\perp}'} \lexp{- \frac{ik}{z}\lr{\vb{x}_{\perp}\cdot \vb{x}_{\perp}'}}	}
+and letting \(\vb{q} = \frac{k}{z}\vb{x}_{\perp}\)
+we can write
+\begin{tcolorbox} \eq{\psi(\vb{x}) = -\frac{ikA}{2\pi}\frac{\lexp{ik\lr{z + x_{\perp}^2/z}}}{z} \uint[S_0]\dd{\vb{x}_{\perp}'} \exp{- i \vb{q}\cdot \vb{x}_{\perp}'}} \end{tcolorbox}
+\noindent which is the diffraction integral considering the so called \emph{Fraunhofer approximation}.\par
+
+Of course, since in the Fresnel diffraction we didn't use the Fraunhofer limit, Fraunhofer diffraction has to be contained in Fresnel diffraction. To verify this, we must understand a bit more about the Fraunhofer limit.\par
+
+In the case of the apertures having cartesian symmetry we can expand the Fraunhofer limit as
+\eq{x'^2 + y'^2 \ll \abs{xx' + yy'}}
+then
+\eq{x'^2 + y'^2 \ll \abs{xx' + yy'} < \abs{xx'} + \abs{yy'}}
+This inequality has to hold for all \(x\) and \(y\), so we must ensure the inequality for each component, meaning
+\eq{x'^2 \ll \abs{xx'} \qq{and} y'^2 \ll \abs{yy'}}
+which implies
+\eq{\abs{x'} \ll \abs{x} \qq{and} \abs{y'} \ll \abs{y}}
+then
+\eq{\abs{x'^{+}},\abs{x'^{-}} \ll \abs{x} \qq{and} \abs{y'^{+}},\abs{y'^{-}} \ll \abs{y}}
+So the Fraunhofer limit consists in looking for the field only far away from the aperture area.\par
+
+To conclude, upon the Fraunhofer limit the argument of the Cornu function is huge, so the assymptotic limit \(u\rightarrow \infty\) is aplicable.\par
+
+
+
+
+
+
+
+
+
+
+
+
+\backmatter
+
+% \printbib{References}
+
+\end{document}

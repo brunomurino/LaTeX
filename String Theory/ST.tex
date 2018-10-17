@@ -1,0 +1,45 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{../mypreamble}
+% \usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{../mycommands}
+\usepackage{../mytheme1}
+
+% \addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter \pagestyle{empty}
+
+\import{String Theory/}{ST_titlepage.tex}
+
+\begin{bookabstract}
+In this report I'll be addressing mostly the introductory concepts of String Theory and by the end I'll make some generalisations and introduce some new important concepts.
+\end{bookabstract}
+
+\centeredtoc
+
+\mainmatter \pagestyle{mypage2} \normalfont
+
+\import{String Theory/}{ST_chap01}
+
+\import{String Theory/}{ST_chap02}
+
+\import{String Theory/}{ST_chap03}
+
+\import{String Theory/}{ST_chap04}
+
+\backmatter %%%%%%%%%%%%%%%%%%%
+
+% \nocite{*}
+% \printbibliography[title={\texorpdfstring{\hfil \hfil \hfil \textsc{\textbf{References}}}{References}}] \addcontentsline{toc}{chapter}{\textsc{References}}
+
+\end{document}

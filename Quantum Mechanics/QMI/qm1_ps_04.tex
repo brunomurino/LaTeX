@@ -1,0 +1,340 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics I \\ Problem Set 04} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\import{../}{usefulequations}
+
+\chapter*{1.}
+
+The free particle Hamiltonian is
+\begin{equation}
+    H = \frac{p^2}{2m},
+\end{equation}
+thus the time evolution operator \(U\) is
+\begin{equation}
+    U(t) = \lexp\left(\frac{-itp^2}{2m}\right)
+\end{equation}
+and the propagator is
+\begin{equation}
+    J(x,t;x',0) = \mel{x}{U(t)}{x'} = \mel{x}{\lexp\left(\frac{-itp^2}{2m}\right)}{x'}.
+\end{equation}
+Let's compute the propagator:
+\begin{equation}
+\begin{split}
+    J(x,t;x',0) &= \int_{-\infty}^{\infty}\dd{p} \bra{x} \lexp\left(\frac{-itp^2}{2m}\right) \ket{p}\braket{p}{x'} \\
+    &=\int_{-\infty}^{\infty}\dd{p} \lexp\left(\frac{-itp^2}{2m}\right) \braket{x}{p} \braket{p}{x'} \\
+    &= \int_{-\infty}^{\infty}\dd{p} \lexp\left(\frac{-itp^2}{2m}\right) (2\pi)^{-1/2} \lexp(ipx) (2\pi)^{-1/2} \lexp(-ipx') \\
+    &= \frac{1}{2\pi} \int_{-\infty}^{\infty}\dd{p} \lexp\left( \frac{-itp^2}{2m} + ip(x-x')\right) \\
+    &= \frac{1}{2\pi} \int_{-\infty}^{\infty}\dd{p} \lexp\left( -ap^2 + bp\right) \\
+    &= \frac{1}{2\pi} \sqrt{\frac{\pi}{a}}\lexp\left(\frac{b^2}{4a}\right) = \frac{1}{\sqrt{4\pi a}}\lexp\left(\frac{b^2}{4a}\right)
+\end{split}
+\end{equation}
+where
+\begin{equation}
+    a = \frac{it}{2m} \qand b=i(x-x').
+\end{equation}
+This means that
+\begin{equation}
+    J(x,t;x',0) = \sqrt{\frac{m}{2\pi i t}} \lexp\left(-\frac{m}{2it}(x-x')^2  \right),
+\end{equation}
+or simply
+\begin{equation}
+    J(x,t;x',0) = \frac{1}{\sqrt{4\pi a}}\lexp\left(-\frac{(x-x')^2}{4a}\right).
+\end{equation}
+
+Then, if
+\begin{equation}
+    \varphi(x',0) = \frac{\sqrt{\sigma}}{\pi^{1/4}} \lexp\left( ikx' - \hlf \sigma^2 x'^2\right),
+\end{equation}
+we know that
+\begin{equation}
+\begin{split}
+    \varphi(x,t) &= \int_{-\infty}^\infty \dd{x'} J(x,t;x',0) \varphi(x',0) \\
+    &= \sqrt{\frac{\sigma}{4\pi a \sqrt{\pi}}}\int_{-\infty}^\infty \dd{x'} \lexp\left(-\frac{(x-x')^2}{4a}+ ikx' - \hlf \sigma^2 x'^2\right) \\
+    &= \sqrt{\frac{\sigma}{4\pi a \sqrt{\pi}}} \lexp\left(-\frac{x^2}{4a} \right) \int_{-\infty}^\infty \dd{x'} \lexp\left( -\left(\frac{\sigma^2}{2}+\frac{1}{4a}\right) x'^2 + \left(\frac{x}{2a} + ik\right)x'\right) \\
+    &= \sqrt{\frac{\sigma}{4\pi a \sqrt{\pi}}}  \lexp\left(-\frac{x^2}{4a} \right) \int_{-\infty}^\infty \dd{x'} \exp{-Ax'^2+Bx'} \\
+    &= \sqrt{\frac{\sigma}{4aA \sqrt{\pi}}} \lexp\left(-\frac{x^2}{4a} \right) \lexp\left( \frac{B^2}{4A}\right) \\
+    &= \sqrt{\frac{\sigma}{4aA \sqrt{\pi}}} \lexp\left(\frac{-4aAx^2 +x^2 + 4ikax - 4k^2a^2}{16a^2A}\right) \\
+    &= \sqrt{\frac{\sigma}{4aA \sqrt{\pi}}} \lexp\left(\frac{k^2}{4A}\right) \lexp\left(  -\frac{(4aA-1)}{4a(4aA)}x^2 + \frac{(ik)}{4aA}x   \right) \\
+    &= K\lexp\left(  \frac{1}{4aA}\Big(ikx - \frac{\sigma^2}{2}x^2\Big)   \right),
+\end{split}
+\end{equation}
+with
+\begin{equation}
+    A = \frac{\sigma^2}{2}+\frac{1}{4a} \qc K = \sqrt{\frac{\sigma}{4aA \sqrt{\pi}}}\lexp\left(\frac{k^2}{4A}\right) \qand a = \frac{it}{2m}.
+\end{equation}
+
+
+Let's now compute \(\Delta^2 x(t)\) and \(\Delta^2 p(t)\). Since we'll need, lets state \(\varphi^*(x,t)\)
+\begin{equation}
+    \varphi^*(x,t) = K^*\lexp\left(  \frac{1}{4a^*A^*}\Big(-ikx - \frac{\sigma^2}{2}x^2\Big)   \right)
+\end{equation}
+and the product \(\varphi^*(x,t)\varphi(x,t)\)
+\begin{equation}
+    \varphi^*(x,t)\varphi(x,t) = \abs{K}^2 \lexp\left[-Hx^2 + G x \right]
+\end{equation}
+where
+\begin{equation}
+    H =  \frac{\sigma^2}{1-4a^2 \sigma^4} \qand G =  \frac{ik4a\sigma^2}{4a^2\sigma^4 - 1} = -ik4a H = b H \qq{with} b= -ik4a,
+\end{equation}
+and since this is a normalised state we know that
+\begin{equation}
+    \abs{K}^2 \sqrt{\frac{\pi}{H}}\exp{G^2/4H} = 1.
+\end{equation}
+
+
+Since
+\begin{equation}
+    \Delta^2 x(t) = \ev{x^2} - \ev{x}^2,
+\end{equation}
+let's compute \(\ev{x}\)
+\begin{equation}
+\begin{split}
+    \ev{x} &= \int_{-\infty}^\infty \dd{x} x\varphi^*(x,t)\varphi(x,t) \\
+    &= \abs{K}^2\int_{-\infty}^\infty \dd{x} x \lexp\left[-Hx^2 + G x \right] \\
+    &= \abs{K}^2 \frac{G}{2H} \sqrt{\frac{\pi}{H}} \lexp\left(\frac{G^2}{4H}\right) \\
+    &= \frac{G}{2H} = \frac{b}{2} = -ik2a = \frac{tk}{m}
+\end{split}
+\end{equation}
+then \(\ev{x}^2\)
+\begin{equation}
+    \ev{x}^2 = \frac{t^2k^2}{m^2}
+\end{equation}
+
+
+Let's compute \(\ev{x^2}\)
+\begin{equation}
+\begin{split}
+    \ev{x^2} &= \int_{-\infty}^\infty \dd{x} x^2\varphi^*(x,t)\varphi(x,t) \\
+    &= \abs{K}^2\int_{-\infty}^\infty \dd{x} x^2 \lexp\left[-Hx^2 + G x \right] \\
+    &= \abs{K}^2 \frac{2H+G^2}{4H^2} \sqrt{\frac{\pi}{H}} \lexp\left(\frac{G^2}{4H}\right) \\
+    &= \frac{2+b^2H}{4H} = \frac{1}{2H} + \frac{b^2}{4} = \frac{1-4a^2\sigma^4}{2\sigma^2} - k^24a^2 \\
+    &= \frac{1}{2\sigma^2} + (\sigma^2 + 2 k^2)\frac{t^2}{2m^2} \\
+    &= \frac{1}{2\sigma^2} + \frac{\sigma^2t^2}{2m^2} + \frac{t^2k^2}{m^2} 
+\end{split}
+\end{equation}
+Then \(\Delta^2 x(t)\) is
+\begin{equation}
+\begin{split}
+    \Delta^2 x(t) &= \frac{1}{2\sigma^2} + \frac{\sigma^2t^2}{2m^2}
+\end{split}
+\end{equation}
+
+
+Since we'll need, let's compute
+\begin{equation}
+    \pdv{\varphi}{x} =  \frac{(ik - \sigma^2 x)}{4aA}\varphi
+\end{equation}
+and
+\begin{equation}
+    \pdv[2]{\varphi}{x} = \pdv{x} \left( \varphi \frac{(ik - \sigma^2 x)}{4aA} \right) = \Big[\sigma^4x^2 - 2ik\sigma^2 x - \left( k^2 + 4aA\sigma^2 \right) \Big] \frac{\varphi}{(4aA)^2}.
+\end{equation}
+
+Let's compute
+\begin{equation}
+\begin{split}
+    \ev{p} &= -i\int_{-\infty}^\infty \dd{x} \varphi^* \pdv{\varphi}{x} \\
+    &= -i\int_{-\infty}^\infty \dd{x}  \frac{(ik - \sigma^2 x)}{4aA}\varphi^*\varphi \\
+    &= \frac{k}{4aA} \int_{-\infty}^\infty \varphi^*\varphi + \frac{i\sigma^2}{4aA} \int_{-\infty}^\infty x \varphi^*\varphi \\
+    &= \frac{k}{4aA} + \frac{i\sigma^2}{4aA} \ev{x} \\
+    &= k \left( \frac{2a\sigma^2+1}{4aA} \right) \\
+    &= k.
+\end{split}
+\end{equation}
+Let's compute
+\begin{equation}
+\begin{split}
+    \ev{p^2} &= - \int_{-\infty}^\infty \varphi^* \pdv[2]{\varphi}{x} \\
+    &= +\frac{(k^2 + 4aA\sigma^2)}{(4aA)^2}\ev{1} +\frac{2ik\sigma^2}{(4aA)^2} \ev{x} - \frac{\sigma^4}{(4aA)^2} \ev{x^2} \\
+    &= +\frac{(k^2 + 4aA\sigma^2)}{(4aA)^2} + \frac{2ik\sigma^2}{(4aA)^2} \frac{tk}{m} - \frac{\sigma^4}{(4aA)^2} \left( \frac{1}{2\sigma^2} + \frac{\sigma^2t^2}{2m^2} + \frac{t^2k^2}{m^2} \right) \\
+    &= \frac{1}{(4aA)^2}\left[\frac{\sigma^2}{2}+k^2 + \frac{2it\sigma^2}{m}(\frac{\sigma^2}{2} + k^2) - \frac{\sigma^4 t^2}{m^2} (\frac{\sigma^2}{2}+k^2) \right] \\
+    &= \frac{(\frac{\sigma^2}{2}+k^2)}{(4aA)^2} \left[ 1 + \frac{2it\sigma^2}{m} - \frac{\sigma^4t^2}{m^2} \right] = \frac{\sigma^2}{2}+k^2.
+\end{split}
+\end{equation}
+We then find that
+\begin{equation}
+    \Delta^2p(t) = \frac{\sigma^2}{2}+k^2 - k^2 = \frac{\sigma^2}{2}.
+\end{equation}
+Computing the product \(\Delta^2x(t)\Delta^2p(t)\) we obtain
+\begin{equation}
+    \Delta^2x(t)\Delta^2p(t) = \frac{1}{4} + \frac{\sigma^4 t^2}{4m^2},
+\end{equation}
+which satisfies the uncertainty principle
+\begin{equation}
+    \Delta^2x(t)\Delta^2p(t) \geq \frac{1}{4},
+\end{equation}
+with the equality holding when \(t=0\).
+
+
+
+
+
+
+
+
+
+
+\chapter*{2.}
+
+Let a particle be subjected to the potential \(V(X)\)
+\begin{equation}
+    V(X) = \hlf m\omega^2 X^2.
+\end{equation}
+Then, the full Hamiltonian is
+\begin{equation}
+    H = \frac{P^2}{2m} + \frac{m\omega^2X^2}{2},
+\end{equation}
+i.e. we have an harmonic oscillator. In what follows we will use the nondimensionalised harmonic oscillator equations and operators by means of the transformation
+\begin{equation}
+    x = \sqrt{m\omega}X \qand p = \frac{1}{\sqrt{m\omega}}P,
+\end{equation}
+meaning that we now write
+\begin{equation}
+    H = \frac{\omega}{2}(p^2 + x^2)
+\end{equation}
+
+We already know the solution to the harmonic oscillator: we can write
+\begin{equation}
+    H = \omega(N+\hlf),
+\end{equation}
+where \(N\) is the number operator, the eigenkets are \(\ket{n}\) with \(N\ket{n}=n\ket{n}\) and also
+\begin{equation}\label{eq:braketxn}
+    \braket{x}{n} = \frac{\pi^{-1/4}}{\sqrt{2^n n!}} \lexp\left(-\frac{x^2}{2}\right)H_n(x),
+\end{equation}
+and by the symmetry of the Hamiltonian
+\begin{equation}
+    \braket{p}{n} = \frac{\pi^{-1/4}}{\sqrt{2^n n!}} \lexp\left(-\frac{p^2}{2}\right)H_n(p),
+\end{equation}
+where \(H_n(x)\) are the Hermite polynomials.
+
+In the next questions we will use the following property of the Hermite polynomials
+\begin{equation}\label{eq:hermiteprop}
+\begin{split}
+    \sum_{n=0}^\infty \left(\frac{\rho}{2}\right)^n \frac{1}{n!} \lexp\left(-\frac{(x^2 + x'^2)}{2}\right) &H_n(x) H_n(x') =\\ 
+    &\frac{\rho^{-1/2}}{\sqrt{\rho^{-1}-\rho}} \lexp\left(  \frac{4xx' - (\rho^{-1}+\rho)(x^2 + x'^2)}{2(\rho^{-1}-\rho)} \right).
+\end{split}
+\end{equation}
+
+
+\section*{(a)}
+
+Let's compute \(\mel{x}{U(t,0)}{x'}\). Let's insert the completeness relation in the \(\ket{n}\) basis
+\begin{equation}\label{eq:propn1}
+    \mel{x}{U(t,0)}{x'} = \sum_{n=0}^\infty \mel{x}{U}{n}\braket{n}{x'}.
+\end{equation}
+Since \(H = \omega(N+\hlf)\) we know that
+\begin{equation}
+    U = \lexp\left( -itH\right) = \lexp\left( -\frac{i\omega t}{2}\right)\lexp\left(-i\omega t N\right),
+\end{equation}
+and consequentially
+\begin{equation}\label{eq:uketn}
+    U\ket{n} = \lexp\left( -\frac{i\omega t}{2}\right)\exp{-i\omega t n}\ket{n}.
+\end{equation}
+Plugging \eqref{eq:uketn} onto \eqref{eq:propn1} we find that
+\begin{equation}
+    \mel{x}{U(t,0)}{x'} = \lexp\left( -\frac{i\omega t}{2}\right) \sum_{n=0}^\infty \exp{-i\omega t n} \braket{x}{n}\braket{n}{x'}.
+\end{equation}
+Plugging \eqref{eq:braketxn} we then obtain
+\begin{equation}
+    \mel{x}{U(t,0)}{x'} = \frac{\exp{-\frac{-i\omega t}{2}}}{\sqrt{\pi}} \sum_{n=0}^\infty \left(\frac{\exp{i\omega t}}{2} \right)^n \frac{1}{n!}\lexp\left(-\frac{(x^2 + x'^2)}{2}\right) H_n(x) H_n(x'),
+\end{equation}
+and identifying \(\rho = \exp{i\omega t}\) on \eqref{eq:hermiteprop} we find that
+\begin{equation}
+    \mel{x}{U(t,0)}{x'} = \frac{\exp{-\frac{-i\omega t}{2}}}{\sqrt{\pi}} \frac{\rho^{-1/2}}{\sqrt{\rho^{-1}-\rho}} \lexp\left(  \frac{4xx' - (\rho^{-1}+\rho)(x^2 + x'^2)}{2(\rho^{-1}-\rho)} \right),
+\end{equation}
+and we can see that
+\begin{equation}
+    \rho^{-1/2} = \exp{\frac{i\omega t}{2}},
+\end{equation}
+\begin{equation}
+    \rho^{-1}-\rho = 2i \sin(\omega t),
+\end{equation}
+and
+\begin{equation}
+    \rho^{-1}+\rho = 2 \cos(\omega t),
+\end{equation}
+which leads to the following result
+\begin{equation}\label{eq:xprop}
+    \mel{x}{U(t,0)}{x'} = \frac{1}{\sqrt{2\pi i \sin(\omega t)}}\lexp\left\{\frac{i}{2\sin(\omega t)}\Big(\cos(\omega t)(x^2 + x'^2) - 2xx'\Big) \right\}.
+\end{equation}
+
+\section*{(b)}
+Let's compute \(\mel{x}{U(t,0)}{p}\). If we insert the completeness relation in the \(\ket{x'}\) basis we find that
+\begin{equation}
+    \mel{x}{U(t,0)}{p} = \int_{-\infty}^\infty \dd{x'} \mel{x}{U(t,0)}{x'} \braket{x'}{p},
+\end{equation}
+then, since we know \(\mel{x}{U(t,0)}{x'}\) and that
+\begin{equation}
+    \braket{x'}{p} = (2\pi)^{-1/2} \exp{ipx'},
+\end{equation}
+we know that
+\begin{equation}
+    \mel{x}{U(t,0)}{p} = \frac{\lexp\left( \frac{ix^2}{2\tan(\omega t)}\right)}{2\pi \sqrt{i\sin(\omega t)}} \int_{-\infty}^\infty \lexp\left[  \frac{ix'^2}{2\tan(\omega t)} - \frac{xx'}{\sin(\omega t)} + ipx' \right],
+\end{equation}
+which we can write as
+\begin{equation}
+    \mel{x}{U(t,0)}{p} = \frac{\lexp\left( \frac{ix^2}{2\tan(\omega t)}\right)}{2\pi \sqrt{i\sin(\omega t)}} \int_{-\infty}^\infty \lexp\left[  -ax'^2 + b x' \right]
+\end{equation}
+with
+\begin{equation}
+    a = \frac{1}{2i\tan(\omega t)} \qand b = ip - \frac{x}{\sin(\omega t)}.
+\end{equation}
+We compute the integral above and find that
+\begin{equation}\label{eq:gausstrans}
+    \int_{-\infty}^\infty \lexp\left[  -ax'^2 + b x' \right] = \frac{\sqrt{\pi}}{\sqrt{a}}\lexp\left[ \frac{b^2}{4a} \right].
+\end{equation}
+which gives us
+\begin{equation}
+    \int_{-\infty}^\infty \lexp\left[  -ax'^2 + b x' \right] = \sqrt{2\pi i \tan(\omega t)}\lexp\left[ -8i\tan(\omega t)p^2 + \frac{16px}{\cos(\omega t)} + \frac{8ix^2}{\sin(\omega t)\cos(\omega t)} \right],
+\end{equation}
+and then
+\begin{equation}
+    \mel{x}{U(t,0)}{p} = 
+    \frac{\lexp\left( \frac{ix^2}{2\tan(\omega t)} -8i\tan(\omega t)p^2 + \frac{16px}{\cos(\omega t)} + \frac{8ix^2}{\sin(\omega t)\cos(\omega t)}\right)}{ \sqrt{2\pi \cos(\omega t)}}
+\end{equation}
+which can be best written as
+\begin{equation}
+    \mel{x}{U(t,0)}{p} = 
+    \frac{\exp{  -8i\tan(\omega t)p^2 }}{ \sqrt{2\pi \cos(\omega t)}} 
+    \lexp\left[-\left( \frac{\cos^2(\omega t)+16}{2i\sin(\omega t)\cos(\omega t)} \right)x^2 + \left(\frac{16p}{\cos(\omega t)}\right)x \right].
+\end{equation}
+
+\section*{(c)}
+
+Let's compute \(\mel{p}{U(t,0)}{p'}\). If we insert a completeness relation in the \(\ket{n}\) basis  we find that
+\begin{equation}
+    \mel{p}{U(t,0)}{p'} = \sum_{n=0}^\infty \mel{p}{U}{n}\braket{n}{p'}.
+\end{equation}
+Since \(\braket{x}{n}\) and \(\braket{p}{n}\) are identical up to the substitution \(x\to p\), we can simply make the substitution on \eqref{eq:xprop} to find that
+\begin{equation}
+    \mel{p}{U(t,0)}{p'} o= \frac{1}{\sqrt{2\pi i \sin(\omega t)}}\lexp\left\{\frac{i}{2\sin(\omega t)}\Big(\cos(\omega t)(p^2 + p'^2) - 2pp'\Big) \right\}.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

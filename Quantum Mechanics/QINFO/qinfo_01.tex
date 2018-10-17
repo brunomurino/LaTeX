@@ -1,0 +1,177 @@
+\documentclass{../_mypackages/monograph}
+
+\title{Quantum Information} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter{Introduction}
+\minitoc
+
+The first postulate of quantum mechanics is usually stated as: To any physical system we can associate a Hilbert space such that the state of the system at an given instant can be described by a vector in this space.
+
+We call each vector on the Hilbert space a \emph{pure state}. However, our full system may be an \emph{ensemble of pure states}, denoted by \(\set{q_i, \ket{\psi_i}}\), such that to each pure state \(\ket{\psi_i}\in\mathscr{H}\) we assign a fraction \(q_i\in[0,1]\) of the system. Of course \(\sum_i q_i = 1\), otherwise some part of the system would be missing.
+
+Contrary to the first formulation of quantum mechanics, \emph{we can't fully describe our system by its states}, thus we need a \emph{new} object, more powerful than the states, we need an object that comprises both the information about the states \(\ket{\psi_i}\) and the fractions \(q_i\) at the same time. This object can't simply be a number or a vector, because if it was, it wouldn't carry much information or it would be a linear combination of states, thus a state. Therefore this object must be an operator, i.e. a matrix. Since the new object will contain information about the fraction of each pure state on the system, we will call it the \emph{density operator} or \emph{density matrix}.
+
+\section{Motivations for the definition of the density matrix}
+ 
+Given an ensemble of pure states \(\set{q_i, \ket{\psi_i}}\), the expected value of an observable \(A\) should be the weighted average over the expected values for each pure state \(\psi_i\) and the weights should be the \(q_i\). This all is translated as
+\begin{equation}
+    \expval{A} = \sum_i q_i \ev{A}{\psi_i}.
+\end{equation}
+
+Recalling some properties of the \emph{trace}, we conclude that we can write
+\begin{equation}
+    \ev{A}{\psi_i} = \Tr \left[A \ketbra{\psi_i} \right],
+\end{equation}
+and since the trace is a linear operator, we find that
+\begin{equation}
+    \expval{A} = \Tr\Bigg\{A\left(\sum_i q_i \ketbra{\psi_i} \right) \Bigg\} = \Tr(A\rho).
+\end{equation}
+\begin{mybox}
+Since
+\begin{equation}
+    \rho = \sum_i q_i \ketbra{\psi_i},
+\end{equation}
+is, in fact, an operator, and also contains every information about the ensemble of pure states \(\set{q_i, \ket{\psi_i}}\), we recognise it as the desired density matrix.
+\end{mybox}
+
+\section{Properties of the density matrix}
+
+From the definition of \(\rho\) we readily find that it is an Hermitian operator. Recalling that \(q_i\in[0,1]\) is a real number, we indeed find that
+\begin{equation}
+    \rho^\dagger = \sum_i q_i^\dagger \left(\ketbra{\psi_i}\right)^\dagger = \sum_i q_i^\dagger \bra{\psi_i}^\dagger \ket{\psi_i}^\dagger = \sum_i q_i \ketbra{\psi_i} = \rho.
+\end{equation}
+Being Hermitian, we know that it has non-negative eigenvalues, and that eigenvectors associated with different eigenvalues are orthogonal.
+Also, we find that \(\rho\) is \emph{positive semi-definite}:
+\begin{equation}
+    \ev{\rho}{\phi} = \sum_i q_i \abs{\braket{\phi}{\psi_i}}^2 \geq 0,
+\end{equation}
+where \(\ket{phi}\) is an arbitrary state, which means that the diagonal entries of \(\rho\) are \emph{always positive, no matter which basis you use}.
+Another important property of \(\rho\) is that its trace is \(1\), which is quite trivial to see if you remember that
+\begin{equation}
+    \Tr(\ketbra{\psi}{\phi}) = \braket{\phi}{\psi} \qq{and that} \sum_i q_i = 1.
+\end{equation}
+Indeed, computing \(\Tr(\rho)\) we find that
+\begin{equation}
+    \Tr(\rho) = \sum_i q_i \Tr\left(\ketbra{\psi_i} \right) = \sum_i q_i \braket{\psi_i} = \sum_i q_i = 1
+\end{equation}
+Since \(\rho\) is Hermitian and \(\Tr(\rho)=1\), we know that the sum of its eigenvalues \(p_i\), which are always non-negative, is also \(1\), i.e. taking the spectral decomposition of \(\rho\)
+\begin{equation}
+    \rho = \sum_i p_i \ketbra{i},
+\end{equation}
+where \(p_i\) are the eigenvalues and \(\ket{i}\) are the eigenvectors, its trivial to find that
+\begin{equation}
+    \Tr(\rho) = \sum_i p_i = 1.
+\end{equation}
+In summary, the eigenvalues of \(\rho\) behave like probabilities:
+\begin{equation}
+    p_i \in [0,1] \qq{and} \sum_i p_i = 1.
+\end{equation}
+
+\section{Pure states and mixed states}
+
+Its important to note that if we have a pure system, i.e. our ensemble of pure states has just one state \(\ket{\psi}\), then \(\rho\) is
+\begin{equation}
+    \rho = \ketbra{\psi}.
+\end{equation}
+On such cases we also say that \(\rho\) \emph{is} a pure state, otherwise it is a \emph{mixed state}. When \(\rho\) is a pure state its eigenvalues are quite simple. Just writing the eigenvalue equation just gives us pretty much everything. If \(\ket{\phi}\) is an arbitrary state, then
+\begin{equation}
+    \rho \ket{\phi} = \ketbra{\psi}\ket{\phi} = \ket{\psi} \braket{\psi}{\phi} = \braket{\psi}{\phi} \ket{\psi},
+\end{equation}
+But if we \emph{are} in a pure state, we already \emph{know} in which state our system is, thus \(\braket{\psi}{\phi}\) is either \(0\) or \(1\), i.e. either \(\ket{\phi}\) \emph{is} our state, or not, meaning that \(\ket{\psi}\) is, in fact, the eigenvector and that the corresponding eigenvalue is \(1\) (since \(0\) is no good).
+
+\section{Purity}
+
+Another interesting operator is \(\rho^2\). It's quite trivial to show that the eigenvalues of \(\rho^2\) are the square of the eigenvalues of \(\rho\). If \(S\) is the unitary matrix that diagonalises \(\rho\), then
+\begin{equation}
+    \rho = S \Lambda S^\dagger,
+\end{equation}
+and
+\begin{equation}
+    \rho^2 = S \Lambda^2 S^\dagger,
+\end{equation}
+where \(\Lambda\) is the diagonalised operator \(\rho\), making, then, \(\Lambda^2\) a diagonal matrix whose eigenvalues are \(p_i^2\), where \(p_i\) are the eigenvalues of \(\rho\). Then, since
+\begin{equation}
+    \sum_i p_i = 1,
+\end{equation}
+we find that
+\begin{equation}
+    \sum_i p_i^2 \leq 1,
+\end{equation}
+and since \(\sum_i p_i^2 = \Tr(\rho^2)\), we know that
+\begin{equation}
+    \Tr(\rho^2) \leq 1.
+\end{equation}
+The equality holds when we have a pure state, since
+\begin{equation}
+    \rho^2 = \ketbra{\psi}\ketbra{\psi} = \ket{\psi} \braket{\psi} \bra{\psi} = \ketbra{\psi} = \rho
+\end{equation}
+and \(\Tr(\rho) = 1\), making \(\Tr(\rho^2) = 1\).
+
+We call \(\Tr(\rho^2)\) the \emph{purity of the ensemble} and denote it \(\mathcal{P}\).
+
+\section{Transformations}
+
+When our system, which generally is an ensemble of pure states \(\set{q_i,\ket{\psi_i}}\), undergoes a transformation \(A\), this means that every fraction \(q_i\) of pure states \(\ket{\psi_i}\) undergoes that transformation \emph{individually}. This means that our system before the transformation is \(\set{q_i,\ket{\psi_i}}\) and after the transformation is \(\set{q_i, A\ket{\psi_i}}\). Then, the density matrix before the transformation is
+\begin{equation}
+    \rho = \sum_i q_i \ketbra{\psi_i},
+\end{equation}
+and after it is
+\begin{equation}\label{eq:oponrho}
+    \rho' = \sum_i q_i A\ketbra{\psi_i}A^\dagger = A \rho A^\dagger.
+\end{equation}
+If the transformation is unitary, i.e. \(AA^\dagger = A^\dagger A = \idm\), then we can see that the purity before and after the unitary transformation is the same:
+\begin{equation}
+    \Tr(\rho'^2) = \Tr(A \rho A^\dagger A \rho A^\dagger) = \Tr(A \rho^2 A^\dagger) = \Tr(\rho^2).
+\end{equation}
+
+\section{Time evolution of density matrices}
+
+If our system undergoes time evolution, then each pure state \(\ket{\psi_i}\) satisfies
+\begin{equation}
+    \pdv{t} \ket{\psi_i} = -i H \ket{\psi_i},
+\end{equation}
+where \(H\) is the Hamiltonian of the system. Remember that \(H\) is Hermitian.
+Now, if we differentiate \(\rho\) with respect to time, we find that
+\begin{equation}
+    \pdv{t} \rho = \sum_i q_i \pdv{t} \left(\ketbra{\psi_i} \right) = \sum_i q_i \left( \pdv{(\ket{\psi_i})}{t}\bra{\psi_i} + \ket{\psi_i}\pdv{(\bra{\psi_i})}{t}  \right),
+\end{equation}
+which means that
+\begin{equation}
+    \pdv{t} \rho = \sum_i q_i \left( -i H\ketbra{\psi_i} + \ketbra{\psi_i}(iH)  \right) = i (H \rho - \rho H).
+\end{equation}
+\begin{mybox}
+The above result can be synthetically written as the equation
+\begin{equation}
+    \pdv{t} \rho = -i\comm{H}{\rho},
+\end{equation}
+which is the so called \emph{von Neumann equation}.
+\end{mybox}
+
+The von Neumann equation tells us how \(\rho\) changes over time, however, if we consider the \emph{time shift operator \(U(t,t_0)\)}, defined as
+\begin{equation}
+    U(t,t_0) = \exp{-i H(t-t_0)},
+\end{equation}
+which is unitary, then the system's density matrix \(\rho\) satisfies \eqref{eq:oponrho}, i.e.
+\begin{equation}
+    \rho(t) = U(t,t_0) \rho(t_0) U^\dagger (t,t_0).
+\end{equation}
+Since the time shift operator \(U(t,t_0)\) is unitary, purity is preserved over time!
+
+% \backmatter
+% \printbib
+\end{document}

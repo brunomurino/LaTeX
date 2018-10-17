@@ -1,0 +1,168 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{QM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+\pagestyle{mynotespage}
+
+\chapter{Time-independent perturbation theory}
+
+\section{Nondegenerate perturbation theory}
+
+We start with the case we already know the solution, the \emph{un-perturbed case}
+\eq{ H^{(0)} \psi_n^{(0)} = E_n^{(0)} \psi_n^{(0)} }
+Now we want to find the \emph{new} energy eigenstates and eigenvalues for the \emph{perturbed case}
+\eq{ H\psi_n = E_n \psi_n }
+where
+\eq{ H = H^{(0)} + H'  }
+and \(H'\) is called the \emph{perturbation}. To keep track of the number of times the perturbation \(H'\) enters our future expressions we usually let \(H' \rightarrow \lambda H'\), and at end we let \(\lambda = 1\). So the problem we want to solve is
+\eq[eq:tipteq]{ \lr{H^{(0)} + \lambda H'}\ket{n} = E_n\ket{n} }
+where \(\lambda\) is a continuous real parameter between \(0\) and \(1\).\par
+
+% To make the \(\lambda\) dependency more explicit, we write
+% \eq{	\lr{H_0 + \lambda H'}\ket{n}_{(\lambda)} = E^{(\lambda)}_n\ket{n}_{(\lambda)}	}
+
+% If we add and subtract \(E_n^{(0)}\) from the r.h.s. of \eqref{eq:tipteq}, namely
+% \eq{	\lr{H_0 + \lambda H'}\ket{n} = \lr{E_n - E_n^{(0)} + E_n^{(0)}} \ket{n}	}
+% and let
+% \eq{	\Delta_n = E_n - E_n^{(0)}	}
+% then we can write
+% \eq{	\lr{E_n^{(0)} - H_0}\ket{n} = \lr{\lambda H' - \Delta_n}\ket{n}	}
+
+Lets write
+\eq{	\psi_n = \psi_n^{(0)} + \lambda\psi_n^{(1)} + \lambda^2\psi_n^{(2)} + ...	}
+\eq{	E_n = E_n^{(0)} + \lambda E_n^{(1)} + \lambda^2 E_n^{(2)} + ...	}
+We call \(E_n^{(1)}\) the \emph{first-order correction} to the n-\emph{th} eigenvalue and \(\psi_n^{(1)}\) the first-order correction to the n-\emph{th} eigenfunction, and analog to \(E_n^{(2)}\) and \(\psi_n^{(2)}\).\par
+
+We can show that the first-order corrections are
+\eq{	E_n^{(1)} = \mel**{\psi_n^{(0)}}{H'}{\psi_n^{(0)}} \equiv \expval{H'}_n^{(0)} 	}
+and
+\eq{	\psi_n^{(1)} = \sum_{m\neq n} \frac{\mel{\psi_n^{(0)}}{H'}{\psi_n^{(0)}}}{\lr{E_n^{(0)} - E_m^{(0)}}} \psi_m^{(0)}	}
+while the second-order correction to the eigenvalue is
+\eq{E_n^{(2)} = \sum_{m\neq n} \frac{\abs{\mel{\psi_n^{(0)}}{H'}{\psi_n^{(0)}}}^2}{\lr{E_n^{(0)} - E_m^{(0  )}}}}
+Of course we could keep going but usually what we have is already enough.\par
+
+\section{Degenerate perturbation theory}
+Let
+\eq{W_{ij} \equiv \mel{\psi_i^{(0)}}{H'}{\psi_j^{(0)}}}
+Then we can write the first-order perturbation to the eigenvalue as
+\eq{E_{\pm}^1 = \hlf \left[ W_{aa} + W_{bb} \pm \sqrt{\lr{W_{aa}-W_{bb}}^2 + 4\abs{W_{ab}}^2} \right]}
+
+\section{The fine structure of the Hydrogen}
+
+\subsection{The relativistic correction}
+
+When we first studyied the hydrogen atom we took the Hamiltonian to
+\eq{H = -\frac{\hbar^2}{2m}\laplacian - \frac{e^2}{4\pi \epsilon_0}\frac{1}{r}}
+which is using the \emph{classical kinetic energy} \(T_c\)
+\eq{T_c = \frac{p^2}{2m} = -\frac{\hbar^2}{2m}\laplacian}
+Now, instead, we'll use the \emph{relativistic kinetic energy} \(T\)
+\eq{T = \sqrt{p^2c^2 + m^2c^4} - mc^2 }
+which we can expand as
+\eq{T &= mc^2\left[ \sqrt{1+\lr{\frac{p}{mc}}^2} - 1\right] \\
+&= mc^2\left[1 + \hlf \lr{\frac{p}{mc}}^2 - \frac{1}{8}\lr{\frac{p}{mc}}^4 + ... -1\right]\\
+&= \frac{p^2}{2m} - \frac{p^4}{8m^3c^2} + ... \\
+&= T_c - \frac{p^4}{8m^3c^2} + ...}
+and, to start our study lets keep only the lowest-order relativistic correction of \(T\), such that our perturbation \(H_r'\) (the \(r\) subscript stands for 'relativistic') will be
+\eq{H_r' = - \frac{p^4}{8m^3c^2}}\par
+
+The first-order correction to the n-\emph{th} eigenvalues is
+\eq{E_n^{r,(1)} &= \mel{\psi_n^{(0)}}{H_r'}{\psi_n^{(0)}} \\
+&= \expval{H_r'}_n^{(0)} \\
+&= -\frac{1}{8m^3c^2}\expval{p^4}_n^{(0)}\\
+&= -\frac{1}{8m^3c^2} \mel{\psi_n^{(0)}}{p^4}{\psi_n^{(0)}} \\
+&=  -\frac{1}{8m^3c^2} \mel{\psi_n^{(0)}}{\lr{p^2}^{\dagger}p^2}{\psi_n^{(0)}}}
+but for the un-perturbed case we have
+\eq{H^{(0)} \ket{\psi_n^{(0)}} = \left(\frac{p^2}{2m} + V\right) \ket{\psi_n^{(0)}} = E_n^{(0)} \ket{\psi_n^{(0)}} }
+from which we can find that
+\eq{ p^2\ket{\psi_n^{(0)}} = 2m\lr{E_n^{(0)} - V}\ket{\psi_n^{(0)}} }
+and correspondingly
+\eq{ \bra{\psi_n^{(0)}}\lr{p^2}^{\dagger} = \bra{\psi_n^{(0)}}2m\lr{E_n^{(0)} - V^{\dagger}} }
+which leads to
+\eq{ E_n^{r,{(1)}} &=  -\frac{1}{8m^3c^2} \mel{\psi_n^{(0)}}{\lr{p^2}^{\dagger}p^2}{\psi_n^{(0)}}\\
+&= -\frac{1}{8m^3c^2}\mel**{\psi_n^{(0)}}{\lr{2m(E_n^{(0)} - V)}\lr{2m(E_n^{(0)} - V)}}{\psi_n^{(0)}} \\
+&= -\frac{1}{8m^3c^2}\mel**{\psi_n^{(0)}}{4m^2(E_n^{(0)} - V)^2}{\psi_n^{(0)}} \\
+&= -\frac{1}{2mc^2}\expval{\lr{E_n^{(0)} - V}^2}_n^{(0)}\\
+&= -\frac{1}{2mc^2}\lr{\lr{E_n^{(0)}}^2 - 2E_n^{(0)} \expval{V}_n^{(0)} + \expval{V^2}_n^{(0)}} }
+and for the case of the hydrogen atom which has the potential
+\eq{V(r) = -\frac{1}{4\pi \epsilon_0}\frac{e^2}{r}}
+we find that
+\eq{ E_n^{r,{(1)}} &= -\frac{1}{2mc^2}\lr{E_n^2 - 2E_n \expval{V}_n^{(0)} + \expval{V^2}_n^{(0)}} \\
+&= -\frac{1}{2mc^2}\lr{E_n^2 + 2E_n\frac{e^2}{4\pi\epsilon_0} \expval{\frac{1}{r}}_n^0 + \lr{\frac{e^2}{4\pi \epsilon_0}}^2\expval{\frac{1}{r^2}}_n^{(0)}}	}
+and given that
+\eq{ \expval{\frac{1}{r}}_n^{(0)} = \frac{1}{n^2 a} }
+\eq{	\expval{\frac{1}{r^2}}_n^{(0)} = \frac{1}{\lr{l + 1/2}n^3a^2}	}
+where \(a\) is thr Bohr radius
+\eq{a = \frac{4\pi\epsilon_0 \hbar^2}{m_e e^2}	}
+we can write \(E_n^{r,{(1)}}\) as
+\eq{	E_n^{r,{(1)}} = -\frac{\lr{E_n^{(0)}}^2}{2mc^2}\left[ \frac{4n}{\lr{l+1/2}} -3\right]	}\par
+
+\subsection{Spin-Orbit coupling}
+
+We already know from classical electrodynamics that the magnetic moment of a current circuit tends to align itself with the external magnetic field. This must also happens on the Hydrogen atom if you consider the magnetic moment of current circuit as the magnetic moment of the electron due to its spin, and the external magnetic field as the field due to the orbit of the proton around this eletron. Let's do the math.\par
+
+We know that this situation is described by the Hamiltonian
+\eq[eq:Hso]{H_{so} = - \bmu\cdot \vb{B}}
+where the subscript \(so\) stands for spin-orbit, so we must find \(\vb{B}\) and \(\bmu\). Let's start.\par
+From the electron's perspective, the proton is orbiting it. But what's the magnetic field \(\vb{B}\) generate by this proton? From Biot-Savart law we find that
+\eq{B = \frac{\mu_0 e}{2rT} = \frac{e}{2\epsilon_0 c^2r}\frac{1}{T}}
+where \(T\) is the proton's orbit period. And the proton's orbital angular momentum is
+\eq{L = rmv = rm \frac{2\pi r}{T} = \frac{2\pi mr^2}{T} }
+so we can write
+\eq{ \frac{1}{T} = \frac{L}{2\pi m r^2} }
+and since \(\vb{B}\) and \(\vb{L}\) point in the same direction we write
+\eq{ \vb{B} = \frac{e}{2\epsilon_0 c^2 r} \frac{1}{2\pi m r^2}\vb{L} = \frac{1}{4\pi \epsilon_0}\frac{e}{mc^2 r^3}\vb{L} }\par
+
+Now, the magnetic moment of the electron is
+\eq{\bmu_e = -\frac{e}{m}\vb{S}}\par
+
+So far our expression for \(H_{so}\) is
+\eq{H_{so} = \lr{\frac{e^2}{4\pi\epsilon_0}}\frac{1}{m^2c^2r^3}\vb{S}\cdot\vb{L} }
+but we haven't yet considered the fact that the electron's frame is not an inertial frame. If we would consider this we would make a correction known as \textbf{Thomas precession}, which would give a factor of \(1/2\) in our current Hamiltonian. Doing this, the correct Hamiltoninan is
+\eq{H_{so} =\lr{\frac{e^2}{8\pi\epsilon_0}}\frac{1}{m^2c^2r^3}\vb{S}\cdot\vb{L}  }
+which represents the so called \emph{spin-orbit interaction}.\par
+
+Its crucial to notice that now the full Hamiltonian
+\eq{H = \frac{p^2}{2m} + V + H_r' + H_{so}'}
+does not commute with \(\vb{L}\) and \(\vb{S}\), which means that the orbital angular momentum and the spin do not separatelly conserve! However, the only part of \(H\) that doesn's commute with \(\vb{L}\) and \(\vb{S}\) is \(H_{so}'\), and, magically, what \emph{does} commute with it is the \textbf{total angular momentum} \(\vb{J}\)
+\eq{\vb{J} \equiv \vb{L} + \vb{S} }
+meaning that one possible set of compatible operators is \(L^2\), \(S^2\), \(J^2\) and \(J_z\). We can expand \(J^2\)
+\eq{J^2 = (\vb{L}+\vb{S})\cdot(\vb{L}+\vb{S}) = L^2 + S^2 + 2\vb{L}\cdot\vb{S}}
+which means that
+\eq{\vb{L}\cdot\vb{S} = \hlf \lr{J^2 - L^2- S^2}}
+and the eigenvalues of \(\vb{L}\cdot\vb{S}\) are
+\eq{\frac{\hbar^2}{2}\left[ j(j+1) - l(l+1) - s(s+1)\right]}\par
+
+We can also find that
+\eq{E_n^{so,(1)} = \frac{\lr{E_n^{(0)}}^2}{mc^2}\left\{  \frac{n[j(j+1) - l(l+1) - 3/4]}{l(l+1/2)(l+1)} \right\}	}\par
+
+If we now combine the unperturbed energy with the first-order corrections from the relativistic correction and the spin-orbit iteraction, we find the grand result for the energy levels of hydrogen
+\eq{E_{nj} = - \frac{13.6eV}{n^2}\left[ 1 + \frac{\alpha^2}{n^2}\lr{\frac{n}{j+1/2} - \frac{3}{4}} \right]}
+where \(\alpha\) is the so called \emph{\textbf{fine structure constant}}
+\eq{\alpha = \frac{e^2}{4\pi\epsilon_0 \hbar c} = \frac{1}{137.036}}\par
+
+
+
+\section{The Zeeman effect}
+
+In everything we did so far we haven't yet considered \emph{where} the hydrogen atom \emph{is}. Let's put it subject to an external magnetic field \(\vb{B}_{ext}\). The shift in energy levels due to the presence of an external magnetic field is called \emph{Zeeman effect}.\par
+
+To simplify our calculations, let the magnetic moment of the proton remain unchanched.\par
+
+Now, all we have to do is add a magnetic moment term
+\eq{\bmu = -\frac{e}{2m}\vb{L}}
+associated with orbital motion in \eqref{eq:Hso}, namely
+\eq{H_Z' = \frac{e}{2m}\lr{\vb{L}+ 2\vb{S}}\cdot\vb{B}_{\text{ext}}}
+
+\subsection{Weak-field Zeeman effect}
+
+
+
+
+\end{document}

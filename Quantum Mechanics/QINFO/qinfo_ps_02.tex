@@ -1,0 +1,780 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Information \\ Problem Set 02} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{mendeley.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+\pagestyle{onlypagenum}
+\tableofcontents
+% \mainmatter
+
+\chapter{Measurements with two qubits}
+
+"Suppose you have your qubit \(S\) which is prepared in a
+certain state \(\ket{\psi}_S\) which you want to probe."
+
+Consider a ancilla cubit initialised in an arbitrary state
+\begin{equation}
+    \ket{\chi}_A = \cos(\chi) \ket{0}_A + \sin(\chi)\ket{1}_A,
+\end{equation}
+and let the composite state \(\ket{\psi}_S\tens \ket{\chi}_A\) evolve with the unitary
+\begin{equation}\label{eq:unitary}
+    U = \ketbra{0}_S \tens\ket{\chi}_A + \ketbra{1}_S \tens \sigma_x^A.
+\end{equation}
+
+After some evolution, consider a projective measurement on the ancilla in a certain basis
+\begin{equation}
+\begin{split}
+    \ket{\phi_0}_A &= \cos\phi \ket{0}_A + \sin\phi \ket{1}_A \\
+    \ket{\phi_1}_A &= -\sin\phi \ket{0}_A + \cos\phi \ket{1}_A
+\end{split}
+\end{equation}
+
+\section{(a)}
+
+We can obtain the generalised measurement operators \(M_i\) associated with the projective measurement by means of
+\begin{equation}
+    M_i = \big( 1 \tens \bra{\phi_i}_A \big)U \big( 1 \tens \ket{\chi}_A\big),
+\end{equation}
+which, due to \eqref{eq:unitary}, we can simplify to
+\begin{equation}
+\begin{split}
+    M_i &= \Big(1 \tens \bra{\phi_i}_A \Big)\Big(\ketbra{0}_S \tens\ket{\chi}_A \Big)\Big(1 \tens \ket{\chi}_A \Big) + \Big(1 \tens \bra{\phi_i}_A \Big)\Big(\ketbra{1}_S \tens \sigma_x^A \Big)\Big(1 \tens \ket{\chi}_A \Big) \\
+    &= \Big(\ketbra{0}_S \tens \braket{\phi_i}{\chi}_A \Big) + \Big(\ketbra{1}_S \tens \mel{\phi_i}{\sigma_x^A}{\chi}_A \Big) \\
+    &= \braket{\phi_i}{\chi}_A \ketbra{0}_S + \mel{\phi_i}{\sigma_x^A}{\chi}_A \ketbra{1}_S \\
+    &= \braket{\phi_i}{\chi}_A P_0^S + \mel{\phi_i}{\sigma_x^A}{\chi}_A  P_1^S,
+\end{split}
+\end{equation}
+where \(P_i^S\) are the usual projective measurements on qubit \(S\) (not on the ancilla!). To explicitly find all the \(M_i\) we need to compute the following:
+\begin{equation}
+    \sigma_x^A\ket{\chi}_A = \sin(\chi)\ket{0}_A + \cos(\chi) \ket{1}_A,
+\end{equation}
+\begin{equation}
+    \braket{\phi_0}{\chi}_A = \cos\phi \cos\chi + \sin\phi \sin\chi = \cos(\phi-\chi),
+\end{equation}
+\begin{equation}
+    \braket{\phi_1}{\chi}_A = \cos\phi \sin\chi - \sin\phi \cos\chi = -\sin(\phi - \chi),
+\end{equation}
+\begin{equation}
+    \mel{\phi_0}{\sigma_x^A}{\chi}_A = \cos\phi \sin\chi + \sin\phi \cos\chi = \sin(\phi+\chi),
+\end{equation}
+\begin{equation}
+    \mel{\phi_1}{\sigma_x^A}{\chi}_A = \cos\phi \cos\chi -\sin\phi \sin\chi = \cos(\chi+\phi).
+\end{equation}
+
+\section{(b)}
+
+The associated POVM \(E_i\) is given by
+\begin{equation}
+    E_i = M_i^\dagger M_i.
+\end{equation}
+Since, in our case, the \(M_i\) are real, \(E_i\) is simply the square of the \(M_i\). Also, remember that
+\begin{equation}
+    P_i P_j = \delta_{ij}P_i.
+\end{equation}
+Then
+\begin{equation}
+    E_i = M_i M_i = \braket{\phi_i}{\chi}_A^2 P_0^S + \mel{\phi_i}{\sigma_x^A}{\chi}_A^2  P_1^S,
+\end{equation}
+and we find
+\begin{equation}
+    E_0 = \cos^2(\phi-\chi)P_0^S + \sin^2(\phi+\chi) P_1^S,
+\end{equation}
+and
+\begin{equation}
+    E_1 = \sin^2(\phi-\chi)P_0^S + \cos^2(\phi+\chi) P_1^S.
+\end{equation}
+
+
+\section{(c)}
+
+If we want \(E_i\) to be projective measurements, e.g. \(E_0 = P_0^S\) and \(E_1 = P_1^S\), we need
+\begin{equation}
+\begin{split}
+    \cos^2(\phi-\chi) &= 1 = 1 - \sin^2(\phi-\chi), \\
+    \sin^2(\phi+\chi) &= 0, \\
+    \sin^2(\phi-\chi) &= 0, \\
+    \cos^2(\phi+\chi) &= 1 = 1 - \sin^2(\phi+\chi),
+\end{split}
+\end{equation}
+which simply reduces to
+\begin{equation}
+\begin{split}
+    \sin^2(\phi+\chi) &= 0, \\
+    \sin^2(\phi-\chi) &= 0,
+\end{split}
+\end{equation}
+and we obtain
+\begin{equation}
+\begin{split}
+    \phi = (n+m)\frac{\pi}{2} \qand \chi = (n-m)\frac{\pi}{2} \qc n,m\in \Z.
+\end{split}
+\end{equation}
+
+Alternatively if we want \(E_0 = P_1^S\) and \(E_1 = P_0^S\), we need
+\begin{equation}
+\begin{split}
+    \cos^2(\phi-\chi) &= 0 = 1 - \sin^2(\phi-\chi), \\
+    \sin^2(\phi+\chi) &= 1, \\
+    \sin^2(\phi-\chi) &= 1, \\
+    \cos^2(\phi+\chi) &= 0 = 1 - \sin^2(\phi+\chi),
+\end{split}
+\end{equation}
+which simply reduces to
+\begin{equation}
+\begin{split}
+    \sin^2(\phi+\chi) &= 1, \\
+    \sin^2(\phi-\chi) &= 1,
+\end{split}
+\end{equation}
+and we obtain
+\begin{equation}
+    \phi = (n+m+1)\frac{\pi}{2} \qand \chi = (n-m)\frac{\pi}{2}\qc n,m\in \Z.
+\end{equation}
+
+An example of solution is
+\begin{equation}
+    \phi = 0 \qand \chi = \frac{\pi}{2},
+\end{equation}
+meaning that
+\begin{equation}
+    \ket{\chi}_A = \ket{1}_A
+\end{equation}
+and the measurement basis is
+\begin{equation}
+    \ket{\phi_0}_A = \ket{0}_A \qand \ket{\phi_1}_A = \ket{1}_A,
+\end{equation}
+implying that the measure is projective if taken in the same basis as the ancilla, which is what we expected.
+
+\section{(d)}
+
+In order to get no measurement at all, i.e. \(E_i = \idm/2\), we need to recall the completeness relation
+\begin{equation}
+    P_0^S + P_1^S = \idm,
+\end{equation}
+and then find \(\phi\) and \(\chi\) such that
+\begin{equation}
+\begin{split}
+    \cos^2(\phi-\chi) &= \hlf = 1 - \sin^2(\phi-\chi), \\
+    \sin^2(\phi+\chi) &= \hlf, \\
+    \sin^2(\phi-\chi) &= \hlf, \\
+    \cos^2(\phi+\chi) &= \hlf = 1 - \sin^2(\phi+\chi),
+\end{split}
+\end{equation}
+which simply reduces to
+\begin{equation}
+\begin{split}
+    \sin^2(\phi+\chi) &= \hlf, \\
+    \sin^2(\phi-\chi) &= \hlf,
+\end{split}
+\end{equation}
+and we obtain
+\begin{equation}
+    \phi = (n+m)\frac{\pi}{2} + \frac{\pi}{4} \qand \chi = (n-m)\frac{\pi}{2}\qc n,m\in \Z.
+\end{equation}
+
+An example of solution is
+\begin{equation}
+    \phi = -\frac{\pi}{4} \qand \chi = \frac{\pi}{2},
+\end{equation}
+meaning that
+\begin{equation}
+    \ket{\chi}_A = \ket{1}_A
+\end{equation}
+and the measurement basis is
+\begin{equation}
+    \ket{\phi_0}_A = \frac{1}{\sqrt{2}}(\ket{0}_A -\ket{1}_A) = \ket{-},
+\end{equation}
+and
+\begin{equation}
+    \ket{\phi_1}_A = \frac{1}{\sqrt{2}}(\ket{0}_A + \ket{1}_A) = \ket{+},
+\end{equation}
+i.e. we get no measurement at all if we measure the ancilla in a basis that is an equal mixture of its basis!
+
+\chapter{Single-mode squeezing}
+
+
+
+The squeezing operator \(
+S_z\) is defined as
+\begin{equation}
+    S_z = \lexp\bigg\{\frac{1}{2}(za^\dagger a^\dagger - z^* a a)\bigg\},
+\end{equation}
+where \(z=r\exp{i\theta}\) is a complex number and \(a\) and \(a^\dagger\) are the annihilation and creation operators, respectively.
+We can also write
+\begin{equation}
+    S_z = \lexp\bigg\{-\frac{1}{2}(z^* a a - za^\dagger a^\dagger)\bigg\} = \exp{-t A},
+\end{equation}
+where \(t=1/2\) and \(A = z^* a a - z a^\dagger a^\dagger\). Now let's recall the relations
+\begin{equation}
+    \comm{a}{a^\dagger} = 1,
+\end{equation}
+and
+\begin{equation}\label{eq:bch}
+    \exp{tA}B\exp{-tA} = B + t\comm{A}{B} + \frac{t^2}{2!}\comm{A}{\comm{A}{B}} + \frac{t^3}{3!}\comm{A}{\comm{A}{\comm{A}{B}}} \cdots.
+\end{equation}
+
+
+
+\section{(a)}
+
+In order to show that
+\begin{equation}
+    S_z^\dagger a S_z = a \cosh(r) + a^\dagger \exp{i\theta}\sinh(r),
+\end{equation}
+it's useful to define operators \(L_n\) as
+\begin{equation}
+    L_0 = a \qc L_n = \comm{A}{L_{n-1}}.
+\end{equation}
+Then, by \eqref{eq:bch}, we can write
+\begin{equation}\label{eq:sdagas}
+    \exp{tA}a\exp{-tA} = \sum_{n=0}^\infty \frac{t^n}{n!}L_n.
+\end{equation}
+We can, then, compute \(L_n\) for some \(n\):
+\begin{equation}
+\begin{split}
+    L_1 &= \comm{A}{L_0} = -z\comm{a^\dagger a^\dagger}{a} = 2za^\dagger, \\
+    L_2 &= \comm{A}{L_1} = 2z\comm{A}{a^\dagger} = 4\abs{z}^2a = 4\abs{z}^2 L_0, \\
+    L_3 &= \comm{A}{L_2} = 4\abs{z}^2 \comm{A}{L_0} = 4\abs{z}^2 L_1
+\end{split}
+\end{equation}
+and find that, with these results, we can easily compute, e.g., \(L_4\)
+\begin{equation}
+    L_4 = \comm{A}{L_3} = 4\abs{z}^2\comm{A}{L_1} = 4\abs{z}^2 L_2 = (4\abs{z}^2)^2 L_0,
+\end{equation}
+and \(L_5\)
+\begin{equation}
+    L_5 = \comm{A}{L_4} = (4\abs{z}^2)^2\comm{A}{L_0} = (4\abs{z}^2)^2 L_1.
+\end{equation}
+In fact, we can show that we can write
+\begin{equation}
+\begin{split}
+    L_{2n} &= 2^{2n} \abs{z}^{2n} a, \\
+    L_{2n+1} &= 2^{2n+1} z \abs{z}^2n a^\dagger,
+\end{split}
+\end{equation}
+which can be somewhat simplified to
+\begin{equation}\label{eq:genL}
+\begin{split}
+    L_{2n} &= 2^{2n} r^{2n} a, \\
+    L_{2n+1} &= 2^{2n+1} \exp{i\theta} r^{2n+1} a^\dagger.
+\end{split}  
+\end{equation}
+Now, if we split \eqref{eq:sdagas} as
+\begin{equation}
+    \exp{tA}a\exp{-tA} = \sum_{n=0}^\infty \frac{t^n}{n!}L_n = \sum_{n=0}^\infty \frac{t^{2n}}{(2n)!}L_{2n} + \sum_{n=0}^\infty \frac{t^{2n+1}}{(2n+1)!}L_{2n+1},
+\end{equation}
+then we can plug \eqref{eq:genL} to find that
+\begin{equation}
+    \exp{tA}a\exp{-tA} = a \Bigg[\sum_{n=0}^\infty \frac{(2tr)^{2n}}{(2n)!}\Bigg] + a^\dagger \exp{i\theta} \Bigg[ \sum_{n=0}^\infty \frac{(2tr)^{2n+1}}{(2n+1)!} \Bigg],
+\end{equation}
+which can easily be recognised as
+\begin{equation}
+    \exp{tA}a\exp{-tA} = a \cosh(2tr) + a^\dagger \exp{i\theta} \sinh(2tr),
+\end{equation}
+and since we defined \(t=1/2\), we finally obtain the equality
+\begin{equation}\label{eq:sas}
+    S_z^\dagger a S_z = a \cosh(r) + a^\dagger \exp{i\theta} \sinh(r).
+\end{equation}
+Taking the hermitian conjugate of the above expression leads to
+\begin{equation}\label{eq:sads}
+    S_z^\dagger a^\dagger S_z = a^\dagger \cosh(r) + a \exp{-i\theta} \sinh(r).
+\end{equation}
+
+\section{(b)}
+
+Let \(\ket{z} = S_z \ket{0}\) denote the squeezed vacuum.
+We know that we can write \(S_z\) as
+\begin{equation}
+    S_z = \exp{\frac{f_2}{2}} \exp{f_1 a^\dagger a^\dagger} \exp{f_2 a^\dagger a} \exp{f_3 a a},
+\end{equation}
+with
+\begin{equation}
+    f_1 = \frac{\exp{i\theta}}{2}\tanh(r)\qc f_2 = -\ln(\cosh(r)) \qand f_3 = - \frac{\exp{-i\theta}}{2}\tanh(r).
+\end{equation}
+Since the vacuum state \(\ket{0}\) is defined by \(a\ket{0} = 0 \ket{0} = 0\), if we act with \(\exp{f_3 a a}\) on it we find that
+\begin{equation}
+    \exp{f_3 a a} \ket{0} = \exp{f_3 0*0} \ket{0} = \ket{0}.
+\end{equation}
+Now, if we act with \(\exp{f_2 a^\dagger a}\) on \(\ket{0}\), recalling that \(n = a^\dagger a\) is the number operator, we again find that
+\begin{equation}
+    \exp{f_2 a^\dagger a}\ket{0} = \exp{f_2 0}\ket{0} = \ket{0}.
+\end{equation}
+Lastly, if we act with \(\exp{f_1 a^\dagger a^\dagger}\) on \(\ket{0}\), recalling that
+\begin{equation}
+    \frac{\left(a^\dagger \right)^n}{\sqrt{n!}} \ket{0} = \ket{n},
+\end{equation}
+we find that
+\begin{equation}
+    \exp{f_1 a^\dagger a^\dagger} \ket{0} = \sum_{n=0}^\infty \frac{(f_1)^n}{n!} \left(a^\dagger \right)^{2n} \ket{0} = \sum_{n=0}^\infty f_1^n \frac{\sqrt{(2n)!}}{n!} \ket{2n}.
+\end{equation}
+
+These results we obtained lead to the following
+\begin{equation}
+    S_z\ket{0} = \exp{\frac{f_2}{2}} \exp{f_1 a^\dagger a^\dagger} \exp{f_2 a^\dagger a} \exp{f_3 a a}\ket{0} = \exp{\frac{f_2}{2}} \exp{f_1 a^\dagger a^\dagger} \ket{0} = \exp{\frac{f_2}{2}}\sum_{n=0}^\infty f_1^n \frac{\sqrt{(2n)!}}{n!} \ket{2n},
+\end{equation}
+and since
+\begin{equation}
+    \exp{\frac{f_2}{2}} = \exp{\ln(\cosh(r)^{-1/2})} = \sqrt{\sech(r)},
+\end{equation}
+and
+\begin{equation}
+    f_1^n = \frac{\exp{in\theta}}{2^n}\tanh^n(r),
+\end{equation}
+we obtain
+\begin{equation}
+    \ket{z} = S_z\ket{0} = \sqrt{\sech(r)}\sum_{n=0}^\infty \tanh^n(r) \frac{\exp{in\theta}}{2^n} \frac{\sqrt{(2n)!}}{(n!)} \ket{2n},
+\end{equation}
+which we can abbreviate to
+\begin{equation}\label{eq:zinfockbasis}
+    \ket{z} = A \sum_{n=0}^\infty B_n \ket{2n},
+\end{equation}
+where \(A = \sqrt{\sech(r)}\) and 
+\begin{equation}
+    B_n = B(r,\theta)_n = \tanh^n(r) \frac{\exp{in\theta}}{2^n} \frac{\sqrt{(2n)!}}{(n!)}.
+\end{equation}
+
+\section{(c)}
+
+Consider the Hamiltonian
+\begin{equation}
+    H = \omega a^\dagger a + \frac{\lambda}{2} a^\dagger a^\dagger + \frac{\lambda^*}{2}aa.
+\end{equation}
+
+Let's find the squeezed Hamiltonian
+\begin{equation}
+    \tilde{H} = S_z^\dagger H S_z.
+\end{equation}
+We begin by explicitly writing \(\tilde{H}\)
+\begin{equation}
+    \tilde{H} = \omega S_z^\dagger a^\dagger a S_z + \frac{\lambda}{2}S_z^\dagger a^\dagger a^\dagger S_z + \frac{\lambda^*}{2} S_z^\dagger a a S_z.
+\end{equation}
+Now we insert \(S_z S_z^\dagger = \idm\) between consecutive operators and obtain
+\begin{equation}
+    \tilde{H} = \omega \left( S_z^\dagger a^\dagger S_z \right) \left( S_z^\dagger a S_z \right)+ \frac{\lambda}{2}\left(S_z^\dagger a^\dagger S_z\right) \left(S_z^\dagger a^\dagger S_z\right) + \frac{\lambda^*}{2} \left(S_z^\dagger a S_z\right) \left( S_z^\dagger a S_z\right),
+\end{equation}
+but since
+\begin{equation}
+    S_z^\dagger a^\dagger S_z = a^\dagger \cosh(r) + a \exp{-i\theta} \sinh(r) \qand S_z^\dagger a S_z = a \cosh(r) + a^\dagger \exp{i\theta} \sinh(r),
+\end{equation}
+we readily obtain, denoting \(\sinh(r) = s\) and \(\cosh(r)=c\), the following
+\begin{equation}
+\begin{split}
+    \tilde{H} &= \omega \Bigg[a^\dagger a c^2 + a^\dagger a^\dagger \exp{i\theta} cs + a a \exp{-i\theta} cs + aa^\dagger s^2\Bigg] \\
+    &+ \frac{\lambda}{2} \Bigg[  a^\dagger a^\dagger c^2 + a^\dagger a \exp{-i\theta}cs + a a^\dagger \exp{-i\theta}cs + a a \exp{-i2\theta}s^2 \Bigg] \\
+    &+ \frac{\lambda^*}{2} \Bigg[ a a c^2 + a a^\dagger \exp{i\theta} cs + a^\dagger a \exp{i\theta}cs + a^\dagger a^\dagger \exp{i2\theta} s^2\Bigg],
+\end{split}
+\end{equation}
+which we can write as
+\begin{equation}
+\begin{split}
+    \tilde{H} &= a^\dagger a \Bigg[ \omega c^2 + \omega s^2 + \lambda \exp{-i\theta} cs + \lambda^* \exp{i\theta}cs \Bigg] \\
+    &+ a^\dagger a^\dagger \Bigg[ \omega \exp{i\theta}cs + \frac{\lambda}{2}c^2 + \frac{\lambda^*}{2}\exp{2i\theta}s^2 \Bigg] \\
+    &+ aa \Bigg[\omega \exp{-i\theta}cs + \frac{\lambda}{2}\exp{-i2\theta}s^2 + \frac{\lambda^*}{2}c^2 \Bigg] \\ 
+    &+ \omega s^2 + \frac{\lambda}{2}\exp{-i\theta}cs + \frac{\lambda^*}{2}\exp{i\theta}cs.
+\end{split}
+\end{equation}
+We want to get rid of the terms \(a^\dagger a^\dagger\) and \(aa\), so we need
+\begin{equation}
+    \omega \exp{i\theta}cs + \frac{\lambda}{2}c^2 + \frac{\lambda^*}{2}\exp{2i\theta}s^2 = 0.
+\end{equation}
+Writing \(\lambda = \abs{\lambda}\exp{i\phi}\) and defining \(k=\abs{\lambda}/\omega\) we can write
+\begin{equation}
+    1 + \frac{k}{2t}\exp{i(\phi-\theta)} + \frac{kt^2}{2t}\exp{-i(\phi-\theta)} = 0.
+\end{equation}
+Choosing \(\theta\) such that \(\phi-\theta=\pi\) we obtain the condition
+\begin{equation}
+    \tanh(2r) = k = \frac{\abs{\lambda}}{\omega},
+\end{equation}
+and since \(\tanh\) is bounded and \(r\) is a squeezing parameter we can always choose, the condition is
+\begin{equation}
+    \abs{\lambda}\leq \omega.
+\end{equation}
+If this condition is violated, then we can't diagonalise the Hamiltonian, implying that \(a^\dagger a\), i.e. the number operator, won't commute with it and then it's not conserved, meaning that the system is not in equilibrium.
+
+\section{(d)}
+
+Considering now the \emph{displaced squeezed state} \(\ket{\alpha,z}\), defined as
+\begin{equation}
+    \ket{\alpha,z} = D(\alpha)S_z\ket{0},
+\end{equation}
+we can apply the position operator \(q\), written as
+\begin{equation}
+    q = \frac{1}{\sqrt{2}}(a+a^\dagger).
+\end{equation}
+In order to compute \(q\ket{\alpha,z}\) let's recall some results we'll need:
+\begin{equation}\label{eq:comm_a_d}
+    aD(\alpha) = D(\alpha)a + \alpha D(\alpha) ,
+\end{equation}
+and
+\begin{equation}\label{eq:comm_ad_d}
+    a^\dagger D(\alpha) = D(\alpha) a^\dagger + \alpha^*D(\alpha).
+\end{equation}
+
+
+Let's start by writing \(\sqrt{2}q\ket{\alpha,z}\) explicitly:
+\begin{equation}
+    \sqrt{2}q\ket{\alpha,z} = aD(\alpha)\ket{z} + a^\dagger D(\alpha) \ket{z}.
+\end{equation}
+Plugging \eqref{eq:comm_a_d} and \eqref{eq:comm_ad_d} we find that
+\begin{equation}
+    \sqrt{2}q\ket{\alpha,z} = D(\alpha)a\ket{z} + \alpha D(\alpha) \ket{z} + D(\alpha) a^\dagger \ket{z} + \alpha^*D(\alpha)  \ket{z},
+\end{equation}
+which can be written as
+\begin{equation}
+    \sqrt{2}q\ket{\alpha,z} = (\alpha+\alpha^*)\ket{\alpha,z} + D(\alpha)a\ket{z} + D(\alpha) a^\dagger \ket{z}.
+\end{equation}
+If we insert \(S_zS_z^\dagger\) between \(D\) and \(a,a^\dagger\), we find
+\begin{equation}
+    \sqrt{2}q\ket{\alpha,z} = (\alpha+\alpha^*)\ket{\alpha,z} + D(\alpha)S_z \big( S^\dagger aS_z + S_z^\dagger a^\dagger S_z\big) \ket{0}.
+\end{equation}
+Using \eqref{eq:sas} and \eqref{eq:sads} and recalling that \(a\ket{0}=0\) we find that
+\begin{equation}
+     \big( S^\dagger aS_z + S_z^\dagger a^\dagger S_z\big) \ket{0} = \big( \sinh(r)\exp{i\theta}+\cosh(r)\big) \ket{1},
+\end{equation}
+and if we set \(\theta = \pi\), which leads to \(\exp{i\theta}=-1\), in the limit \(r\to \infty\) we find that
+\begin{equation}
+    \big( \sinh(r)\exp{i\theta}+\cosh(r)\big) \ket{1} \to 0,
+\end{equation}
+and then finally we obtain
+\begin{equation}
+    q\ket{\alpha,z} = \frac{(\alpha+\alpha^*)}{\sqrt{2}}\ket{\alpha,z}.
+\end{equation}
+
+
+
+Analogously, we can find the eigenstates and eigenvalues for \(p\), written as
+\begin{equation}
+    p = \frac{i}{\sqrt{2}}(a^\dagger - a).
+\end{equation}
+We begin like we did before: writing the following
+\begin{equation}
+    -i\sqrt{2}p\ket{\alpha,z} = a^\dagger D(\alpha) \ket{z} - aD(\alpha)\ket{z},
+\end{equation}
+then using \eqref{eq:comm_a_d} and \eqref{eq:comm_ad_d} we find that
+\begin{equation}
+    -i\sqrt{2}p\ket{\alpha,z} =  (\alpha^* -\alpha) \ket{\alpha,z} + D(\alpha)\big( a-a^\dagger  \big) \ket{z}.
+\end{equation}
+Again inserting \(S_z S_z^\dagger\) and using \eqref{eq:sas} and \eqref{eq:sads} and recalling that \(a\ket{0}=0\) we find that
+\begin{equation}
+     \big( S^\dagger aS_z - S_z^\dagger a^\dagger S_z\big) \ket{0} = \big( \sinh(r)\exp{i\theta}-\cosh(r)\big) \ket{1},
+\end{equation}
+and if we set \(\theta = 0\), which leads to \(\exp{i\theta}=1\), in the limit \(r\to \infty\) we find that
+\begin{equation}
+    \big( \sinh(r)\exp{i\theta}-\cosh(r)\big) \ket{1} \to 0,
+\end{equation}
+and then finally we obtain
+\begin{equation}
+    p\ket{\alpha,z} = \frac{i}{\sqrt{2}}(\alpha^* -\alpha) \ket{\alpha,z},
+\end{equation}
+meaning that \(\ket{\alpha,z}\) is an eigenstate of the momentum operator with eigenvalue \(\nicefrac{i(\alpha^*-\alpha)}{\sqrt{2}}\).
+
+It's interesting to see that these results imply that, in the limit of infinite squeezing, \(\ket{\alpha,z}\) is either an eigenstate of position or an eigenstate of momentum, depending only on \(\theta\): for \(\theta=\pi\) it's an eigenstate of position while for \(\theta=0\) it's an eigenstate of momentum.
+
+
+\section{(e)}
+
+Let's find the Husimi Q-function of the squeezed vacuum \(\rho\), defined as
+\begin{equation}
+    \rho = S_z \ketbra{0}S_z^\dagger.
+\end{equation}
+Using the definition of the Husimi function we obtain
+\begin{equation}
+    \pi Q(\alpha^*,\alpha) = \ev{\rho}{\alpha} = \mel{\alpha}{S_z}{0}\mel{0}{S_z^\dagger}{\alpha} = \abs{\braket{\alpha}{z}}^2,
+\end{equation}
+thus all we need to compute is \(\braket{\alpha}{z}\). First recall \eqref{eq:zinfockbasis}, then recall that
+\begin{equation}
+    \bra{\alpha} = \exp{-\abs{\alpha}^2/2}\sum_{n=0}^\infty \frac{\alpha^n}{\sqrt{n!}}\bra{n}.
+\end{equation}
+Plugging these results we find that
+\begin{equation}
+    \braket{\alpha}{z} = \exp{-\abs{\alpha}^2/2} A \sum_{n=0}^\infty \sum_{m=0}^\infty \frac{\alpha^n}{\sqrt{n!}}B_m \braket{n}{2m},
+\end{equation}
+and since \(\braket{n}{2m} = \delta_{n,2m}\) implies \(n=2m\), and also
+\begin{equation}
+    \frac{B_m}{\sqrt{(2m)!}} = \frac{1}{m!} \left(\frac{t\exp{i\theta}}{2}\right)^m,
+\end{equation}
+we find that
+\begin{equation}
+    \braket{\alpha}{z} = \exp{-\abs{\alpha}^2/2} A \sum_{m=0}^\infty \frac{1}{m!} \left(\frac{\alpha^2 t\exp{i\theta}}{2}\right)^m = \exp{-\abs{\alpha}^2/2} A \exp{\frac{\alpha^2 \tanh(r)\exp{i\theta}}{2}},
+\end{equation}
+and then
+\begin{equation}
+    \braket{z}{\alpha} = \exp{-\abs{\alpha}^2/2} A \exp{\frac{(\alpha^*)^2 \tanh(r)\exp{-i\theta}}{2}},
+\end{equation}
+implying that
+\begin{equation}
+    \abs{\braket{\alpha}{z}}^2 = \exp{-\abs{\alpha}^2}A^2 \lexp \left(\frac{\tanh(r)}{2}\Bigg[ \alpha^2 \exp{i\theta}+(\alpha^*)^2\exp{-i\theta} \Bigg] \right),
+\end{equation}
+and then
+\begin{equation}
+    Q(\alpha^*,\alpha) = \frac{\sech(r)}{\pi}\lexp\Bigg\{-\abs{\alpha}^2 + \frac{\tanh(r)}{2}\bigg[\alpha^2 \exp{i\theta} + (\alpha^*)^2 \exp{-i\theta} \bigg] \Bigg\}.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Critical Rabi model}
+
+The Rabi model is given by the following Hamiltonian
+\begin{equation}
+    H = \omega a^\dagger a + \frac{\Omega}{2}\sigma_z - \lambda(a+a^\dagger)\sigma_x.
+\end{equation}
+
+Consider the transformed Hamiltonian
+\begin{equation}
+    \tilde{H} = U^\dagger H U,
+\end{equation}
+where
+\begin{equation}
+    U = \lexp\left\{ \frac{\lambda}{\Omega}(a+a^\dagger)(\sigma_+ - \sigma_-) \right\}.
+\end{equation}
+Since we'll need, lets state \(U^\dagger\)
+\begin{equation}
+    U^\dagger = \lexp\left\{ -\frac{\lambda}{\Omega}(\sigma_+ - \sigma_-)(a+a^\dagger) \right\}
+\end{equation}
+
+\section{(a)}
+
+Let's consider the transformed Hamiltonian
+\begin{equation}
+    \tilde{H} = U^\dagger H U = \omega (U^\dagger a^\dagger a U) + \frac{\Omega}{2} (U^\dagger \sigma_z U) - \lambda (U^\dagger (a+a^\dagger)\sigma_x U),
+\end{equation}
+and let's use the BCH expansion
+\begin{equation}
+    O' = \exp{S}O\exp{-S} = O + \comm{S}{O} + \frac{1}{2!} \comm{S}{\comm{S}{O}} + \cdots,
+\end{equation}
+with
+\begin{equation}
+    S = -i\frac{\lambda}{\Omega}\sigma_y (a+a^\dagger)
+\end{equation}
+
+Since we'll take the limit \(1/N \to 0\), we won't bother with terms that carry a \(1/N\). Since \(\lambda \sim N\), \(\Omega \sim N^2\), we'll keep only the zero-th order term of the expansion of \(U^\dagger a^\dagger a U\), the second order term of the expansion of \(U^\dagger \sigma_z U\) and the first order term of the expansion of \(U^\dagger (a+a^\dagger)\sigma_x U\). These all means that we'll consider
+\begin{equation}\label{eq:transHam}
+    \tilde{H} = H + \frac{\Omega}{2} \Bigg(\comm{S}{\sigma_z} + \hlf \comm{S}{\comm{S}{\sigma_z}} \Bigg) - \lambda \comm{S}{(a+a^\dagger)\sigma_x}.
+\end{equation}
+
+Let's begin computing \(\comm{S}{(a+a^\dagger)\sigma_x}\):
+\begin{equation}
+    \comm{S}{(a+a^\dagger)\sigma_x} = -\frac{i\lambda}{\Omega}\Bigg[\sigma_y (a+a^\dagger)^2\sigma_x - (a+a^\dagger)\sigma_x\sigma_y (a+a^\dagger)\Bigg].
+\end{equation}
+Since \(a\) and \(a^\dagger\) act on a different subspace than \(\sigma_i\) they always commute, meaning that
+\begin{equation}
+    \comm{S}{(a+a^\dagger)\sigma_x} = -\frac{i\lambda}{\Omega}\Bigg[ (a+a^\dagger)^2\sigma_y\sigma_x - (a+a^\dagger)^2\sigma_x\sigma_y \Bigg],
+\end{equation}
+and then
+\begin{equation}
+    \comm{S}{(a+a^\dagger)\sigma_x} = -\frac{i\lambda}{\Omega}(a+a^\dagger)^2 \comm{\sigma_y}{\sigma_x} = -\frac{2\lambda}{\Omega}(a+a^\dagger)^2\sigma_z.
+\end{equation}
+
+Analogously we compute \(\comm{S}{\sigma_z}\) and find that
+\begin{equation}
+    \comm{S}{\sigma_z} = \frac{2\lambda}{\Omega}(a+a^\dagger) \sigma_x,
+\end{equation}
+which appeared on our previous calculation! Then it's easy to compute \(\comm{S}{\comm{S}{\sigma_z}}\):
+\begin{equation}
+    \comm{S}{\comm{S}{\sigma_z}} = \frac{2\lambda}{\Omega} \comm{S}{(a+a^\dagger) \sigma_x} = -\frac{4\lambda^2}{\Omega^2}(a+a^\dagger)^2\sigma_z.
+\end{equation}
+
+Plugging our results on \eqref{eq:transHam} we obtain
+\begin{equation}
+    \tilde{H} = H + \frac{\Omega}{2} \Bigg(\frac{2\lambda}{\Omega}(a+a^\dagger) \sigma_x -  \frac{2\lambda^2}{\Omega^2}(a+a^\dagger)^2\sigma_z \Bigg) + \lambda \frac{2\lambda}{\Omega}(a+a^\dagger)^2\sigma_z,
+\end{equation}
+and then
+\begin{equation}
+    \tilde{H} = H + \lambda(a+a^\dagger)\sigma_x - \frac{\lambda^2}{\Omega}(a+a^\dagger)^2\sigma_z + 2\frac{\lambda^2}{\Omega}(a+a^\dagger)^2\sigma_z,
+\end{equation}
+implying that
+\begin{equation}
+    \tilde{H} = \omega a^\dagger a + \frac{\Omega}{2}\sigma_z +\frac{\lambda^2}{\Omega}(a+a^\dagger)^2\sigma_z.
+\end{equation}
+Introducing the constant \(g\)
+\begin{equation}
+    g = \frac{2\lambda}{\sqrt{\omega\Omega}}
+\end{equation}
+we can write
+\begin{equation}
+    \tilde{H} = \omega a^\dagger a + \frac{\Omega}{2}\sigma_z +\frac{\omega g^2}{4}(a+a^\dagger)^2\sigma_z.
+\end{equation}
+
+\section{(b)}
+
+Taking the projection of \(\tilde{H}\) on the \(\ket{1}\) state we find
+\begin{equation}
+    \tilde{H}_- = \omega a^\dagger a - \frac{\Omega}{2} -\frac{\omega g^2}{4}(a+a^\dagger)^2,
+\end{equation}
+which can be written as
+\begin{equation}
+    \tilde{H}_- = \big( \omega-\frac{\omega g^2}{2}\big)a^\dagger a - \frac{\omega g^2}{4}(a^2 + (a^\dagger)^2) - \frac{\Omega}{2} - \frac{\omega g^2}{4}.
+\end{equation}
+
+We can find the squeezed \(\tilde{H}_-\) using our previous results
+\begin{equation}
+\begin{split}
+    S_z^\dagger \tilde{H}_- S_z &= \big( \omega-\frac{\omega g^2}{2}\big) \Bigg[a^\dagger a (c^2 + s^2) + (a^\dagger)^2 \exp{i\theta}cs - a^2 \exp{-i\theta}cs \Bigg] \\
+    &- \frac{\omega g^2}{4}\Bigg[ a^\dagger a 2 cs (\exp{-i\theta}+\exp{i\theta}) + (a^\dagger)^2  (c^2 + \exp{i2\theta} s^2) + a^2(c^2 + \exp{-i2\theta}s^2)\Bigg] \\
+    &- \frac{\Omega}{2} + \big( \omega-\frac{\omega g^2}{2}\big)s^2 - \frac{\omega g^2}{4}\Big(1 + s^2 + 2\exp{i\theta}cs \Big),
+\end{split}
+\end{equation}
+and then
+\begin{equation}
+\begin{split}
+    S_z^\dagger \tilde{H}_- S_z &=  a^\dagger a \big( \omega-\frac{\omega g^2}{2}\big)(c^2 + s^2) + (a^\dagger)^2\big( \omega-\frac{\omega g^2}{2}\big) \exp{i\theta}cs - a^2 \big( \omega-\frac{\omega g^2}{2}\big)\exp{-i\theta}cs \\
+    &-a^\dagger a 2 cs\frac{\omega g^2}{4} (\exp{-i\theta}+\exp{i\theta}) - (a^\dagger)^2 \frac{\omega g^2}{4} (c^2 + \exp{i2\theta} s^2) - a^2 \frac{\omega g^2}{4} (c^2 + \exp{-i2\theta}s^2) \\
+    &- \frac{\Omega}{2} + \big( \omega-\frac{\omega g^2}{2}\big)s^2 - \frac{\omega g^2}{4}\Big(1 + s^2 + 2\exp{i\theta}cs \Big), 
+\end{split}
+\end{equation}
+leading to
+\begin{equation}
+\begin{split}
+    S_z^\dagger \tilde{H}_- S_z &=  a^\dagger a \Bigg\{\big( \omega-\frac{\omega g^2}{2}\big)(c^2 + s^2) - 2 cs\frac{\omega g^2}{4} (\exp{-i\theta}+\exp{i\theta}) \Bigg\}  \\
+    &+ (a^\dagger)^2\Bigg\{\big( \omega-\frac{\omega g^2}{2}\big) \exp{i\theta}cs - \frac{\omega g^2}{4} (c^2 + \exp{i2\theta} s^2)  \Bigg\} \\
+    &- a^2\Bigg\{\big( \omega-\frac{\omega g^2}{2}\big)\exp{-i\theta}cs + \frac{\omega g^2}{4} (c^2 + \exp{-i2\theta}s^2) \Bigg\}  \\
+    &- \frac{\Omega}{2} + \big( \omega-\frac{\omega g^2}{2}\big)s^2 - \frac{\omega g^2}{4}\Big(1 + s^2 + 2\exp{i\theta}cs \Big),
+\end{split}
+\end{equation}
+meaning that, in order to diagonalise \(\tilde{H}_-\) we need
+\begin{equation}
+    \big( \omega-\frac{\omega g^2}{2}\big) \exp{i\theta}cs - \frac{\omega g^2}{4} (c^2 + \exp{i2\theta} s^2) = 0,
+\end{equation}
+which is the same as the quadratic equation
+\begin{equation}
+    t^2 + t\big(2\exp{-i\theta} - \frac{4\exp{-i\theta}}{g^2} \big) + \exp{-i2\theta} =0.
+\end{equation}
+Computing the discriminant \(\Delta = b^2 - 4ac\) we find
+\begin{equation}
+    \Delta = 16\exp{-2i\theta}\left(\frac{1}{g^4} - \frac{1}{g^2} \right),
+\end{equation}
+leading to the solution
+\begin{equation}
+    t_\pm = -\exp{-i\theta} + \frac{2\exp{-i\theta}}{g^2} \Big\{1 \pm \sqrt{1-g^2}\Big\}.
+\end{equation}
+Since we need \(t\) to be real we can impose \(\theta=0\) leading to
+\begin{equation}
+    t_\pm = -1 + \frac{2}{g^2} \Big\{1 \pm \sqrt{1-g^2}\Big\}
+\end{equation}
+and then
+\begin{equation}
+    1-g^2 > 0
+\end{equation}
+meaning that \(g<1\) must hold.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

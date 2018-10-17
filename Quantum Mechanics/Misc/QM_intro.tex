@@ -1,0 +1,91 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+
+\addbibresource{QM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+\pagestyle{mynotespage}
+
+\chapter{Introduction}
+
+\section{Axioms}
+\paragraph{Axiom 1}
+To every one-particle physical system there corresponds a state vector \(\ket{\Psi}\) which lives in a Hilbert space \( \mathcal{H}\) and contains every property of the system.\par
+\paragraph{Axiom 2}
+The probability of finding \(\ket{\Psi}\) in a state \( \ket{a}\) is given by Born's rule as
+\beq  P\left(\ket{\Psi},\ket{a} \right) = \abs{\braket{a}{\Psi}}^2\eeq
+\paragraph{Axiom 3}
+A measurement of \(\ket{\Psi}\) always causes the system to collapse into as eigenstate \(\ket{a_i} \) of the observable \(A\) being measured with probability
+\beq  P\left(\ket{\Psi},\ket{a_i} \right)=P(a_i) =\abs{\braket{a_i}{\Psi}}^2\eeq
+And the outcome of such a measurement is the eigenvalue associated with the eigenstate to which the state vector collapses to. As the eigenvalues are measured in the real world, they must always be real, therefore every observable is represented by Hermitian operator \(A = A^{\dag} \) in \(\mathcal{H}\). It is conventional to normalize the eigenstates so that \beq  \braket{a_i}{a_j} = \delta_{ij}\eeq \par
+\paragraph{Axiom 4}
+Time evolution\par
+
+\section{Basis}
+We can expand an arbitrary state vector \( \ket{\Psi}\) in a basis of eigenstates \( \ket{a_i}\) of an Hermitian operator \(A\). However, we must consider the case in which the eigenvalues are \textbf{degenerate}, that is, the case in which more than one eigenstate is associated with the same eigenvalue. In such case, as the expansion must consider every eigenstate, it must consist of the two sums
+\beq  \ket{\Psi} = \sum_{i}\sum_{\alpha} c_{a_i,\alpha}\ket{a_i,\alpha}\eeq
+Where \(\alpha\) labels the different eigenstates associated with the same eigenvalue. When we have degeneracy, what we find is not an eigenstates, but rather an "eigenspace", therefore we can construct a basis of eigenstates that is orthogonal using the Gram-Schmidt procedure. This makes it possible to obtain
+\beq  c_{a_i,\alpha} = \braket{a_i,\alpha}{\Psi}\eeq
+And conclude that
+\beq  \sum_i \sum_{\alpha}\op{a_i,\alpha}{a_i,\alpha} = \sum_i \sum_{\alpha} \Lambda_{a_i,\alpha}=1\eeq
+Which is called \textbf{completeness relation} or \textbf{closure} and should be understood as the identity operator, and \(\Lambda_{a_i,\alpha}\) should be identified as the projection operator.\par
+We define the expectation value of an observable \(B\) as
+\beq  \expval{B} = \expval{B}{\Psi}\eeq
+We can, then, apply the identity operator twice to obtain the matrix representation of the operator, but note that this identity operator can correspond to any basis
+\beq B_{ij(\alpha,\beta)} = \mel{a_i,\alpha}{B}{a_j,\beta} \eeq
+Where \(\alpha\) and \(\beta\) stands for degeneration label, what makes the operator have more then one possible matrix representation on the same basis.\par
+When we represent an operator \(A\) in its own eigenstates basis, we get a diagonal matrix due to the orthonormalization, so
+\beq  A_{ij(\alpha,\beta)} = \mel{a_i,\alpha}{A}{a_j,\beta}\delta_{ij}\eeq
+And then
+\beq  A = \sum_i \sum_{\alpha} a_i \Lambda_{a_i,\alpha}\eeq
+With
+\beq  \expval{A} = \sum_i \sum_{\alpha} a_i \abs{\braket{a_i,\alpha}{\Psi}}^2\eeq
+Since
+\beq  \mel{\Psi}{\Lambda_{a_i,\alpha}}{\Psi} = \abs{\braket{a_i,\alpha}{\Psi}}^2\eeq \par
+
+\section{Compatible observables}
+
+Two observables \(A\) and \(B\) are said to be compatible if
+\beq[eq:compatobs] \comm{A}{B}=0 \eeq
+and incompatible if
+\beq[eq:incompatobs] \comm{A}{B} \ne 0 \eeq
+
+If two observables are \textbf{compatible} they have the \textbf{same} eigenkets. Note that this is true even if the eigenvalues of \(B\) are degenerate. We can, then, label the eigenket with both eigenvalues
+\beq \ket{a,b}\eeq
+with the following property
+\beq A\ket{a,b}=a\ket{a,b}\eeq
+\beq B\ket{a,b}=b\ket{a,b}\eeq
+Note that this notation while superfluous on the non-degeneracy case it is useful if one of the observables has degenerate eigenvalues.\par
+
+\section{Incompatible observables}
+Let \(A\) and \(B\) be incompatible observables, then they don't have the same eigenkets on all space, although they can be compatible within a subspace, where
+\beq AB\ket{a,b} = BA\ket{a,b}\eeq
+holds.\par
+
+\section{Uncertainty}
+Lets define the operator
+\beq \Delta A = A - \expval{A}\eeq
+The variance of an observable \(A\) is
+\beq[eq:variancedef] \sigma^2_A = \expval{(\Delta A)^2} = \expval{A^2} - \expval{A}^2\eeq
+We can then show that
+\beq[eq:uncertainty] \sigma_A\sigma_B \geq \frac{1}{4}\abs{\expval{\comm{A}{B}}}^2  \eeq
+
+\section{Change of basis}
+
+\section{Energy basis}
+
+\beq[eq:TISE] \hat{H}\psi = E\psi \eeq
+
+
+
+\section{Time evolution of mean value}
+
+\beq[] \dv{\mean{\mc{O}}}{t} = \frac{i}{\hbar}\mean{\comm{H}{\mc{O}}} + \mean{\pdv{\mc{O}}{t}} \eeq
+
+
+
+\end{document}

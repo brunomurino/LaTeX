@@ -1,0 +1,186 @@
+\documentclass{../_mypackages/monograph}
+
+\title{Quantum Information} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter{Composite systems}
+\minitoc
+
+\section{The tensor product}
+Until now, all we have considered was a single system. However, we can choose to treat our system as a composition of sub-systems. Notice that this sub-systems can be independent or not.
+
+Let say that our big system \(AB\) is composed of two sub-systems \(A\) and \(B\). Such system \(AB\) is called a \emph{bipartite system}. We can, then, represent a state of \(AB\) as a \emph{tensor product} or \emph{Kronecker product}. 
+\begin{mybox}
+If a state of \(A\) is \(\ket{i}_A\) and a state of \(B\) is \(\ket{j}_B\), then we say that the corresponding state of \(AB\) is
+\begin{equation}
+    \ket{i,j}_{AB} = \ket{i}_A \tens \ket{j}_B.
+\end{equation}
+Analogously, we define operators of \(AB\) as the tensor product between operator of \(A\) and \(B\), such that
+\begin{equation}
+    (A\tens B)(C\tens D) = (AB\tens CD)
+\end{equation}
+whenever \(AB\) and \(CD\) both make sense.
+\end{mybox}
+
+For instance, the following is a valid operation
+\begin{equation}
+    (A\tens B)(\ket{\psi}\tens\ket{\phi}) = (A\ket{\psi})\tens(B\ket{\phi}),
+\end{equation}
+while
+\begin{equation}
+    (\bra{0}\tens\ket{0})(\sigma_x\tens \sigma_x)
+\end{equation}
+is not, since while \(\bra{0}\sigma_x\) makes sense, \(\ket{0}\sigma_x\) does not.
+
+To actually compute some tensor product \(A\tens B\) when \(A\) and \(B\) are matrices we do
+\begin{equation}
+    A\tens B = \mqty(a_{11} B & \cdots & a_{1N} B \\ \vdots & \ddots & \vdots \\a_{M1} B & \cdots & a_{MN} B ),
+\end{equation}
+so we also have the following:
+\begin{equation}
+    \ket{0,0} = \mqty(1 \\ 0\\0\\0)\qc \ket{0,1} = \mqty(0 \\ 1\\0\\0)\qc \ket{1,0} = \mqty(0 \\ 0\\1\\0)\qc \ket{1,1} = \mqty(0 \\ 0\\0\\1).
+\end{equation}
+
+\section{Entanglement}
+
+If we consider the bipartite system \(AB\) with \(\mathscr{H}_{AB} = \mathscr{H}_A\tens\mathscr{H}_B\), with \(\dim(\mathscr{H}_{AB}) = 4\), a general state \(\ket{\psi}_{AB}\) of \(AB\) can be written as
+\begin{equation}
+    \ket{\psi}_{AB} = \sum_{i,j} C_{ij}\ket{i,j}_{AB}\qc i,j\in\set{0,1},
+\end{equation}
+where \(C_{i,j}\) are a set of coefficients and \(\ket{i,j}_{AB}\) are the four vectors of some basis of \(\mathscr{H}_{AB}\).
+
+\begin{mybox}
+If we can find states \(\ket{\psi}_A\in\mathscr{H}_A\) and \(\ket{\psi}_B\in\mathscr{H}_B\) such that
+\begin{equation}
+    \ket{\psi}_{AB} = \ket{\psi}_A\tens \ket{\psi}_B,
+\end{equation}
+we say that the state \(\ket{\psi}_{AB}\) is a \emph{product state}. If our state is \emph{not} a product state, then we say it is an \emph{entangled state}. Some very important entangled states are the \emph{Bell states}:
+\begin{equation}
+\begin{split}
+    \ket{\Phi_1} &= \frac{1}{\sqrt{2}}\bigg(\ket{0,0} + \ket{1,1} \bigg),\\
+    \ket{\Phi_2} &= \frac{1}{\sqrt{2}}\bigg(\ket{0,0} - \ket{1,1} \bigg),\\
+    \ket{\Phi_3} &= \frac{1}{\sqrt{2}}\bigg(\ket{0,1} + \ket{1,0} \bigg),\\
+    \ket{\Phi_4} &= \frac{1}{\sqrt{2}}\bigg(\ket{0,1} - \ket{1,0} \bigg).
+\end{split}
+\end{equation}
+\end{mybox}
+
+
+
+\section{The partial trace}
+
+Consider the bipartite system \(AB\) with \(\ket{a}\) being a basis of system \(A\) and \(\ket{b}\) a basis of system \(B\). Consider now the arbitrary operator on \(AB\)
+\begin{equation}
+    \mathcal{O} = \sum_\alpha A_\alpha \tens B_\alpha.
+\end{equation}
+Computing the trace of \(\mathcal{O}\) we find that
+\begin{equation}
+\begin{split}
+    \Tr(\mathcal{O}) &= \sum_\alpha \Tr(A_\alpha \tens B_\alpha).
+\end{split}
+\end{equation}
+Computing only \(\Tr(A_\alpha \tens B_\alpha)\) in the \(\ket{a,b}\) basis, we find that
+\begin{equation}
+\begin{split}
+    \Tr(A_\alpha \tens B_\alpha) &= \sum_{a,b} \ev{A_\alpha \tens B_\alpha}{a,b} \\
+    &= \sum_{a,b} (\bra{a}\tens\bra{b})(A_\alpha\tens B_\alpha)(\ket{a}\tens\ket{B}) \\
+    &= \sum_a \ev{A_\alpha}{a} \sum_b \ev{B_\alpha}{b} \\
+    &= \Tr(A_\alpha)\Tr(B_\alpha),
+\end{split}
+\end{equation}
+and then finally
+\begin{equation}
+    \Tr(\mathcal{O}) = \sum_\alpha \Tr(A_\alpha)\Tr(B_\alpha).
+\end{equation}
+
+We can now define the \emph{partial trace over \(A\)} as
+\begin{equation}
+    \Tr_A(\mathcal{O}) = \sum_\alpha \Tr(A_\alpha)B_\alpha,
+\end{equation}
+and analogously for the partial trace over \(B\). 
+\begin{mybox}
+Moreover, since the trace is a linear operation, we can conclude that
+\begin{equation}
+    \Tr_A(\ketbra{a,b}{a',b'}) = \delta_{a,a'}\ketbra{b}{b'},
+\end{equation}
+and analogous for \(\Tr_B\). And also
+\begin{equation}
+    \Tr(A\tens B) = \Tr_B\Bigg( \Tr_A(A\tens B)\Bigg),
+\end{equation}
+meaning that we can compute the full trace by taking consecutive partial traces.
+\end{mybox}
+
+\section{Reduced density matrix}
+
+By means of the partial trace operation we can define the \emph{reduced density matrices} \(\rho_A\) and \(\rho_B\) of a composite system \(AB\), with \(\rho_{AB}\), as
+\begin{equation}
+    \rho_A = \Tr_B (\rho_{AB}) \qand \rho_B = \Tr_A (\rho_{AB}),
+\end{equation}
+and notice that, given an operator \(O\) acting only on \(A\), i.e. \(A = A\tens \idm_A\), we find
+\begin{equation}
+    \ev{A} = \Tr(A\rho_A)
+\end{equation}
+
+\section{The ambiguity of mixtures}
+
+If we have a bipartite qubit system on the Bell state \(\ket{\Phi_1}\), then
+\begin{equation}
+    \rho_{AB} = \ketbra{\Phi_1} = \frac{1}{2}\bigg(\ketbra{0,0} + \ketbra{0,0}{1,1} + \ketbra{1,1}{0,0} + \ketbra{1,1} \bigg),
+\end{equation}
+and the important result is that the reduced density matrices \(\rho_A\) and \(\rho_B\) become
+\begin{equation}
+    \rho_A = \rho_B = \frac{1}{2}\mqty(1 & 0 \\ 0 & 1)
+\end{equation}
+and then the purity of \(A\), i.e. \(\mathcal{P}_A = \Tr(\rho_A^2)\), is
+\begin{equation}
+    \mathcal{P}_A = \frac{1}{2} \leq 1,
+\end{equation}
+meaning that \(\rho_A\) corresponds to a mixed state! This leads to an interesting conclusion:
+\begin{mybox}
+\emph{If a state of \(AB\) is entangled,
+the reduced states of \(A\) and \(B\) are mixed states.} This means that if you measure system \(A\) and find a mixed state, then you can't know if either your system is entangled with another system, or if your system is just a mixture of states.
+\end{mybox}
+
+\section{Loss of information by taking the partial trace}
+
+The operation of taking the partial trace is \emph{irreversible} and in general looses information, as will be shown in the example that follows.
+
+Let
+\begin{equation}
+    \rho_{AB} = \rho_A^0 \tens \rho_B^0 + \chi, \qq{with} \chi = \mqty(0 & 0 & 0 & 0 \\ 0 & 0 & \alpha & 0 \\ 0 & \alpha & 0 & 0 \\ 0 & 0 & 0 & 0).
+\end{equation}
+Since \(\Tr_A(\chi) = \Tr_B(\chi) = 0\), we find that
+\begin{equation}
+    \rho_A = \rho_A^0 \qand \rho_B = \rho_B^0,
+\end{equation}
+just like if \(\chi\) didn't exist!
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

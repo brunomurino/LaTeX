@@ -1,0 +1,116 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics I \\ Problem Set 02} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter*{1.}
+
+% Let there be a composite system \(sR\), of systems \(s\) and \(R\), whose density matrix is \(\rho\). I want \(s\) to be in a pure state, what should be the form of \(\rho\)? Well, first I should compute the reduced density matrix of \(s\), i.e. \(\rho_s = \Tr_R(\rho)\), and then compute the respective purity, i.e. \(\mathcal{P}_s = \Tr(\rho_s^2)\). I said I wanted \(s\) to be in a pure state, this means that \(\mathcal{P}_s\) must be equal \(1\), i.e. \(\mathcal{P}_s=1\). However, since \(\rho_s\) \emph{is}, in fact, a density matrix, we know that \(\Tr(\rho_s) =1\). So we can equate the purity of \(s\) to the trace of \(\rho_s\) and find that
+% \begin{equation}
+%     \Tr(\rho_s^2) = \Tr(\rho_s),
+% \end{equation}
+% implying that
+% \begin{equation}
+%     \rho_s^2 = \rho_s,
+% \end{equation}
+% which is precisely the definition of a projection operator. By definition, then, we can say that
+% \begin{equation}
+%     \rho = \rho_s \tens \rho_R + \chi,
+% \end{equation}
+% where \(\chi\) are terms that have null trace, meaning that they don't interfere with \(\rho_s\) or \(\rho_R\), altough they can represent some correlation between them.
+
+Consider an arbitrary \(\rho\) for \(sR\). Since \(\rho^\dagger = \rho\), i.e. \(\rho\) is Hermitian, \(\rho\) admits the spectral decomposition
+\begin{equation}
+    \rho = \sum_k \rho_k \ketbra{\phi_k}.
+\end{equation}
+Since \(\ketbra{\phi_k}\) is an element of the product Hilbert space \(\mathcal{H}_s\tens \mathcal{H}_R\), we can expand it a basis such as \(\ket{a_ib_j}\), implying that
+\begin{equation}\label{eq:rhoinab}
+    \ket{\phi_k} = \sum_{i,j} c^k_{i,j}\ket{a_ib_j},
+\end{equation}
+and then
+\begin{equation}\label{eq:rhoexp}
+    \rho = \sum_{k,i,j,i',j'} \rho_k c^k_{i,j}(c^k_{i',j'})^* \ketbra{a_ib_j}{a_{i'}b_{j'}}.
+\end{equation}
+If we recall that
+\begin{equation}
+    \Tr_R\big(\ketbra{a_ib_j}{a_{i'}b_{j'}}\big) = \delta_{j,j'}\ketbra{a_i}{a_{i'}},
+\end{equation}
+we can take the partial trace over \(R\) of \(\rho\) to find \(\rho_s\)
+\begin{equation}
+    \rho_s = \sum_{k,i,j,i'} \rho_k c^k_{i,j}(c^k_{i',j})^* \ketbra{a_i}{a_{i'}}.
+\end{equation}
+If we now impose \(\rho_s\) to be a pure state, then it must be 
+\begin{equation}
+    \rho_s = \ketbra{\psi}
+\end{equation}
+for some \(\ket{\psi}\). If, back at \eqref{eq:rhoinab}, we choose a basis \(\ket{a_i b_j}\) such that, for instance, \(\ket{a_1}=\ket{\psi}\), then it must be true that the only non-zero \(c\) is \(c^k_{1,j}\). Knowing this, we can go back to \eqref{eq:rhoexp} and find that
+\begin{equation}
+    \rho = \sum_{k,j,j'} \rho_k c^k_{1,j}(c^k_{1,j'})^* \ketbra{a_1b_j}{a_1b_{j'}},
+\end{equation}
+which we can then factor as
+\begin{equation}
+    \rho = \ketbra{a_1}\tens \sum_{k,j,j'} \rho_k c^k_{1,j}(c^k_{1,j'})^* \ketbra{b_j}{b_{j'}}.
+\end{equation}
+Since \(\ketbra{a_1}^2 = \ketbra{a_1}\ketbra{a_1} = \ket{a_1}\braket{a_1}\bra{a_1} = \ketbra{a_1}\), we can see that \(\rho_s=\ketbra{a_1}\) is a projection operator.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

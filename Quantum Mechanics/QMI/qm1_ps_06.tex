@@ -1,0 +1,457 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics I \\ Problem Set 06} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+% \import{../}{usefulequations}
+
+\chapter*{1.}
+
+We know that
+\begin{equation}\label{eq:cgcoef}
+    \ket{j_1,j_2,J,M} = \sum_{m_1,m_2} \braket{j_1,j_2,m_1,m_2}{j_1,j_2,J,M} \ket{j_1,j_2,m_1,m_2},
+\end{equation}
+where \(\braket{j_1,j_2,m_1,m_2}{j_1,j_2,J,M}\) are the Clebsch-Gordan coefficients. The non-vanishing coefficients obey the following conditions
+\begin{equation}\label{eq:addofangmom}
+    \left\{\begin{aligned}
+        m_1 +  & \, m_2 = M,  \\
+        \abs{j_1-j_2} \leq \, &J \leq j_1 + j_2, \\
+        j_1+j_2 + &\, J = \text{integer}.
+       \end{aligned}
+    \right.
+\end{equation}
+ Let's omit \(j_1,j_2\) from the notation since they are fixed.
+ 
+\subsubsection{First method}
+
+We want to find the Clebsch-Gordan coefficients for \(j_1=j_2=1\). We know that \(m_1,m_2=0,\pm1\). Also, for \(j_1=j_2=1\) we can have \(J=0,1,2\). Let's start with \(J=2\). Then, the allowed \(M\) are \(M=0,\pm1,\pm2\). If we choose \(M=2\), then the allowed \(m_1\) and \(m_2\) are \(m_1 = m_2 = 1\). Since these are the only possible values for \(m_1,m_2\), the sum in \eqref{eq:cgcoef} has only one term:
+\begin{equation}
+    \ket{2,2} = \braket{1,1}{2,2}\ket{1,1},
+\end{equation}
+and due to normalisation we require \(\abs{\braket{1,1}{2,2}}=1\) and then choose \(\braket{1,1}{2,2}\) to be positive, meaning that \(\braket{1,1}{2,2}=1\):
+\begin{mybox}
+\begin{equation}
+    \ket{2,2} = \ket{1}\tens\ket{1} = \ket{1,1}.
+\end{equation}
+\end{mybox}
+Applying \(J_- = J_- \tens \idm + \idm \tens J_-\) we obtain
+\begin{equation}
+    2\ket{2,1} = \sqrt{2}\ket{0,1} + \sqrt{2}\ket{1,0}
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{2,1} = \frac{1}{\sqrt{2}}(\ket{0,1}+\ket{1,0}).
+\end{equation}
+\end{mybox}
+
+Applying \(J_- = J_- \tens \idm + \idm \tens J_-\) again we obtain
+\begin{equation}
+\begin{split}
+    a_-(2,1)\ket{2,0} &=\\
+    \frac{1}{\sqrt{2}}\Bigg[a_-(1,0)\ket{-1,1} &+ \Big(a_-(1,1)+a_-(1,1)\Big)\ket{0,0} + a_-(1,0)\ket{1,-1}\Bigg],
+\end{split}
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{2,0} = \frac{1}{\sqrt{6}}\Bigg[\ket{-1,1} + 2\ket{0,0} + \ket{1,-1}\Bigg].
+\end{equation}
+\end{mybox}
+
+Again applying \(J_- = J_- \tens \idm + \idm \tens J_-\) we obtain
+\begin{equation}
+\begin{split}
+    a_-(2,0)\ket{2,-1}= \\
+    \frac{1}{\sqrt{6}}\Bigg[a_-(1,1)\ket{-1,0} &+ 2a_-(1,0)\Big(\ket{-1,0} + \ket{0,-1} \Big)      + a_-(1,1)\ket{0,-1}\Bigg],
+\end{split}
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{2,-1} = \frac{1}{\sqrt{2}}\Bigg[\ket{-1,0} + \ket{0,-1} \Bigg].
+\end{equation}
+\end{mybox}
+
+Using the same argument we did to obtain \(\ket{2,2}\) we can obtain \(\ket{2,-2}\). The only combination of \(m_1,m_2\) that gives \(M=-2\) is \(m_1=m_2=-1\), thus \eqref{eq:cgcoef} only has one term, which is \(\pm1\) due to normalisation and we choose \(+1\) to keep all the CG coefficients positive:
+\begin{mybox}
+\begin{equation}
+    \ket{2,-2} = \ket{-1,-1}.
+\end{equation}
+\end{mybox}
+
+Now, we can obtain \(\ket{1,1}\) by requiring it to be orthogonal to \(\ket{2,1}\). First, if \(M=1\) then the allowed \(m_1,m_2\) are \((m_1=0,m_2=1)\) and \((m_1=1,m_2=0)\), meaning that
+\begin{equation}
+    \ket{1,1} = \braket{0,1}{1,1}\ket{0,1} + \braket{1,0}{1,1}\ket{1,0}.
+\end{equation}
+Calling \(\braket{0,1}{1,1}=a\) and \(\braket{1,0}{1,1}=b\) and acting with \(\bra{2,1}\) on the left we obtain
+\begin{equation}
+    \braket{2,1}{1,1} = \frac{1}{\sqrt{2}}(a\braket{01} + b \braket{1,0}) = 0
+\end{equation}
+from which we get that \(a=-b\). Also, due to the normalisation of \(\ket{1,1}\) we need
+\begin{equation}
+    \abs{a}^2 + \abs{b}^2 = 1
+\end{equation}
+which finally gives us \(a = -b = 1/\sqrt{2}\):
+\begin{mybox}
+\begin{equation}
+    \ket{1,1} = \frac{1}{\sqrt{2}}\Bigg[\ket{0,1} - \ket{1,0} \Bigg].
+\end{equation}
+\end{mybox}
+
+Acting with \(J_- = J_- \tens \idm + \idm \tens J_-\) we obtain
+\begin{equation}
+    \sqrt{2}\ket{1,0} = \frac{1}{\sqrt{2}}\Bigg[\sqrt{2}\ket{-1,1} +(\sqrt{2}-\sqrt{2})\ket{0,0}-\sqrt{2}\ket{1,-1} \Bigg],
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{1,0}=\frac{1}{\sqrt{2}} \Bigg[\ket{-1,1}-\ket{1,-1} \Bigg].
+\end{equation}
+\end{mybox}
+
+Acting again with \(J_- = J_- \tens \idm + \idm \tens J_-\) we obtain
+\begin{equation}
+    \sqrt{2}\ket{1,-1} = \frac{1}{\sqrt{2}}\Bigg[ \sqrt{2}\ket{-1,0} - \sqrt{2}\ket{0,-1} \Bigg],
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{1,-1} = \frac{1}{\sqrt{2}}\Bigg[ \ket{-1,0} - \ket{0,-1}\Bigg].
+\end{equation}
+\end{mybox}
+
+To obtain \(\ket{0,0}\) we must consider its orthogonality with \(\ket{1,0}\) and \(\ket{2,0}\). First, with \(M=0\) we can have \((m_1=1,m_2=-1)\),\((m_1=0,m_2=0)\) and \((m_1=-1,m_2=1)\), meaning that the sum in \eqref{eq:cgcoef} will have three terms, which we'll call \(a\),\(b\) and \(c\):
+\begin{equation}
+    \ket{0,0} = a \ket{1,-1} + b\ket{0,0} + c\ket{-1,1}.
+\end{equation}
+The orthogonality with \(\ket{2,0}\) gives
+\begin{equation}
+    0 = a + 2b + c,
+\end{equation}
+while the orthogonality with \(\ket{1,0}\) gives
+\begin{equation}
+    0 = a-c.
+\end{equation}
+From the normalisation of \(\ket{0,0}\) we also have
+\begin{equation}
+    \abs{a}^2 + \abs{b}^2 + \abs{c}^2 = 1.
+\end{equation}
+Using \(a=c\) we find
+\begin{equation}
+    b = -a
+\end{equation}
+and then
+\begin{equation}
+    3\abs{a}^2 = 1,
+\end{equation}
+from which we finally obtain
+\begin{mybox}
+\begin{equation}
+    \ket{0,0} = \frac{1}{\sqrt{3}}\Bigg[ \ket{1,-1} -\ket{0,0} + \ket{-1,1}\Bigg].
+\end{equation}
+\end{mybox}
+
+\subsubsection{Second method}
+
+We start with the recursion relation
+\begin{multline}
+    a_\mp(J,M) \braket{m_1,m_2}{J,M\mp1} =\\
+    a_\pm(j_1,m_1)\braket{m_1\pm1,m_2}{J,M} + a_\pm(j_2,m_2)\braket{m_1,m_2\pm1}{J,M}
+\end{multline}
+Recall that \(m_2\) must be such that \(m_1+m_2 = M\mp 1\):
+\begin{multline}
+    a_\mp(J,M) \braket{m_1,M\mp 1-m_1}{J,M\mp1} =\\
+    a_\pm(j_1,m_1)\braket{m_1\pm1,M\mp 1-m_1}{J,M} +\\
+    a_\pm(j_2,M\mp 1-m_1)\braket{m_1,M-m_1}{J,M}
+\end{multline}
+
+We have \(j_1=j_2=1\).
+Let's start with \(J=1\), \(M=1\) and \(m_1=1\), and take the lower relation
+\begin{equation}
+    a_-(1,1)\braket{0,1}{1,1} = -a_-(1,1)\braket{1,0}{11}.
+\end{equation}
+For \(M=1\) we can have \((m_1=0,m_2=1)\) and \((m_1=1,m_2=0)\), then, calling
+\begin{equation}
+    \braket{0,1}{1,1} = \alpha 
+\end{equation}
+we have \(\braket{1,0}{11} = -\alpha\) and due to normalisation (and sign conventions)
+\begin{equation}
+    \alpha = \frac{1}{\sqrt{2}},
+\end{equation}
+then
+\begin{mybox}
+\begin{equation}
+    \ket{1,1} = \frac{1}{\sqrt{2}}\Bigg[\ket{0,1} - \ket{1,0} \Bigg].
+\end{equation}
+\end{mybox}
+
+Now let's obtain the expansion of \(\ket{1,0}\). For \(M=0\) there are three coefficients: the one with \(m_1=1\), one with \(m_1=0\) and one with \(m_1=-1\) (with \(m_2\) according to which relation is being considered). Taking the upper relation with \(m_1=1\) we obtain
+\begin{equation}
+    a_-(1,1)\braket{1,-1}{1,0} = a_+(1,-1)\braket{1,0}{1,1} = -\frac{a_+(1,-1)}{\sqrt{2}},
+\end{equation}
+then
+\begin{equation}
+    \braket{1,-1}{1,0} = -\frac{1}{\sqrt{2}}.
+\end{equation}
+Considering \(m_1=0\) we obtain from the upper relation
+\begin{equation}
+    a_-(1,1)\braket{0,0}{1,0} = a_+(1,0)\braket{1,0}{1,1} + a_+(1,0)\braket{0,1}{1,1} = a_+(1,0)\Big(\frac{1}{\sqrt{2}} - \frac{1}{\sqrt{2}} \Big) = 0,
+\end{equation}
+then
+\begin{equation}
+    \braket{0,0}{1,0} = 0.
+\end{equation}
+Considering \(m_1=-1\) we obtain from the upper relation
+\begin{equation}
+    a_-(1,1)\braket{-1,1}{1,0} = a_+(1,-1)\braket{0,1}{1,1} = 1,
+\end{equation}
+then
+\begin{equation}
+    \braket{-1,1}{1,0} = \frac{1}{\sqrt{2}}.
+\end{equation}
+Our result is
+\begin{mybox}
+\begin{equation}
+    \ket{1,0} = \frac{1}{\sqrt{2}}\Bigg[\ket{-1,1} - \ket{1,-1} \Bigg].
+\end{equation}
+\end{mybox}
+
+Now let's obtain the expansion of \(\ket{1,-1}\). Take \(M=-1\), \(m_1=-1\) and the upper relation:
+\begin{equation}
+    a_+(1,-1)\braket{0,-1}{1,-1} = -a_+(1,-1)\braket{-1,0}{1,-1}
+\end{equation}
+Since these are the only non-vanishing CG coefficients, due to normalisation we readily obtain
+\begin{equation}
+    \braket{-1,0}{1,-1} = -\braket{0,-1}{1,-1} = \frac{1}{\sqrt{2}},
+\end{equation}
+and then
+\begin{mybox}
+\begin{equation}
+    \ket{1,-1} = \frac{1}{\sqrt{2}}\Bigg[\ket{-1,0} - \ket{0,-1} \Bigg].
+\end{equation}
+\end{mybox}
+
+When \(J=0\) we have \(M=0\). Let's find the expansion of \(\ket{0,0}\). Consider \(m_1=-1\) and the upper relation
+\begin{equation}
+    a_+(1,-1)\braket{0,0}{0,0} = -a_+(1,0)\braket{-1,1}{0,0},
+\end{equation}
+and now \(m_1=1\) with the lower relation
+\begin{equation}
+    a_-(1,1)\braket{0,0}{0,0} = -a_-(1,0)\braket{1,-1}{0,0}.
+\end{equation}
+Since these are the three allowed CG coefficients, using the normalisation condition it's straightforward to obtain
+\begin{mybox}
+\begin{equation}
+    \ket{0,0} = \frac{1}{\sqrt{3}}\Bigg[ \ket{-1,1} - \ket{0,0} + \ket{1,-1}\Bigg].
+\end{equation}
+\end{mybox}
+
+Let's find the expansion of \(\ket{2,M}\). Let's take \(M=2\), \(m_1=1\) and the upper relation:
+\begin{equation}
+    a_-(2,2)\braket{1,0}{2,1} = a_+(1,0)\braket{1,1}{2,2}.
+\end{equation}
+When \(J=M=2\) there is only one CG coefficient, \(m_1=m_2=1\), so due to normalisation we know that
+\begin{equation}
+    \braket{1,1}{2,2} = 1,
+\end{equation}
+then
+\begin{mybox}
+\begin{equation}
+    \ket{2,2} = \ket{1,1},
+\end{equation}
+\end{mybox}
+and also
+\begin{equation}
+    \braket{1,0}{2,1} = \frac{1}{\sqrt{2}}.
+\end{equation}
+Taking \(m_1=0\) and the upper relation:
+\begin{equation}
+    a_-(2,2)\braket{0,1}{2,1} = a_+(1,0)\braket{1,1}{2,2} =a_+(1,0),
+\end{equation}
+then
+\begin{equation}
+    \braket{0,1}{2,1} = \frac{1}{\sqrt{2}}.
+\end{equation}
+With \(M=1\) there are only two coefficients, one with \((m_1=1,m_2=0)\) and another with \((m_1=0,m_2=1)\). Since we've already found them, we have
+\begin{mybox}
+\begin{equation}
+    \ket{2,1} = \frac{1}{\sqrt{2}}\Bigg[\ket{0,1} + \ket{1,0}  \Bigg].
+\end{equation}
+\end{mybox}
+
+Taking \(M=0\), \(m_1=1\) and the lower relation we obtain
+\begin{equation}\label{eq:bla1}
+    a_+(2,0)\braket{1,0}{2,1} = a_-(1,1)\braket{0,0}{2,0} + a_-(1,0)\braket{1,-1}{2,0},
+\end{equation}
+now with \(m_1=0\) and the lower relation:
+\begin{equation}\label{eq:bla2}
+    a_+(2,0)\braket{0,1}{2,1} = a_-(1,0)\braket{-1,1}{2,0} + a_-(1,1)\braket{0,0}{2,0},
+\end{equation}
+then with \(m_1=0\) and the upper relation:
+\begin{equation}
+    a_-(2,0)\braket{0,-1}{2,-1} = a_+(1,0)\braket{1,-1}{2,0}.
+\end{equation}
+
+Taking \(M=-1\) and \(m_1=0\) with the lower relation:
+\begin{equation}\label{eq:that}
+    a_+(2,-1)\braket{0,0}{2,0} = a_-(1,0)\braket{-1,0}{2,-1} + a_-(1,0)\braket{0,-1}{2,-1},
+\end{equation}
+and now with \(m_1=-1\) and the upper relation
+\begin{equation}\label{eq:this}
+    a_-(2,-1)\braket{-1,-1}{2,-2} = a_+(1,-1)\braket{0,-1}{2,-1} + a_+(1,-1)\braket{-1,0}{2,-1}.
+\end{equation}
+
+With \(M=-2\) there is only one CG coefficient, with \((m_1=-1,m_2=-1)\), so due to normalisation we know that
+\begin{equation}
+    \braket{-1,-1}{2,-2} = 1,
+\end{equation}
+then
+\begin{mybox}
+\begin{equation}
+    \ket{2,-2} = \ket{-1,-1}.
+\end{equation}
+\end{mybox}
+
+Knowing this, we have from \eqref{eq:this}:
+\begin{equation}
+    \frac{2}{\sqrt{2}} = \braket{0,-1}{2,-1} + \braket{-1,0}{2,-1}.
+\end{equation}
+and since with \(M=-1\) there are only two CG coefficients, one with \((m_1=0,m_2=-1)\) and other with \((m_1=-1,m_2=0)\), due to normalisation we know that
+\begin{equation}
+    \braket{0,-1}{2,-1} = \braket{-1,0}{2,-1} = \frac{1}{\sqrt{2}},
+\end{equation}
+then
+\begin{mybox}
+\begin{equation}
+    \ket{2,-1} = \frac{1}{\sqrt{2}}\Bigg[ \ket{0,-1} + \ket{-1,0}\Bigg].
+\end{equation}
+\end{mybox}
+
+With \eqref{eq:that} we obtain
+\begin{equation}
+    \braket{0,0}{2,0} = \frac{2}{\sqrt{6}},
+\end{equation}
+and finally with \eqref{eq:bla1} and \eqref{eq:bla2} we obtain
+\begin{equation}
+    \braket{1,-1}{2,0} = \braket{-1,1}{2,0} = \frac{1}{\sqrt{6}},
+\end{equation}
+then finally
+\begin{mybox}
+\begin{equation}
+    \ket{2,0} = \frac{1}{\sqrt{6}}\Bigg[\ket{-1,1} + 2 \ket{0,0} + \ket{1,-1} \Bigg].
+\end{equation}
+\end{mybox}
+
+
+\chapter*{2.}
+
+We have the radial equation with \(l=0\):
+\begin{equation}
+    -\frac{1}{2m}\dv[2]{U_{E0}}{r} - \frac{a^2}{8}\exp{-\frac{r}{r_0}}U_{E0} = E U_{E0}
+\end{equation}
+which we can write as
+\begin{equation}
+    - \dv[2]{U_{E0}}{r} - \frac{ma^2}{4}\exp{-\frac{r}{r_0}}U_{E0} = 2mE U_{E0}
+\end{equation}
+
+Defining
+\begin{equation}
+    z = ar_0\sqrt{m}\exp{-\frac{r}{2r_0}} \Rightarrow \frac{z^2}{r_0^2} = ma^2\exp{-\frac{r}{2r_0}},
+\end{equation}
+we have
+\begin{equation}
+    \dv{r} = -\frac{1}{2r_0} z \dv{z},
+\end{equation}
+and also
+\begin{equation}
+    \dv[2]{r} = \frac{1}{4r_0^2}\left(z \dv{z} + z^2 \dv[2]{z} \right).
+\end{equation}
+Then our radial equation becomes
+\begin{equation}
+    -\frac{1}{4r_0^2}\left(z \dv{U}{z} + z^2\dv[2]{U}{z} \right) - \frac{z^2}{4r_0^2} U = 2mE U,
+\end{equation}
+which can be written as
+\begin{equation}
+    \left( z \dv{U}{z} + z^2\dv[2]{U}{z} + z^2 + (8mEr_0^2) \right)U = 0,
+\end{equation}
+and defining 
+\begin{equation}
+    n = i2r_0 \sqrt{2mE},
+\end{equation}
+we obtain 
+\begin{equation}
+    \left[ z \dv{U}{z} + z^2\dv[2]{U}{z} + (z^2 -n^2) \right]U = 0,
+\end{equation}
+which is a \emph{Bessel equation}. The solutions are, then,
+\begin{equation}
+    U_{E0}(z) = c_1 J_n(z) + c_2 Y_n(z),
+\end{equation}
+where \(J_n\) is a Bessel function of the first kind and \(Y_n\) is a Bessel function of the second kind.
+
+We have the boundary conditions
+\begin{equation}
+    U_{E0}(r=0) = U_{E0}(r\to \infty)=0.
+\end{equation}
+The situation \(r\to 0\) is equivalent to \(z \to ar_0\sqrt{m}\), and the situation \(r\to \infty\) is equivalent to \(z \to 0\), so the boundary conditions on \(U_{E0}(z)\) become
+\begin{equation}
+    U_{E0}(z\to ar_0\sqrt{m}) = 0 \qq{and} U_{E0}(z\to 0) = 0.
+\end{equation}
+Since \(Y_n(z\to 0)\) diverges, we must set \(c_2 = 0\). Also, we obtain the condition
+\begin{equation}
+    J_n(ar_0\sqrt{m}) = 0,
+\end{equation}
+implying that
+\begin{equation}
+    ar_0\sqrt{m} = j_{n,k},
+\end{equation}
+where \(j_{n,k}\) is the k-th root of the Bessel function with index \(n\):
+\begin{equation}
+    mr_0^2 = \left(\frac{j_{n,k}}{a}\right)^2.
+\end{equation}
+
+Then, the radial solution is
+\begin{equation}
+    R_{E0}(r) = c_1 \frac{J_n(ar_0\sqrt{m}\exp{-\frac{r}{2r_0}})}{r},
+\end{equation}
+and the full solution is
+\begin{equation}
+    \psi_{E00}(\vb{r}) = c_1\frac{J_n(ar_0\sqrt{m}\exp{-\frac{r}{2r_0}})}{r} Y_{00}(\theta,\phi) = c_1\frac{J_n(ar_0\sqrt{m}\exp{-\frac{r}{2r_0}})}{\sqrt{4\pi r^2}} ,
+\end{equation}
+with eigenvalues
+\begin{equation}
+    E_k = - \frac{n^2}{8mr_0^2} = - \frac{n^2a^2}{8j^2_{n,k}}.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

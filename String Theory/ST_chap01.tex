@@ -1,0 +1,115 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_ST.bib}
+
+\begin{document}
+
+\chapter{Introduction}
+
+\section{Einstein and Hamilton}
+
+Every physical system travels in a manifold called spacetime. The motion of the system in spacetime traces out another manifold, the so called \textit{world-manifold}, therefore the full history of the system is contained in it. \par
+
+The postulates of special relativity are
+\begin{enumerate}
+    \item The laws of physics are the same in all inertial frames of reference.
+    \item The speed of light in vacuum has the same value \(c\) in all inertial frames of reference.
+\end{enumerate}
+We denote a point in spacetime as \( x^{\mu}\), \(\mu = \{0,1,...,D-1\} \) where \(D\) is the dimension of the spacetime. Sometimes we do \( x^{\mu } = (x^0,x^1,...,x^{D-1}) = (x^0,\vb{x})\) where \(\vb{x}\) is the spatial vector, as the one we use in classical mechanics. Here, \( x^0 = ct\). It's also handy to define the vector with a subscript, rather than a superscript, \( x_{\mu} = (- x^0,x^1,...,x^{D-1})\).\par 
+
+From Einstein's postulates we can conclude that the volume of the world-manifold is the same for all inertial observers, henceforth we called it the \textit{invariant interval} \(\Delta s \). In order to best describe the manifold mathematically we need to parameterize it. The number of parameters needed is the number of spacetime-dimensions the system has. A particle has zero spatial dimensions, but one temporal dimension (as everything else), therefore we need only one parameter to describe its trajectory, whereas a string has one spatial dimension and one temporal dimension, thus needing two parameters to describe its trajectory in spacetime.\par 
+
+Hamilton's principle states that the laws of motion of a physical system are the solutions for a stationary action \(S\), which is the integral of the Lagrangian \(\mc{L}\), which contains every information about the system, over its parameters \(\{\sigma\}\). The action has units of energy times time, or angular momentum. It's important to note that the action is not "derived", it's something we postulate, it's an educated guess regarding the symmetries we want the laws of motion to have. It \textit{defines} the theory.\par
+
+From Einstein's postulates and Hamilton's principle we can conclude that, for inertial observers, a good candidate to the Lagrangian is a function of the invariant interval! And this is our starting point on String Theory.\par 
+
+\section{The Relativistic String}
+
+As said before, a good candidate to the Lagrangian of a relativistic string is a function of the invariant interval of its world-manifold, the world-sheet. The simplest function there is is simply the invariant interval itself! Being two dimensional, we need to find the \textit{area element} of the world-sheet.
+
+\section{Special relativity}
+
+In special relativity is natural to introduce the relativistic scalar product between two infinitesimal spacetime vectors. This scalar product depends on the metric of the spacetime. If the spacetime is flat, then the metric is the \textit{Minkowski metric} \( \eta_{\mu \nu}\) and the scalar product is defined as
+\beq -\dd{s}^2 = \eta_{\mu \nu } \dd{a}^{\mu}\dd{b}^{\nu} = \dd{a}_{\mu}\cdot \dd{b}^{\nu}\eeq
+where \( \eta_{\mu \nu}\) is the Minkowski metric with signature \((-1,1,...,1)\).\par
+This scalar product is the length element of the world-line of the particle, therefore it's invariant under change of inertial frame.\par 
+Consider two events in spacetime that are \(\dd{x}^{\mu}\) away from each other. Let \(- \dd{s}^2 = \dd{x}_{\mu}\cdot \dd{x}^{\nu} \). 
+\begin{itemize}
+    \item If \( \dd{s}^2 > 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{timelike vector}, and the events are said to be \textit{timelike separated}. Timelike separated events can be causally connected.
+    \item If \( \dd{s}^2 = 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{lightlike vector}, and the events are said to be \textit{lightlike separated}.
+    \item If \( \dd{s}^2 < 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{spacelike vector}, and the events are said to be \textit{spacelike separated}. Spacelike separated events cannot be causally connected.
+\end{itemize}
+
+We can define the four-momentum as
+\beq p^{\mu} = \left(\frac{E}{c},p^1,...,p^{D-1}\right) = \left(\frac{E}{c},\vb{p}\right)\eeq
+Taking the scalar product \(p^{\mu}p_{\mu}\) we get an invariant which we call \(-(mc)^2 \), therefore
+\beq[eq:p2m20constrain] p^2 = - m^2c^2 = -\frac{E^2}{c^2} + \vb{p}\cdot\vb{p}\eeq\par 
+
+Given two inertial frames, if the relativistic scalar product between two vectors is preserved, then the transformation between the inertial frames is called a \textit{Lorentz transformation}. The group of all transformations that preserve the scalar product is called \textit{the Poincaré group}.\par 
+
+\section{Light-cone coordinates}
+
+In special relativity its useful to use \textit{light-cone coordinates}. The light-cone coordinates are defined
+as
+\beq x^+ \equiv \frac{1}{\sqrt{2}}(x^0 + x^1) \qq{and} x^- \equiv \frac{1}{\sqrt{2}}(x^0 - x^1)\eeq
+And by direct substitution, the scalar product between two vectors becomes
+\beq -\dd{s}^2 = -2\dd{x}^+\dd{x}^- + (\dd{x}^2)^2 +...+(\dd{x}^{D-1})^2\eeq
+and the flat metric becomes, in the \(D=4\) case,
+\beq \hat{\eta}_{\mu \nu} =
+\begin{pmatrix}
+0 & -1 & 0 & 0\\
+-1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}\eeq\par 
+
+It's important to define \(x^+\) as the light cone time (it could also be \(x^-\), but it's not conventional) since it remains constant for a light ray in the negative \(x^1\) direction.\par
+
+We can do the same thing to momentum and adopt momentum light-cone coordinates. Now, to find which component should be identified as the light-cone energy we must recall that energy and time are conjugated variables. If we expand the scalar product \(p\cdot x\) in both cartesian coordinates and light-cone coordinates, we find that the momentum component conjugated to \(x^+\) is \(-p_+=p^-\), thus we conclude that the light-cone energy is
+\beq p^- = \frac{E_{lc}}{c}\eeq
+
+\section{Misplaced - Covariant electromagnetism}
+
+We define the potential four-vector \(A^{\mu}\) as
+\beq A^{\mu} = \left(\frac{\phi}{c},\vb{A} \right) \eeq
+From them we can construct the \textit{field strength \(F_{\mu\nu}\)}
+\beq F_{\mu\nu} = \del_{\mu}A_{\nu} - \del_{\nu}A_{\mu}\eeq
+which, by the above definition, is traceless and antisymmetric.\par
+We also define the current four-vector \(j^{\mu}\) as
+\beq j^{\mu} = \left(c\rho,\vb{j} \right)\eeq
+Then the continuity equation is just
+\beq \del_{\mu}j^{\mu}=0\eeq\par 
+Now we can write Maxwell's equations as
+\beq \del_{\lambda}F_{\mu\nu} +\del_{\mu}F_{\nu\lambda}+\del_{\nu}F_{\lambda\mu} = 0\qq{and} \del_{\nu}F^{\mu\nu} = \mu_0j^{\mu}\eeq
+
+\section{Noether's theorem}
+
+The action is the integral of the Lagrangian over a timelike parameter
+\beq S = \int \dd{\tau}L\eeq
+This timelike parameter will be called \(\sigma^0 \). When more parameters are needed to describe the system, it's natural to define a Lagrangian density \( \mc{L}\) such that
+\beq L = \int \dd{\sigma^1}\dd{\sigma^2}...\dd{\sigma^d} \mc{L}\eeq
+Where \(d\) is the number of spacelike parameters needed to describe the system. The action is then the integral of the Lagrangian density over all parameters, spacelike and timelike
+\beq S = \int \dd^{D}\sigma \mc{L}\eeq
+where \(D = d+1\), since we are considering only one timelike parameter.\par 
+Let the Lagrangian density be a function of a field and its first order derivatives
+\beq \mc{L} = \mc{L}\left(\phi^{\mu},\del_{\alpha}\phi^{\mu};\{ \sigma^{\alpha}\} \right) \qq{where} \alpha = 0,1,...,n\eeq
+and \(n\) is the number of dimensions of the system.\par 
+Noether's theorem says that for every continuous symmetry of the action there's a conserved current with respect to the timelike parameter. For every conserved current there corresponds a conserved charge, this charge is the integral of the current over all spacelike parameters.\par
+If the variation is continuous, it admits an infinitesimal form. Therefore we can let the variation of the field be
+\beq \phi^{\mu} \rightarrow \phi^{\mu}+\var{\phi^{\mu}}\eeq
+This last statement is important, since enables us to find locally conserved currents (instead of globally conserved currents).\par 
+The symmetry of the action implies the symmetry of the Lagrangian density up to a total derivative, this means that if
+\beq \var{\mc{L}} = \del_{\alpha }F^{\alpha} \eeq
+for some function \(F^{\mu}\), then the action is symmetric under variation of the field \( \var{\phi^{\mu}}\) and the conserved currents are
+\beq j^{\alpha} = \pdv{\mc{L}}{\left( \del_{\alpha}\phi^{\mu}\right)}\var{\phi^{\mu}} - F^{\alpha}\qq{with} \del_{\alpha}j^{\alpha}=0\eeq
+
+\section{Non-relativistic strings}
+
+\end{document}

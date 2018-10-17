@@ -1,0 +1,116 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_EM.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+\pagestyle{mypage2}
+\chapter{Introduction}
+In order to properly start this notes, it's important to specify where we stand on the development of the electromagnetic theory. At the moment we have the fundamental equations and throughout this notes we are going to explore some of its remarkable consequences, such as retarded potentials, radiation and special relativity. But first, lets briefly review Maxwell's equations.\par 
+
+The electric field \(\vb{E}\) and the magnetic field \(\vb{B}\) are ultimately produced by charges and currents, which can be described, respectively, by a volumetric charge density \(\rho\) and by a current density \(\vb{J}\) according to Maxwell's equations.
+\begin{tcolorbox}
+\beq[eq:maxwelleq] 
+    \left.\begin{aligned}
+        \div{\vb{E}} &= \frac{\rho}{\epsilon_0}\\
+        \div{\vb{B}} &= 0\\
+        \curl{\vb{E}} +\pdv{\vb{B}}{t} &= 0\\
+        \curl{\vb{B}} - \mu_0 \epsilon_0\pdv{\vb{E}}{t} &= \mu_0\vb{J} 
+       \end{aligned}
+    \right\}
+    \qquad \text{Maxwell's equations}
+\eeq
+\end{tcolorbox}
+To fully solve Maxwell's equations one needs boundary conditions. The boundary conditions for electromagnetism can easily be found by applying \eqref{eq:maxwelleq} to some very special configurations: the infinite surface charge and the infinite surface current, and noting that the results we get are the same results we would get if we took any manifold and looked very very near the surface. Doing so, one finds that
+\begin{tcolorbox}
+\beq[eq:maxwelleqboundary] 
+    \left.\begin{aligned}
+    \vb{E}^{\perp}_{above} - \vb{E}^{\perp}_{under} &= \frac{\sigma}{\epsilon_0}\\
+    \vb{E}^{\parallel}_{above} - \vb{E}^{\parallel}_{under} &= 0\\
+    \vb{B}^{\perp}_{above} - \vb{B}^{\perp}_{under} &= 0\\
+    \vb{B}^{\parallel}_{above} - \vb{B}^{\parallel}_{under} &= \mu_0\vb{K}\cross \vu{n}
+    \end{aligned}
+\right\}
+\qquad \text{Boundary conditions}
+\eeq
+\end{tcolorbox}
+where \(\rho = \rho(\vb{x})\) is the surface charge density while \(\vb{K}=\vb{K}(\vb{x})\) is the surface current density and 'above' is defined as the direction \(\vu{n}\) points to.\par 
+
+To complete our fundamental equations we must specify the equation of motion for the charges and currents when subject to fields, namely, the Lorentz force
+\begin{tcolorbox}
+\beq[eq:lorentzforce] 
+    \begin{aligned}
+    \vb{F} = q\left(\vb{E} + \vb{v}\cross \vb{B} \right)\\
+    \end{aligned}
+\qquad \text{Lorentz's force}
+\eeq
+\end{tcolorbox}
+
+\section{Matter} % Completamente incompleto, só preenchendo espaço
+
+When matter is involved \eqref{eq:maxwelleq} can be recasted as
+\begin{tcolorbox}
+\beq[] 
+    \left.\begin{aligned}
+    \div{\vb{D}} &= \rho_f \\
+    \div{\vb{B}} &= 0 \\
+    \curl{\vb{E}}+\pdv{\vb{B}}{t} &= 0\\
+    \curl{\vb{H}} - \pdv{\vb{D}}{t}  &= \vb{J}_f 
+\end{aligned}
+\right\}
+\qquad \text{Maxwell's equations in matter}
+\eeq
+\end{tcolorbox}
+along with the constitutive relations
+\begin{tcolorbox}
+\beq[]
+    \left.\begin{aligned}
+    \vb{D} &= \epsilon_0 \vb{E} + \vb{P} \\
+    \vb{H} &= \frac{1}{\mu_0}\vb{B} - \vb{M}
+    \end{aligned}
+\right\}
+\qquad \text{Constitutive relations}
+\eeq
+\end{tcolorbox}
+and the boundary conditions
+\begin{tcolorbox}
+\beq[]
+    \left.\begin{aligned}
+    \vb{D}^{\perp}_{above} - \vb{D}^{\perp}_{under} &= \sigma_f \\
+    \vb{E}^{\parallel}_{above} - \vb{E}^{\parallel}_{under}& = 0\\
+    \vb{B}^{\perp}_{above} - \vb{B}^{\perp}_{under} &= 0\\
+    \vb{H}^{\parallel}_{above} - \vb{H}^{\parallel}_{under} &= \vb{K}_f\cross \vu{n}
+    \end{aligned}
+\right\}
+\qquad \text{Boundary conditions in matter}
+\eeq
+\end{tcolorbox}
+where \(\sigma_f\) is the surface free charge density, and \(\vb{K}_f\) is the surface free current density. Again, 'above' is defined as the direction \(\vu{n}\) points to.\par 
+
+\section{Some simple methods and solutions}
+
+\section{Notable results}
+
+\subsection{Infinite surface charge}
+
+
+
+
+
+
+\end{document}
+
+
+

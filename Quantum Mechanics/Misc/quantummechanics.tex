@@ -1,0 +1,89 @@
+\documentclass[oneside, 10pt, notitlepage]{book}
+
+
+\usepackage{../_mypackages/monographpreamble}
+\usepackage{../_mypackages/commands}
+
+\title{Quantum Mechanics} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\usepackage{../_mypackages/monographstyle}
+
+
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+\dominitoc
+\faketableofcontents
+
+% \mainmatter
+\part{Quantum Mechanics}
+\chapter{Bras and Kets}
+\minitoc
+
+
+\eq{\braket{\vb{x}}{\vb{p}} = \frac{1}{(2\pi\hbar)^{3/2}} \exp{i \vb{p}\cdot \vb{x}/\hbar}}
+
+
+% \begin{theorem}[Fixed point]
+% 	Hola
+% \end{theorem}
+% \begin{proof}
+% Here is my important proof
+% \end{proof}
+
+
+
+
+% \chapter{Particles in Electromagnetic fields}
+%
+% \section{Gauge transformations}
+%
+% \eq{\Phi' = \Phi - \frac{1}{c}\pdv{f}{t}}
+% \eq{\vb{A'} = \vb{A} + \grad{f}}
+% for some \(f(\vb{x},t)\).\par
+%
+% In quantum system, gauge invariance requires
+% \eq{\psi' = \lexp{\frac{iqf}{\hbar c}}\psi}
+% Let's see what happens
+% \eq{\lr{p - \frac{q}{c}A}\psi = \exp{-\frac{iqf}{\hbar c}} \ssb{p - \frac{q}{c}A}\psi' = \exp{-\frac{iqf}{\hbar c}} \ssb{p - \frac{q}{c}A' - \frac{q}{c}\grad{f}}\psi'}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

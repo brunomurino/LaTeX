@@ -1,0 +1,80 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{QM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+\pagestyle{mynotespage}
+
+\chapter{Solutions for central potential}
+
+A central potential is one that depends only on the distance from the determined origin, this means that
+\beq[] V(\vb{r}) = V(\abs{\vb{r}}) \eeq
+In such case it's useful to use spherical coordinates \( (r,\theta, \phi) \), where \(\theta\) is the polar angle (angle w.r.t. \(z\)-axis) and \(\phi\) is the azimuthal angle (angle on \(xy\)-plane). In spherical coordinates, the Laplacian reads
+\beq[eq:sphericallaplacian] \laplacian = \frac{1}{r^2}\pdv{r} \left(r^2 \pdv{r}\right) + \frac{1}{r^2 \sin\theta}\pdv{\theta}(\sin\theta\pdv{\theta}) + \frac{1}{r^2\sin^2\theta}\left(\pdv[2]{\phi}\right) \eeq \par
+
+Substituting \eqref{eq:sphericallaplacian} onto \eqref{eq:TISE} and trying to find separable solutions
+\beq[] \psi(r,\theta,\phi) = R(r)Y(\theta,\phi) \eeq
+we obtain the following equations
+\beq[eq:centralpotentialradialeq] \frac{1}{R} \dv{r}(r^2\dv{R}{r}) - \frac{2mr^2}{\hbar^2}[V(r) - E] = l(l+1) \eeq
+\beq[eq:centralpotangulareq] \frac{1}{Y}\left\{ \frac{1}{\sin\theta}\pdv{\theta}(\sin\theta\pdv{Y}{\theta}) + \frac{1}{\sin^2\theta}\pdv[2]{Y}{\phi} \right\} = -l(l+1) \eeq
+where \(l(l+1)\) is our separation constant\footnote{Note that our constant can still be \textit{any} number.}.\par
+
+To solve the angular equation \eqref{eq:centralpotangulareq} we, again, try separable solutions of the form
+\beq[eq:centralpotentialangulareq] Y(\theta,\phi)=\Theta(\theta)\Phi(\phi) \eeq
+doing so, we obtain the following equations
+\beq[eq:centralpotentialthetaeq] \frac{1}{\Theta}\left[\sin\theta\dv{\theta}\left( \sin\theta\dv{\Theta}{\theta}\right) \right] + l(l+1)\sin^2\theta = m^2 \eeq
+\beq[eq:centralpotentialphieq] \frac{1}{\Phi}\dv[2]{\Phi}{\phi} = -m^2 \eeq\par
+
+Let's start with equation \eqref{eq:centralpotentialphieq}, which has the general solution
+\beq[eq:centralpotentialphigensol] \Phi(\phi) = c_1\exp{im\phi} + c_2\exp{-im\phi} \eeq
+Since \(\phi\) is the angular coordinate on the \(xy\)-plane, we must require the periodicity of \eqref{eq:centralpotentialphigensol}
+\beq[] \Phi(\phi + 2\pi) = \Phi(\phi) \eeq
+With this, we find that \(m\) must be a positive integer. If we allow \(m\) to be any integer, positive of negative, we can get rid of the second term of \eqref{eq:centralpotentialphigensol}. Also, we can incorporate \(c_1\) into the solution of \(\Theta(\theta)\), so our final solution to \eqref{eq:centralpotentialphieq} is
+\begin{tcolorbox}
+\beq[] \Phi(\phi) = \exp{im\phi} \qq{with} m = 0,\pm1,\pm2,... \eeq \end{tcolorbox}\par
+
+To solve \eqref{eq:centralpotentialthetaeq} is easier to make the substitution
+\beq[] x=\cos\theta \qc \Theta(\theta) = f(x) \eeq
+noting that
+\beq[] \dv{\theta} = \dv{x}{\theta}\dv{x} = -\sin\theta \dv{x} = -\sqrt{1-x^2}\dv{x} \eeq
+With this substitution we get the following equation in \textit{Sturm-Liouville form}\footnote{Also called self-adjoint form}
+\beq[eq:centralpotentialthetaeqonx] \dv{x}\left[\left(1-x^2\right) \dv{f}{x} \right] + \left[l(l+1) - \frac{m^2}{1-x^2} \right]f(x) = 0 \eeq
+which has the following general solution
+\beq[] f(x) = C_1 P^m_l(x) + C_2 Q^m_l(x) \eeq
+where \(P^m_l\) is the \textit{Legendre function of the first kind} and \(Q^m_l\) is the \textit{Legendre function of the second kind}. Unfortunately, \(Q^m_l\) are not acceptable solutions since they diverge\footnote{The general form of \(Q^m_l\) has a \(\ln\left( \frac{1+x}{1-x}\right)\)} at \(x=1\), which occurs since \(x=\cos\theta\). Also, the Legendre functions of the first kind are defined as
+\beq[] P^m_l(x) \equiv (1-x^2)^{\frac{\abs{m}}{2}}\left( \dv{x} \right)^{\abs{m}} P_l(x) \eeq
+where \(P_l\) is the \(l\)-th Legendre polynomial, defined by the \textit{Rodrigues formula}
+\beq[eq:rodriguesformula] P_l(x) \equiv \frac{1}{2^l l!}\left(\dv{x} \right)^l (x^2 - 1)^l \eeq
+Note that \(l\) must be a non-negative integer, otherwise Rodrigues formula \eqref{eq:rodriguesformula} doesn't make any sense\footnote{Are there solutions of \eqref{eq:centralpotentialthetaeqonx} with non-integer \(l\)?}. Also note that if \(\abs{m} > l\), then \(P^m_l =0\). So our final normalized solutions to \eqref{eq:centralpotentialangulareq} are called \textit{\textbf{spherical harmonics}} and read
+\begin{tcolorbox}
+\beq[] Y^m_l(\theta,\phi) = \epsilon \sqrt{\frac{(2l+1)}{4\pi}\frac{(l-\abs{m})!}{l+\abs{m}}}\exp{im\phi}P^m_l(\cos\theta) \eeq
+\tcblower
+\[ \epsilon = (-1)^m  \qq{for} m\geq0 \qq{and} \epsilon = 1 \qq{for} m\leq0 \]
+\[ \abs{m} \leq l \qq{and} l= 0,1,2... \]
+\end{tcolorbox}
+For historical reasons \(l\) is called the \textit{\textbf{azimuthal quantum number}} while \(m\) is called the \textit{\textbf{magnetic quantum number}}.\par
+
+To fully solve the radial equation \eqref{eq:centralpotentialradialeq} we need to specify the central potential \(V(r\). Nonetheless, if we make the substitution
+\beq[] u(r) \equiv rR(r) \eeq
+noting that
+\beq[] \dv{R}{r} = \frac{1}{r^2}\left[ r\left(\dv{u}{r}\right) - u \right] \qand \dv{r}\left[r^2\left( \dv{R}{r} \right) \right] = r\dv[2]{u}{r} \eeq
+equation \eqref{eq:centralpotentialradialeq} takes the familiar form
+\beq[] \left[-\frac{\hbar^2}{2m}\dv[2]{r} + V_{eff} \right]u = Eu \eeq
+where \(V_{eff}\) is called \textit{\textbf{effective potential}} and reads
+\beq[] V_{eff} = V(r) + \frac{\hbar^2}{2m}\frac{l(l+1)}{r^2} \eeq
+and
+\beq[] \frac{\hbar^2}{2m}\frac{l(l+1)}{r^2} \eeq
+is called \textit{\textbf{centrifugal term}}.\par
+
+\section{Hydrogen atom}
+
+The Coulomb potential is
+\beq[] V(r) = -\frac{e^2}{4\pi\epsilon_0}\frac{1}{r^2} \eeq
+
+\end{document}

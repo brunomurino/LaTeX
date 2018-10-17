@@ -1,0 +1,108 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{ST_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Introduction}
+
+\section{Einstein and Hamilton}
+
+Every physical system travels in a manifold called spacetime. The motion of the system in spacetime traces out another manifold, the so called \textit{world-manifold}, therefore the full history of the system is contained in it. \par
+
+The postulates of special relativity are
+\begin{enumerate}
+    \item The laws of physics are the same in all inertial frames of reference.
+    \item The speed of light in vacuum has the same value \(c\) in all inertial frames of reference.
+\end{enumerate}
+We denote a point in spacetime as \( x^{\mu}\), \(\mu = \{0,1,...,D-1\} \) where \(D\) is the dimension of the spacetime. Sometimes we do \( x^{\mu } = (x^0,x^1,...,x^{D-1}) = (x^0,\vb{x})\) where \(\vb{x}\) is the spatial vector, as the one we use in classical mechanics. Here, \( x^0 = t\) since we are and will be using \(c = \hbar = 1\) units. It's also handy to define the vector with a subscript, rather than a superscript, \( x_{\mu} = (- x^0,x^1,...,x^{D-1})\).\par
+
+From Einstein's postulates we can conclude that the volume of the world-manifold is the same for all inertial observers, henceforth we called it the \textit{invariant interval} \(\Delta s \). In order to best describe the manifold mathematically we need to parameterize it. The number of parameters needed is the number of spacetime-dimensions the system has. A particle has zero spatial dimensions, but one temporal dimension (as everything else), therefore we need only one parameter to describe its trajectory, whereas a string has one spatial dimension and one temporal dimension, thus needing two parameters to describe its trajectory in spacetime.\par
+
+Hamilton's principle states that the laws of motion of a physical system are the solutions for a stationary action \(S\), which is the integral of the Lagrangian \(\mc{L}\), which contains every information about the system, over its parameters \(\{\sigma\}\). The action has units of energy times time, or angular momentum. It's important to note that the action is not "derived", it's something we postulate, it's an educated guess regarding the symmetries we want the laws of motion to have. It \textit{defines} the theory.\par
+
+From Einstein's postulates and Hamilton's principle we can conclude that, for inertial observers, a good candidate to the Lagrangian is a function of the invariant interval! And this is our starting point on String Theory.\par
+
+\section{The Relativistic String}
+
+As said before, a good candidate to the Lagrangian of a relativistic string is a function of the invariant interval of its world-manifold, which, in the case of a string, is a surface called the \textit{world-sheet}. The simplest function of the invariant interval there is is simply the invariant interval itself! Such Lagrangian will be the essence of the \textit{Nambu-Goto action}.\par
+
+Being two dimensional, we need to find the \textit{area element} of the world-sheet. The parameters \(\{ \sigma\}\) we use to parameterize such surface are \(\sigma^0 = \tau\) and \(\sigma^1 = \sigma\), \(\tau\) being a timelike parameter and \(\sigma\) a spacelike parameter. Also, to denote points in the world-sheet it's common to use the capitalised \(X^{\mu}(\tau,\sigma)\), which are called the \textit{string coordinates}.\par
+
+We know that the area element of a surface is just the square-root of the determinant of the induced metric on that surface, that is
+\beq[] \dd{A} = \sqrt{-det(h)}\eeq
+where
+\beq[] h_{\alpha \beta} \equiv \eta_{\mu \nu}\pdv{X^{\mu}}{\sigma^{\alpha}}\pdv{X^{\nu}}{\sigma^{\beta}}\eeq
+Computing we find that
+\beq[] \sqrt{-det(h)} = \sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}\eeq
+with
+\beq[] \dot{X} = \pdv{X}{\tau}\qq{and} X' = \pdv{X}{\sigma}\eeq
+Therefore the Lagrangian is
+\beq[] \mc{L} = -T\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}\eeq
+Finally, the action of a "length" \(\sigma_1\) relativistic string between "times" \(\tau_i\) and \(\tau_f\) is
+\beq[eq:nambugotoaction] S[X] = -T\int_{\tau_i}^{\tau_f} \dd{\tau} \int_{0}^{\sigma_1}\dd{\sigma}\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2} \eeq
+which is the so called \textit{Nambu-Goto action}. The constants introduced serve only match the units of the action, we'll give them meaning later.\par
+
+We can see that this action is invariant under the Poincaré group, since there are no free indices on its expression. Diffeomorphism invariance (\textit{diff}-invariance) is also present in this action, meaning
+\beq[eq:diffinvar1] S[X'(\tau ',\sigma ')] = S[X(\tau, \sigma)]\eeq
+for every
+\beq[eq:diffinvar2] \tau '= \tau '(\tau, \sigma)\qq{and} \sigma ' = \sigma ' (\tau, \sigma)\eeq\par
+
+It's useful to also define
+\beq[eq:Pitau] \Pi^{\tau} \doteq \pdv{\mc{L}}{\dot{X}} = -T\frac{(\dot{X}\cdot X')X' -(X')^2\dot{X}}{\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}}\eeq
+and
+\beq[eq:Pisigma] \Pi^{\sigma} \doteq \pdv{\mc{L}}{X'} = -T\frac{(\dot{X}\cdot X')\dot{X} - (\dot{X})^2 X'}{\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}}\eeq \par
+
+According to Hamilton's principle, the allowed motions of the string are the solution to a stationary functional \eqref{eq:nambugotoaction}, therefore we must solve
+\beq[] \fdv{S}{X^{\mu}} = 0 \qq{where} \mu = 0,1,...,D-1 \eeq
+for every coordinate \(\mu\) noting that our only constrain on \(\var{X^{\mu}}\) is
+\beq[] \var{X^{\mu}}(\tau = \tau_i) = \var{X^{\mu}}(\tau = \tau_f) = 0 \eeq
+Performing such variation, we obtain the following
+\beq[] \fdv{S}{X^{\mu}} = \int_{\tau_i}^{\tau_f} \dd{\tau} \eval{\bigg[ \Pi^{\sigma}_{\mu}\var{X^{\mu}} \bigg]}^{\sigma=\sigma_1}_{\sigma=0} - \int_{\tau_i}^{\tau_f}\dd{\tau}\int_0^{\sigma_1}\dd{\sigma}\left( \pdv{\Pi^{\tau}_{\mu}}{\tau} + \pdv{\Pi^{\sigma}_{\mu}}{\sigma}\right)\var{X^{\mu}} = 0 \eeq
+and each term must vanish independently.\par
+
+Therefore the equations of motion for the relativist string are
+\beq[eq:PiEOM]  \pdv{\Pi^{\tau}_{\mu}}{\tau} + \pdv{\Pi^{\sigma}_{\mu}}{\sigma} = 0 \eeq\par
+
+% It's also useful to write
+% \beq[]
+% \begin{bmatrix}
+% \Pi^{\tau}_{\mu} \\ \Pi^{\sigma}_{\mu}
+% \end{bmatrix} = T\frac{1}{\sqrt{-det(h)}}[cof(h)]^{T}
+% \begin{bmatrix} \dot{X}_{\mu} \\ X'_{\mu}
+% \end{bmatrix}\eeq
+% with
+% \beq[] h = \begin{bmatrix}
+% (\dot{X})^2 & \dot{X}\cdot X' \\
+% \dot{X}\cdot X' & (X')^2 \end{bmatrix}\qq{and} [cof(h)]^T = det(h)h^{-1} = \begin{bmatrix}
+% (\dot{X})^2 & -\dot{X}\cdot X' \\
+% -\dot{X}\cdot X' & (X')^2 \end{bmatrix}\eeq
+
+The term
+\beq[eq:stringbc] \int_{\tau_i}^{\tau_f} \dd{\tau} \eval{\bigg[ \Pi^{\sigma}_{\mu}\var{X^{\mu}} \bigg]}^{\sigma=\sigma_1}_{\sigma=0} = 0 \eeq
+is called the \textit{surface term} and gives rise to the boundary conditions, one for each \(\mu\).\par
+
+This ends the problem set up. Now we're going to introduce the tools we'll be using to actually solve the problem, and next chapter we'll do the actual solving.
+
+% Studying the boundary conditions \eqref{eq:stringbc}, we find that there are three natural solutions:
+% \begin{itemize}
+%     \item Open string with Dirichlet boundary condition (fixed endpoints)
+%     \beq[] \pdv{X^{\mu}}{\tau}=0 \qq{at endpoints,} \mu\neq 0\eeq
+%     \item Open string with free endpoint condition
+%     \beq[] \Pi^{\sigma}_{\mu} = 0 \qq{at endpoints}\eeq
+%     \item Closed string
+%     \beq[] X^{\mu}(\tau,0) = X^{\mu}(\tau,\sigma_1) \eeq
+% \end{itemize}
+
+% By the end of the chapter we will have set the grounds to solve the equations of motion \eqref{eq:PiEOM} with the boundary conditions \eqref{eq:stringbc}.
+
+\nocite{*}
+\end{document}

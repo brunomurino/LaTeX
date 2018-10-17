@@ -1,0 +1,290 @@
+\documentclass[oneside, 10pt, notitlepage]{book}
+
+
+\usepackage{../_mypackages/monographpreamble}
+\usepackage{../_mypackages/commands}
+
+\title{Categories} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\usepackage{../_mypackages/monographstyle}
+
+
+
+%--------------------------------------------------------------------------------------------------
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+\dominitoc
+\faketableofcontents
+
+% \mainmatter
+\part{Category Theory}
+\chapter{Categories, Functors and Natural Transformations}
+\minitoc
+
+\section{Axioms for Categories}
+
+% \begin{theorem}[Fixed point]
+% 	Hola
+% \end{theorem}
+% \begin{proof}
+% Here is my important proof
+% \end{proof}
+
+\begin{definition}[Metagraph]
+	A \emph{metagraph} consists of \emph{objects} \(a,b,c,...\), \emph{arrows}\footnote{The arrows of any metacategory are often called its \emph{morphisms}.} \(f,g,h,...\), and two operations, as follows:
+	\begin{enumerate}
+		\item \emph{Domain} operation, which assigns to each arrow \(f\) an object \(a=\dom f\);
+		\item \emph{Codomain} operation, which assigns to each arrow \(f\) an object \(b=\cod f\).
+	\end{enumerate}
+	The \emph{domain} of an arrow is to be interpreted as where the arrow starts whereas the \emph{codomain} as where the arrow ends. We represent these operations on \(f\) using actual arrows in the following way
+	\eq{f:a\to b \qq{or} a \xrightarrow{f} b}
+	or even in the form of a diagram
+	\begin{center}\begin{tikzcd} a \arrow[r, "f"] & b\end{tikzcd}\end{center}
+\end{definition}
+
+\begin{definition}[Pair of arrows]
+	Given two arrows \(f\) and \(g\) we denote their ordered pair by \(\inner{g}{f}\), meaning first \(f\), then \(g\).
+\end{definition}
+
+\begin{definition}[Composable arrows]
+	We say \(\inner{g}{f}\) is a composable pair if \(\cod{f}=\dom{g}\), which can be represented as
+	\eq{\dom{f}\xrightarrow{f}\cod{f}=\dom{g}\xrightarrow{g}\cod{g}}
+	or simply
+	\eq{a \xrightarrow{f} b \xrightarrow{g} c}
+	where \(a = \dom{f}\), \(b = \cod{f}=\dom{g}\) and \(c = \cod g\).
+\end{definition}
+
+\begin{definition}[Composition operation]
+	Given a composable pair \(\inner{g}{f}\), the \emph{composition} operation between \(f\) and \(g\) is a map \(\inner{g}{f}\mapsto g\circ f\) where \(g\circ f\) is called their \emph{composite} with properties:
+	\begin{enumerate}
+		\item \(\dom{g\circ f} = \dom{f}\);
+		\item \(\cod{g\circ f} = \cod{g}\).
+	\end{enumerate}
+	This operation may be pictured by the diagram
+	\begin{center}
+		\begin{tikzcd}[column sep=small]
+		   & b \arrow[dr, "g"]  &\\
+		a \arrow[ur, "f"] \arrow[rr, "g\circ f"'] & & c
+		\end{tikzcd}
+	\end{center}
+\end{definition}
+
+\begin{definition}[Commutative diagram]
+	We say that a diagram \emph{commutes} (or is \emph{commutative}) when, for each pair of vertices \(c\) and \(c'\), any two paths formed from consecutive edges leading from \(c\) to \(c'\) yield, by composition of labels, equal arrows from \(c\) to \(c'\). The condition for the following diagram to be commutative is \(g\circ f = h\):
+	\begin{center}
+		\begin{tikzcd}[column sep = normal, row sep = huge]
+		   & b \arrow[dr, "g"]  &\\
+		a \arrow[ur, "f"] \arrow[rr, "h"'] & & c
+		\end{tikzcd}
+	\end{center}
+
+\end{definition}
+
+\begin{definition}[Identiy operation]
+	The \emph{identity} operation assigns to each object \(a\) an arrow \(id_a\) such that
+	\begin{center}\begin{tikzcd} a \arrow[r, "1_a"] & a\end{tikzcd}\end{center}
+\end{definition}
+
+The \emph{category axioms} make up for a \emph{metacategory} defined as follows.\par
+
+\begin{definition}[Metacategory]
+	A \emph{metacategory} is a metagraph provided with the identity and composition operations satisfying the two following axioms:
+	\begin{enumerate}
+		\item \emph{Associativity}. If we have
+		\eq{a\xrightarrow{f} b \xrightarrow{g} c \xrightarrow{k} d}
+		then we always have the equality
+		\eq[eq:associativity]{k\circ (g\circ f) = (k\circ g) \circ f}
+		which can be represented by stating that the following diagram is commutative
+		\begin{center}
+			\begin{tikzcd}[column sep = huge, row sep = huge]
+			a \arrow[d, "f"'] \arrow[drr, "g\circ f" near end] \arrow[rr, "k\circ(g\circ f)=(k\circ g)\circ f"] & & d\\
+			b \arrow[urr, "k\circ g" near start, crossing over] \arrow[rr, "g"'] & & c \arrow[u,"k"']
+			\end{tikzcd}
+		\end{center}
+		\item \emph{Unit law}. For all arrows \(f:a\to b\) and \(g:b\to c\), composition with the identity arrow \(1_b\) gives
+		\eq[eq:unitlaw]{1_b \circ f = f \qq{and} g\circ 1_b = g}
+		which can be represented by stating that the following diagram is commutative
+		\begin{center}
+			\begin{tikzcd}[column sep = huge, row sep = huge]
+				a \arrow[r,"f"]  \arrow[dr,"f"'] & b\arrow[d,"1_b"] \arrow[dr,"g"] & \\
+				  & b \arrow[r,"g"'] & c
+			\end{tikzcd}
+		\end{center}
+	\end{enumerate}
+\end{definition}
+
+\begin{corollary}[Uniqueness of identity]
+	In a metacategory, each identity arrow is unique.
+\end{corollary}
+
+\begin{proof}
+	Suppose that the arrow \(A\) has the same properties as \(1_b\). Then we have
+	\eq{1_b \circ f = f }
+	\eq{g\circ A = g}
+	for every \(f\) and \(g\) whenever this makes sense. Now take \(f\) to be \(A\) (\(a=b\)) and \(g\) to be \(1_b\) (\(c = b\)), then we have
+	\eq{1_b \circ A = A }
+	\eq{1_b \circ A = 1_b}
+	which implies that \(A = 1_b\).
+\end{proof}
+
+
+
+\monopar[arrowsonlymetacategory]{Arrows-only metacategory}
+
+Since associated with an object \(b\) there's only one identity arrow \(1_b\), we can identify the arrow with the object itself, writing \(1_b = b\) whenever convenient. Since the objects of a metacategory correspond exactly to its identity arrows, we can dispense altogether with the objects and deal only with the arrows. The data for an \emph{arrows-only metacategory} \(C\) consist of arrows, composable pair of arrows, and an operation assigning to each composable pair \(\inner{g}{f}\) their composite arrow \(g\circ f\).\par
+
+With these data we \emph{define} an identity of \(C\) to be an arrow \(u\) such that \(f\circ u = f\) and \(u\circ g = g\) whenever \(\inner{f}{u}\) and \(\inner{u}{g}\) are composable pairs. The data are also required to satisfy the following axioms:
+\begin{enumerate}
+	\item The composite \((k\circ g)\circ f\) if and only if the composite \(k\circ (g\circ f)\) is defined. When either is defined, they are equal and we can write the tripe composite \(k\circ g\circ f\);
+	\item The triple composite \(k\circ g\circ f\) is defined whenever both composites \(k \circ g\) and \(g \circ f\) are defined;
+	\item For each arrow \(g\) of \(C\) there exist identity arrows \(u\) and \(u'\) of \(C\) such that \(u'\circ g\) and \(g\circ u\) are defined.
+\end{enumerate}
+In view of the explicit definition given above for identity arrows, the last axiom is a quite powerful one: it implies that \(u'\) and \(u\) are unique in (iii), and it gives for each arrow \(g\) a codomain \(u'\) and a domain \(u\). These axioms are equivalent to the preceding ones.
+
+\section{Categories}
+
+The interpretation of the metacategory axioms within set theory is called a \emph{category}.\par
+
+\begin{definition}[Graph]
+	A \emph{graph}\footnote{Also called \emph{directed graph} or \emph{diagram scheme}.} is a set \(O\) of objects, a set \(A\) of arrows, and two functions: domain and codomain, defined as follows
+	\begin{enumerate}
+		\item \(\text{Domain} = \operatorname{dom}:A\to O\);
+		\item \(\text{Codomain} = \operatorname{cod}:A\to O\);
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Set of composable pairs of arrows]
+	The set of composable pairs of arrows is the set
+	\eq{A\cross_O A = \set{\inner{g}{f} \mid g,f \in A \qq{and} \cod{f}=\dom{g}}}
+	called the \emph{product over \(O\)}
+\end{definition}
+
+\begin{definition}[Category]
+	A \emph{category} \(C\) is a graph provided with two functions:
+	\begin{enumerate}
+		\item \emph{Identity}, defined as the map
+		\eq{O \ni c \longmapsto \id_c \in A}
+		such that \(\dom{\id\ a} = a = \cod{\id\ a}\) for all objects \(a\in O\).
+		\item \emph{Composition}, defined as the map
+		\eq{A\cross_O A \ni \inner{g}{f} \longmapsto g\circ f \equiv gf \in A}
+		such that \(\dom{g\circ f} = \dom{f} \qcomma \cod{g\circ f}=\cod{g}\) for all composable pairs of arrows \(\inner{g}{f}\in A\cross_O A\)
+	\end{enumerate}
+	satisfying the \emph{Associativity} \eqref{eq:associativity} and the \emph{Unit law} \eqref{eq:unitlaw} axioms.
+\end{definition}
+
+\begin{remark}
+We usually drop the letters \(A\) and \(O\) and write simply
+\eq{c\in C \qq{and} f \tin C}
+for "\(c\) is an object of \(C\)" and "\(f\) is an arrow of \(C\)', respectively.
+\end{remark}
+
+\begin{definition}[Set of arrows from \(b\) to \(c\)]
+	The set of arrows from \(b\) to \(c\) is written as
+	\eq{\hom(b,c) = \set{f \mid f \tin C,\ \dom f = b, \cod f = c}}
+\end{definition}
+
+\begin{definition}[Discrete Categories]
+	A category is \emph{discrete} when every arrow is an identity.
+\end{definition}
+
+\begin{proposition}
+	Every discrete category is fully determined by a unique set and every set is fully determined by a discrete category.
+\end{proposition}
+\begin{proof}
+	Take an arbitrary set \(X\), say they are the objects of a category, then take every \(x\in X\) and map it to it's respective identity arrow \(1_x\) and say this is the set of arrows of a category. Then such category is a \emph{discrete category}. Now take a discrete category and map each and all identities to their respective object. Since each object has only one identity arrow associated, this map is bijective. Thus every discrete category is fully determined by a unique set and from a set we can construct a unique discrete category.
+\end{proof}
+
+\begin{definition}[Monoids]
+	A category is a \emph{monoid} if it has only one object. Each monoid is
+	thus determined by the set of all its arrows, by the identity arrow, and by the rule for the composition of arrows.
+\end{definition}
+
+\begin{proposition}
+	A monoid is exactly a semigroup\footnote{See definition on \nameref{sec:groups}, page \pageref{sec:groups}.} with identity element.
+\end{proposition}
+\begin{proof}
+	Since \(\dom f = \cod g \) for any two arrows of a monoid, any two arrows are composable. We can then take the set of arrows \(A\) and endow it with a binary operation \(A\cross A \to A\) which is associative and has an identity. A set with such properties is, by definition, a semigroup with identity element, therefore, a monoid.
+\end{proof}
+
+\section{Functors}
+
+\begin{definition}[Functors]
+	Let \(C\) and \(B\) be categories. A \emph{functor} \(T\) from \(C\) to \(B\) is a pair of functions \(T=(T_O,T_A)\), where
+	\begin{enumerate}
+		\item \(T_O:\ob{C}\to\ob{B}\) is the \emph{object function};
+		\item \(T_A:\ar{C}\to\ar{B}\) is the \emph{arrow function};
+		\item If \(C\ni a\xrightarrow{f\tin C} b\in C\), then \(B\ni T_O(a)\xrightarrow{T_A(f)\tin B} T_O(b)\in B\);
+		\item \(T_A(1_C) = 1_B \);
+		\item If \(\inner{g}{f}\) is a composable pair, then \(T_A(g\circ f) = T_A(g)\circ T_A(f)\).
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}[Composite functor]
+	Given two functors \(S\) and \(T\) such that
+	\begin{center}
+		\begin{tikzcd}
+		C \arrow[r, "T"] & B \arrow[r,"S"] & A
+		\end{tikzcd}
+	\end{center}
+	the composition \(S\circ T\) also defines a functor, called the \emph{composite functor}. This composition is associative.
+\end{proposition}
+
+\begin{definition}[Identity functor]
+	For each category \(B\) there is an \emph{identity functor} \(I_B:B\to B\).
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{center}
+%
+% 	\begin{tikzcd}
+% 	A \arrow[d, "\theta"] \arrow[r, "\phi"] & B \arrow[d,"\beta"]\\
+% 	C \arrow[r, "\alpha"] & D
+% 	\end{tikzcd}
+%
+% \end{center}
+
+
+% \backmatter
+% \printbib
+\end{document}

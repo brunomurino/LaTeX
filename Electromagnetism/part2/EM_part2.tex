@@ -1,0 +1,57 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_EM.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\frontmatter \pagestyle{empty}
+
+\import{Electromagnetism/}{EM_part2_tp.tex}
+
+\begin{bookabstract}
+Hello y'all
+\end{bookabstract}
+
+\centeredtoc
+
+\mainmatter \pagestyle{mypage2} \normalfont
+
+\import{Electromagnetism/part2/}{EM_emequations}
+
+% \import{Electromagnetism/part2/}{EM_conservation}
+
+\import{Electromagnetism/part2/}{EM_waves}
+
+\import{Electromagnetism/part2/}{EM_potentialsandfields}
+
+% \import{Electromagnetism/part2/}{EM_retardedpotentials}
+
+% \import{Electromagnetism/part2/}{EM_radiation}
+
+
+
+
+
+
+\backmatter
+
+%\nocite{*}
+%\printbibliography[title={\texorpdfstring{\hfil \hfil \hfil \textsc{\textbf{References}}}{References}}] \addcontentsline{toc}{chapter}{\textsc{References}} 
+
+\end{document}
+
+
+

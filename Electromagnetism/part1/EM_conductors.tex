@@ -1,0 +1,48 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../../_mypackages/mypreamble}
+\usepackage{../../_mypackages/mycommands}
+\usepackage{../../_mythemes/notestheme}
+
+\addbibresource{EM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+% \pagestyle{empty}
+% \notestp{Electrodynamics}
+% \begin{notesabstract}[Abstract]
+% Abstract text
+% \end{notesabstract}
+% \centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Conductors}
+In a metallic conductor, one or more electrons per atom are free to roam about at will \textit{through} the material (the charges are confined to the material, therefore they can't escape it) (In liquid conductors, such as salt water, the so called ions that do the moving). \par
+The net charge of an conductor is $0$. \par
+A \textit{perfect} conductor would be a material containing an \textit{unlimited} supply of completely free charges. \par
+
+From this definition, the basic electrostatic properties of ideal conductors immediatly follow:
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\begin{enumerate}
+    \item Inside a conductor:$$\vec{E} = \vec{0}$$
+    If you put a conductor into an external electrical field $\vec{E_ 0}$ of a particular direction, the free positive charges would move along that direction, while the negative charges would move along the opposite direction. When they come to the edge of the conductor, they stop moving. The charges that do this motion are called \textbf{induced charges}. Induced charges then produce an electrical field $\vec{E}$, which goes from the positive charges to the negative ones, hence it is in the opposite direction of $\vec{E_0}$. Here we can see that, inside the conductor, this induced field $\vec{E}$ tends to cancel the external field $\vec{E_0}$. If the cancellation is not complete, that is, there's still an electric field inside the conductor, charges would be affected by it and move, hence they will continue to move until this cancellation is complete, leaving the electric field inside the conductor non-existent. \textcolor{red}{I think that in an ideal conductor the charges would oscillate in some sort of harmonic motion, given that there's no resistivity. While in real conductors, since the resistivity is different form $0$, the charges would perform a dumped oscillation.}
+    \item  Inside a conductor: $$\rho = 0$$ It follows directly from Gauss's law.
+    \item Any net charge resides on the surface
+    \item A conductor is an equipotential. \par
+    Being 'a' and 'b' any two points within or at the surface of a given conductor:
+    $$V(b) - V(a) = - \int_a^b \vec{E} \cdot d\vec{l} = 0 \Rightarrow V(a) = V(b)$$
+    \textcolor{red}{I think that if you take a point $a$ inside the conductor and a point $b$ on the surface of the conductor, for that integral to be $0$, the field could only have a non-zero value on the point $b$, and it would have to be exactly zero around it, what supposes that charges occupy no space at all and can pile up indefinitely.}
+    \item Just outside a conductor, referring to its surface $$\vec{E}_\parallel = \vec{0}$$
+    Otherwise, the charges on its surface would move, changing the field, therefore trying to make it equal to $0$. \textcolor{red}{I think, as I said on (i), that those charges would perform an harmonic motion and never stop, since there's no dumping (no resistivity).}
+    \item As saw on (i), external electric fields do not alter the field inside a conductor. It will, naturally, change the positions of the free charges in a way that the internal resulting field is $0$.
+    \item Concerning cavities inside the conductor. \par
+    If there were a cavity, when you put the conductor into and external electric field, the charges would simply go around the cavity (remember they are completely free to roam through the conductor), producing the same as result saw on (i), \textit{including} inside the cavity, that is, $\vec{E}$ inside the cavity also equals $0$. Therefore cavities do not alter the behavior of conductors at all.\par
+    We can see, then, that the cavity and its contents are electrically isolated from the outside world by the surrounding conductor.\par
+    If I put a charge inside the cavity of a conductor, this charge will produce induced charges on the conductor. Of course this induced charges would not alter the electric field inside the conductor (the cavity is not a part of the conductor), it would remain $0$. But this induced charges will change the electric field on the outer surface of the conductor (it would remain only perpendicular to it). If we apply the Gauss's law to a gaussian surface enclosing the inner surface of the conductor, we would find that the induced charges (on the inner surface) of the conductor are equal in magnitude but opposed in sign to the charge in the cavity. Therefore, the induced charges on the outer surface of the conductor are identical in magnitude and sign to that of the charge inside de cavity. Hence the outside world would, yes, feel the presence of a charge inside the cavity of a conductor.
+\end{enumerate}
+
+\end{document}

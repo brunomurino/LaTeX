@@ -1,0 +1,100 @@
+\documentclass{../_mypackages/monograph}
+
+\title{Quantum Information} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+% \monographtp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter{Coherent States}
+\minitoc
+
+
+Let's define the so called \emph{displacement operator} \(D(\alpha)\) as
+\begin{equation}
+    D(\alpha) = \exp{\alpha a^\dagger - \alpha^* a},
+\end{equation}
+where \(\alpha\) is an arbitrary complex number.
+
+A coherent state \(\ket{\alpha}\) is defined as
+\begin{equation}
+    \ket{\alpha} = D(\alpha) \ket{0},
+\end{equation}
+where \(\ket{0}\) is the vacuum state. We also call a coherent state a \emph{displaced vacuum}. By inspection we can see that
+\begin{equation}
+    D^\dagger(\alpha) D(\alpha) = D(\alpha) D^\dagger (\alpha) = 1,
+\end{equation}
+implying that \(D(\alpha)\) is unitary, and
+\begin{equation}\label{eq:displacementopnegative}
+    D^\dagger(\alpha) = D(-\alpha).
+\end{equation}
+
+Let's compute
+\begin{equation}
+    D^\dagger(\alpha) a D(\alpha).
+\end{equation}
+By the BCH formula we know that
+\begin{equation}
+    \exp{A}B\exp{-A} = B + \comm{A}{B} + \frac{1}{2!}\comm{A}{\comm{A}{B}} + \cdots,
+\end{equation}
+and recalling that
+\begin{equation}
+    \comm{a}{a^\dagger} = 1,
+\end{equation}
+we readily obtain
+\begin{equation}
+    \comm{\alpha^\dagger a - \alpha a^\dagger}{a} = \alpha,
+\end{equation}
+which means that higher order commutators in the BCH expansion will be zero, leading us to
+\begin{equation}
+    D^\dagger(\alpha) a D(\alpha) = a + \alpha.
+\end{equation}
+By \eqref{eq:displacementopnegative} we also find that
+\begin{equation}
+    D(\alpha) a D^\dagger(\alpha) = a - \alpha,
+\end{equation}
+and analogous expressions for \(a^\dagger\):
+\begin{equation}
+    D^\dagger(\alpha) a^\dagger D(\alpha) = a^\dagger + \alpha^*,
+\end{equation}
+and
+\begin{equation}
+    D(\alpha) a^\dagger D^\dagger(\alpha) = a^\dagger - \alpha^*.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

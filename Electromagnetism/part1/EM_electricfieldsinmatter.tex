@@ -1,0 +1,83 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../../_mypackages/mypreamble}
+\usepackage{../../_mypackages/mycommands}
+\usepackage{../../_mythemes/notestheme}
+
+\addbibresource{EM_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+
+\frontmatter
+% \pagestyle{empty}
+% \notestp{Electrodynamics}
+% \begin{notesabstract}[Abstract]
+% Abstract text
+% \end{notesabstract}
+% \centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\chapter{Dielectrics}
+
+If the electrons of an object are attached to specific atoms or molecules, then the object is called a \textit{dielectric} or an \textit{insulator}. This means that if we subject a dielectric to an electric field, the electrons only move very near the atom or molecule, as opposed to what happens with a conductor, where the electrons can roam around the object at will.\par
+
+If we subject a dielectric to an electric field, each atom will behave like a small dipole, so we need to know what is the electric field of an electric dipole distribution.\par
+
+The potential \(\dd{\epot_p} \) of a volume element dipole \( \dd{\vb{p}}\) is
+\beq[eq:difelecpotofdifdipole] \dd{\epot_p} = \frac{1}{4\pi\epsilon_0}\frac{\dd{\vb{p}}\cdot \left( \vb{r} - \vb{r}' \right)}{\abs{\vb{r} - \vb{r}'}^3} \eeq
+Lets define a quantity \(\vb{P}\) called \textit{\textbf{electric dipole density}}
+\beq[] \vb{P} = \dv{\vb{p}}{V} \eeq
+now \eqref{eq:difelecpotofdifdipole} can be written as
+\beq[] \dd{\epot_p} = \frac{\dd{V}}{4\pi\epsilon_0}\frac{\vb{P}\cdot \left( \vb{r} - \vb{r}' \right)}{\abs{\vb{r} - \vb{r}'}^3} \eeq
+so the full electric potential of a dipole distribution over a volume \(\mc{V}\) is
+\beq[eq:dielectricpot] \epot_p(\vb{r}) = \frac{1}{4\pi\epsilon_0}\und{\mc{V}}{\int} \dd{V'}\frac{\vb{P}\cdot\left(\vb{r}-\vb{r}' \right)}{\abs{\vb{r}-\vb{r}'}^3} \eeq
+After some algebra, we can write \eqref{eq:dielectricpot} as
+\beq[] \epot_p(\vb{r}) = \frac{1}{4\pi\epsilon_0}\uoint[\del{\mc{V}}]\dd{\vb{S'}}\cdot \frac{\vb{P}(\vb{r})}{\abs{\vb{r}-\vb{r}'}} + \frac{1}{4\pi\epsilon_0}\uint[\mc{V}]\dd{V'}\left[\frac{-\div[r']{\vb{P}(\vb{r})}}{{\abs{\vb{r}-\vb{r}'}}} \right] \eeq
+
+Now we define a superficial density of polarized charge \(\sigma_b\)
+\beq[] \sigma_b = \vu{n}'\cdot\vb{P} \eeq
+and a volumetric density of polarized charge \(\rho_p\)
+\beq[] \rho_b = -\div{\vb{P}(\vb{r})} \eeq
+All these charges are called \textit{bounded charges}, as opposed to \textit{free charges}.\par
+
+Within an object, the total charge density is
+\beq[] \rho = \rho_f + \rho_b \eeq
+so Gauss's law reads
+\beq[] \epsilon_0 \div{\vb{E}} = \rho = \rho_f + \rho_b = \rho_f - \div{\vb{P}} \eeq
+which we can write as
+\beq[] \div{\left(\epsilon_0\vb{E} + \vb{P}\right)} = \rho_f \eeq
+
+Now we define a quantity \(\vb{D}\) called \textit{\textbf{electric displacement}}
+\beq[] \vb{D} = \epsilon_0 \vb{E} + \vb{P} \eeq
+In terms of \(\vb{D}\) we have
+\beq[eq:divD] \div{\vb{D}} = \rho_f \eeq
+
+But what about the curl of \(\vb{D}\)? Using Faraday's law
+\beq[] \curl{\vb{E}}=0 \eeq
+we have
+\beq[] \curl{\vb{D}} = \epsilon_0\left( \curl{\vb{D}}\right) + \left( \curl{\vb{P}}\right) = \curl{\vb{P}}\eeq
+and the curl of \(\vb{P}\) has no reason to always be zero. Of course it can be, occasionally, but this makes impossible for \(\vb{D}\) to be the gradient of a scalar, hence there's no "electric displacement potential".\par
+
+The boundary condition \eqref{eq:fielddisconti} now becomes
+\beq[] D^{\perp}\left(\vb{x}^{+}_S \right) - D^{\perp}\left(\vb{x}^{-}_S \right) = \sigma_f \eeq
+which tells us the discontinuity of \(\vb{D}\) at a surface charge, and it's easier to keep \eqref{eq:parallelfieldsurface} as it is.\par
+
+Until now, every result we obtained is general. Now we'll treat a special case, the so called \textit{\textbf{linear dielectrics}}. These dielectrics obey
+\beq[] \vb{P} = \chi_e\epsilon_0\vb{E} \eeq
+if \(\vb{E}\) is not too strong. The constant \( \chi_e\) is called \textit{\textbf{electric susceptibility}} of the medium, and, of course, depends of the medium among other factors.\par
+
+If the dielectric is linear, we have
+\beq[] \vb{D} = \epsilon_0\vb{E} + \vb{P} = \epsilon_0\left(1+ \chi_e \right)\vb{E} = \epsilon \vb{E} \eeq
+The constant \(\epsilon\) is called the \textit{\textbf{permittivity}} of the medium, and the quantity
+\beq[] \epsilon_r = 1+\chi_e = \frac{\epsilon}{\epsilon_0} \eeq
+is called the relative permittivity or \textit{\textbf{dielectric constant}} of the medium.\par
+
+In linear dielectric equation \eqref{eq:divD} becomes
+\beq[] \div{\vb{E}} = \frac{\rho_f}{\epsilon} \eeq
+and since \(\vb{E} = -\grad{\epot}\) always (in electrostatics), we have
+\beq[] \laplacian{\epot} = -\frac{\rho_f}{\epsilon} \eeq
+
+\end{document}

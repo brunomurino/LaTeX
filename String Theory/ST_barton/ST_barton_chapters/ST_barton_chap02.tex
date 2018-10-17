@@ -1,0 +1,59 @@
+\documentclass[12pt]{report}
+\usepackage{mypreamble}
+\begin{document}
+\chapter{Special relativity and extra dimensions}
+\newpage
+\section{Units and parameters}
+\section{Intervals and Lorentz transformations}
+\begin{itemize}
+    \item Speed of light is the same for all inertial observers.
+$$c\simeq3\times10^8\ m/s$$
+    \item Inertial observers = Lorentz observers.
+    \item Spacetime coordinates are$$x^\mu=(x^0, x^1, x^2, x^3)\equiv(ct, x, y, z)$$ $$x_\mu = (x_0, x_1, x_2, x_3)\equiv(-x^0, x^1, x^2, x^3)$$
+    \item Two events in a Lorentz frame S:$$x^\mu\ \textrm{and}\ x^\mu + \Delta x^\mu$$
+    Same events in a second Lorentz frame $S'$:$$x'^\mu\ \textrm{and}\ x'^\mu + \Delta x'^\mu$$
+    \item Any two observers will agree on the value of the invariant interval $$ -\Delta s^2\equiv-(\Delta x^0)^2+(\Delta x^1)^2+(\Delta x^2)^2+(\Delta x^3)^2$$
+    The sign difference in front of $(\Delta x^0)^2$, compared to the spacelike coordinates $ (\Delta x^i)^2\ (i=1,2,3)$, encodes the fundamental difference between time and space coordinates.
+    \item Timelike separated events $$ (\Delta x^0)^2 > (\Delta x^1)^2 + (\Delta x^2)^2 + (\Delta x^3)^2 \ \longrightarrow \ \Delta s^2 > 0 \ \longrightarrow \ v<c$$
+    For any two observers, the order of timelike separated events is maintained.
+    \item Lightlike separated events $$ (\Delta x^0)^2 = (\Delta x^1)^2 + (\Delta x^2)^2 + (\Delta x^3)^2 \ \longrightarrow \ \Delta s^2 = 0 \ \longrightarrow \ v=c$$
+    \item Spacelike separated events $$ (\Delta x^0)^2 < (\Delta x^1)^2 + (\Delta x^2)^2 + (\Delta x^3)^2 \ \longrightarrow \ \Delta s^2 < 0 \ \longrightarrow \ v>c$$ 
+    The above statement about velocity, $v>c$ , implies that the events \textbf{\textit{cannot}} be causally connected. \\ In the other cases, the events \textbf{\textit{can}} be causally connected.
+    \item The history of a particle is represented in spacetime as a curve, the \textit{world-line} of the particle.
+    \item Einstein's summation convention: repeated indices (like $\mu$ above) are summed over the appropriate set of values. A repeated index must appear once as a subscript and once as a superscript and should not appear more than twice in any one term. Letter chosen for the repeated index is not important: dummy indices $ a^\mu b_\mu = a^\nu b_\nu$
+    \item Differential form $$ds^2=ds'^2$$ $$-ds^2=dx_\mu dx^\mu$$
+    \item For any two index tensor (or matrix), the first index is a row index and the second index is a column index. So $$(A_{\mu \nu})^T=A_{\nu \mu}$$
+    \item Any two-index object $M_{\mu \nu}$ can be decomposed into a symmetric part and an antisymmetric part $$M_{\mu \nu} = (M_{sym})_{\mu \nu} + (M_{antisym})_{\mu \nu}$$ $$(M_{sym})_{\mu \nu} = \frac{1}{2}(M_{\mu \nu} + M_{\nu \mu})$$ $$(M_{antisym})_{\mu \nu} = \frac{1}{2} (M_{\mu \nu} - M_{\nu \mu})$$
+    Looking at the relations above, we se that if a term of $M$ , $M_{\mu \nu}$, is antysimmetric, that is $M_{\mu \nu} = -M_{\nu \mu}$, then $M_{sym}$ makes it vanish while $M_{antisym}$ makes it double the original value, and when the term is symmetric, that is $M_{\mu \nu} = M_{\nu \mu}$, $M_{sym}$ makes it double the original value and $M_{antisym}$ makes it vanish. The doubling explains the scaling factor of $\frac{1}{2}$.
+    \item With the Minkowski metric $$\eta _{\mu \nu} = diag(-1, 1, 1, 1) = \eta_{\nu \mu}\  \textrm{(symmetric)}$$
+    we can write $$-ds^2 = \eta_{\mu \nu}dx^\mu dx^\nu$$
+    and $$dx_\mu = \eta_{\mu \nu}dx^\nu$$
+    \item The inverse Minkowski metric $$(\eta_{\mu \nu})^{-1} = \eta^{\mu \nu} $$ $$\eta^{\nu \rho} \eta_ {\rho \mu} = \delta _\nu ^\mu$$
+    \item In general, for a linear transformation, we write  $$x'^\mu = L^\mu _{\ \nu} x^\nu$$ where L is the linear transformation matrix.  
+    \item As $ds^2$ is invariant, we can write $$-ds^2 = \eta _{\mu \nu} dx^{\mu} dx^{\nu} = \eta '_{\mu \nu} dx'^\mu dx'^\nu$$
+    \textcolor{red}{\item Lorentz transformations are the linear transformations of coordinates that let the metric tensor invariant $$\eta = \eta '$$ 
+    $$ L^T\eta L = \eta \ \longrightarrow \ detL=\pm1 $$ $$L^\mu_{\ \alpha} \eta_{\mu \nu} L^\nu_ {\ \beta} =\eta_{\alpha \beta}$$ $$(L^\alpha_{\ \mu})^T\eta_{\mu \nu} L^\nu_{\ \mu} =\eta_{\alpha \beta}$$ $$(L^T)^\alpha_{\ \mu}\eta_{\mu \nu} L^\nu_{\ \mu} =\eta_{\alpha \beta}$$}
+    \item Spatial rotations are Lorentz transformations.
+    \item Any set of four quantities which transforms under Lorentz transformations in the same way as $x^\mu$ do is said to be a four-vector, or Lorentz vector.
+    \item The relativistic \textit{scalar product} $a\cdot b$ is defined as the product between four-vectors $$a\cdot b \equiv a^\mu b_ \mu = \eta_{\mu \nu} a^\mu b^\nu$$
+    \item A four-vector is said to be timelike if $a^2<0$\\
+    A four-vector is said to be spacelike if $a^2>0$\\
+    A four-vector is said to be null is $a^2 =0$
+    \item A quantity with no free indices must be invariant under Lorentz transformations.
+    A quantity has no free indices if it carries no index or if it contains only repeated indies, such as $a^\mu b_ \mu$.
+\end{itemize}
+\section{Light-cone coordinates}
+\begin{itemize}
+    \item 
+\end{itemize}
+\section{Relativistic energy and momentum}
+\section{Light-cone energy and momentum}
+\section{Lorentz invariance with extra dimensions}
+\section{Compact extra dimensions}
+\section{Orbifolds}
+\section{Quantum mechanics and the square well}
+\section{Square well with an extra dimension}
+\section{Problems}
+2.1
+
+\end{document}

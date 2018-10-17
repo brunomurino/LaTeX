@@ -1,0 +1,32 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_EM.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+\begin{document}
+\pagestyle{mypage2}
+\chapter{Potentials and Fields} 
+
+Electrostatics is a situation defined by constant electric fields (stationary charges), so there are no magnetic fields and Faraday's law becomes
+\beq[] \curl{\vb{E}} = 0 \eeq
+which is always satisfied by an electric field \(\vb{E}\) such that
+\beq[eq:epotfield] \vb{E} = -\gradi{\epot} \eeq
+since
+\beq[] \curl{\left(\grad{\epot} \right)} \equiv 0 \eeq
+In terms of the electric potential \(\epot\) Gauss's law becomes
+\beq[eq:laplacianepot] \laplacian{\epot} = -\frac{\rho}{\epsilon_0} \eeq
+
+\section{Magnetostatics}
+
+\end{document}

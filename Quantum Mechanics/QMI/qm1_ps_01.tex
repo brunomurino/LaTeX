@@ -1,0 +1,196 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics I \\ Problem Set 01} % \MyTitle
+\author{Bruno Murino - 8944901} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+% \frontmatter
+
+\solutionstp
+% \dominitoc
+% \doparttoc
+% \pagestyle{onlypagenum}
+% \tableofcontents
+% \mainmatter
+
+\chapter*{1.}
+
+We want to show that the statements below are equivalent
+\begin{enumerate}
+    \item \(\exists \set{\ket{a_i}} \qq{such that} A\ket{a_i} = a_i \ket{a_i} \qq{and} B\ket{a_i} = b_i\ket{a_i}\),
+    \item \(\comm{A}{B} = 0\).
+\end{enumerate}
+
+First lets show \(1 \to 2\). Take
+\begin{equation}
+\begin{split}
+    A\ket{a_i} &= a_i \ket{a_i}, \\
+    B\ket{a_i} &= b_i\ket{a_i},
+\end{split}
+\end{equation}
+then multiply the first by \(B\) and second by \(A\), both from the left. We then find
+\begin{equation}
+\begin{split}
+    BA\ket{a_i} &= a_ib_i \ket{a_i}, \\
+    AB\ket{a_i} &= b_ia_i\ket{a_i}.
+\end{split}
+\end{equation}
+Subtracting one from the other, we find that \(AB = BA\), thus \(\comm{A}{B}=0\).
+
+Now lets show that \(2 \to 1\). Take
+\begin{equation}
+    A\ket{a_i} = a_i \ket{a_i},
+\end{equation}
+then apply \(B\) from the left and use \(AB=BA\) to find
+\begin{equation}
+    A(B\ket{a_i}) = a_i (B\ket{a_i}),
+\end{equation}
+which means that \(B\ket{a_i}\) must be in the eigenspace \(a_i\) of eigenvalue \(a_i\). Let \(B_i\) be the operator \(B\) restricted on the eigenspace \(a_i\). Then, if you find a diagonal basis of \(B_i\), then a vector of such basis will be an eigenvector of \(B\), since it's diagonal, \emph{and} an eigenvector of \(A\), since any linear combination of vectors of \(a_i\) is also on the eigenspace \(a_i\). It is by this procedure that we can find a common set of eigenvectors of \(A\) and \(B\) given that \(\comm{A}{B}=0\).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter*{2.}
+\section*{(a)}
+
+The inequality
+\begin{equation}
+    \abs{\braket{a}{b}}^2 \leq \norm{a}^2 \norm{b}^2
+\end{equation}
+is called the \emph{Cauchy–Schwarz inequality}. We can derive it by taking the following steps.
+
+First consider
+\begin{equation}
+    \ket{x} = \ket{a} - \lambda \ket{b} \qq*{, with} \lambda = \frac{\braket{a}{b}}{\norm{b}^2}.
+\end{equation}
+Then, since \(\norm{x}^2 \geq 0\), we find that
+\begin{equation}
+\begin{split}
+   \norm{x}^2 &= \Bigg(\bra{a} - \lambda^*\bra{b} \Bigg)\Bigg(\ket{a} - \lambda \ket{b} \Bigg) \\
+   &= \norm{a}^2 - \lambda \braket{a}{b} - \lambda^* \braket{b}{a} + \abs{\lambda}^2 \norm{b}^2 \\ 
+   &= \norm{a}^2 - \frac{\abs{\braket{a}{b}}^2}{\norm{b}^2} - \frac{\abs{\braket{a}{b}}^2}{\norm{b}^2} + \frac{\abs{\braket{a}{b}}^2}{\norm{b}^2} \\
+   &= \norm{a}^2-\frac{\abs{\braket{a}{b}}^2}{\norm{b}^2} \geq 0,
+\end{split}
+\end{equation}
+and then
+\begin{equation}
+    \abs{\braket{a}{b}}^2 \leq \norm{a}^2\norm{b}^2,
+\end{equation}
+which is the desired expression.
+
+\section*{(b)}
+
+We can show that any unitary operator \(U\) can be written in the form \(U = \exp{iA}\), with \(A\) being an Hermitian operator, i.e. \(A=A^\dagger\), by taking the following steps.
+
+First, recall that since \(U\) is unitary, it can be diagonalised. Let \(S\) be the operator that diagonalises \(U\) via the similarity transformation
+\begin{equation}\label{eq:D=sus}
+    D = S U S^{-1}.
+\end{equation}
+Also, recall that the eigenvalues of a unitary operator are of the form \(\exp{ia_i}\), with \(a_i \in \R\). The key point here is that the trace of an operator is the sum of its eigenvalues, which is also the sum of its diagonal entries in any chosen basis. This means that
+\begin{equation}
+    \Tr(U) = \sum_i \exp{ia_i},
+\end{equation}
+and then
+\begin{equation}
+    \Tr(D) = \Tr(S U S^{-1}) \teq{Cyclic property of trace} \Tr(U).
+\end{equation}
+Thus we know that
+\begin{equation}
+    \Tr(D) = \sum_i \exp{ia_i},
+\end{equation}
+which means that the eigenvalues of \(D\), i.e. its elements, are precisely the eigenvalues of \(U\). This means that \(D\) is diagonal \emph{and unitary} of the form \(D=\diag(\exp{ia_i})\). If \(D\) and \(U\) are unitary, then \(S\) is unitary. We know that
+\begin{equation}
+    D = S U S^{-1} \Rightarrow D^\dagger = (S^{-1})^\dagger U^\dagger S^\dagger,
+\end{equation}
+multiplying one by the other we find that
+\begin{equation}
+    DD^\dagger = \idm = S U S^{-1}(S^{-1})^\dagger U^\dagger S^\dagger,
+\end{equation}
+and then
+\begin{equation}
+    U = (S^\dagger S)  U (S^\dagger S)^{-1}.
+\end{equation}
+Since each pair of similar operators is obtained by a unique similarity transformation, which is defined by \(S\), and since \(\idm\) does the trick for the similar pair \(U\) and \(U\), we find that \(S^\dagger S = \idm\), i.e. \(S\) is unitary. Now, if we consider the real diagonal matrix \(G\) with \(\diag(a_i)\), its quite trivial that
+\begin{equation}
+    \exp{i G} = \diag(\exp{-a_i}) = D.
+\end{equation}
+Back to \eqref{eq:D=sus}, we know that
+\begin{equation}
+    U = S^{-1} D S = S^{-1} \exp{i G} S = \lexp{i S^{-1} G S} = \exp{i A},
+\end{equation}
+where we defined \(A=S^{-1} G S\). Since \(G\) is real, \(G\) is also Hermitian. If we consider
+\begin{equation}
+    A = S G S^\dagger,
+\end{equation}
+and then
+\begin{equation}
+    A^\dagger = S G^\dagger S^\dagger,
+\end{equation}
+and since \(G^\dagger = G\), follows that \(A = A^\dagger\), i.e \(A\) is an Hermitian operator. The conclusion is that given any unitary operator \(U\) we can always find an Hermitian operator \(A\) such that
+\begin{equation} 
+    U = \exp{iA}.
+\end{equation}
+
+\chapter*{3.}
+
+Let \(V_1\) and \(V_2\) be two vector spaces. Let \(A_1\) be an operator that acts on \(V_1\) and \(A_2\) an operator that acts on \(V_2\). Also, let \(\ket{v_1}\) be the set of eigenvectors of \(A_1\) and \(\ket{v_2}\) the set of eigenvectors of \(A_2\). Finally, let \(V = V_1 \tens V_2\). Any operator that acts on \(V\) must be of the form \(O = G \tens H\), where \(G\) acts on \(V_1\) and \(H\) acts on \(V_2\). So, if the operator \(A_1\) wants to act on \(V\), it must be taken with the identity operator of \(V_2\), i.e.
+\begin{equation}
+    A_1 = A_1 \tens \idm_2,
+\end{equation}
+and the sames goes for \(A_2\)
+\begin{equation}
+    A_2 = \idm_1 \tens A_2.
+\end{equation}
+
+Since we already know the eigenvectors of \(A_1\) on \(V_1\), a good ansatz to find the eigenvectors of \(A_1\) on \(V\) is \(\ket{v_1}\tens \ket{w}\), where \(\ket{w}\) is any vector of \(V_2\). Thus
+\begin{equation}
+    A_1 (\ket{v_1}\tens \ket{w}) = (A_1 \tens \idm_2)(\ket{v_1}\tens \ket{w}) = (A_1\ket{v_1})\tens(\ket{w}),
+\end{equation}
+which means that
+\begin{equation}
+    A_1 (\ket{v_1}\tens \ket{w}) = (v_1\ket{v_1})\tens(\ket{w}) = v_1 (\ket{v_1}\tens \ket{w}),
+\end{equation}
+implying that the eigenvalues of \(A_1\) on \(V\) are the same eigenvalues of \(A_1\) on \(V_1\), and that the eigenvector of \(A_1\) on \(V\) is the eigenvector of \(A_1\) on \(V_1\) with any vector of \(A_2\).
+
+If we now consider the operator \(A_1 + A_2\) on \(V\), we find that
+\begin{equation}
+    A_1 + A_2 = A_1\tens \idm_2 + \idm_1 \tens A_2,
+\end{equation}
+and then we take the ansatz \(\ket{v_1}\tens\ket{v_2}\) for the eigenvector of \(A_1 + A_2\) on \(V\):
+\begin{equation}
+    \bigg(A_1\tens \idm_2 + \idm_1 \tens A_2\bigg) (\ket{v_1}\tens\ket{v_2}) = (A_1\tens \idm_2)(\ket{v_1}\tens\ket{v_2}) + (\idm_1 \tens A_2)(\ket{v_1}\tens\ket{v_2}),
+\end{equation}
+and then
+\begin{equation}
+    \bigg(A_1\tens \idm_2 + \idm_1 \tens A_2\bigg) (\ket{v_1}\tens\ket{v_2}) = v_1(\ket{v_1}\tens\ket{v_2}) + v_2(\ket{v_1}\tens\ket{v_2}) = (v_1 + v_2)(\ket{v_1}\tens\ket{v_2}),
+\end{equation}
+which means that the eigenvalues of \(A_1 + A_2\) on \(V\) are the sum of the eigenvalues of \(A_1\) on \(V_1\) plus the eigenvalues of \(A_2\) on \(V_2\). Also, the eigenvectors of \(A_1 + A_2\) on \(V\) are the eigenvectors of \(A_1\) on \(V_1\) with the eigenvectors of \(A_2\) on \(V_2\). Notice that any combination of eigenvectors of \(A_1\) and \(A_2\) is an eigenvector of \(A_1 + A_2\), and the eigenvalues of \(A_1 + A_2\) is the sum of the eigenvalues of the individual eigenvectors.
+
+% \backmatter
+% \printbib
+\end{document}

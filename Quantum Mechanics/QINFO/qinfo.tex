@@ -1,0 +1,35 @@
+\documentclass{../_mypackages/monograph}
+
+\title{Quantum Information} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+\addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+\frontmatter
+
+\monographtp
+\dominitoc
+\doparttoc
+\pagestyle{onlypagenum}
+\tableofcontents
+\mainmatter
+
+\import{/}{qinfo_01} % Introduction
+
+\import{/}{qinfo_02} % Introduction
+
+\import{/}{qinfo_03} % Introduction
+
+\import{/}{qinfo_04} % Introduction
+
+\import{/}{qinfo_05} % Introduction
+
+
+
+
+\backmatter
+\printbib
+\end{document}

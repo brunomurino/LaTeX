@@ -1,0 +1,285 @@
+\documentclass{_mypackages/monograph}
+
+\title{Quantum Mechanics} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+% \addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+\frontmatter
+
+\monographtp
+\dominitoc
+\doparttoc
+\pagestyle{onlypagenum}
+\tableofcontents
+\mainmatter
+
+\import{/}{usefulequations}
+
+\chapter{Bla}
+
+
+Given that
+\begin{equation}
+    \braket{\vb{x}}{\vb{p}} = \frac{1}{(2\pi)^{\nicefrac{3}{2}}}\lexp{(i\vb{p}\cdot\vb{x}}).
+\end{equation}
+
+\subsubsection{Position operator in the momentum basis}
+Let's find out how the position operator \(x_i\) acts on the space of momentum's basis. We begin writing
+\begin{equation}\label{eq:xonpspace} 
+    x_i\ket{\vb{p}}  = \int \dd{x}^3 x_i \ket{\vb{x}}\braket{\vb{x}}{\vb{p}}  = \int \dd{x}^3 x_i \ket{\vb{x}} \frac{\exp{i\vb{p}\cdot\vb{x}}}{(2\pi)^{\nicefrac{3}{2}}} ,
+\end{equation}
+and since
+\begin{equation}
+    \pdv{p_i} \big( \exp{i\vb{p}\cdot\vb{x}} \big) = \exp{i\vb{p}\cdot\vb{x}}\,\, \pdv{(i\vb{p}\cdot\vb{x})}{p_i} = \exp{i\vb{p}\cdot\vb{x}}(ix_i),
+\end{equation}
+we know that
+\begin{equation}
+    \exp{i\vb{p}\cdot\vb{x}}x_i = -i\pdv{p_i} \big( \exp{i\vb{p}\cdot\vb{x}} \big)
+\end{equation}
+which plugging back on \eqref{eq:xonpspace} leads us to
+\begin{equation}
+    x_i\ket{\vb{p}} = -i \pdv{p_i} \Bigg(\int \dd{x}^3 \ket{\vb{x}} \frac{\exp{i\vb{p}\cdot\vb{x}}}{(2\pi)^{\nicefrac{3}{2}}}  \Bigg)
+\end{equation}
+which we can then simplify to
+\begin{equation}
+    x_i\ket{\vb{p}} = -i \pdv{p_i} \Bigg( \int \dd{x}^3 \braket{\vb{p}}{\vb{x}}\bra{\vb{x}} \Bigg) = -i \pdv{p_i} \ket{\vb{p}},
+\end{equation}
+allowing us to write
+\begin{mybox}
+\begin{equation}\label{eq:vecxinp}
+    x_i\ket{\vb{p}} = -i \pdv{p_i} \ket{\vb{p}} \qq{and also} \bra{\vb{p}}x_i = i \pdv{p_i}\bra{\vb{p}}.
+\end{equation}
+\end{mybox}
+
+Also, note that due to \eqref{eq:vecxinp} we can write
+\begin{equation}
+\begin{split}
+    \vb{x}\ket{\vb{p}} &= (x_1,x_2,x_3)\ket{\vb{p}} \\  &=\bigg(x_1\ket{\vb{p}},x_2\ket{\vb{p}},x_3\ket{\vb{p}} \bigg) \\
+    &= -i \bigg( \pdv{p_1} \ket{\vb{p}},\pdv{p_2} \ket{\vb{p}},\pdv{p_3} \ket{\vb{p}}  \bigg) \\
+    &= -i \pdv{\vb{p}} \ket{\vb{p}},
+\end{split}
+\end{equation}
+which is the very useful relation
+\begin{mybox}
+\begin{equation}
+    \vb{x}\ket{\vb{p}} = -i \pdv{\vb{p}} \ket{\vb{p}} \qq{together with} \bra{\vb{p}}\vb{x} = i \pdv{\vb{p}} \bra{\vb{p}}.
+\end{equation}
+\end{mybox}
+
+\section{Time evolution}
+
+\subsubsection{Schrödinger's picture and Heisenberg's picture}
+
+In Schrödinger's picture the states evolve with time, i.e. given \(\ket{\psi;t_0}\) and \(U(t,t_0)\) we obtain \(\ket{\psi;t}\) according to
+\begin{equation}
+    \ket{\psi;t} = U(t,t_0) \ket{\psi;t_0},
+\end{equation}
+and
+\begin{equation}
+    i\hbar \pdv{t} \ket{\psi;t} = H \ket{\psi;t}.
+\end{equation}
+
+In Heisenberg's picture the operators evolve with time while the states don't, i.e. given \(A_H(t_0)\) and \(U(t,t_0)\) we obtain \(A_H(t)\) according to
+\begin{equation}
+    A_H(t) = U^\dagger(t) A_H(0) U(t),
+\end{equation}
+and
+\begin{equation}
+    i \hbar \pdv{t} A_H(t) = \comm{A_H(t)}{H}.
+\end{equation}
+
+
+
+
+
+
+
+
+\begin{equation}
+    \comm{x_H(t)}{x_H(t')} = \frac{i\hbar }{2\mu} (t-t')
+\end{equation}
+
+\section{Propagators}
+
+In Schrödinger's picture we know that states evolve from time \(t'\) to \(t\) by the action of an unitary operator \(U(t,t')\), satisfying
+\begin{equation}
+    i\pdv{t}U = HU
+\end{equation}
+where \(H\) is the system's Hamiltonian, according to
+\begin{equation}
+    \ket{\psi;t} = U(t,t')\ket{\psi;t'}.
+\end{equation}
+
+Inserting the position completeness relation we can write
+\begin{equation}
+    \ket{\psi;t} = \int \dd{x'} U(t,t')\ket{x'}\braket{x'}{\psi;t'} = \int \dd{x'} \bigg(U(t,t')\ket{x'}\bigg)\psi(x',t'),
+\end{equation}
+and if we try and write the evolved ket also in the position basis we obtain
+\begin{equation}
+    \psi(x,t) = \int \dd{x'} \bigg(\mel{x}{U(t,t')}{x'} \bigg)\psi(x',t').
+\end{equation}
+We define, then, the so called \emph{propagator} \(J\) as
+\begin{equation}
+    J(x,t;x',t') = \mel{x}{U(t,t')}{x'},
+\end{equation}
+allowing us to write
+\begin{equation}
+    \psi(x,t) = \int \dd{x'} J(x,t;x',t') \psi(x',t')
+\end{equation}
+
+However, instead of writing the evolved ket in the position basis we could write it in the momentum basis, giving us the expression
+\begin{equation}
+    \psi(p,t) = \int \dd{x'} \bigg(\mel{p}{U(t,t')}{x'} \bigg)\psi(x',t').
+\end{equation}
+Analogously, instead of inserting the position completeness relation we could have inserted the momentum completeness relation, giving us
+\begin{equation}
+    \psi(x,t) = \int \dd{p'} \bigg(\mel{x}{U(t,t')}{p'} \bigg)\psi(p',t')
+\end{equation}
+and
+\begin{equation}
+    \psi(p,t) = \int \dd{p'} \bigg(\mel{p}{U(t,t')}{p'} \bigg)\psi(p',t').
+\end{equation}
+These three terms between parenthesis also serve as propagators although they are not \emph{the} propagator.
+
+\chapter{Theory of Angular Momentum}
+
+We obtain:
+\begin{equation}\label{eq:commJJ}
+    \comm{J_i}{J_j} = i\epsilon_{ijk}J_k\qc (i,j,k=1,2,3)
+\end{equation}
+from which it can be seen that we can't diagonalise more than one component of \(\vb{J}\) at a time: we must choose one and it's customary to choose \(J_3=J_z\). Also, if we consider
+\begin{equation}
+    \vb{J}^2 = J^2 = J_x^2 + J_y^2 +J_z^2,
+\end{equation}
+it can be shown that
+\begin{equation}\label{eq:commJ2J}
+    \comm{J^2}{J_i} = 0\qc i=1,2,3,
+\end{equation}
+meaning that we can diagonalise both \(J_z\) and \(J^2\) simultaneously. We label their common eigenstate by \(j\) and \(m\) in the following way
+\begin{equation}
+    J^2\ket{jm} = j(j+1)\ket{jm} \qc J_z\ket{jm}=m\ket{jm},
+\end{equation}
+and are normalised by
+\begin{equation}
+    \braket{jm}{j'm'} = \delta_{jj'}\delta_{mm'}.
+\end{equation}
+
+Some other relevant operators are \(J_+\) and \(J_-\), defined as
+\begin{equation}
+    J_{\pm} = J_x \pm i J_y.
+\end{equation}
+Since the \(J_i\) are Hermitian, we see that
+\begin{equation}
+    J_+ = J_-^\dagger.
+\end{equation}
+Also, from \eqref{eq:commJJ} we obtain
+\begin{equation}\label{eq:commJ+-}
+    \comm{J_+}{J_-} = 2 J_z\qc \comm{J_3}{J_\pm} = \pm J_{\pm}
+\end{equation}
+and also
+\begin{equation}\label{eq:J+-andJ-+}
+\begin{split}
+    J_+ J_- &= J^2 - J_z(J_z-1), \\
+    J_- J_+ &= J^2 - J_z(J_z+1).
+\end{split}
+\end{equation}
+It's also useful to write \(J_x\) and \(J_y\) in terms of \(J_{\pm}\):
+\begin{equation}
+    J_x = \frac{J_+ + J_-}{2} \qc J_y = \frac{J_+-J_-}{2i}.
+\end{equation}
+
+Due to \eqref{eq:commJ2J} we know that \(J^2\) and \(J_\pm\) commute. We have:
+\begin{equation}
+    J^2 J_\pm \ket{jm} = J_\pm J^2 \ket{jm} = j(j+1)J_\pm \ket{jm},
+\end{equation}
+meaning that \(J_\pm\ket{jm}\) is an eigenstate of \(J^2\) with the same eigenvalues as \(\ket{jm}\). Also, due to \eqref{eq:commJ+-} we have
+\begin{equation}
+    J_z J_\pm \ket{jm} = (J_\pm J_z \pm J_\pm)\ket{jm} = (m\pm1)J_\pm \ket{jm},
+\end{equation}
+implying that \(J_\pm\ket{jm}\) are eigenstates of \(J_z\) with eigenvalues \(m\pm1\). For this reason \(J_\pm\) are called the angular momentum \emph{raising} and \emph{lowering} operators. Since \(J_\pm\ket{jm}\) are eigenstates of \(J_z\) with eigenvalues \(m\pm1\), they must be proportional to \(\ket{jm\pm1}\), meaning that, for fixed \(j\) and \(m\), we must have
+\begin{equation}
+    J_\pm\ket{jm} = a_\pm\ket{jm\pm1}.
+\end{equation}
+Due to \eqref{eq:J+-andJ-+} we can find the \(a_\pm\) as
+\begin{equation}
+    \abs{a_\pm}^2 = \ev{J_\mp J_\pm}{jm} = \ev{J^2 - J_z(J_z\pm1)}{jm},
+\end{equation}
+and then
+\begin{equation}
+    \abs{a_\pm}^2 = j(j+1)-m(m\pm1),
+\end{equation}
+from which we conventionally \(a_\pm\) as the positive root, meaning that
+\begin{equation}
+    J_\pm \ket{jm} = \sqrt{j(j+1)-m(m\pm1)}\ket{jm\pm1}
+\end{equation}
+
+\section{Addition of Angular Momentum}
+
+\begin{equation}
+    \ket{j_1,j_2,J,M} = \sum_{m_1,m_2} C_{j_1,j_2}(J,M;m_1,m_2) \ket{j_1,j_2,m_1,m_2}
+\end{equation}
+
+\begin{equation}
+    C_{j_1,j_2}(J,M;m_1,m_2) = \braket{j_1,j_2,m_1,m_2}{j_1,j_2,J,M}
+\end{equation}
+
+\begin{equation}\label{eq:addofangmom}
+    \left\{\begin{aligned}
+        m_1 +  & \, m_2 = M  \\
+        \abs{j_1-j_2} \leq \, &J \leq j_1 + j_2 \\
+        j_1+j_2 + &\, J = \text{integer} 
+       \end{aligned}
+    \right.
+\end{equation}
+
+\subsubsection{Recursion relation for Clebsch-Gordan coefficients}
+
+\begin{equation}
+\begin{split}
+    \sqrt{(J-M+1)(J+M)}&\braket{m_1,m_2}{J,M-1} =\\
+    &\sqrt{(j_1-m_1)(j_1+m_1+1)}\braket{m_1+1,m_2}{J,M} + \\
+    &\sqrt{(j_2-m_2)(j_2+m_2+1)}\braket{m_1,m_2+1}{J,M}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \sqrt{(J+M+1)(J-M)}&\braket{m_1,m_2}{J,M+1} =\\
+    &\sqrt{(j_1+m_1)(j_1-m_1+1)}\braket{m_1-1,m_2}{J,M} + \\
+    &\sqrt{(j_2+m_2)(j_2-m_2+1)}\braket{m_1,m_2-1}{J,M}
+\end{split}
+\end{equation}
+
+\begin{equation}
+    a_\mp(J,M) \braket{m_1,m_2}{J,M\mp1} = a_\pm(j_1,m_1)\braket{m_1\pm1,m_2}{JM} + a_\pm(j_2,m_2)\braket{m_1,m_2\pm1}{JM}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \backmatter
+% \printbib
+\end{document}

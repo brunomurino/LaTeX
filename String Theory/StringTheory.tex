@@ -1,0 +1,36 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/mypreamble}
+\usepackage{../_mypackages/mycommands}
+\usepackage{../_mythemes/notestheme}
+
+\addbibresource{ST_ref.bib}
+
+%----------------------------------END PREAMBLE---------------------------------
+
+\begin{document}
+\frontmatter
+\pagestyle{empty}
+\notestp{Quantum Electrodynamics}
+\begin{notesabstract}[Abstract]
+In this report I'll be addressing mostly the introductory concepts of String Theory. Chapter 1 will set the grounds so we can start the development of the theory and chapter 2 will introduce most of the tools we'll use. In chapter 3 the classical theory will be developed and by the end of chapter 4 one of the best qualities of the theory will have been demonstrated: gravity emerged from closed string states. Chapter 5 will contain some further developments, like T-duality, string charges and string thermodynamics.
+\end{notesabstract}
+\centeredtoc{Content}
+\mainmatter
+\pagestyle{mynotespage} %\normalfont
+
+\import{String Theory/}{StringTheory_chap01}
+
+% \import{String Theory/}{StringTheory_chap02}
+%
+% \import{String Theory/}{StringTheory_chap03}
+%
+% \import{String Theory/}{StringTheory_chap04}
+
+%\import{String Theory/}{StringTheory_chap05}
+
+\backmatter
+
+\printbib{References}
+
+\end{document}

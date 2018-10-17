@@ -1,0 +1,278 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{../mypreamble}
+% \usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{../mycommands}
+\usepackage{../mytheme1}
+
+% \addbibresource{ref_ST.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\pagestyle{mypage2} \normalfont
+
+\chapter{Tools to solve the Equations of Motion}
+
+\section{Special Relativity}
+
+When we enter the realm of special relativity it's important to generalise the concept of scalar product. Time and space must be on equal footing now. It can be shown that the appropriate way to generalise the scalar product is to introduce an entity called \textit{metric}, denoted generally by \(g\), a matrix that will tell how two vectors must combine to result in a \textit{scalar}. If the spacetime is not curved, then it is \textit{flat} and the corresponding metric is the famous \textit{Minkowski metric}, which will be denoted \(\eta\) and used with signature \((-1,1,...,1)\). Given two vectors \(a\) and \(b\), their scalar product is defined as
+\beq[] a\cdot b = g_{\mu\nu}a^{\mu}b^{\nu} \eeq
+where Einstein's summation convention is used (if an index appears twice, the it is summed over).\par
+
+Other important property of the metric \(g\) is to raise/lower indices
+\beq[] a_{\mu} = g_{\mu \nu} a^{\nu} \eeq
+\beq[] a^{\mu} = g^{\mu \nu} a_{\nu}  \eeq
+
+In relativity is of the utmost importance to find properties that different observers agree on, so a class of transformations has been found, the ones that preserve the relativistic scalar product: the Lorentz transformations.\par
+
+\subsection{Lorentz Transformations}
+
+If we want to preserve a scalar product in flat spacetime we must have that
+\beq[] a\cdot b = \eta_{\mu \nu}a^{\mu}b^{\nu}  = \eta_{\mu \nu}a'^{\mu}b'^{\nu} = a'\cdot b' \eeq\par
+
+Let \(\Lambda \) be a general coordinate transformation, then
+\beq[] a'^{\mu} = \Lambda^{\mu}_{\nu}a^{\nu}\eeq
+therefore we need that
+\beq[] \eta_{\mu \nu} = \eta_{\rho \sigma}\Lambda^{\sigma}_ {\ \mu}\Lambda^{\rho}_ {\ \nu}\eeq
+or in matrix notation
+\beq[] \Lambda^{T} \eta \Lambda = \eta\eeq\par
+
+Such transformation of coordinates is called a \textit{Lorentz transformation} if satisfies the above condition. Also, from the condition, it follows that \( det\Lambda = \pm 1\).\par
+
+\subsection{Some invariant quantities}
+
+Now let's see some important quantities that are preserved under Lorentz transformations.\par
+
+If \(a^{\mu}=b^{\mu}=\text{spacetime coordinates}=x^{\mu}\), then
+\beq[] x\cdot x = x^2 \doteq -\Delta S^2 \eeq
+where \(\Delta S\) is called \textit{invariant interval} (which I mentioned before!)
+
+Consider two events in spacetime that are \(\dd{x}^{\mu}\) away from each other. Let \(- \dd{s}^2 = \dd{x}_{\mu}\cdot \dd{x}^{\nu} \).
+\begin{itemize}
+    \item If \( \dd{s}^2 > 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{timelike vector}, and the events are said to be \textit{timelike separated}. Timelike separated events can be causally connected.
+    \item If \( \dd{s}^2 = 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{lightlike vector}, and the events are said to be \textit{lightlike separated}.
+    \item If \( \dd{s}^2 < 0\), then \( \dd{x}^{\mu}\) is said to be a \textit{spacelike vector}, and the events are said to be \textit{spacelike separated}. Spacelike separated events cannot be causally connected.
+\end{itemize}
+
+We can also define a quantity called the four-momentum as
+\beq p = \left(E,p^1,...,p^{D-1}\right) = \left(E,\vb{p}\right)\eeq
+Taking the scalar product \(p\cdot p\) we get a quantity which we call \(-(M)^2 \), therefore
+\beq[eq:p2m20constrain] p^2 = - M^2 = -E^2 + \vb{p}\cdot\vb{p}\eeq
+where \(M\) can sometimes be interpreted, for example, as the mass of a particle or string.\par
+
+\subsection{Light-cone coordinates}
+
+In special relativity its useful to use \textit{light-cone coordinates}. The light-cone coordinates are defined
+as
+\beq[eq:lccoor] x^+ \doteq \frac{1}{\sqrt{2}}(x^0 + x^1) \qq{and} x^- \doteq \frac{1}{\sqrt{2}}(x^0 - x^1)\eeq
+And by direct substitution, the scalar product between two vectors becomes
+\beq[eq:lcscalarproduct] -\dd{s}^2 = -2\dd{x}^+\dd{x}^- + (\dd{x}^2)^2 +...+(\dd{x}^{D-1})^2\eeq
+and the flat metric becomes, in the \(D=4\) case,
+\beq[eq:lcflatmetric] \hat{\eta}_{\mu \nu} =
+\begin{pmatrix}
+0 & -1 & 0 & 0\\
+-1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}\eeq\par
+
+It's important to define \(x^+\) as the light cone time (it could also be \(x^-\), but it's not conventional) since it remains constant for a light ray in the negative \(x^1\) direction.\par
+
+We can do the same thing to momentum and adopt momentum light-cone coordinates. Now, to find which component should be identified as the light-cone energy we must recall that energy and time are conjugated variables. If we expand the scalar product \(p\cdot x\) in both cartesian coordinates and light-cone coordinates, we find that the momentum component conjugated to \(x^+\) is \(-p_+=p^-\), thus we conclude that the light-cone energy is
+\beq[] p^- = E_{lc}\eeq
+
+\section{Conservation}
+
+\subsection{Noether's Theorem}
+
+The action is the integral of the Lagrangian over all it's parameters \(\{\sigma\}\), spacelike and timelike
+\beq S = \int \dd^{D}\sigma \mc{L}\eeq
+where \(D = d+1\) and \(d\) is the number of spacelike parameters needed to describe the system (we are considering only one timelike parameter).\par
+
+Let the Lagrangian be a function of a field and its first order derivatives
+\beq \mc{L} = \mc{L}\left(\phi^{\mu},\del_{\alpha}\phi^{\mu};\{ \sigma^{\alpha}\} \right) \qq{where} \alpha = 0,1,...,d\eeq\par
+
+Noether's theorem says that for every continuous symmetry of the action there's a conserved current. For every conserved current there corresponds a conserved charge with respect to the timelike parameter, this charge is the integral of the current over all spacelike parameters.\par
+
+If the variation is continuous, it admits an infinitesimal form. Therefore we can let the variation of the field be
+\beq[] \var{\phi^{\alpha}}=\epsilon^ih_i^{\alpha}(\phi) \eeq
+where \(\epsilon^i\) are a set of infinitesimal constants and \(i\) labels the different components the function \(h\) can have.\par
+
+This last statement is important, since enables us to find locally conserved currents (instead of globally conserved currents).\par
+
+The symmetry of the action with respect to the variation implies that the following quantities are conserved
+\beq[eq:noethercurrent] \epsilon^ij^{\alpha}_i = \pdv{\mc{L}}{( \del_{\alpha}\phi^{\mu})} \var{\phi^{\mu}}\qq{with} \del_{\alpha}j^{\alpha}_i=0\eeq\par
+
+The associated conserved charge is define as
+\beq[eq:conschargeint] Q_i = \int \dd{\sigma^1}\dd{\sigma^2}...\dd{\sigma^d} j_i^0 \eeq
+and it follows that
+\beq[] \dv{Q_i}{\sigma^0}=0 \eeq
+
+In two dimensions, \eqref{eq:conschargeint} can be generalised as the current flux across any path \(\gamma\) that goes from \(\sigma = 0\) to \(\sigma = \sigma\)
+\beq[] Q_i = \uint[\gamma] \left(j^{\sigma^0}_i\dd{\sigma^1} - j^{\sigma^1}_i\dd{\sigma^0} \right) \eeq
+Of course we can take a path where \(\sigma_0 \) is constant, resulting in our original definition in 2 dimensions.
+
+\subsection{Momentum}
+
+For a relativistic string, if the variation is given by
+\beq[] \var{X^{\mu}} = \epsilon^{\mu}\eeq
+where \(\epsilon^{\mu}\) is a constant, we get that the current is
+\beq[] j = \left(\Pi^{\tau},\Pi^{\sigma} \right) \eeq
+and the conservation of currents is just
+\beq[] \pdv{\Pi^{\tau}}{\tau} + \pdv{\Pi^{\sigma}}{\sigma} = 0\eeq
+which is just the equation of motion for the string.\par
+We can integrate the current and get the conserved charge
+\beq[]  p(\tau) = \uint[\gamma] \left( \Pi^{\tau}\dd{\sigma} - \Pi^{\sigma}\dd{\tau} \right)\eeq
+which is the spacetime momentum carried by the string, since the symmetry observed corresponds to a spacetime translational invariance. If we choose a path \(\gamma\) where \(\tau\) is constant, then \(\dd{\tau} =0\) and
+\beq[eq:momentumsigmaint] p(\tau) = \int_0^{\sigma_1} \Pi^{\tau}\dd{\sigma} \eeq
+and we can conclude that \(\Pi^{\tau} \) is the \(\sigma\) density of spacetime momentum carried by the string.\par
+
+Using the equations of motion \eqref{eq:PiEOM} we have that
+\beq[eq:momentumconservation] \dv{p}{\tau} = -\eval{\Pi^{\sigma}}^{\sigma_1}_{0} \eeq
+where \(0\) and \(\sigma_1\) are the endpoints of the string. This shows that the boundary conditions \eqref{eq:stringbc} will be of extreme importance to know if the momentum of a string is conserved.\par
+
+% We can speculate: for closed strings \(\sigma_1\) corresponds to the same point \(0\), therefore momentum is always conserved, and that for open strings, if we impose free boundary conditions, we have that \( \Pi^{\sigma}_{\mu}=0\), we get that the momentum is conserved with respect to \(\tau\)
+% \beq[] \dv{p_{\mu}}{\tau}=0\eeq
+% It's important to note that if we impose Dirichlet boundary conditions, fixed endpoints, spacetime momentum is not conserved. This result will give rise to the \(D\)-branes, which will be studied later.\par
+
+\subsection{Lorentz current and charge}
+
+Now it's time to look at the conserved currents and charges of a very special continuous transformation, the Lorentz transformation. But first we must find the infinitesimal form of a general Lorentz transformation.\par
+
+Since the Lorentz transformations are linear transformations, we can start using the fact that every infinitesimal linear transformation is of the form
+\beq[eq:lorentzvar] \var{a^{\mu}} = \epsilon^{\mu \nu} a_{\nu} \qq{and also} \var{b^{\mu}} = \epsilon^{\mu\nu} b_ {\nu} \eeq
+where \( \epsilon^{\mu \nu}\) is a matrix of infinitesimal constants, analog to the previous \(\epsilon^i\). Invariance of the scalar product upon such variation imposes that
+\beq[] \var{\left( \eta_{\mu \nu}a^{\mu}b^{\nu} \right)} = 0 \eeq
+Developing the above expression we find
+\beq[] \eta_{\mu\nu}\left(\var{a^{\mu}}\right)b^{\nu} + \eta_{\mu\nu}a^{\mu}\left(\var{b^{\nu}}\right)=0 \eeq
+\beq[] \eta_{\mu\nu}\left(\epsilon^{\mu\nu}a_ {\nu}\right)b^{\nu} + \eta_{\mu\nu}a^{\mu}\left(\epsilon^{\nu\mu}b_{\mu}\right)=0  \eeq
+and since \(a_{\nu}b^{\nu} = a^{\mu}b_{\mu} = a\cdot b\) we can group the similar terms and get
+\beq[] \eta_{\mu\nu}(a\cdot b) \left( \epsilon^{\mu\nu}+\epsilon^{\nu\mu}\right)=0 \eeq
+and since the above expression must be true for any \(a\) and \(b\), we find that the condition we must impose on \(\epsilon^{\mu\nu}\) is that
+\beq[]  \epsilon^{\mu\nu}+\epsilon^{\nu\mu} = 0\eeq
+which means that for an infinitesimal linear transformation \(\epsilon^{\mu\nu}\) to be an infinitesimal Lorentz transformation, \(\epsilon^{\mu\nu}\) must be an \textit{antisymmetric} matrix.\par
+
+Now, using \eqref{eq:noethercurrent} with \eqref{eq:lorentzvar} and the antisymmetry of \(\epsilon^{\mu\nu}\) we find that the associated conserved currents are (choosing a normalization)
+\beq[] \mc{M}^{\alpha}_{\mu\nu} = X_{\mu}\Pi^{\alpha}_{\nu} - X_{\nu}\Pi^{\alpha}_{\mu} \qc \alpha = \tau,\sigma \eeq
+which is also antisymmetric. The conservation of current is then
+\beq[] \pdv{\mc{M}^{\tau}_{\mu\nu}}{\tau} + \pdv{\mc{M}^{\sigma}_{\mu\nu}}{\sigma} =0 \eeq
+and the charges matrix are
+\beq[] M_{\mu\nu} = \uint[\gamma] \left( \mc{M}^{\tau}_{\mu\nu}\dd{\sigma} - \mc{M}^{\sigma}_{\mu\nu}\dd{\tau} \right) \eeq\par
+
+Since we can choose any path \(\gamma\) to compute the charges, we'll choose a constant \(\tau\) path, leaving the Lorentz charges matrix as
+\beq[eq:lorentzchargematrix] M_{\mu\nu} = \int_0^{\sigma_1} \mc{M}^{\tau}_{\mu\nu} \dd{\sigma} = \int_0^{\sigma_1} \left(X_{\mu}\Pi^{\tau}_{\nu} - X_{\nu}\Pi^{\tau}_{\mu} \right)\dd{\sigma} \eeq
+Being antisymmetric, in \(D\) spacetime dimensions we have \(\hlf D(D-1)\) different Lorentz charges.\par
+In four spacetime dimensions we have: three charges associated with the three basic boosts, and three charges associated with the three basic rotations. Letting \(i\) and \(j\) be spatial indices, to find the charges we must compute \( M^{0i}\) and \(M^{ij}\).\par
+
+Since \(\Pi^{\tau}_i\) is the momentum density, \(\mc{M}^{\tau}_{ij}\) fits the angular momentum density definition, so the charges associated relate to the string angular momentum as1
+\beq[] L_i = \hlf \varepsilon^{ijk}M_{jk} \eeq\par
+
+The charges \(M^{0i}\) associated with the boosts are
+\beq[] M^{0i} = \int_0^{\sigma_1} \left( t\Pi^{\tau i} - X^i\Pi^{\tau 0} \right)\dd{\sigma} = ctp^i - \int_0^{\sigma_1}X^i\Pi^{\tau 0}\dd{\sigma}  \eeq\par
+
+The importance of these Lorentz charges cannot be overstated: upon quantisation some symmetries may be lost, but we cannot let this happen to Lorentz symmetry since we want our string theory to be relativistic! This Lorentz charges will be responsible for imposing some serious properties on the quantum relativistic string. We'll see them later.
+
+\section{Choosing a gauge}
+
+The \textit{gauge} is the way a set of parameters \(\{\sigma\}\) used to the describe a physical system relates to it's values, which in our case is the way \(\tau\) and \(\sigma\) relates to the string coordinates \(X^{\mu}\). Since our Nambu-Goto action has diff-invariance (\eqref{eq:diffinvar1} and \eqref{eq:diffinvar2}), we can choose our gauge freely, and this is good since some calculations are a lot easier when held with the appropriate gauge, as we'll see.\par
+
+Let \(n^{\mu}\) be a vector. Our starting point is: we want the amount of \(n\cdot p\) momentum the string carries from \(\sigma=0\) to \(\sigma\) to be directly proportional to \(\sigma\), and this is accomplished by imposing the constancy of the \(n\cdot p\) density, \(n\cdot \Pi^{\tau}\), so that, according to \eqref{eq:momentumsigmaint}
+\beq[eq:npsigma] n\cdot p (\sigma) = \int_0^{\sigma}n\cdot \Pi^{\tau}\dd{\sigma}=n\cdot \Pi^{\tau}*\sigma \eeq\par
+
+We also want the vector \(n^{\mu}\) in a way that \(n\cdot p\) is \textit{\textbf{always}} conserved with respect to \(\tau\)
+\beq[] \dv{\left(n\cdot p\right)}{\tau} =0 \eeq
+According to \eqref{eq:momentumconservation}, to accomplish such conservation we must impose the condition
+\beq[] n\cdot \Pi^{\sigma} =0 \qq{at the string endpoints} \eeq
+but if we dot the equations of motion \eqref{eq:PiEOM} with \(n\), we get
+\beq[] \pdv{\tau}\left(n\cdot \Pi^{\tau}\right) + \pdv{\sigma}\left(n\cdot\Pi^{\sigma}\right)  = 0\eeq
+\beq[] \pdv{\tau}\left(\frac{n\cdot p }{\sigma_1}\right) + \pdv{\sigma}\left(n\cdot\Pi^{\sigma}\right)  = 0 \eeq
+\beq[] \pdv{\sigma} \left(n\cdot \Pi^{\sigma} \right) = 0\eeq
+so we find that \( n\cdot \Pi^{\sigma}\) does not depend on \(\sigma\)! Therefore if we find
+\beq[eq:nsigmacondition] n\cdot \Pi^{\sigma}=0 \qq{at \textit{\textbf{any}} point on the string} \eeq
+the conservation of \(n\cdot p\) is ensured.\par
+
+Considering every situation in which there are solutions to \eqref{eq:nsigmacondition}, we want to set the following gauge on \(\sigma\)
+\beq[eq:sigmagauge] n\cdot \Pi^{\tau} = \frac{n\cdot p}{\sigma_1} \eeq
+and the following gauge on \(\tau\)
+\beq[eq:taugauge] n\cdot X = \frac{n\cdot p}{T\sigma_1} \tau \eeq\par
+
+Now, lets search for the solutions of \eqref{eq:nsigmacondition}. Writing \(\Pi^{\sigma}\) explicitly we have
+\beq[] n\cdot \Pi^{\sigma} = -T \frac{\left(\dot{X}\cdot X'\right) \del_{\tau}(n\cdot X) - \left(\dot{X}\right)^2 \del_{\sigma}(n\cdot X) }{\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}} \eeq
+Since \(n\cdot X\) is only a function of \(\tau\), it follows that \(\del_{\sigma}\left(n\cdot X \right) = 0\), therefore
+\beq[] n\cdot \Pi^{\sigma} = -T \frac{\left(\dot{X}\cdot X'\right) \del_{\tau}(n\cdot X) }{\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}} \eeq
+So in order to satisfy \eqref{eq:nsigmacondition} we must find
+\beq[eq:gaugeXXconstrain] \dot{X}\cdot X' = 0 \qq{at some point on the string} \eeq\par
+
+Using \eqref{eq:gaugeXXconstrain} on \(n\cdot \Pi^{\tau}\) we have, explicitly
+\beq[] n\cdot \Pi^{\tau} = -T \frac{\left(\dot{X}\cdot X'\right) \del_{\sigma}(n\cdot X) - \left(X'\right)^2 \del_{\tau}(n\cdot X) }{\sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}} \eeq
+\beq[] n\cdot \Pi^{\tau} = T \frac{\left(X'\right)^2 \del_{\tau}(n\cdot X) }{\sqrt{ - (\dot{X})^2(X')^2}} \eeq
+and substituting \eqref{eq:taugauge} and \eqref{eq:sigmagauge}
+\beq[] \frac{n\cdot p}{\sigma_1} = T \frac{X'^2 }{\sqrt{ - (\dot{X})^2(X')^2}} \pdv{\tau}\left( \frac{n\cdot p}{T\sigma_1}\tau\right) \eeq
+leaving us with only
+\beq[] 1 = \frac{X'^2}{\sqrt{ - (\dot{X})^2(X')^2}} \eeq
+which is just
+\beq[eq:gaugeX2constrain] \dot{X}^2 + X'^2 = 0 \eeq\par
+
+This two constrains \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain} can be summarised as
+\beq[eq:gaugeconstrain] \left(\dot{X} \pm X' \right)^2 = 0 \eeq\par
+
+With the use of \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain}, the expressions for \(\Pi^{\sigma}\) and \(\Pi^{\tau}\) simplify tremendously:
+\beq[] \Pi^{\tau} = T \dot{X} \eeq
+and
+\beq[] \Pi^{\sigma} = -TX' \eeq
+and the equations of motion \eqref{eq:PiEOM} become
+\beq[eq:waveequation] \ddot{X} - X" = 0 \eeq
+which is just the well-known \textit{wave equation}!\par
+
+It's important to understand what this all means in practice: you simply use the gauge \eqref{eq:sigmagauge} and \eqref{eq:taugauge} to get the equations of motion to be the wave equation \eqref{eq:waveequation}, and then make sure the solutions you find satisfy \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain}. Of course, if the solution you find doesn't satisfy \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain}, then your solution is no good.\par
+
+\subsection{Some notable results using our gauge}
+
+Using our gauge constrains \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain} on some previous results we found it becomes a lot easier to interpret them. Lets take our momentum \eqref{eq:momentumsigmaint}. It becomes simply
+\beq[eq:pgauge] p(\tau) = T\int_0^{\sigma_1}\dot{X}\dd{\sigma} \eeq
+and its conservation
+\beq[eq:pconsrvgauge] \dv{p}{\tau} = -T \eval{X'}^{\sigma=\sigma_1}_{\sigma=0}\eeq
+and together with the boundary term, which in our gauge becomes
+\beq[eq:bcgauge] \int_{\tau_f}^{\tau_i}\dd{\tau} \eval{\left[X'_{\mu}\var{X}^{\mu}\right]}^{\sigma=\sigma_1}_{\sigma = 0} =0  \eeq
+we are able to better relate momentum conservation with some of the acceptable boundary conditions which will be seen on the next chapter.\par
+
+% \subsection{Slope parameter}
+
+% Now, in order to perform the following calculations we will set
+% \beq[] \tau = t \eeq
+% known as the \textit{static gauge}. Note that in this gauge the \(X^0\) component is already solved.\par
+
+% Consider a rigidly rotating open string. The motion of such string is comprised in two dimensions, so we can save up time writing only its \(X^1\) and \(X^2\) components. Solving the wave equation \eqref{eq:waveequation} our solution is
+% \beq[eq:rotatingstring] \left(X^1,X^2 \right) = \frac{\sigma_1}{\pi}\cos{\frac{\pi \sigma}{\sigma_1}}\left(\cos{\frac{\pi t}{\sigma_1}} , \sin{\frac{\pi t}{\sigma_1}}\right) \eeq\par
+
+% Plugging \eqref{eq:rotatingstring} into \eqref{eq:lorentzchargematrix} we find that the only non-vanishing component of \(M_{\mu\nu}\) is \(M_{12}\), which when computed gives
+% \beq[eq:rotatingangularmomentum] M_{12} = \frac{\sigma_1^2T}{2\pi} \eeq\par
+
+% The difference between a rigidly rotating string and a stretched string is only that the former moves and the latter doesn't, so we can expect its potential energy to be the same! To simplify our calculations, lets consider now just a stretched string. In this case, using the static gauge, the only non-trivial component to be found is \(X^1\), but we do know something about it. Since the string doesn't move, \(X^1\) can only be a function of \(\sigma\), lets call it \(f(\sigma)\). We also know the boundaries of \(X^1\), which in terms of \(f\) read
+% \beq[] f(0) = 0 \qq{and} f(\sigma_1) = a \eeq
+% where \(a\) is where one string endpoint lies. Since the stretched string is comprised in a single dimension, it's best to just say that the string lies in one of the \(d\) spatial spacetime axes (we already did that when we said that only \(X^1\) mattered). With this interpretation \(a\) is just the length of the string while \(f\) tells the \textit{speed} of the \(\sigma\) parameterization.\par
+
+% Lets also see what happens to our Nambu-Goto action \eqref{eq:nambugotoaction} when we plug in \eqref{eq:gaugeXXconstrain} and \eqref{eq:gaugeX2constrain}. We get:
+% \beq[eq:nambugotoactiongauge] S[X] = -T \int_{\tau_i}^{\tau_f}\dd{\tau}\int_0^{\sigma_1}\dd{\sigma} \left(\pdv{X}{\sigma}\right)^2 \eeq
+% and computing \(\dot{X}\) and \(X'\) and plugging them in \eqref{eq:nambugotoactiongauge} we find that the action actually is
+% \beq[] S[X] = -T \int_{t_i}^{t_f}\dd{t}\int_0^{\sigma_1}\dd{\sigma}\dv{f}{\sigma} \eeq
+% \beq[eq:stretchedaction] S[X] = \int_{t_i}^{t_f} \dd{t} \left(-Ta \right) \eeq
+% Setting \(a=\sigma_1\) for simplicity, we can now identify the integrand of \eqref{eq:stretchedaction} with the string Lagrangian, recalling that since the string is not moving there's no kinetic energy (\(K=0\))
+% \beq[] \left(-T\sigma_1 \right) = L = K - V = - V\eeq
+% so now we know what's the string rest energy, the energy due only to its \textit{own existence, regardless of its motion}
+% \beq[eq:stringrestenergy] E = K + V = V = T\sigma_1 \eeq\par
+
+% To end this section: lets plug \eqref{eq:stringrestenergy} into \eqref{eq:rotatingangularmomentum} to get
+% \beq[] J = M_{12} = \frac{1}{2\pi T}E^2 = \alpha' E^2 \eeq
+% where \(\alpha'\) is called the \textit{slope parameter}. The slope parameter \(\alpha'\) is preferred over the string tension \(T\), and we'll be using it a lot.\par
+
+\nocite{*}
+\end{document}

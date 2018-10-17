@@ -1,0 +1,61 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_FD.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\mainmatter \pagestyle{mypage2} \normalfont
+
+\chapter{The Helmholtz Theorem} 
+
+Let \(\vb{F}(\vb{x})\) be an unknown vector field with given 
+\beq[eq:helmdivF] D = \div{\vb{F}}\eeq 
+and
+\beq[eq:helmcurlF] \vb{C} = \curl{\vb{F}}\eeq
+Using 
+\beq[eq:deltapick] \int \dd{x}f(x)\delta(x - x') = f(x')\eeq
+followed by
+\beq[eq:divdelta] \div{\left(\frac{\vb{x}-\vb{x'}}{\abs{\vb{x}-\vb{x'}}^3}\right)} = 4\pi \delta(\vb{x}-\vb{x'})\eeq
+and
+\beq[eq:grad1r] \gradi{\left( \frac{1}{r}\right)} = -\frac{\vb{r}}{r^3} = -\frac{\hat{r}}{r^2}\eeq
+we have
+\beq[eq:helm1] \vb{F}(\vb{x}) = -\frac{\laplacian_{x}}{4\pi} \int \dd[3]{x'} \left( \frac{\vb{F}(\vb{x'})}{\abs{\vb{x}-\vb{x'}}}\right) \eeq
+now, using
+\beq[eq:curlcurl] \curl{\left(\curl{\vb{V}}\right)} = \gradi{\left(\div{\vb{V}}\right)} - \laplacian{\vb{V}}\eeq
+to replace the laplacian, we have
+\beq[eq:helm2] \vb{F}(\vb{x}) = -\frac{1}{4\pi}\gradi[x]{A} + \frac{1}{4\pi} \curl[x]{B}\eeq
+where
+\beq[eq:helmA] A = \gradi[x]{\left( \int \dd[3]{x'} \frac{\vb{F}(\vb{x'})}{\abs{\vb{x}-\vb{x'}}}\right)} \eeq 
+and
+\beq[eq:helmB] \vb{B} = \curl[x]{\left( \int \dd[3]{x'}\frac{\vb{F}(\vb{x'})}{\abs{\vb{x} - \vb{x'}}}\right)}\eeq
+Putting the gradient inside the integral in \eqref{eq:helmA}, using
+\beq[eq:gradxx'] \gradi[x]{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)} = -\gradi[x']{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)}\eeq
+and
+\beq[eq:divaV] \div{\left( a\vb{V}\right)} = \left(\gradi{a} \right)\cdot\vb{V} + a\left(\div{\vb{V}}\right)\eeq
+we find that
+\beq[eq:helmA2] A = \int \dd[3]{x'}\frac{\div[x']{\vb{F}}\left(\vb{x'}\right)}{\abs{\vb{x}-\vb{x'}}} - \int \dd[3]{x'} \div[x']{\left( \frac{\vb{F}\left( \vb{x'}\right)}{\abs{\vb{x}-\vb{x'}}}\right)}\eeq
+Now, substituting \eqref{eq:helmdivF} and using Stokes' theorem on \eqref{eq:helmA2}, we find that
+\beq[eq:helmAfinal] A = \und{\mc{V}}{\int} \dd[3]{x'} \frac{D(x')}{\abs{\vb{x} - \vb{x'}}} - \und{\del \mc{V}}{\oint} \dd{\vb{S}_{x'}}\cdot \left( \frac{\vb{F} \left(\vb{x'} \right)}{\abs{\vb{x} - \vb{x'}}}\right)\eeq
+Similarly, putting the curl inside the integral in \eqref{eq:helmB} with \eqref{eq:gradxx'} and then
+\beq[eq:curlaV] \curl{a\vb{V}} = \left( \gradi{a}\right)\cross \vb{V} + a \div{\vb{V}}\eeq
+we have
+\beq[eq:helmB2] \vb{B} =  \int \dd[3]{x'} \frac{\curl[x']{\vb{F}(\vb{x'})}}{\abs{\vb{x}-\vb{x'}}} - \int \dd[3]{x'} \curl[x']{\left( \frac{\vb{F}(\vb{x'})}{\abs{\vb{x}-\vb{x'}}}\right)}\eeq
+Now, substituting \eqref{eq:helmcurlF} and using Stokes' theorem on \eqref{eq:helmB2}, we find that
+\beq[eq:helmBfinal] \vb{B} = \und{\mc{V}}{\int} \dd[3]{x'} \frac{\vb{C}(x')}{\abs{\vb{x}-\vb{x'}}} - \und{\del\mc{V}}{\oint} \dd{\vb{S}_{x'}}\cross \left(\frac{\vb{F}(\vb{x'})}{\abs{\vb{x}-\vb{x'}}} \right) \eeq \par 
+What all this means is that the curl and the divergence of an unknown vector field are not enough to fully determine the field, we must also know the field on the boundary of the region of integration, which is usually said as: we need to impose boundary conditions.\par
+
+
+\end{document}

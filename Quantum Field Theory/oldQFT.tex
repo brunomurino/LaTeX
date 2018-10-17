@@ -1,0 +1,132 @@
+\documentclass[oneside, 12pt, notitlepage]{book}
+
+\usepackage{../_mypackages/notespreamble}
+\usepackage{../_mypackages/commands}
+\addbibresource{QFT_ref.bib}
+
+\begin{document}
+
+\frontmatter
+\notestp{Quantum Field Theory}
+
+\contents
+\mainmatter
+
+\chapter{Relativistic transformation laws}
+
+A set \(\bPhi\) of vectors is called a \emph{unit ray} if, and only if, the following requeriments are satisfied:
+\begin{enumerate}
+	\item All its vector are of the form \(\exp{i\alpha} \Phi\), where \(\alpha\) varies over all real numbers;
+	\item The norm of \(\Phi\), denoted \(\norm{\Phi}\) and defined as \(\sp{\Phi}{\Phi}^{1/2}\), is unity.
+\end{enumerate}
+\emph{States of a physical system are represented by unit rays.} We refer to a unit ray \(\bPhi\) as the \emph{state} \(\bPhi\).\par
+
+Given two states \(\Phi\) and \(\Psi\) in a Hilbert space \(\mc{H}\), the scalar product \(\sp{\Phi}{\Psi}\) denotes the \emph{transition amplitude} of the corresponding states whereas \(\abs{\sp{\Phi}{\Psi}}^2\) denotes the probability of finding \(\Phi\) if you have \(\Psi\). In the Heisenberg picture, which we are using, the states do not change with time whereas the observables, represented by hermitian linear operators, do.\par
+
+\section{Super-selection rules}
+
+A \emph{super-selection rule} is a rule which determines whether a state is physically \emph{realizable} or not. There are (up to now) three super-selection rules:
+\begin{itemize}
+	\item The \emph{charge} super-selection rule, associated with the \emph{charge} operator \(Q\);
+	\item The \emph{baryon} super-selection-rule, associated with the \emph{baryon number} operator \(B\);
+	\item The \emph{univalence} super-selection rule, associated with the operator \(\lr{-1}^F\), where \(F\) is an even integer for states of integer spin and an odd integer for states of half odd integer spin.
+\end{itemize}\par
+
+Given a theory with super-selection rules, then not all hermitian operators are observables and the superposition principle does not hold in all of \(\mc{H}\). However, in our theory, the superposition principle hold in any eigenspace of \(Q\), \(B\) and \(\lr{-1}^F\).\par
+
+Let \(\theta\) be the set of all observables of the system under consideration. Associated with an observable there is an hermitian operator in \(\mc{H}\) (not necessarily bounded). Let \(\theta'\) be the commutant set of \(\theta\), meaning that the elements of \(\theta'\) are all bounded operators which commute with \(\theta\). The key thing now is that \(\theta'\) holds information about the super-selection rules of the theory, since if they didn't exist every hermitian operator would be an observable, then any state would be realizable.\par
+
+\emph{The hypothesis of commutative super-selection rules} is the hypothesis that all operators of \(\theta'\) commute with each other. Under this hypothesis the super-selection rules in \(\theta'\) can be diagonalized simultaneously, which allows us to split \(\mc{H}\) into the so called \emph{coherent subspaces}, which are simultaneous ortogonal eigenspaces of \(Q\),\(B\) and \(\lr{-1}^F\). The observables map a coherent subspace into a coherent subspace.\par
+
+Notice that if there is a complete commuting set (maximal Abelian set) \(K\) of observables in \(\theta\), then any operator that commutes with \(K\) is a function of operators in \(K\), which in our case means that any operator in \(\theta'\), which is a commutant of \(\theta\), is a function of the operators in \(K\) since \(K\) belongs to \(\theta\), thus all operators in \(\theta'\) commute, proving that the hypothesis of commutative super-selection rules holds.\par
+
+In the following we shall assume that \(\theta'\) is commutative and that every ray of a coherent subspace is physically realizable.\par
+
+\section{Symmetry operations}
+
+A \emph{symmetry operation}\footnote{Sometimes called an \emph{invariance principle}, or simply a \emph{symmetry}} of a physical system is a correspondence which yields for each physically realizable state \(\bPhi\), another, \(\bPhi'\), such that all transition probabilities are preserved:
+\eq{\abs{\sp{\Phi}{\Psi}}^2 = \abs{\sp{\Phi'}{\Psi'}}^2}\par
+
+
+
+\section{The Lorentz and Poincaré groups}
+
+The Lorentz-invariant scalar product of two four-vectors \(x=\lr{x^0,x^1,x^2,x^3}\) and \(y = \lr{y^0,y^1,y^2,y^3}\) will be written as
+\eq{x\cdot y = x^0y^0 - \vb{x}\cdot\vb{y} \equiv x^{\mu}g_{\mu\nu}x^{\nu} \equiv x^{\mu}y_{\mu}}\par
+
+A \emph{Lorentz transformation} \(\Lambda\) is a linear transformation mapping space-time onto space-time which preserves the Lorentz-invariant scalar product, which means
+\eq{\lr{\Lambda x}\cdot\lr{\Lambda y} = x\cdot y}
+If \(\lr{\Lambda x}^{\mu}\) is defined as \(\tensor{\Lambda}{^{\mu}_{\nu}}x^{\nu}\), then the real matrix \(\Lambda\) of the Lorentz transformation must satisfy
+\eq{\tensor{\Lambda}{^k_{\mu}}\tensor{g}{_{k\sigma}}\tensor{\Lambda}{^{\sigma}_{\nu}} = \tensor{g}{_{\mu\nu}} \qq{or in matrix form} \Lambda^T G \Lambda = G}
+where \(\tensor{\lr{\Lambda^T}}{^{\mu}_{\nu}} = \tensor{\Lambda}{^{\nu}_{\mu}}\).\par
+
+Let \(\Lambda\) and \(M\) be Lorentz transformations, then \(\Lambda M\) and \(\Lambda^{-1}\) are also Lorentz transformations, which means that the Lorentz transformations form a group, known as \emph{Lorentz group}, denoted by \(L\).\par
+
+\section{Relativistic transformation laws of states}
+
+
+\chapter{Some mathematical tools}
+
+\section{Definition of distribution}
+
+"In general, we expect a different notion of distribution for each class of \(f\)'s for which the distribution is supposed to be defined. An \(f\) for which the distribution is defined is called a \emph{test function}."\par
+
+"If the set of test functions is regarded as equipped with a particular notion of convergence, then a distribution is defined as a \emph{continuous linear functional on the test functions}."\par
+
+\begin{definition}
+	The \emph{support} of a distribution \(T\), denoted \(\text{supp}\ T\),  is the complement of the largest open set on which \(T\) vanishes. \(T\) vanishes on an open set if it vanishes for all test functions whose supports are in the open set.
+\end{definition}
+
+\begin{definition}
+	The class \(\ms{S}\) is the set of all infinitely differentiable functions, \(f\), such that
+	\eq{\norm{f}_{r,s}<\infty \qq{for all integers} r,s.}
+	where
+	\eq{\norm{f}_{r,s} = \sum_{\mathclap{\substack{k \\ \abs{k}\leq r}}}\  \sum_{\mathclap{\substack{l \\ \abs{l}\leq s}}} \sup_x \abs{x^k D^l f(x)} }
+	defines a norm and the differentiation operators if given by
+	\eq{D^k = \frac{\del^{\abs{k}}}{\lr{\del x_1}^{k_1}...\lr{\del x_n}^{k_n}}}
+	where \(k\) stands for the sequence of integers \(k_1,...,k_n\) and \(\abs{k} = k_1 + k_2 + ... + k_n\)
+\end{definition}
+
+\begin{definition}[Tempered distribution]
+	A \emph{tempered distribution} \(T\) is a linear functional defined on \(\ms{S}\) with the property: if
+	\eq{\lim_{n\to\infty} \norm{f_n - f}_{r,s}=0 \qq{for all} r,s}
+	then
+	\eq{\lim_{n\to\infty} \abs{T\lr{f_n} - T\lr{f}}=0}
+\end{definition}
+
+\begin{definition}
+	The tempered distribution \(T\) is \emph{continuous} at \(f\) if, for any \(\varepsilon>0\), there exist integers \(r,s\), and a \(\delta>0\), such that
+	\eq{\norm{g-f}_{r,s}<\delta \qq{implies} \abs{T\lr{g}-T\lr{f}}<\varepsilon}
+\end{definition}
+
+If for some pair of non-negative integers \(r,s\), there exists a constant \(C\) such that the distribution \(T\) satisfies
+\eq{\abs{T\lr{f}}\leq C \norm{f}_{r,s}}
+then it follows that
+\eq{\abs{T\lr{f_n}-T\lr{f}} = \abs{T\lr{f_n-f}}\leq C \norm{f_n-f}_{r,s}}
+implying that \(T\) is a tempered distribution.\par
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\backmatter
+
+\printbib
+
+\end{document}

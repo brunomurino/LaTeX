@@ -1,0 +1,96 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\addbibresource{ref_NP.bib}
+
+%--------------------------------------------------------------
+
+\theoremstyle{definition}
+
+\newtheorem{mydef}{\textsc{Definition}}[chapter]
+
+\newtheorem{mytheorem}{\textsc{Theorem}}[chapter]
+
+\newtheorem{mylemma}{\textsc{Lemma}}[chapter]
+
+\newtheorem{mycorol}{\textsc{Corollary}}[chapter]
+
+\newtheorem{myprob}{\textsc{Problem}}[chapter]
+
+\newtheorem{myexample}{\textsc{Example}}[chapter]
+
+\newtheorem{myproof}{\textsc{Proof}}[chapter]
+
+\newcommand{\set}[1]{\{#1 \}}
+
+%--------------------------------------------------------------
+
+\begin{document}
+\pagestyle{mypage2}
+\chapter{Tensors} \edef\TensorsChapter{\thechapter}
+
+\section{Tensor notation for vector calculus}
+
+Let \(\epsilon_{ijk} \) be the totally antisymmetric tensor. We can write
+
+\beq[eq:curltensor] (\curl{\vb{F}})_i = \epsilon_{ijk}\del_jF_k \eeq
+
+\beq[eq:divtensor] \div{\vb{F}} = \del_iF_i  \eeq
+
+\beq[eq:gradtensor] (\gradi{f})_i =\del_i f \eeq
+
+\beq[eq:laplatensor] (\laplacian{\vb{F}})_i = \laplacian{F_i} = \del_j \del_j F_i\eeq
+
+\beq[eq:crosstensor] (\vb{F}\cross\vb{G})_i = \epsilon_{ijk}F_jG_k \eeq
+
+\beq[eq:scalartensor] \vb{F}\cdot\vb{G} = F_iG_i \eeq
+
+\beq[eq:tas3dproductdet] \epsilon_{ijk}\epsilon_{lmn} = \begin{vmatrix}
+\delta_{il} & \delta_{im} & \delta_{in} \\
+\delta_{jl} & \delta_{jm} & \delta_{jn} \\
+\delta_{kl} & \delta_{km} & \delta_{kn} \end{vmatrix} \eeq 
+
+\beq[eq:tas3dproduct] \epsilon_{ijk}\epsilon_{lmn} = \delta_{il}(\delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}) - \delta_{im}(\delta_{jl}\delta_{kn} - \delta_{jn}\delta_{kl}) + \delta_{in}(\delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl})   \eeq
+
+
+\chapter{Tensor product}
+
+\begin{mydef}
+Let \(V\) and \(W\) be two vector spaces. Let \(v\in V\) and \(w\in W\). The tensor product between them is denoted as
+\beq[] v\otimes w \eeq
+\end{mydef}
+
+\begin{mydef}
+The tensor product of two vector spaces \(V\) and \(W\) over a field \(K\) is another vector space over \(K\) and it is denoted \(V\otimes_{K} W\), or \(V\otimes W\) when the underlying field \(K\) is understood.
+\end{mydef}
+
+\begin{mydef}
+Let \(T\) be an operator in \(V\) and \(S\) be an operator in \(W\). Then the operator \(T\otimes S\) acts on vectors of \(V\otimes W\) as
+\beq[] T \otimes S (v\otimes w) = (Tv)\otimes(Sw) \eeq
+\end{mydef}
+
+\begin{mytheorem}
+\beq[] \comm{T\otimes \mathds{1}}{\mathds{1} \otimes S} =0 \eeq
+\end{mytheorem}
+
+\begin{myproof}
+Lets calculate
+\beq[1] (T\otimes \mathds{1})\cdot(\mathds{1} \otimes S)(v\otimes w) = (T\otimes \mathds{1})(v\otimes Sw) = (Tv\otimes Sw) \eeq
+\beq[2] (\mathds{1}\otimes S)\cdot (T \otimes \mathds{1}) (v\otimes w) = (\mathds{1}\otimes S)(Tv \otimes w) = (Tv\otimes Sw) \eeq
+From the equality between \eqref{1} and \eqref{2}, it follows that
+\beq[] (T\otimes \mathds{1})\cdot(\mathds{1} \otimes S) = (\mathds{1}\otimes S)\cdot (T \otimes \mathds{1})  \eeq
+then
+\beq[] \comm{T\otimes \mathds{1}}{\mathds{1} \otimes S} =0 \eeq \qed
+\end{myproof}
+
+Lets abbreviate
+\beq[] T\otimes \mathds{1} = T^{(1)} \eeq
+\beq[] \mathds{1} \otimes S = S^{(2)} \eeq
+
+\end{document}

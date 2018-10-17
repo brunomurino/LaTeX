@@ -1,0 +1,48 @@
+\documentclass{_mypackages/monograph}
+
+\title{Green Function} % \MyTitle
+\author{Bruno Murino} % \MyAuthor
+\date{\today} % \MyDate
+
+% \addbibresource{qinfo.bib}
+\graphicspath{ {figures/} }
+
+\begin{document}
+\frontmatter
+
+\monographtp
+\dominitoc
+\doparttoc
+\pagestyle{onlypagenum}
+\tableofcontents
+\mainmatter
+
+\chapter{Green's Function} 
+
+Let
+\begin{equation}\label{eq:2oODE}
+    \hat{D}\Psi(\vb{x}) = F(\vb{x})
+\end{equation}
+be a general second order ordinary linear differential equation with boundary conditions. If we find a function \(G_D\) such that
+\begin{equation}\label{eq:greensfunctioneq}
+    \hat{D}_{x}G_D(\vb{x},\vb{x}') = \delta(\vb{x} - \vb{x}'),
+\end{equation}
+satisfying the boundary conditions, then the solution to \eqref{eq:2oODE} is
+\begin{equation}\label{eq:greensfunctionsolution} 
+    \Psi(\vb{x}) = \int \dd[3]{x'}G_D(\vb{x},\vb{x}')F(\vb{x}')    
+\end{equation}
+since
+\begin{equation}\label{eq:greensfunctionsolution2}
+\begin{split}
+    \hat{D}\Psi(\vb{x}) &= \hat{D}_{x}\int \dd[3]{x'}G_D(\vb{x},\vb{x}')F(\vb{x}') \\
+    &= \int \dd[3]{x'}\left[ \hat{D}_{x}G_D(\vb{x},\vb{x}')\right]F(\vb{x}')\\
+    &= \int \dd[3]{x'}\delta(\vb{x} - \vb{x'})F(\vb{x}') = F(\vb{x})
+\end{split}
+\end{equation}
+However, this function \( G_D\) is not unique, since we can add to it any function \( \Psi_h(\vb{x})\) such that
+\begin{equation}\label{eq:greensfunctionhomog}
+    \hat{D}\Psi_h(\vb{x}) =0
+\end{equation}
+
+
+\end{document}

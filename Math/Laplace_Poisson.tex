@@ -1,0 +1,60 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\begin{document}
+
+\chapter{Laplace's and Poisson's equations} \edef\LaplacePoissonEquationsChapter{\thechapter}
+
+\paragraph{Poisson's equation}
+\beq[eq:poissonequation] \laplacian{f(\vb{x})} = s(\vb{x}) \eeq
+\paragraph{Laplace's equation}
+\beq[eq:laplaceequation] \laplacian{f(\vb{x})} = 0 \eeq
+
+\section{Separation of variables for Laplace's equation}
+
+\subsection{Cartesian coordinates}
+
+In cartesian coordinates, Laplace's equation \mer{eq:laplaceequation} reads
+\beq[eq:laplaceequationcartesian]  \pdv[2]{f}{x} + \pdv[2]{f}{y} + \pdv[2]{f}{z} = 0 \eeq
+Now we try the separable solution
+\beq[eq:potsepcartesian]  f(x,y,z) = X(x)Y(y)Z(z)\eeq
+and plugging it into \mer{eq:laplaceequationcartesian}, we have
+\beq[] \frac{1}{X}\pdv[2]{X}{x} + \frac{1}{Y}\pdv[2]{Y}{y} + \frac{1}{Z}\pdv[2]{Z}{z} =0 \eeq
+Since each term depends only on one variable, we must have
+\beq[eq:sepX] \frac{1}{X_i}\pdv[2]{X_i}{x} = -\alpha_i^2 \eeq
+\beq[eq:sepY] \frac{1}{Y_i}\pdv[2]{Y_i}{y} = -\beta_i^2 \eeq
+\beq[eq:sepZ] \frac{1}{Z_i}\pdv[2]{Z_i}{z} = -\gamma_i^2 \eeq
+with
+\beq[eq:separablecondition] \alpha_i^2 + \beta_i^2 + \gamma_i^2 =0 \eeq
+
+\subsection{Spherical coordinates with azimuthal symmetry}
+
+In spherical coordinates, Laplace's equation \mer{eq:laplaceequation} reads
+\beq[eq:laplaceequationspherical]  \frac{1}{r^2}\pdv{r}\left(r^2\pdv{f}{r} \right)+\frac{1}{r^2\sin\theta}\pdv{\theta}\left(\sin\theta \pdv{f}{\theta} \right) + \frac{1}{r^2\sin^2\theta}\pdv[2]{f}{\phi} = 0 \eeq
+Now, if we assume \textbf{azimuthal symmetry}, so that \(f\) does not depend on \( \phi\), then Laplace's equation reads
+\beq[eq:laplaceequationazimuthalsym] \pdv{r}\left(r^2 \pdv{f}{r} \right) + \frac{1}{\sin\theta}\left(\sin\theta\pdv{f}{\theta} \right) = 0 \eeq
+We then look for solutions of the form
+\beq[eq:azimsymf] f(r,\theta) = R(r)\Theta(\theta) \eeq
+Which gives us
+\beq[eq:azimsymReq] \frac{1}{R}\dv{r}\left(r^2\dv{R}{r} \right) = l(l+1) \eeq
+and
+\beq[eq:azimsymTHETAeq] \frac{1}{\Theta \sin\theta}\dv{\theta}\left( \sin\theta\dv{\Theta}{\theta}\right) = - l(l+1) \eeq
+The radial equation \mer{eq:azimsymReq} has the general solution
+\beq[eq:azimsymReqsol] R_l(r) = A_lr^l + B_lr^{-l-1} \eeq
+While the angular (polar) equation \mer{eq:azimsymTHETAeq} has the general solution
+\beq[eq:azimsymTHETAeqsol] \Theta_l(\theta) = P_l(\cos\theta) \eeq
+Where \( P_l(\cos\theta)\) are \textbf{Legendre polynomials} in the variable \( \cos\theta\). Therefore the general solution of Laplace's equation in the case of azimuthal symmetry is
+\beq[eq:laplaceazimsymsol] f(r,\theta) = \sum_{l=0}^{\infty} \left(A_lr^l + B_lr^{-l-1} \right)P_l(\cos\theta) \eeq
+
+\section{Green's method for Poisson's equation}
+
+In Green's second identity 
+\beq[eq:greensidentity2] \und{V}{\int} \dd{V}\left( f\laplacian{g} - g\laplacian{f}\right) = \und{\del V}{\oint} \dd{\vb{S}}\cdot \left(f\gradi{g} - g\gradi{f} \right) \eeq
+if we set \(g = G(\vb{x},\vb{x}') \), where \(G\) is the Green's function for the laplacian, then we have
+\beq[eq:fulleqwgreensfunc] f(\vb{x}) = -\und{V}{\int}\dd[3]{x'}G(\vb{x},\vb{x}')s(\vb{x}') + \und{\del V}{\oint}\dd{\vb{S}}\cdot\left[f(\vb{x}')\gradi{G} + G\gradi{f(\vb{x}')} \right] \eeq
+So if we have \( \eval{f}_{\del V}=0\), we try to find a Green's function that satisfies \( \eval{G}_{\del V} = 0\). On the other hand, if we have \( \eval{\gradi{f}}_{\del V}=0\), we try to find a Green's function that satisfies \( \eval{\gradi{G}}_{\del V}=0\). Note that this requirements for the Green's functions are attainable since we can add to it any solution \( f_h\) of Laplace's equation \mer{eq:laplaceequation}.
+
+\end{document}

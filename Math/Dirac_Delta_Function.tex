@@ -1,0 +1,23 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\begin{document}
+
+\chapter{The Dirac Delta Function} \edef\TheDiracDeltaFunctionChapter{\thechapter}
+
+\beq[eq:divdelta] \div{\left(\frac{\vb{x}-\vb{x'}}{\abs{\vb{x}-\vb{x'}}^3}\right)} = 4\pi \delta(\vb{x}-\vb{x'})\eeq
+And as a consequence of 
+\beq[eq:grad1r] \gradi{\left( \frac{1}{r}\right)} = -\frac{\vb{r}}{r^3} = -\frac{\hat{r}}{r^2}\eeq
+we have
+\beq[eq:lapdelta] \laplacian\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right) = -4\pi \delta(\vb{x}-\vb{x'}) \eeq
+The following integrals are only satisfied if the point in which the argument of the delta function becomes zero is included in the region of integration, otherwise, the integral vanishes.
+\beq[eq:intedelta] \int \dd{x} \delta(x) = 1\eeq
+
+\beq[eq:deltapick] \int \dd{x}f(x)\delta(x - x') = f(x')\eeq
+
+\beq[] \delta(ax) = \frac{1}{\abs{a}}\delta(x) \eeq
+
+\end{document}

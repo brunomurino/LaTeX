@@ -1,0 +1,31 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage[backend=biber,style=nature]{biblatex}
+%\cite{barton} = [1] and \footfullcite[p. 324]{barton} = ^1 + footnote, p. 324 (e.g.)
+
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+%\addbibresource{ref.bib}
+
+%--------------------------------------------------------------
+
+
+
+%--------------------------------------------------------------
+
+\begin{document}
+
+\chapter{Legendre Polynomials} \edef\LegendrePolynomialsChapter{\thechapter}
+
+\beq[eq:legendrepolxortho] \int_{-1}^{1}P_n(x)P_m(x)\dd{x} = \frac{2}{2l+1}\delta_{nm} \eeq
+
+\beq[eq:legendrepolcosortho] \int_0^{\pi}P_n(\cos\theta)P_m(\cos\theta)\sin\theta \dd{\theta} = \frac{2}{2l+1}\delta_{nm} \eeq
+
+\beq[eq:legendrepolcosorthosolidangle] 
+\int_0^{2\pi} \dd{\phi} \int_0^{\pi}P_n(\cos\theta)P_m(\cos\theta)\sin\theta \dd{\theta} = \eeq 
+\beq[] = \int_0^{2\pi}  \int_0^{\pi}P_n(\cos\theta)P_m(\cos\theta)\sin\theta \dd{\theta}\dd{\phi} \eeq
+\beq[] = \int_0^{2\pi}  \int_0^{\pi}P_n(\cos\theta)P_m(\cos\theta)\dd{\Omega} = \frac{4\pi}{2l+1}\delta_{nm} \eeq
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass[oneside, 12pt]{book}
+
+\usepackage{mypreamble}
+\usepackage{mycommands}
+\usepackage{mytheme1}
+
+\begin{document}
+
+\chapter{Vector Operators} \edef\VectorOperatorsChapter{\thechapter}
+
+The \textit{fundamental theorem of calculus} states:
+\beq[eq:ftofcalc]\int^b_a \dv{f}{x}\dd{x} = f(b) - f(a)\eeq
+
+\section{Theorems}
+
+Let \(T:\R^3 \mapsto \R\), then the \textit{fundamental theorem for gradients} states
+\beq[eq:ftforgrads] \und{\mc{P}}{\int_{\vb{a}}^{\vb{b}}} \left(\gradi{T} \right)\cdot \dd{\vb{l}} = T\left(\vb{b}\right) - T\left( \vb{a}\right)\eeq
+where \(\vb{a}\) and \(\vb{b}\) are the endpoints of the path \(\mathcal{P}\). As the right side of \mer{eq:ftforgrads} makes no reference to the path \(\mathcal{P}\), only to its endpoints, the integral if said to be \textit{path independent}. Also, if the path closes, \(\vb{a} = \vb{b}\), the integral vanishes.\par 
+
+Let \(\vb{v}\) be a vector, then the \textit{fundamental theorem for divergences} states 
+
+\beq[eq:ftfordivs] \und{\mc{V}}{\int} \left(\div{\vb{v}}\right)\dd{V} = \und{\del\mc{V}}{\oint} \vb{v} \cdot \dd{\vb{S}} \eeq
+
+where \(\del \mc{V}\) is the boundary of \(\mc{V}\). Other names for this theorem are \textit{Gauss's theorem}, \textit{Green's theorem} and \textit{divergence theorem}.\par 
+
+Let \(\vb{v}\) be a vector, then the \textit{fundamental theorem for curls} states
+
+\beq[eq:ftforcurls] \und{\mc{S}}{\int}\left(\curl{\vb{v}} \right)\cdot \dd{S} = \und{\del\mc{S}}{\oint}\vb{v}\cdot \dd{\vb{l}} \eeq
+
+where \(\del \mc{S}\) is the boundary of \(\mc{S}\). As the right side of \mer{eq:ftforcurls} depends only on the boundary of \(\mc{S}\), its left side can be evaluated using any \(\mc{S}\). Also, if \(\mc{S}\) has no boundary, i.e. its closed, then the integral vanishes. Another name for this theorem is \textit{Stokes' theorem}.\par 
+
+\section{Useful identities}
+
+\beq[eq:curlcurl] \curl{\left(\curl{\vb{V}}\right)} = \gradi{\left(\div{\vb{V}}\right)} - \laplacian{\vb{V}}\eeq
+
+\beq[eq:divaV] \div{\left( a\vb{V}\right)} = \left(\gradi{a} \right)\cdot\vb{V} + a\left(\div{\vb{V}}\right)\eeq
+
+\beq[eq:curlaV] \curl{a\vb{V}} = \left( \gradi{a}\right)\cross \vb{V} + a \div{\vb{V}}\eeq
+
+\beq[eq:grad1r] \gradi{\left( \frac{1}{r}\right)} = -\frac{\vb{r}}{r^3} = -\frac{\hat{r}}{r^2}\eeq
+
+\beq[eq:gradxx'] \gradi[x]{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)} = -\gradi[x']{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)}\eeq
+
+\beq[eq:divxx'] \gradi[x]\cdot{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)} = -\gradi[x']\cdot{\left( \frac{1}{\abs{\vb{x}-\vb{x'}}}\right)}\eeq
+
+Let \(\vb{A}\) be a constant vector and \(a\) a scalar function, then
+
+\beq[eq:curlAa] \curl{\vb{A}a} = \gradi{a}\cross A \eeq
+
+\paragraph{Green's first identity}
+\beq[eq:greensidentity1] \und{V}{\int}\dd{V}\left( f\laplacian{g} + \gradi{f}\cdot\gradi{g}\right) = \und{\del V}{\oint}\dd{\vb{S}}\cdot\left(f\gradi{g} \right) \eeq
+
+\paragraph{Green's second identity}
+\beq[eq:greensidentity2] \und{V}{\int} \dd{V}\left( f\laplacian{g} - g\laplacian{f}\right) = \und{\del V}{\oint} \dd{\vb{S}}\cdot \left(f\gradi{g} - g\gradi{f} \right) \eeq
+
+\end{document}
